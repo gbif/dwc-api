@@ -1,4 +1,4 @@
 dwc-api
 =======
 
-Darwin Core term enumeration
+A term enumeration and factory for Darwin Core and similar terms

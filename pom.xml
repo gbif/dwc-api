@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.gbif</groupId>
+        <artifactId>motherpom</artifactId>
+        <version>10</version>
+    </parent>
+
+    <groupId>org.gbif</groupId>
+    <artifactId>dwc-api</artifactId>
+    <version>1.4-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Darwin Core API</name>
+    <description>Enumeration of all Darwin Core and Dublin Core terms</description>
+
+    <properties>
+        <junit.version>4.11</junit.version>
+        <logback.version>1.0.13</logback.version>
+        <slf4j.version>1.7.5</slf4j.version>
+    </properties>
+
+    <developers>
+        <developer>
+            <name>Markus Döring</name>
+            <email>mdoering@gbif.org</email>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>gbif-all</id>
+            <url>http://repository.gbif.org/content/groups/gbif</url>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:svn:http://darwincore.googlecode.com/svn/trunk/dwc-api</connection>
+        <developerConnection>scm:svn:https://darwincore.googlecode.com/svn/trunk/dwc-api</developerConnection>
+        <url>http://code.google.com/p/darwincore/source/browse/#svn/trunk/dwc-api</url>
+    </scm>
+
+    <issueManagement>
+        <system>Google Code</system>
+        <url>http://code.google.com/p/darwincore/issues/list</url>
+    </issueManagement>
+
+    <distributionManagement>
+        <site>
+            <id>gbif-site</id>
+            <name>Site for the DWC API project</name>
+            <url>scp://tools.gbif.org:/var/www/html/sites/darwincore/dwc-api</url>
+        </site>
+    </distributionManagement>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
