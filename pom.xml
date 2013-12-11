@@ -10,7 +10,7 @@
 
     <groupId>org.gbif</groupId>
     <artifactId>dwc-api</artifactId>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Darwin Core API</name>
