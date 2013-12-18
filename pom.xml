@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.gbif</groupId>
         <artifactId>motherpom</artifactId>
-        <version>10</version>
+        <version>13-SNAPSHOT</version>
     </parent>
 
     <groupId>org.gbif</groupId>
@@ -15,6 +15,13 @@
 
     <name>Darwin Core API</name>
     <description>Enumeration of all Darwin Core and Dublin Core terms</description>
+    <url>https://github.com/gbif/${project.artifactId}</url>
+
+    <scm>
+      <connection>scm:git:git@github.com:gbif/${project.artifactId}.git</connection>
+      <url>https://github.com/gbif/${project.artifactId}</url>
+      <developerConnection>scm:git:git@github.com:gbif/${project.artifactId}.git</developerConnection>
+    </scm>
 
     <properties>
         <junit.version>4.11</junit.version>
@@ -36,25 +43,6 @@
             <url>http://repository.gbif.org/content/groups/gbif</url>
         </repository>
     </repositories>
-
-    <scm>
-        <connection>scm:svn:http://darwincore.googlecode.com/svn/trunk/dwc-api</connection>
-        <developerConnection>scm:svn:https://darwincore.googlecode.com/svn/trunk/dwc-api</developerConnection>
-        <url>http://code.google.com/p/darwincore/source/browse/#svn/trunk/dwc-api</url>
-    </scm>
-
-    <issueManagement>
-        <system>Google Code</system>
-        <url>http://code.google.com/p/darwincore/issues/list</url>
-    </issueManagement>
-
-    <distributionManagement>
-        <site>
-            <id>gbif-site</id>
-            <name>Site for the DWC API project</name>
-            <url>scp://tools.gbif.org:/var/www/html/sites/darwincore/dwc-api</url>
-        </site>
-    </distributionManagement>
 
     <build>
         <defaultGoal>install</defaultGoal>
