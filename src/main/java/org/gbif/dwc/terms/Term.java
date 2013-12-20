@@ -1,5 +1,13 @@
 package org.gbif.dwc.terms;
 
+import org.gbif.dwc.terms.jackson.TermDeserializer;
+import org.gbif.dwc.terms.jackson.TermSerializer;
+
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+@JsonSerialize(using= TermSerializer.class)
+@JsonDeserialize(using= TermDeserializer.class)
 public interface Term {
 
   /**
