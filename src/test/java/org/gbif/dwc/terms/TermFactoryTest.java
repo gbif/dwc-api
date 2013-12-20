@@ -8,7 +8,7 @@ public class TermFactoryTest {
 
   @Test
   public void testFindTerm() {
-    TermFactory factory = new TermFactory();
+    TermFactory factory = TermFactory.instance();
 
     assertEquals(DwcTerm.scientificName, factory.findTerm("ScientificName"));
     assertEquals(DwcTerm.scientificName, factory.findTerm("dwc:scientificName"));

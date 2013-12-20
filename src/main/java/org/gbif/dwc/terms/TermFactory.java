@@ -14,10 +14,20 @@ import org.slf4j.LoggerFactory;
 public class TermFactory {
     private final static Logger LOG = LoggerFactory.getLogger(TermFactory.class);
     private static final Pattern NON_ALPHA_NUM_PATTERN = Pattern.compile("[^a-zA-Z0-9]+");
+
+    private static TermFactory singleton;
+
     private final Map<String, Term> terms = new HashMap<String, Term>();
 
-    public TermFactory() {
-        loadKnownTerms();
+    public static TermFactory instance() {
+      if (singleton == null) {
+        singleton = new TermFactory();
+        singleton.loadKnownTerms();
+      }
+      return singleton;
+    }
+
+    private TermFactory() {
     }
 
     private void loadKnownTerms() {

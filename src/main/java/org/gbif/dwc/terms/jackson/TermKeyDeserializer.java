@@ -11,11 +11,7 @@ import org.codehaus.jackson.map.KeyDeserializer;
  *
  */
 public class TermKeyDeserializer extends KeyDeserializer {
-  private TermFactory factory;
-
-  public TermKeyDeserializer(TermFactory factory) {
-    this.factory = factory;
-  }
+  private TermFactory factory = TermFactory.instance();
 
   @Override
   public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {
