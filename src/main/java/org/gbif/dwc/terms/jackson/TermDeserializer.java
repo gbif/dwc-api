@@ -15,7 +15,18 @@ import org.codehaus.jackson.map.JsonDeserializer;
  * A json deserializer that turns full qualified term names into dwc terms instances.
  */
 public class TermDeserializer extends JsonDeserializer<Term> {
-  private TermFactory factory = new TermFactory();
+  private TermFactory factory;
+
+  public TermDeserializer() {
+    this(new TermFactory());
+  }
+
+  /**
+   * @param factory a reusable term factory to share custom term instances.
+   */
+  public TermDeserializer(TermFactory factory) {
+    this.factory = factory;
+  }
 
   @Override
   public Term deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {

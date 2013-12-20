@@ -1,0 +1,24 @@
+package org.gbif.dwc.terms.jackson;
+
+import org.gbif.dwc.terms.TermFactory;
+
+import java.io.IOException;
+
+import org.codehaus.jackson.map.DeserializationContext;
+import org.codehaus.jackson.map.KeyDeserializer;
+
+/**
+ *
+ */
+public class TermKeyDeserializer extends KeyDeserializer {
+  private TermFactory factory;
+
+  public TermKeyDeserializer(TermFactory factory) {
+    this.factory = factory;
+  }
+
+  @Override
+  public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {
+    return factory.findTerm(key);
+  }
+}
