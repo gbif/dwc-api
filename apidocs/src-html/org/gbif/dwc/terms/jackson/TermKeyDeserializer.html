@@ -19,17 +19,13 @@
 <span class="sourceLineNo">011</span> *<a name="line.11"></a>
 <span class="sourceLineNo">012</span> */<a name="line.12"></a>
 <span class="sourceLineNo">013</span>public class TermKeyDeserializer extends KeyDeserializer {<a name="line.13"></a>
-<span class="sourceLineNo">014</span>  private TermFactory factory;<a name="line.14"></a>
+<span class="sourceLineNo">014</span>  private TermFactory factory = TermFactory.instance();<a name="line.14"></a>
 <span class="sourceLineNo">015</span><a name="line.15"></a>
-<span class="sourceLineNo">016</span>  public TermKeyDeserializer(TermFactory factory) {<a name="line.16"></a>
-<span class="sourceLineNo">017</span>    this.factory = factory;<a name="line.17"></a>
-<span class="sourceLineNo">018</span>  }<a name="line.18"></a>
-<span class="sourceLineNo">019</span><a name="line.19"></a>
-<span class="sourceLineNo">020</span>  @Override<a name="line.20"></a>
-<span class="sourceLineNo">021</span>  public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {<a name="line.21"></a>
-<span class="sourceLineNo">022</span>    return factory.findTerm(key);<a name="line.22"></a>
-<span class="sourceLineNo">023</span>  }<a name="line.23"></a>
-<span class="sourceLineNo">024</span>}<a name="line.24"></a>
+<span class="sourceLineNo">016</span>  @Override<a name="line.16"></a>
+<span class="sourceLineNo">017</span>  public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException {<a name="line.17"></a>
+<span class="sourceLineNo">018</span>    return factory.findTerm(key);<a name="line.18"></a>
+<span class="sourceLineNo">019</span>  }<a name="line.19"></a>
+<span class="sourceLineNo">020</span>}<a name="line.20"></a>
 
 
 
