@@ -17,12 +17,13 @@ public class TermFactory {
   private static final Pattern NON_ALPHA_NUM_PATTERN = Pattern.compile("[^a-zA-Z0-9]+");
 
   private static TermFactory singleton;
+  private static boolean initialized = false;
   private static final Object LOCK = new Object();
 
   private final Map<String, Term> terms = new HashMap<String, Term>();
 
   public static TermFactory instance() {
-    if (singleton != null) {
+    if (initialized) {
       return singleton;
     }
 
@@ -31,6 +32,7 @@ public class TermFactory {
         LOG.debug("Building new TermFactory instance");
         singleton = new TermFactory();
         singleton.loadKnownTerms();
+        initialized = true;
       }
     }
 
