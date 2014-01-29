@@ -8,31 +8,54 @@
 <div class="sourceContainer">
 <pre><span class="sourceLineNo">001</span>package org.gbif.dwc.terms;<a name="line.1"></a>
 <span class="sourceLineNo">002</span><a name="line.2"></a>
-<span class="sourceLineNo">003</span>import org.junit.Test;<a name="line.3"></a>
-<span class="sourceLineNo">004</span><a name="line.4"></a>
-<span class="sourceLineNo">005</span>import static org.junit.Assert.assertEquals;<a name="line.5"></a>
+<span class="sourceLineNo">003</span>import java.util.concurrent.ExecutorService;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import java.util.concurrent.Executors;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import java.util.concurrent.TimeUnit;<a name="line.5"></a>
 <span class="sourceLineNo">006</span><a name="line.6"></a>
-<span class="sourceLineNo">007</span>public class TermFactoryTest {<a name="line.7"></a>
+<span class="sourceLineNo">007</span>import org.junit.Test;<a name="line.7"></a>
 <span class="sourceLineNo">008</span><a name="line.8"></a>
-<span class="sourceLineNo">009</span>  @Test<a name="line.9"></a>
-<span class="sourceLineNo">010</span>  public void testFindTerm() {<a name="line.10"></a>
-<span class="sourceLineNo">011</span>    TermFactory factory = TermFactory.instance();<a name="line.11"></a>
+<span class="sourceLineNo">009</span>import static org.junit.Assert.assertEquals;<a name="line.9"></a>
+<span class="sourceLineNo">010</span><a name="line.10"></a>
+<span class="sourceLineNo">011</span>public class TermFactoryTest {<a name="line.11"></a>
 <span class="sourceLineNo">012</span><a name="line.12"></a>
-<span class="sourceLineNo">013</span>    assertEquals(DwcTerm.scientificName, factory.findTerm("ScientificName"));<a name="line.13"></a>
-<span class="sourceLineNo">014</span>    assertEquals(DwcTerm.scientificName, factory.findTerm("dwc:scientificName"));<a name="line.14"></a>
-<span class="sourceLineNo">015</span>    assertEquals(DwcTerm.scientificName, factory.findTerm("http://rs.tdwg.org/dwc/terms/scientificName"));<a name="line.15"></a>
-<span class="sourceLineNo">016</span>    assertEquals(DcTerm.identifier, factory.findTerm("dc:identifier"));<a name="line.16"></a>
-<span class="sourceLineNo">017</span>    assertEquals(DcTerm.identifier, factory.findTerm("identifier"));<a name="line.17"></a>
-<span class="sourceLineNo">018</span>    assertEquals(DcTerm.identifier, factory.findTerm("ID"));<a name="line.18"></a>
-<span class="sourceLineNo">019</span>    assertEquals(DwcTerm.parentNameUsageID, factory.findTerm("dwc:higherTaxonID"));<a name="line.19"></a>
-<span class="sourceLineNo">020</span><a name="line.20"></a>
-<span class="sourceLineNo">021</span>    assertEquals("threatStatus", factory.findTerm("http://rs.gbif.org/terms/1.0/threatStatus").simpleName());<a name="line.21"></a>
-<span class="sourceLineNo">022</span>    assertEquals("threatStatus", factory.findTerm("http://rs.gbif.org/terms/1321.43/threatStatus").simpleName());<a name="line.22"></a>
-<span class="sourceLineNo">023</span><a name="line.23"></a>
-<span class="sourceLineNo">024</span>    assertEquals(DwcTerm.catalogNumber, factory.findTerm("\"catalogNumber\""));<a name="line.24"></a>
-<span class="sourceLineNo">025</span>  }<a name="line.25"></a>
-<span class="sourceLineNo">026</span><a name="line.26"></a>
-<span class="sourceLineNo">027</span>}<a name="line.27"></a>
+<span class="sourceLineNo">013</span>  @Test<a name="line.13"></a>
+<span class="sourceLineNo">014</span>  public void testFindTerm() {<a name="line.14"></a>
+<span class="sourceLineNo">015</span>    TermFactory factory = TermFactory.instance();<a name="line.15"></a>
+<span class="sourceLineNo">016</span><a name="line.16"></a>
+<span class="sourceLineNo">017</span>    assertEquals(DwcTerm.scientificName, factory.findTerm("ScientificName"));<a name="line.17"></a>
+<span class="sourceLineNo">018</span>    assertEquals(DwcTerm.scientificName, factory.findTerm("dwc:scientificName"));<a name="line.18"></a>
+<span class="sourceLineNo">019</span>    assertEquals(DwcTerm.scientificName, factory.findTerm("http://rs.tdwg.org/dwc/terms/scientificName"));<a name="line.19"></a>
+<span class="sourceLineNo">020</span>    assertEquals(DcTerm.identifier, factory.findTerm("dc:identifier"));<a name="line.20"></a>
+<span class="sourceLineNo">021</span>    assertEquals(DcTerm.identifier, factory.findTerm("identifier"));<a name="line.21"></a>
+<span class="sourceLineNo">022</span>    assertEquals(DcTerm.identifier, factory.findTerm("ID"));<a name="line.22"></a>
+<span class="sourceLineNo">023</span>    assertEquals(DwcTerm.parentNameUsageID, factory.findTerm("dwc:higherTaxonID"));<a name="line.23"></a>
+<span class="sourceLineNo">024</span><a name="line.24"></a>
+<span class="sourceLineNo">025</span>    assertEquals("threatStatus", factory.findTerm("http://rs.gbif.org/terms/1.0/threatStatus").simpleName());<a name="line.25"></a>
+<span class="sourceLineNo">026</span>    assertEquals("threatStatus", factory.findTerm("http://rs.gbif.org/terms/1321.43/threatStatus").simpleName());<a name="line.26"></a>
+<span class="sourceLineNo">027</span><a name="line.27"></a>
+<span class="sourceLineNo">028</span>    assertEquals(DwcTerm.catalogNumber, factory.findTerm("\"catalogNumber\""));<a name="line.28"></a>
+<span class="sourceLineNo">029</span>  }<a name="line.29"></a>
+<span class="sourceLineNo">030</span><a name="line.30"></a>
+<span class="sourceLineNo">031</span>  /**<a name="line.31"></a>
+<span class="sourceLineNo">032</span>   * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.<a name="line.32"></a>
+<span class="sourceLineNo">033</span>   */<a name="line.33"></a>
+<span class="sourceLineNo">034</span>  public void testMultithreadStart() throws InterruptedException {<a name="line.34"></a>
+<span class="sourceLineNo">035</span>    int threadCount = 200;<a name="line.35"></a>
+<span class="sourceLineNo">036</span>    ExecutorService tp = Executors.newFixedThreadPool(threadCount);<a name="line.36"></a>
+<span class="sourceLineNo">037</span>    for (int i = 0; i &lt; threadCount; i++) {<a name="line.37"></a>
+<span class="sourceLineNo">038</span>      tp.submit(new TermFactoryLoader());<a name="line.38"></a>
+<span class="sourceLineNo">039</span>    }<a name="line.39"></a>
+<span class="sourceLineNo">040</span>    tp.shutdown();<a name="line.40"></a>
+<span class="sourceLineNo">041</span>    tp.awaitTermination(30, TimeUnit.SECONDS);<a name="line.41"></a>
+<span class="sourceLineNo">042</span>  }<a name="line.42"></a>
+<span class="sourceLineNo">043</span><a name="line.43"></a>
+<span class="sourceLineNo">044</span>  private static class TermFactoryLoader implements Runnable {<a name="line.44"></a>
+<span class="sourceLineNo">045</span>    @Override<a name="line.45"></a>
+<span class="sourceLineNo">046</span>    public void run() {<a name="line.46"></a>
+<span class="sourceLineNo">047</span>      TermFactory.instance();<a name="line.47"></a>
+<span class="sourceLineNo">048</span>    }<a name="line.48"></a>
+<span class="sourceLineNo">049</span>  }<a name="line.49"></a>
+<span class="sourceLineNo">050</span>}<a name="line.50"></a>
 
 
 
