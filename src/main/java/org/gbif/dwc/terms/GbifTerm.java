@@ -112,4 +112,11 @@ public enum GbifTerm implements Term {
     return PREFIX + ":" + name();
   }
 
+  /**
+   * @return true if the term is defining a class instead of a property, e.g. VernacularName
+   */
+  public boolean isClass() {
+    return Character.isUpperCase(simpleName().charAt(0));
+  }
+
 }
