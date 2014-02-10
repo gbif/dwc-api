@@ -1,5 +1,9 @@
 package org.gbif.dwc.terms;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -24,4 +28,23 @@ public class TermFactoryTest {
     assertEquals(DwcTerm.catalogNumber, factory.findTerm("\"catalogNumber\""));
   }
 
+  /**
+   * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.
+   */
+  public void testMultithreadStart() throws InterruptedException {
+    int threadCount = 200;
+    ExecutorService tp = Executors.newFixedThreadPool(threadCount);
+    for (int i = 0; i < threadCount; i++) {
+      tp.submit(new TermFactoryLoader());
+    }
+    tp.shutdown();
+    tp.awaitTermination(30, TimeUnit.SECONDS);
+  }
+
+  private static class TermFactoryLoader implements Runnable {
+    @Override
+    public void run() {
+      TermFactory.instance();
+    }
+  }
 }
