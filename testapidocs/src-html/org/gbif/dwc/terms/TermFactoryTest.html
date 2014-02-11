@@ -51,27 +51,41 @@
 <span class="sourceLineNo">043</span>  }<a name="line.43"></a>
 <span class="sourceLineNo">044</span><a name="line.44"></a>
 <span class="sourceLineNo">045</span><a name="line.45"></a>
-<span class="sourceLineNo">046</span>  /**<a name="line.46"></a>
-<span class="sourceLineNo">047</span>     * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.<a name="line.47"></a>
-<span class="sourceLineNo">048</span>     */<a name="line.48"></a>
-<span class="sourceLineNo">049</span>  @Test<a name="line.49"></a>
-<span class="sourceLineNo">050</span>  public void testMultithreadStart() throws InterruptedException {<a name="line.50"></a>
-<span class="sourceLineNo">051</span>    int threadCount = 100;<a name="line.51"></a>
-<span class="sourceLineNo">052</span>    ExecutorService tp = Executors.newFixedThreadPool(threadCount);<a name="line.52"></a>
-<span class="sourceLineNo">053</span>    for (int i = 0; i &lt; threadCount; i++) {<a name="line.53"></a>
-<span class="sourceLineNo">054</span>      tp.submit(new TermFactoryLoader());<a name="line.54"></a>
-<span class="sourceLineNo">055</span>    }<a name="line.55"></a>
-<span class="sourceLineNo">056</span>    tp.shutdown();<a name="line.56"></a>
-<span class="sourceLineNo">057</span>    tp.awaitTermination(30, TimeUnit.SECONDS);<a name="line.57"></a>
-<span class="sourceLineNo">058</span>  }<a name="line.58"></a>
+<span class="sourceLineNo">046</span>  @Test<a name="line.46"></a>
+<span class="sourceLineNo">047</span>  public void addUnknownSimpleTerm() {<a name="line.47"></a>
+<span class="sourceLineNo">048</span>    TermFactory factory = TermFactory.instance();<a name="line.48"></a>
+<span class="sourceLineNo">049</span><a name="line.49"></a>
+<span class="sourceLineNo">050</span>    Term t1 = factory.findTerm("me");<a name="line.50"></a>
+<span class="sourceLineNo">051</span>    Term t2 = factory.findTerm("me");<a name="line.51"></a>
+<span class="sourceLineNo">052</span>    Term t3 = factory.findTerm("Ne");<a name="line.52"></a>
+<span class="sourceLineNo">053</span><a name="line.53"></a>
+<span class="sourceLineNo">054</span>    assertEquals(t1, t2);<a name="line.54"></a>
+<span class="sourceLineNo">055</span>    assertNotEquals(t1, t3);<a name="line.55"></a>
+<span class="sourceLineNo">056</span>    assertNotEquals(t2, t3);<a name="line.56"></a>
+<span class="sourceLineNo">057</span>  }<a name="line.57"></a>
+<span class="sourceLineNo">058</span><a name="line.58"></a>
 <span class="sourceLineNo">059</span><a name="line.59"></a>
-<span class="sourceLineNo">060</span>  private static class TermFactoryLoader implements Runnable {<a name="line.60"></a>
-<span class="sourceLineNo">061</span>    @Override<a name="line.61"></a>
-<span class="sourceLineNo">062</span>    public void run() {<a name="line.62"></a>
-<span class="sourceLineNo">063</span>      TermFactory.instance();<a name="line.63"></a>
-<span class="sourceLineNo">064</span>    }<a name="line.64"></a>
-<span class="sourceLineNo">065</span>  }<a name="line.65"></a>
-<span class="sourceLineNo">066</span>}<a name="line.66"></a>
+<span class="sourceLineNo">060</span>  /**<a name="line.60"></a>
+<span class="sourceLineNo">061</span>     * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.<a name="line.61"></a>
+<span class="sourceLineNo">062</span>     */<a name="line.62"></a>
+<span class="sourceLineNo">063</span>  @Test<a name="line.63"></a>
+<span class="sourceLineNo">064</span>  public void testMultithreadStart() throws InterruptedException {<a name="line.64"></a>
+<span class="sourceLineNo">065</span>    int threadCount = 100;<a name="line.65"></a>
+<span class="sourceLineNo">066</span>    ExecutorService tp = Executors.newFixedThreadPool(threadCount);<a name="line.66"></a>
+<span class="sourceLineNo">067</span>    for (int i = 0; i &lt; threadCount; i++) {<a name="line.67"></a>
+<span class="sourceLineNo">068</span>      tp.submit(new TermFactoryLoader());<a name="line.68"></a>
+<span class="sourceLineNo">069</span>    }<a name="line.69"></a>
+<span class="sourceLineNo">070</span>    tp.shutdown();<a name="line.70"></a>
+<span class="sourceLineNo">071</span>    tp.awaitTermination(30, TimeUnit.SECONDS);<a name="line.71"></a>
+<span class="sourceLineNo">072</span>  }<a name="line.72"></a>
+<span class="sourceLineNo">073</span><a name="line.73"></a>
+<span class="sourceLineNo">074</span>  private static class TermFactoryLoader implements Runnable {<a name="line.74"></a>
+<span class="sourceLineNo">075</span>    @Override<a name="line.75"></a>
+<span class="sourceLineNo">076</span>    public void run() {<a name="line.76"></a>
+<span class="sourceLineNo">077</span>      TermFactory.instance();<a name="line.77"></a>
+<span class="sourceLineNo">078</span>    }<a name="line.78"></a>
+<span class="sourceLineNo">079</span>  }<a name="line.79"></a>
+<span class="sourceLineNo">080</span>}<a name="line.80"></a>
 
 
 

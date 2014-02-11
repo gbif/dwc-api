@@ -23,7 +23,7 @@
 <span class="sourceLineNo">015</span><a name="line.15"></a>
 <span class="sourceLineNo">016</span>  private static final Logger LOG = LoggerFactory.getLogger(TermFactory.class);<a name="line.16"></a>
 <span class="sourceLineNo">017</span>  private static final Pattern NON_ALPHA_NUM_PATTERN = Pattern.compile("[^a-zA-Z0-9#-]+");<a name="line.17"></a>
-<span class="sourceLineNo">018</span><a name="line.18"></a>
+<span class="sourceLineNo">018</span>  private static final String UNKNOWN_NAMESPACE = "http://unknown.org/";<a name="line.18"></a>
 <span class="sourceLineNo">019</span>  private static TermFactory singleton;<a name="line.19"></a>
 <span class="sourceLineNo">020</span>  private static boolean initialized = false;<a name="line.20"></a>
 <span class="sourceLineNo">021</span>  private static final Object LOCK = new Object();<a name="line.21"></a>
@@ -109,14 +109,20 @@
 <span class="sourceLineNo">101</span>      return terms.get(normTermName);<a name="line.101"></a>
 <span class="sourceLineNo">102</span>    } else {<a name="line.102"></a>
 <span class="sourceLineNo">103</span>      // create new term instance<a name="line.103"></a>
-<span class="sourceLineNo">104</span>      term = UnknownTerm.build(termName);<a name="line.104"></a>
-<span class="sourceLineNo">105</span>      addTerm(normTermName, term);<a name="line.105"></a>
-<span class="sourceLineNo">106</span>      addTerm(termName, term);<a name="line.106"></a>
-<span class="sourceLineNo">107</span>    }<a name="line.107"></a>
-<span class="sourceLineNo">108</span>    return term;<a name="line.108"></a>
-<span class="sourceLineNo">109</span>  }<a name="line.109"></a>
-<span class="sourceLineNo">110</span><a name="line.110"></a>
-<span class="sourceLineNo">111</span>}<a name="line.111"></a>
+<span class="sourceLineNo">104</span>      try {<a name="line.104"></a>
+<span class="sourceLineNo">105</span>        term = UnknownTerm.build(termName);<a name="line.105"></a>
+<span class="sourceLineNo">106</span>      } catch (IllegalArgumentException e) {<a name="line.106"></a>
+<span class="sourceLineNo">107</span>        // simple names as found in ATB file headers are rejected<a name="line.107"></a>
+<span class="sourceLineNo">108</span>        // convert into a standard unknown term namespace and try again<a name="line.108"></a>
+<span class="sourceLineNo">109</span>        term = UnknownTerm.build(UNKNOWN_NAMESPACE + termName);<a name="line.109"></a>
+<span class="sourceLineNo">110</span>      }<a name="line.110"></a>
+<span class="sourceLineNo">111</span>      addTerm(normTermName, term);<a name="line.111"></a>
+<span class="sourceLineNo">112</span>      addTerm(termName, term);<a name="line.112"></a>
+<span class="sourceLineNo">113</span>    }<a name="line.113"></a>
+<span class="sourceLineNo">114</span>    return term;<a name="line.114"></a>
+<span class="sourceLineNo">115</span>  }<a name="line.115"></a>
+<span class="sourceLineNo">116</span><a name="line.116"></a>
+<span class="sourceLineNo">117</span>}<a name="line.117"></a>
 
 
 
