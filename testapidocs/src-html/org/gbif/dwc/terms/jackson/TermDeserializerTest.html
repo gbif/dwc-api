@@ -109,7 +109,7 @@
 <span class="sourceLineNo">101</span>  public void testOcc() throws IOException {<a name="line.101"></a>
 <span class="sourceLineNo">102</span>    ObjectMapper mapper = new ObjectMapper();<a name="line.102"></a>
 <span class="sourceLineNo">103</span><a name="line.103"></a>
-<span class="sourceLineNo">104</span>    final Term custom = new UnknownTerm("http://me.com", "me");<a name="line.104"></a>
+<span class="sourceLineNo">104</span>    final Term custom = UnknownTerm.build("http://me.com/mum", "mum");<a name="line.104"></a>
 <span class="sourceLineNo">105</span>    Occ o = new Occ();<a name="line.105"></a>
 <span class="sourceLineNo">106</span>    o.setTerm(custom);<a name="line.106"></a>
 <span class="sourceLineNo">107</span>    o.getData().put(custom, "custom");<a name="line.107"></a>
@@ -123,11 +123,10 @@
 <span class="sourceLineNo">115</span>    Occ o2 = mapper.readValue(json, Occ.class);<a name="line.115"></a>
 <span class="sourceLineNo">116</span>    System.out.println(o.equals(o2));<a name="line.116"></a>
 <span class="sourceLineNo">117</span><a name="line.117"></a>
-<span class="sourceLineNo">118</span>    //TODO: why does the data map equals comparison fail???<a name="line.118"></a>
-<span class="sourceLineNo">119</span>    //assertEquals(o, mapper.readValue(json, Occ.class));<a name="line.119"></a>
-<span class="sourceLineNo">120</span>  }<a name="line.120"></a>
-<span class="sourceLineNo">121</span><a name="line.121"></a>
-<span class="sourceLineNo">122</span>}<a name="line.122"></a>
+<span class="sourceLineNo">118</span>    assertEquals(o, mapper.readValue(json, Occ.class));<a name="line.118"></a>
+<span class="sourceLineNo">119</span>  }<a name="line.119"></a>
+<span class="sourceLineNo">120</span><a name="line.120"></a>
+<span class="sourceLineNo">121</span>}<a name="line.121"></a>
 
 
 
