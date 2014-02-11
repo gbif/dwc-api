@@ -12,14 +12,9 @@ public enum GbifTerm implements Term, AlternativeNames {
   VernacularName("VernacularNames", "Vernacular", "Vernaculars"),
 
   // CONCEPT TERMS
-  /**
-   * Datetime created in GBIF stores.
-   */
-  created,
-  /**
-   * Datetime last modified in GBIF stores.
-   */
-  modified,
+  lastInterpreted,
+  lastParsed,
+  lastCrawled,
   // occurrences
   elevationInMeters,
   depthInMeters,
