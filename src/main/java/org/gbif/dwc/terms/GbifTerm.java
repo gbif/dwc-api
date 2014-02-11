@@ -11,7 +11,10 @@ public enum GbifTerm implements Term, AlternativeNames {
   TypesAndSpecimen("Specimen", "Types", "TypeDesignation"),
   VernacularName("VernacularNames", "Vernacular", "Vernaculars"),
 
-  // CONCEPT TERMS
+  // Dataset properties
+  datasetKey,
+
+  // Occurrence properties
   lastInterpreted,
   lastParsed,
   lastCrawled,
@@ -23,39 +26,17 @@ public enum GbifTerm implements Term, AlternativeNames {
   depthAccuracy,
   distanceAboveSurface,
   distanceAboveSurfaceAccuracy,
-
-  // occurrences
-  elevationInMeters,
-  depthInMeters,
-  elevationPrecision,
-  depthPrecision,
-  verbatimScientificName,
-  verbatimKingdom,
-  verbatimPhylum,
-  verbatimClass,
-  verbatimOrder,
-  verbatimFamily,
-  verbatimGenus,
-  verbatimSpecificEpithet,
-  verbatimInfraspecificEpithet,
-  verbatimYear,
-  verbatimMonth,
-  verbatimBasisOfRecord,
-  kingdomID,
-  phylumID,
-  classID,
-  orderID,
-  familyID,
-  genusID,
-  speciesID,
-  cellID,
-  centiCellID,
-  mod360CellID,
-  taxonomicIssueFlag,
-  geospatialIssueFlag,
-  otherIssueFlag,
+  kingdomKey,
+  phylumKey,
+  classKey,
+  orderKey,
+  familyKey,
+  genusKey,
+  speciesKey,
   unitQualifier,
-  // species profile
+  issue,
+
+  // species profile checklist extension
   isMarine,
   isTerrestrial,
   isFreshwater,
@@ -66,25 +47,24 @@ public enum GbifTerm implements Term, AlternativeNames {
   ageInDays,
   sizeInMillimeter,
   massInGram("weightInGram"),
-  // vernacular
+
+  // vernacular name checklist extension
   organismPart,
   isPlural,
   isPreferredName,
-  // distribution
+
+  // distribution checklist extension
   appendixCITES,
-  // types
+
+  // types checklist extension
   typeDesignatedBy,
   typeDesignationType,
+
   // experimental
   canonicalName,
   nameType,
   verbatimLabel,
-  infraspecificMarker,
-  indexedOccurrenceCount,
-  harvestedOccurrenceCount,
-  georeferencedOccurrenceCount,
-  datasetCount,
-  countryCount;
+  infraspecificMarker;
 
   public static final String NS = "http://rs.gbif.org/terms/1.0/";
   public static final String PREFIX = "gbif";

@@ -45,7 +45,7 @@ public class DwcTermTest {
 
   @Test
   public void testListByGroup() {
-    assertEquals(34, DwcTerm.listByGroup(DwcTerm.GROUP_TAXON).size());
+    assertEquals(35, DwcTerm.listByGroup(DwcTerm.GROUP_TAXON).size());
     assertEquals(11, DwcTerm.listByGroup("Record").size());
     assertEquals(0, DwcTerm.listByGroup("Random").size());
   }

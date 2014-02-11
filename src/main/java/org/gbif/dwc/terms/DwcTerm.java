@@ -73,6 +73,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   footprintWKT(DwcTerm.GROUP_LOCATION),
   formation(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   genus(DwcTerm.GROUP_TAXON),
+  genericName(DwcTerm.GROUP_TAXON),    // not yet ratified !!!
   geodeticDatum(DwcTerm.GROUP_LOCATION, "datum"),
   geologicalContextID(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   georeferencedDate(DwcTerm.GROUP_LOCATION),
@@ -184,6 +185,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   taxonRemarks(DwcTerm.GROUP_TAXON, "taxonRemark"),
   taxonomicStatus(DwcTerm.GROUP_TAXON),
   typeStatus(DwcTerm.GROUP_IDENTIFICATION),
+  typifiedName(DwcTerm.GROUP_IDENTIFICATION),    // not yet ratified !!!
   verbatimCoordinateSystem(DwcTerm.GROUP_LOCATION),
   verbatimCoordinates(DwcTerm.GROUP_LOCATION),
   verbatimDepth(DwcTerm.GROUP_LOCATION, "depth"),
@@ -229,7 +231,7 @@ public enum DwcTerm implements Term, AlternativeNames {
       DwcTerm.kingdom, DwcTerm.phylum, DwcTerm.class_, DwcTerm.order, DwcTerm.family, DwcTerm.genus, DwcTerm.subgenus,
       DwcTerm.specificEpithet, DwcTerm.infraspecificEpithet, DwcTerm.taxonRank, DwcTerm.verbatimTaxonRank,
       DwcTerm.scientificNameAuthorship, DwcTerm.vernacularName, DwcTerm.nomenclaturalCode, DwcTerm.taxonomicStatus,
-      DwcTerm.nomenclaturalStatus, DwcTerm.taxonRemarks};
+      DwcTerm.nomenclaturalStatus, DwcTerm.taxonRemarks, DwcTerm.genericName};
 
   /**
    * List of all higher rank terms in dwc, ordered by rank and starting with kingdom.
