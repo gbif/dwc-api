@@ -42,6 +42,29 @@ public class TermFactoryTest {
     assertNotEquals(me2, me3);
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void addBadTerm() {
+    TermFactory factory = TermFactory.instance();
+    factory.findTerm("Hallo Tim");
+  }
+
+  @Test
+  public void addSimpleTerm() {
+    TermFactory factory = TermFactory.instance();
+
+    Term hallo = factory.findTerm("hallo");
+    assertEquals(UnknownTerm.class, hallo.getClass());
+    assertEquals("http://unknown.org/hallo", hallo.qualifiedName());
+    assertEquals("hallo", hallo.simpleName());
+
+
+    Term tim = factory.findTerm("Tim");
+    assertEquals(UnknownTerm.class, tim.getClass());
+    assertEquals("http://unknown.org/Tim", tim.qualifiedName());
+    assertEquals("Tim", tim.simpleName());
+
+    assertNotEquals(hallo, tim);
+  }
 
   @Test
   public void addUnknownSimpleTerm() {

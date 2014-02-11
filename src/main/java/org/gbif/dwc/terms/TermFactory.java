@@ -89,7 +89,19 @@ public class TermFactory {
     return NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("").toLowerCase();
   }
 
-  public Term findTerm(String termName) {
+  /**
+   * This is the main method to get a term from the factory.
+   * It will lookup matching terms applying some normalization and known synonyms first.
+   * If nothing matches the factory creates a new UnknownTerm instance and keeps it for further requests so that
+   * all terms with the same qualified name return a single UnknownTerm instance.
+   *
+   * For clearly bad term names an IllegalArgumentException is thrown.
+   * For example in the case of a simple name containing whitespace like "hello tom".
+   * Ideally the term names to be looked up should be full URIs, but simple names made up of alphanumerics and dashes
+   * will also work fine. Unknown simple names will be put into the namespace http://unknown.org when a new UnknownTerm
+   * instance is created.
+   */
+  public Term findTerm(String termName) throws IllegalArgumentException {
     if (termName == null || termName.trim().isEmpty()) {
       return null;
     }
