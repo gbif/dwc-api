@@ -8,13 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Simple factory for terms that knows about all ConceptTerms of this library and keeps singletons for
+ * Simple, threadsafe factory for terms that knows about all ConceptTerms of this library and keeps singletons for
  * all unknown Term instances.
  */
 public class TermFactory {
 
   private static final Logger LOG = LoggerFactory.getLogger(TermFactory.class);
-  private static final Pattern NON_ALPHA_NUM_PATTERN = Pattern.compile("[^a-zA-Z0-9]+");
+  private static final Pattern NON_ALPHA_NUM_PATTERN = Pattern.compile("[^a-zA-Z0-9#-]+");
 
   private static TermFactory singleton;
   private static boolean initialized = false;
@@ -49,21 +49,20 @@ public class TermFactory {
     addTerms(IucnTerm.values(), IucnTerm.PREFIXES);
   }
 
-  private void addTerms(Term[] terms, String[] prefixes) {
-    for (Term term : terms) {
+  private <T extends Term & AlternativeNames> void addTerms(T[] terms, String[] prefixes) {
+    for (T term : terms) {
       addTerm(term.simpleName(), term);
       addTerm(term.qualifiedName(), term);
       for (String pre : prefixes) {
         addTerm(pre + term.simpleName(), term);
       }
-      // alt names
+      // also index alt names
       for (String alt : term.alternativeNames()) {
         addTerm(alt, term);
         for (String pre : prefixes) {
           addTerm(pre + alt, term);
         }
       }
-
     }
   }
 
@@ -102,12 +101,9 @@ public class TermFactory {
       return terms.get(normTermName);
     } else {
       // create new term instance
-      int pos = termName.lastIndexOf("/");
-      String tmpName = pos == -1 ? "" : termName.substring(pos + 1);
-      term = new UnknownTerm(termName, tmpName);
+      term = UnknownTerm.build(termName);
       addTerm(normTermName, term);
       addTerm(termName, term);
-      addTerm(tmpName, term);
     }
     return term;
   }

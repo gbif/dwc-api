@@ -101,7 +101,7 @@ public class TermDeserializerTest {
   public void testOcc() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
 
-    final Term custom = new UnknownTerm("http://me.com", "me");
+    final Term custom = UnknownTerm.build("http://me.com/mum", "mum");
     Occ o = new Occ();
     o.setTerm(custom);
     o.getData().put(custom, "custom");
@@ -115,8 +115,7 @@ public class TermDeserializerTest {
     Occ o2 = mapper.readValue(json, Occ.class);
     System.out.println(o.equals(o2));
 
-    //TODO: why does the data map equals comparison fail???
-    //assertEquals(o, mapper.readValue(json, Occ.class));
+    assertEquals(o, mapper.readValue(json, Occ.class));
   }
 
 }

@@ -1,6 +1,6 @@
 package org.gbif.dwc.terms;
 
-public enum IucnTerm implements Term {
+public enum IucnTerm implements Term, AlternativeNames {
   threatStatus;
 
   public static final String NS = "http://iucn.org/terms/";

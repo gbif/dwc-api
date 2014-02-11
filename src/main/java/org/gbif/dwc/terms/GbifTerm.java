@@ -1,6 +1,6 @@
 package org.gbif.dwc.terms;
 
-public enum GbifTerm implements Term {
+public enum GbifTerm implements Term, AlternativeNames {
   // row types
   Description,
   Distribution,

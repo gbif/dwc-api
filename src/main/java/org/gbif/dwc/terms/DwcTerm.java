@@ -8,7 +8,7 @@ import java.util.List;
  * with alternative term names found sometimes in data.
  * Old, deprecated terms are kept but marked as such.
  */
-public enum DwcTerm implements Term {
+public enum DwcTerm implements Term, AlternativeNames {
 
   // CLASS TERMS
   Event(DwcTerm.GROUP_EVENT),

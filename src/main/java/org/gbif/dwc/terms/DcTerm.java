@@ -1,6 +1,6 @@
 package org.gbif.dwc.terms;
 
-public enum DcTerm implements Term {
+public enum DcTerm implements Term, AlternativeNames {
   abstract_,
   accessRights,
   accrualMethod,

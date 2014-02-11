@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class TermFactoryTest {
 
@@ -28,11 +29,26 @@ public class TermFactoryTest {
     assertEquals(DwcTerm.catalogNumber, factory.findTerm("\"catalogNumber\""));
   }
 
+  @Test
+  public void addUnknownTerm() {
+    TermFactory factory = TermFactory.instance();
+
+    Term me1 = factory.findTerm("http://me.com/#me");
+    Term me2 = factory.findTerm("http://me.com/me");
+    Term me3 = factory.findTerm("http://me.org/me");
+
+    assertNotEquals(me1, me2);
+    assertNotEquals(me1, me3);
+    assertNotEquals(me2, me3);
+  }
+
+
   /**
-   * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.
-   */
+     * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.
+     */
+  @Test
   public void testMultithreadStart() throws InterruptedException {
-    int threadCount = 200;
+    int threadCount = 100;
     ExecutorService tp = Executors.newFixedThreadPool(threadCount);
     for (int i = 0; i < threadCount; i++) {
       tp.submit(new TermFactoryLoader());

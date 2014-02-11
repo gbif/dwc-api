@@ -22,11 +22,4 @@ public interface Term {
    */
   String qualifiedName();
 
-  /**
-   * Lists known alternative names for the same term. These names are frequently found typos or term names that
-   * have been used in past versions of Darwin Core and are still found in data.
-   *
-   * @return known alternative simple names for this term, often null
-   */
-  String[] alternativeNames();
 }
