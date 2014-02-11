@@ -43,6 +43,20 @@ public class TermFactoryTest {
   }
 
 
+  @Test
+  public void addUnknownSimpleTerm() {
+    TermFactory factory = TermFactory.instance();
+
+    Term t1 = factory.findTerm("me");
+    Term t2 = factory.findTerm("me");
+    Term t3 = factory.findTerm("Ne");
+
+    assertEquals(t1, t2);
+    assertNotEquals(t1, t3);
+    assertNotEquals(t2, t3);
+  }
+
+
   /**
      * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.
      */

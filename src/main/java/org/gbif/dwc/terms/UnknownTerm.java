@@ -1,7 +1,6 @@
 package org.gbif.dwc.terms;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 public class UnknownTerm implements Term {
 
@@ -9,19 +8,11 @@ public class UnknownTerm implements Term {
   private final String name;
 
   public static UnknownTerm build(String qualifiedName){
-    try {
-      return new UnknownTerm(new URI(qualifiedName));
-    } catch (URISyntaxException e) {
-      throw new IllegalArgumentException("The qualified name URI must be an absolute URI");
-    }
+    return new UnknownTerm(URI.create(qualifiedName));
   }
 
   public static UnknownTerm build(String qualifiedName, String simpleName){
-    try {
-      return new UnknownTerm(new URI(qualifiedName), simpleName);
-    } catch (URISyntaxException e) {
-      throw new IllegalArgumentException("The qualified name URI must be an absolute URI");
-    }
+    return new UnknownTerm(URI.create(qualifiedName), simpleName);
   }
 
   public UnknownTerm(URI uri, String name) {

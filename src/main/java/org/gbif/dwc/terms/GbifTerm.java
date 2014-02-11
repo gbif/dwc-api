@@ -15,6 +15,15 @@ public enum GbifTerm implements Term, AlternativeNames {
   lastInterpreted,
   lastParsed,
   lastCrawled,
+  publishingCountry,
+  coordinateAccuracy,
+  elevation,
+  elevationAccuracy,
+  depth,
+  depthAccuracy,
+  distanceAboveSurface,
+  distanceAboveSurfaceAccuracy,
+
   // occurrences
   elevationInMeters,
   depthInMeters,

@@ -15,7 +15,7 @@ public class TermFactory {
 
   private static final Logger LOG = LoggerFactory.getLogger(TermFactory.class);
   private static final Pattern NON_ALPHA_NUM_PATTERN = Pattern.compile("[^a-zA-Z0-9#-]+");
-
+  private static final String UNKNOWN_NAMESPACE = "http://unknown.org/";
   private static TermFactory singleton;
   private static boolean initialized = false;
   private static final Object LOCK = new Object();
@@ -101,7 +101,13 @@ public class TermFactory {
       return terms.get(normTermName);
     } else {
       // create new term instance
-      term = UnknownTerm.build(termName);
+      try {
+        term = UnknownTerm.build(termName);
+      } catch (IllegalArgumentException e) {
+        // simple names as found in ATB file headers are rejected
+        // convert into a standard unknown term namespace and try again
+        term = UnknownTerm.build(UNKNOWN_NAMESPACE + termName);
+      }
       addTerm(normTermName, term);
       addTerm(termName, term);
     }
