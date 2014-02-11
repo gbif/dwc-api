@@ -97,32 +97,44 @@
 <span class="sourceLineNo">089</span>    return NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("").toLowerCase();<a name="line.89"></a>
 <span class="sourceLineNo">090</span>  }<a name="line.90"></a>
 <span class="sourceLineNo">091</span><a name="line.91"></a>
-<span class="sourceLineNo">092</span>  public Term findTerm(String termName) {<a name="line.92"></a>
-<span class="sourceLineNo">093</span>    if (termName == null || termName.trim().isEmpty()) {<a name="line.93"></a>
-<span class="sourceLineNo">094</span>      return null;<a name="line.94"></a>
-<span class="sourceLineNo">095</span>    }<a name="line.95"></a>
-<span class="sourceLineNo">096</span>    // normalise terms<a name="line.96"></a>
-<span class="sourceLineNo">097</span>    Term term;<a name="line.97"></a>
-<span class="sourceLineNo">098</span>    String normTermName = normaliseTerm(termName);<a name="line.98"></a>
-<span class="sourceLineNo">099</span>    // try known terms first<a name="line.99"></a>
-<span class="sourceLineNo">100</span>    if (terms.containsKey(normTermName)) {<a name="line.100"></a>
-<span class="sourceLineNo">101</span>      return terms.get(normTermName);<a name="line.101"></a>
-<span class="sourceLineNo">102</span>    } else {<a name="line.102"></a>
-<span class="sourceLineNo">103</span>      // create new term instance<a name="line.103"></a>
-<span class="sourceLineNo">104</span>      try {<a name="line.104"></a>
-<span class="sourceLineNo">105</span>        term = UnknownTerm.build(termName);<a name="line.105"></a>
-<span class="sourceLineNo">106</span>      } catch (IllegalArgumentException e) {<a name="line.106"></a>
-<span class="sourceLineNo">107</span>        // simple names as found in ATB file headers are rejected<a name="line.107"></a>
-<span class="sourceLineNo">108</span>        // convert into a standard unknown term namespace and try again<a name="line.108"></a>
-<span class="sourceLineNo">109</span>        term = UnknownTerm.build(UNKNOWN_NAMESPACE + termName);<a name="line.109"></a>
-<span class="sourceLineNo">110</span>      }<a name="line.110"></a>
-<span class="sourceLineNo">111</span>      addTerm(normTermName, term);<a name="line.111"></a>
-<span class="sourceLineNo">112</span>      addTerm(termName, term);<a name="line.112"></a>
-<span class="sourceLineNo">113</span>    }<a name="line.113"></a>
-<span class="sourceLineNo">114</span>    return term;<a name="line.114"></a>
-<span class="sourceLineNo">115</span>  }<a name="line.115"></a>
-<span class="sourceLineNo">116</span><a name="line.116"></a>
-<span class="sourceLineNo">117</span>}<a name="line.117"></a>
+<span class="sourceLineNo">092</span>  /**<a name="line.92"></a>
+<span class="sourceLineNo">093</span>   * This is the main method to get a term from the factory.<a name="line.93"></a>
+<span class="sourceLineNo">094</span>   * It will lookup matching terms applying some normalization and known synonyms first.<a name="line.94"></a>
+<span class="sourceLineNo">095</span>   * If nothing matches the factory creates a new UnknownTerm instance and keeps it for further requests so that<a name="line.95"></a>
+<span class="sourceLineNo">096</span>   * all terms with the same qualified name return a single UnknownTerm instance.<a name="line.96"></a>
+<span class="sourceLineNo">097</span>   *<a name="line.97"></a>
+<span class="sourceLineNo">098</span>   * For clearly bad term names an IllegalArgumentException is thrown.<a name="line.98"></a>
+<span class="sourceLineNo">099</span>   * For example in the case of a simple name containing whitespace like "hello tom".<a name="line.99"></a>
+<span class="sourceLineNo">100</span>   * Ideally the term names to be looked up should be full URIs, but simple names made up of alphanumerics and dashes<a name="line.100"></a>
+<span class="sourceLineNo">101</span>   * will also work fine. Unknown simple names will be put into the namespace http://unknown.org when a new UnknownTerm<a name="line.101"></a>
+<span class="sourceLineNo">102</span>   * instance is created.<a name="line.102"></a>
+<span class="sourceLineNo">103</span>   */<a name="line.103"></a>
+<span class="sourceLineNo">104</span>  public Term findTerm(String termName) throws IllegalArgumentException {<a name="line.104"></a>
+<span class="sourceLineNo">105</span>    if (termName == null || termName.trim().isEmpty()) {<a name="line.105"></a>
+<span class="sourceLineNo">106</span>      return null;<a name="line.106"></a>
+<span class="sourceLineNo">107</span>    }<a name="line.107"></a>
+<span class="sourceLineNo">108</span>    // normalise terms<a name="line.108"></a>
+<span class="sourceLineNo">109</span>    Term term;<a name="line.109"></a>
+<span class="sourceLineNo">110</span>    String normTermName = normaliseTerm(termName);<a name="line.110"></a>
+<span class="sourceLineNo">111</span>    // try known terms first<a name="line.111"></a>
+<span class="sourceLineNo">112</span>    if (terms.containsKey(normTermName)) {<a name="line.112"></a>
+<span class="sourceLineNo">113</span>      return terms.get(normTermName);<a name="line.113"></a>
+<span class="sourceLineNo">114</span>    } else {<a name="line.114"></a>
+<span class="sourceLineNo">115</span>      // create new term instance<a name="line.115"></a>
+<span class="sourceLineNo">116</span>      try {<a name="line.116"></a>
+<span class="sourceLineNo">117</span>        term = UnknownTerm.build(termName);<a name="line.117"></a>
+<span class="sourceLineNo">118</span>      } catch (IllegalArgumentException e) {<a name="line.118"></a>
+<span class="sourceLineNo">119</span>        // simple names as found in ATB file headers are rejected<a name="line.119"></a>
+<span class="sourceLineNo">120</span>        // convert into a standard unknown term namespace and try again<a name="line.120"></a>
+<span class="sourceLineNo">121</span>        term = UnknownTerm.build(UNKNOWN_NAMESPACE + termName);<a name="line.121"></a>
+<span class="sourceLineNo">122</span>      }<a name="line.122"></a>
+<span class="sourceLineNo">123</span>      addTerm(normTermName, term);<a name="line.123"></a>
+<span class="sourceLineNo">124</span>      addTerm(termName, term);<a name="line.124"></a>
+<span class="sourceLineNo">125</span>    }<a name="line.125"></a>
+<span class="sourceLineNo">126</span>    return term;<a name="line.126"></a>
+<span class="sourceLineNo">127</span>  }<a name="line.127"></a>
+<span class="sourceLineNo">128</span><a name="line.128"></a>
+<span class="sourceLineNo">129</span>}<a name="line.129"></a>
 
 
 
