@@ -13,12 +13,12 @@ public enum GbifTerm implements Term, AlternativeNames {
 
   // Dataset properties
   datasetKey,
+  publishingCountry,
 
   // Occurrence properties
   lastInterpreted,
   lastParsed,
   lastCrawled,
-  publishingCountry,
   coordinateAccuracy,
   elevation,
   elevationAccuracy,
@@ -26,12 +26,18 @@ public enum GbifTerm implements Term, AlternativeNames {
   depthAccuracy,
   distanceAboveSurface,
   distanceAboveSurfaceAccuracy,
+  /**
+   * The GBIF backbone key.
+   * taxonID is only used for the source ids similar to occurrenceID
+   */
+  taxonKey,
   kingdomKey,
   phylumKey,
   classKey,
   orderKey,
   familyKey,
   genusKey,
+  subgenusKey,
   speciesKey,
   unitQualifier,
   issue,
