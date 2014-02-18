@@ -19,6 +19,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   lastInterpreted,
   lastParsed,
   lastCrawled,
+  protocol,
   coordinateAccuracy,
   elevation,
   elevationAccuracy,
