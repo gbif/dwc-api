@@ -40,6 +40,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   genusKey,
   subgenusKey,
   speciesKey,
+  species,
   unitQualifier,
   issue,
 

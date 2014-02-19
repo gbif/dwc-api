@@ -66,7 +66,7 @@ public class TermFactory {
     }
   }
 
-  private void addTerm(String key, Term term) {
+  public void addTerm(String key, Term term) {
     if (key == null || key.trim().isEmpty()) {
       return;
     }
