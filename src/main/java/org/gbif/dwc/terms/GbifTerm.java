@@ -57,8 +57,8 @@ public enum GbifTerm implements Term, AlternativeNames {
   // GBIF Crawling
   unitQualifier(GbifTerm.GROUP_CRAWLING),
   protocol(GbifTerm.GROUP_CRAWLING),
-  lastParsed(GbifTerm.GROUP_OCCURRENCE),
-  lastCrawled(GbifTerm.GROUP_OCCURRENCE),
+  lastParsed(GbifTerm.GROUP_CRAWLING),
+  lastCrawled(GbifTerm.GROUP_CRAWLING),
 
   // Species Profile checklist extension
   isMarine(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
@@ -104,8 +104,8 @@ public enum GbifTerm implements Term, AlternativeNames {
    */
   public static final GbifTerm[] TAXONOMIC_TERMS =
     {GbifTerm.taxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey, GbifTerm.orderKey,
-      GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey, GbifTerm.canonicalName,
-      GbifTerm.nameType};
+      GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey, GbifTerm.species,
+      GbifTerm.canonicalName, GbifTerm.nameType};
 
   private final String groupName;
   public final String[] normAlts;
