@@ -285,7 +285,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   }
 
   /**
-   * Array of alternative simple names in used for the term.
+   * Array of alternative simple names in use for the term.
    * Often based on older dwc versions.
    * @return simple term name
    */
