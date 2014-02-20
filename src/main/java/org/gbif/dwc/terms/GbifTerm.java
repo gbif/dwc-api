@@ -25,8 +25,6 @@ public enum GbifTerm implements Term, AlternativeNames {
   elevationAccuracy,
   depth,
   depthAccuracy,
-  distanceAboveSurface,
-  distanceAboveSurfaceAccuracy,
   /**
    * The GBIF backbone key.
    * taxonID is only used for the source ids similar to occurrenceID
