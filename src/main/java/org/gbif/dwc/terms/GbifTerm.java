@@ -55,7 +55,6 @@ public enum GbifTerm implements Term, AlternativeNames {
   nameType(GbifTerm.GROUP_TAXON),
 
   // GBIF Crawling
-  unitQualifier(GbifTerm.GROUP_CRAWLING),
   protocol(GbifTerm.GROUP_CRAWLING),
   lastParsed(GbifTerm.GROUP_CRAWLING),
   lastCrawled(GbifTerm.GROUP_CRAWLING),

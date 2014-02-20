@@ -24,7 +24,7 @@ public class GbifTermTest {
   public void testIsClass() {
     assertTrue(GbifTerm.VernacularName.isClass());
     assertTrue(GbifTerm.Distribution.isClass());
-    assertFalse(GbifTerm.unitQualifier.isClass());
+    assertFalse(GbifTerm.datasetKey.isClass());
   }
 
   @Test
@@ -40,31 +40,31 @@ public class GbifTermTest {
     List<GbifTerm> datasetTerms = GbifTerm.listByGroup(GbifTerm.GROUP_DATASET);
     assertEquals(2, datasetTerms.size());
     assertEquals(2, new HashSet<GbifTerm>(datasetTerms).size());
-    
+
     List<GbifTerm> occurrenceTerms = GbifTerm.listByGroup(GbifTerm.GROUP_OCCURRENCE);
     assertEquals(13, occurrenceTerms.size());
     assertEquals(13, new HashSet<GbifTerm>(occurrenceTerms).size());
-    
+
     List<GbifTerm> rowTerms = GbifTerm.listByGroup(GbifTerm.GROUP_ROW_TYPE);
     assertEquals(8, rowTerms.size());
     assertEquals(8, new HashSet<GbifTerm>(rowTerms).size());
-    
+
     List<GbifTerm> distributionTerms = GbifTerm.listByGroup(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION);
     assertEquals(1, distributionTerms.size());
     assertEquals(1, new HashSet<GbifTerm>(distributionTerms).size());
-    
+
     List<GbifTerm> profileTerms = GbifTerm.listByGroup(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION);
     assertEquals(10, profileTerms.size());
     assertEquals(10, new HashSet<GbifTerm>(profileTerms).size());
-    
+
     List<GbifTerm> taxonTerms = GbifTerm.listByGroup(GbifTerm.GROUP_TAXON);
     assertEquals(12, taxonTerms.size());
     assertEquals(12, new HashSet<GbifTerm>(taxonTerms).size());
-    
+
     List<GbifTerm> crawlingTerms = GbifTerm.listByGroup(GbifTerm.GROUP_CRAWLING);
-    assertEquals(4, crawlingTerms.size());
-    assertEquals(4, new HashSet<GbifTerm>(crawlingTerms).size());
-    
+    assertEquals(3, crawlingTerms.size());
+    assertEquals(3, new HashSet<GbifTerm>(crawlingTerms).size());
+
     List<GbifTerm> vernacularTerms = GbifTerm.listByGroup(GbifTerm.GROUP_VERNACULAR_NAME_EXTENSION);
     assertEquals(3, vernacularTerms.size());
     assertEquals(3, new HashSet<GbifTerm>(vernacularTerms).size());

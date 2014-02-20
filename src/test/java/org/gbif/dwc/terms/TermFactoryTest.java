@@ -1,5 +1,7 @@
 package org.gbif.dwc.terms;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -7,9 +9,32 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 
 public class TermFactoryTest {
+
+  /**
+   * GBIF code assumes a term coming from any of the Term enumerations here have unique simple names.
+   * This tests verifies that!
+   */
+  @Test
+  public void testKnownTermUniqueness() {
+    Set<String> names = new HashSet<String>();
+
+    addTerms(names, DwcTerm.values());
+    addTerms(names, DcTerm.values());
+    addTerms(names, GbifTerm.values());
+    addTerms(names, GbifInternalTerm.values());
+    addTerms(names, IucnTerm.values());
+  }
+
+  private void addTerms(Set<String> names, Term[] terms) {
+    for (Term t : terms) {
+      assertFalse("Duplicate simple name "+t.simpleName(), names.contains(t.simpleName()));
+      names.add(t.simpleName());
+    }
+  }
 
   @Test
   public void testFindTerm() {
@@ -22,6 +47,8 @@ public class TermFactoryTest {
     assertEquals(DcTerm.identifier, factory.findTerm("identifier"));
     assertEquals(DcTerm.identifier, factory.findTerm("ID"));
     assertEquals(DwcTerm.parentNameUsageID, factory.findTerm("dwc:higherTaxonID"));
+
+    assertEquals(GbifInternalTerm.unitQualifier, factory.findTerm("UNIT_QUALIFIER"));
 
     assertEquals("threatStatus", factory.findTerm("http://rs.gbif.org/terms/1.0/threatStatus").simpleName());
     assertEquals("threatStatus", factory.findTerm("http://rs.gbif.org/terms/1321.43/threatStatus").simpleName());
