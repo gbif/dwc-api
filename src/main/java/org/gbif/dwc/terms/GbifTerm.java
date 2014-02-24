@@ -19,6 +19,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   publishingCountry(GbifTerm.GROUP_DATASET),
 
   // Occurrence properties
+  gbifID(GbifTerm.GROUP_OCCURRENCE),
   lastInterpreted(GbifTerm.GROUP_OCCURRENCE),
   coordinateAccuracy(GbifTerm.GROUP_OCCURRENCE),
   elevation(GbifTerm.GROUP_OCCURRENCE),
