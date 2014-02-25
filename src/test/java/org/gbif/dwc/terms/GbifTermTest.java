@@ -42,8 +42,8 @@ public class GbifTermTest {
     assertEquals(2, new HashSet<GbifTerm>(datasetTerms).size());
 
     List<GbifTerm> occurrenceTerms = GbifTerm.listByGroup(GbifTerm.GROUP_OCCURRENCE);
-    assertEquals(14, occurrenceTerms.size());
-    assertEquals(14, new HashSet<GbifTerm>(occurrenceTerms).size());
+    assertEquals(16, occurrenceTerms.size());
+    assertEquals(16, new HashSet<GbifTerm>(occurrenceTerms).size());
 
     List<GbifTerm> rowTerms = GbifTerm.listByGroup(GbifTerm.GROUP_ROW_TYPE);
     assertEquals(8, rowTerms.size());

@@ -35,6 +35,9 @@ public enum GbifTerm implements Term, AlternativeNames {
   // Types and Specimen checklist extension
   typeDesignatedBy(GbifTerm.GROUP_OCCURRENCE),
   typeDesignationType(GbifTerm.GROUP_OCCURRENCE),
+  // booleans for geospatial issues
+  hasCoordinate(GbifTerm.GROUP_OCCURRENCE),
+  hasGeospatialIssues(GbifTerm.GROUP_OCCURRENCE),
 
   // Taxon properties
   /**
