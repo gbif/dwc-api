@@ -13,6 +13,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   SpeciesProfile(GbifTerm.GROUP_ROW_TYPE, "SpeciesMiniProfile", "SpeciesInfo", "SpeciesData", "SpeciesFactsheet"),
   TypesAndSpecimen(GbifTerm.GROUP_ROW_TYPE, "Specimen", "Types", "TypeDesignation"),
   VernacularName(GbifTerm.GROUP_ROW_TYPE, "VernacularNames", "Vernacular", "Vernaculars"),
+  Multimedia(GbifTerm.GROUP_ROW_TYPE),
 
   // Dataset properties
   datasetKey(GbifTerm.GROUP_DATASET),
