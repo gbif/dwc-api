@@ -30,6 +30,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   distanceAboveSurface(GbifTerm.GROUP_OCCURRENCE),
   distanceAboveSurfaceAccuracy(GbifTerm.GROUP_OCCURRENCE),
   issue(GbifTerm.GROUP_OCCURRENCE),
+  mediaType(GbifTerm.GROUP_OCCURRENCE),
   // experimental Occurrence properties
   verbatimLabel(GbifTerm.GROUP_OCCURRENCE),
   infraspecificMarker(GbifTerm.GROUP_OCCURRENCE),
@@ -107,9 +108,9 @@ public enum GbifTerm implements Term, AlternativeNames {
    * Lists all GBIF terms in taxon group.
    */
   public static final GbifTerm[] TAXONOMIC_TERMS =
-    {GbifTerm.taxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey, GbifTerm.orderKey,
-      GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey, GbifTerm.species,
-      GbifTerm.canonicalName, GbifTerm.nameType};
+  {GbifTerm.taxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey, GbifTerm.orderKey,
+    GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey, GbifTerm.species,
+    GbifTerm.canonicalName, GbifTerm.nameType};
 
   private final String groupName;
   public final String[] normAlts;
@@ -122,7 +123,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   /**
    * The full qualified term uri including the namespace.
    * For example http://rs.gbif.org/terms/1.0/taxonKey.
-   *
+   * 
    * @return full qualified term uri
    */
   @Override
@@ -133,7 +134,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   /**
    * The simple term name without a namespace.
    * For example taxonKey.
-   *
+   * 
    * @return simple term name
    */
   @Override
@@ -143,7 +144,7 @@ public enum GbifTerm implements Term, AlternativeNames {
 
   /**
    * Array of alternative simple names in use for the term.
-   *
+   * 
    * @return simple term name
    */
   @Override
@@ -162,9 +163,8 @@ public enum GbifTerm implements Term, AlternativeNames {
 
   /**
    * List all terms that belong to a given group.
-   *
+   * 
    * @param group the group to list terms for
-   *
    * @return the list of GBIF terms in the given group
    */
   public static List<GbifTerm> listByGroup(String group) {
