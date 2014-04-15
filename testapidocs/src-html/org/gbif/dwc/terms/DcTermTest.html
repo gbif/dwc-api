@@ -18,12 +18,13 @@
 <span class="sourceLineNo">010</span>public class DcTermTest {<a name="line.10"></a>
 <span class="sourceLineNo">011</span><a name="line.11"></a>
 <span class="sourceLineNo">012</span>  @Test<a name="line.12"></a>
-<span class="sourceLineNo">013</span>  public void testSimpleName() throws Exception {<a name="line.13"></a>
+<span class="sourceLineNo">013</span>  public void testNames() throws Exception {<a name="line.13"></a>
 <span class="sourceLineNo">014</span>    for (DcTerm t : DcTerm.values()) {<a name="line.14"></a>
-<span class="sourceLineNo">015</span>      assertFalse(t.simpleName().contains("_"));<a name="line.15"></a>
-<span class="sourceLineNo">016</span>    }<a name="line.16"></a>
-<span class="sourceLineNo">017</span>  }<a name="line.17"></a>
-<span class="sourceLineNo">018</span>}<a name="line.18"></a>
+<span class="sourceLineNo">015</span>      assertFalse("Bad term: " + t.simpleName(), t.simpleName().contains("_"));<a name="line.15"></a>
+<span class="sourceLineNo">016</span>      assertFalse("Bad term: " + t.qualifiedName(), t.qualifiedName().contains("_"));<a name="line.16"></a>
+<span class="sourceLineNo">017</span>    }<a name="line.17"></a>
+<span class="sourceLineNo">018</span>  }<a name="line.18"></a>
+<span class="sourceLineNo">019</span>}<a name="line.19"></a>
 
 
 
