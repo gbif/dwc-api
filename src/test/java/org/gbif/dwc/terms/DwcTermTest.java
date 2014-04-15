@@ -55,8 +55,8 @@ public class DwcTermTest {
   @Test
   public void testListByGroup() {
     List<DwcTerm> taxonTerms = DwcTerm.listByGroup(DwcTerm.GROUP_TAXON);
-    assertEquals(35, taxonTerms.size());
-    assertEquals(35, new HashSet<DwcTerm>(taxonTerms).size());
+    assertEquals(34, taxonTerms.size());
+    assertEquals(34, new HashSet<DwcTerm>(taxonTerms).size());
 
     List<DwcTerm> materialTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MATERIAL_SAMPLE);
     assertEquals(2, materialTerms.size());
@@ -71,8 +71,8 @@ public class DwcTermTest {
     assertEquals(16, new HashSet<DwcTerm>(eventTerms).size());
 
     List<DwcTerm> identificationTerms = DwcTerm.listByGroup(DwcTerm.GROUP_IDENTIFICATION);
-    assertEquals(10, identificationTerms.size());
-    assertEquals(10, new HashSet<DwcTerm>(identificationTerms).size());
+    assertEquals(9, identificationTerms.size());
+    assertEquals(9, new HashSet<DwcTerm>(identificationTerms).size());
 
     List<DwcTerm> occurrenceTerms = DwcTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
     assertEquals(24, occurrenceTerms.size());

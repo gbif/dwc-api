@@ -41,7 +41,7 @@ public class GbifTermTest {
     assertEquals(2, datasetTerms.size());
     assertEquals(2, new HashSet<GbifTerm>(datasetTerms).size());
 
-    List<GbifTerm> occurrenceTerms = GbifTerm.listByGroup(GbifTerm.GROUP_OCCURRENCE);
+    List<GbifTerm> occurrenceTerms = GbifTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
     assertEquals(17, occurrenceTerms.size());
     assertEquals(17, new HashSet<GbifTerm>(occurrenceTerms).size());
 
@@ -57,9 +57,9 @@ public class GbifTermTest {
     assertEquals(10, profileTerms.size());
     assertEquals(10, new HashSet<GbifTerm>(profileTerms).size());
 
-    List<GbifTerm> taxonTerms = GbifTerm.listByGroup(GbifTerm.GROUP_TAXON);
-    assertEquals(12, taxonTerms.size());
-    assertEquals(12, new HashSet<GbifTerm>(taxonTerms).size());
+    List<GbifTerm> taxonTerms = GbifTerm.listByGroup(DwcTerm.GROUP_TAXON);
+    assertEquals(13, taxonTerms.size());
+    assertEquals(13, new HashSet<GbifTerm>(taxonTerms).size());
 
     List<GbifTerm> crawlingTerms = GbifTerm.listByGroup(GbifTerm.GROUP_CRAWLING);
     assertEquals(3, crawlingTerms.size());
@@ -76,10 +76,10 @@ public class GbifTermTest {
     for (GbifTerm t : GbifTerm.TAXONOMIC_TERMS) {
       arrayTerms.add(t);
       assertFalse(t.isClass());
-      assertEquals(GbifTerm.GROUP_TAXON, t.getGroup());
+      assertEquals(DwcTerm.GROUP_TAXON, t.getGroup());
     }
 
-    for (GbifTerm t : GbifTerm.listByGroup(GbifTerm.GROUP_TAXON)) {
+    for (GbifTerm t : GbifTerm.listByGroup(DwcTerm.GROUP_TAXON)) {
       if (!arrayTerms.contains(t)) {
         assertTrue("Missing taxonomic term in GbifTerm.TAXONOMIC_TERMS: " + t.qualifiedName(), arrayTerms.contains(t));
       }

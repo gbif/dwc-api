@@ -20,45 +20,47 @@ public enum GbifTerm implements Term, AlternativeNames {
   publishingCountry(GbifTerm.GROUP_DATASET),
 
   // Occurrence properties
-  gbifID(GbifTerm.GROUP_OCCURRENCE),
-  lastInterpreted(GbifTerm.GROUP_OCCURRENCE),
-  coordinateAccuracy(GbifTerm.GROUP_OCCURRENCE),
-  elevation(GbifTerm.GROUP_OCCURRENCE),
-  elevationAccuracy(GbifTerm.GROUP_OCCURRENCE),
-  depth(GbifTerm.GROUP_OCCURRENCE),
-  depthAccuracy(GbifTerm.GROUP_OCCURRENCE),
-  distanceAboveSurface(GbifTerm.GROUP_OCCURRENCE),
-  distanceAboveSurfaceAccuracy(GbifTerm.GROUP_OCCURRENCE),
-  issue(GbifTerm.GROUP_OCCURRENCE),
-  mediaType(GbifTerm.GROUP_OCCURRENCE),
+  gbifID(DwcTerm.GROUP_OCCURRENCE),
+  lastInterpreted(DwcTerm.GROUP_OCCURRENCE),
+  coordinateAccuracy(DwcTerm.GROUP_OCCURRENCE),
+  elevation(DwcTerm.GROUP_OCCURRENCE),
+  elevationAccuracy(DwcTerm.GROUP_OCCURRENCE),
+  depth(DwcTerm.GROUP_OCCURRENCE),
+  depthAccuracy(DwcTerm.GROUP_OCCURRENCE),
+  distanceAboveSurface(DwcTerm.GROUP_OCCURRENCE),
+  distanceAboveSurfaceAccuracy(DwcTerm.GROUP_OCCURRENCE),
+  issue(DwcTerm.GROUP_OCCURRENCE),
+  mediaType(DwcTerm.GROUP_OCCURRENCE),
   // experimental Occurrence properties
-  verbatimLabel(GbifTerm.GROUP_OCCURRENCE),
-  infraspecificMarker(GbifTerm.GROUP_OCCURRENCE),
+  verbatimLabel(DwcTerm.GROUP_OCCURRENCE),
+  infraspecificMarker(DwcTerm.GROUP_OCCURRENCE),
   // Types and Specimen checklist extension
-  typeDesignatedBy(GbifTerm.GROUP_OCCURRENCE),
-  typeDesignationType(GbifTerm.GROUP_OCCURRENCE),
+  typeDesignatedBy(DwcTerm.GROUP_OCCURRENCE),
+  typeDesignationType(DwcTerm.GROUP_OCCURRENCE),
   // booleans for geospatial issues
-  hasCoordinate(GbifTerm.GROUP_OCCURRENCE),
-  hasGeospatialIssues(GbifTerm.GROUP_OCCURRENCE),
+  hasCoordinate(DwcTerm.GROUP_OCCURRENCE),
+  hasGeospatialIssues(DwcTerm.GROUP_OCCURRENCE),
 
   // Taxon properties
   /**
    * The GBIF backbone key.
    * taxonID is only used for the source ids similar to occurrenceID
    */
-  taxonKey(GbifTerm.GROUP_TAXON),
-  kingdomKey(GbifTerm.GROUP_TAXON),
-  phylumKey(GbifTerm.GROUP_TAXON),
-  classKey(GbifTerm.GROUP_TAXON),
-  orderKey(GbifTerm.GROUP_TAXON),
-  familyKey(GbifTerm.GROUP_TAXON),
-  genusKey(GbifTerm.GROUP_TAXON),
-  subgenusKey(GbifTerm.GROUP_TAXON),
-  speciesKey(GbifTerm.GROUP_TAXON),
-  species(GbifTerm.GROUP_TAXON),
+  taxonKey(DwcTerm.GROUP_TAXON),
+  kingdomKey(DwcTerm.GROUP_TAXON),
+  phylumKey(DwcTerm.GROUP_TAXON),
+  classKey(DwcTerm.GROUP_TAXON),
+  orderKey(DwcTerm.GROUP_TAXON),
+  familyKey(DwcTerm.GROUP_TAXON),
+  genusKey(DwcTerm.GROUP_TAXON),
+  subgenusKey(DwcTerm.GROUP_TAXON),
+  speciesKey(DwcTerm.GROUP_TAXON),
+  species(DwcTerm.GROUP_TAXON),
   // experimental Taxon properties
-  canonicalName(GbifTerm.GROUP_TAXON),
-  nameType(GbifTerm.GROUP_TAXON),
+  canonicalName(DwcTerm.GROUP_TAXON),
+  nameType(DwcTerm.GROUP_TAXON),
+  genericName(DwcTerm.GROUP_TAXON),    // proposed as dwc, but not yet ratified
+  typifiedName(DwcTerm.GROUP_IDENTIFICATION),    // proposed as dwc, but not yet ratified
 
   // GBIF Crawling
   protocol(GbifTerm.GROUP_CRAWLING),
@@ -90,18 +92,16 @@ public enum GbifTerm implements Term, AlternativeNames {
   static final String[] PREFIXES = {NS, PREFIX + ":"};
   public static final String GROUP_CRAWLING = "Crawling";
   public static final String GROUP_DATASET = "Dataset";
-  public static final String GROUP_OCCURRENCE = "Occurrence";
   public static final String GROUP_ROW_TYPE = "RowType";
   public static final String GROUP_SPECIES_DISTRIBUTION_EXTENSION = "SpeciesDistribution";
   public static final String GROUP_SPECIES_PROFILE_EXTENSION = "SpeciesProfile";
-  public static final String GROUP_TAXON = "Taxon";
   public static final String GROUP_VERNACULAR_NAME_EXTENSION = "VernacularName";
 
   /**
    * Lists all GBIF term groups.
    */
-  public static final String[] GROUPS = {GROUP_CRAWLING, GROUP_DATASET, GROUP_OCCURRENCE, GROUP_ROW_TYPE,
-    GROUP_SPECIES_DISTRIBUTION_EXTENSION, GROUP_SPECIES_PROFILE_EXTENSION, GROUP_TAXON,
+  public static final String[] GROUPS = {GROUP_CRAWLING, GROUP_DATASET, DwcTerm.GROUP_OCCURRENCE, GROUP_ROW_TYPE,
+    GROUP_SPECIES_DISTRIBUTION_EXTENSION, GROUP_SPECIES_PROFILE_EXTENSION, DwcTerm.GROUP_TAXON,
     GROUP_VERNACULAR_NAME_EXTENSION};
 
   /**
@@ -110,7 +110,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   public static final GbifTerm[] TAXONOMIC_TERMS =
   {GbifTerm.taxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey, GbifTerm.orderKey,
     GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey, GbifTerm.species,
-    GbifTerm.canonicalName, GbifTerm.nameType};
+    GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.genericName};
 
   private final String groupName;
   public final String[] normAlts;
@@ -123,7 +123,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   /**
    * The full qualified term uri including the namespace.
    * For example http://rs.gbif.org/terms/1.0/taxonKey.
-   * 
+   *
    * @return full qualified term uri
    */
   @Override
@@ -134,7 +134,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   /**
    * The simple term name without a namespace.
    * For example taxonKey.
-   * 
+   *
    * @return simple term name
    */
   @Override
@@ -144,7 +144,7 @@ public enum GbifTerm implements Term, AlternativeNames {
 
   /**
    * Array of alternative simple names in use for the term.
-   * 
+   *
    * @return simple term name
    */
   @Override
@@ -163,7 +163,7 @@ public enum GbifTerm implements Term, AlternativeNames {
 
   /**
    * List all terms that belong to a given group.
-   * 
+   *
    * @param group the group to list terms for
    * @return the list of GBIF terms in the given group
    */
