@@ -128,7 +128,7 @@ public enum GbifTerm implements Term, AlternativeNames {
    */
   @Override
   public String qualifiedName() {
-    return NS + name();
+    return NS + simpleName();
   }
 
   /**

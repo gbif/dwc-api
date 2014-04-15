@@ -20,7 +20,7 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
 
   @Override
   public String qualifiedName() {
-    return NS + name();
+    return NS + simpleName();
   }
 
   @Override

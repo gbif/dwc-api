@@ -83,7 +83,7 @@ public enum DcTerm implements Term, AlternativeNames {
 
   @Override
   public String qualifiedName() {
-    return NS + name();
+    return NS + simpleName();
   }
 
   /**

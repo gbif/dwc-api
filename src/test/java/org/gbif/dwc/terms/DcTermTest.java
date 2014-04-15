@@ -10,9 +10,10 @@ import static org.junit.Assert.assertFalse;
 public class DcTermTest {
 
   @Test
-  public void testSimpleName() throws Exception {
+  public void testNames() throws Exception {
     for (DcTerm t : DcTerm.values()) {
-      assertFalse(t.simpleName().contains("_"));
+      assertFalse("Bad term: " + t.simpleName(), t.simpleName().contains("_"));
+      assertFalse("Bad term: " + t.qualifiedName(), t.qualifiedName().contains("_"));
     }
   }
 }
