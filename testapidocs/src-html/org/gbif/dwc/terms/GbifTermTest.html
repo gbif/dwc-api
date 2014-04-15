@@ -49,7 +49,7 @@
 <span class="sourceLineNo">041</span>    assertEquals(2, datasetTerms.size());<a name="line.41"></a>
 <span class="sourceLineNo">042</span>    assertEquals(2, new HashSet&lt;GbifTerm&gt;(datasetTerms).size());<a name="line.42"></a>
 <span class="sourceLineNo">043</span><a name="line.43"></a>
-<span class="sourceLineNo">044</span>    List&lt;GbifTerm&gt; occurrenceTerms = GbifTerm.listByGroup(GbifTerm.GROUP_OCCURRENCE);<a name="line.44"></a>
+<span class="sourceLineNo">044</span>    List&lt;GbifTerm&gt; occurrenceTerms = GbifTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);<a name="line.44"></a>
 <span class="sourceLineNo">045</span>    assertEquals(17, occurrenceTerms.size());<a name="line.45"></a>
 <span class="sourceLineNo">046</span>    assertEquals(17, new HashSet&lt;GbifTerm&gt;(occurrenceTerms).size());<a name="line.46"></a>
 <span class="sourceLineNo">047</span><a name="line.47"></a>
@@ -65,9 +65,9 @@
 <span class="sourceLineNo">057</span>    assertEquals(10, profileTerms.size());<a name="line.57"></a>
 <span class="sourceLineNo">058</span>    assertEquals(10, new HashSet&lt;GbifTerm&gt;(profileTerms).size());<a name="line.58"></a>
 <span class="sourceLineNo">059</span><a name="line.59"></a>
-<span class="sourceLineNo">060</span>    List&lt;GbifTerm&gt; taxonTerms = GbifTerm.listByGroup(GbifTerm.GROUP_TAXON);<a name="line.60"></a>
-<span class="sourceLineNo">061</span>    assertEquals(12, taxonTerms.size());<a name="line.61"></a>
-<span class="sourceLineNo">062</span>    assertEquals(12, new HashSet&lt;GbifTerm&gt;(taxonTerms).size());<a name="line.62"></a>
+<span class="sourceLineNo">060</span>    List&lt;GbifTerm&gt; taxonTerms = GbifTerm.listByGroup(DwcTerm.GROUP_TAXON);<a name="line.60"></a>
+<span class="sourceLineNo">061</span>    assertEquals(13, taxonTerms.size());<a name="line.61"></a>
+<span class="sourceLineNo">062</span>    assertEquals(13, new HashSet&lt;GbifTerm&gt;(taxonTerms).size());<a name="line.62"></a>
 <span class="sourceLineNo">063</span><a name="line.63"></a>
 <span class="sourceLineNo">064</span>    List&lt;GbifTerm&gt; crawlingTerms = GbifTerm.listByGroup(GbifTerm.GROUP_CRAWLING);<a name="line.64"></a>
 <span class="sourceLineNo">065</span>    assertEquals(3, crawlingTerms.size());<a name="line.65"></a>
@@ -84,10 +84,10 @@
 <span class="sourceLineNo">076</span>    for (GbifTerm t : GbifTerm.TAXONOMIC_TERMS) {<a name="line.76"></a>
 <span class="sourceLineNo">077</span>      arrayTerms.add(t);<a name="line.77"></a>
 <span class="sourceLineNo">078</span>      assertFalse(t.isClass());<a name="line.78"></a>
-<span class="sourceLineNo">079</span>      assertEquals(GbifTerm.GROUP_TAXON, t.getGroup());<a name="line.79"></a>
+<span class="sourceLineNo">079</span>      assertEquals(DwcTerm.GROUP_TAXON, t.getGroup());<a name="line.79"></a>
 <span class="sourceLineNo">080</span>    }<a name="line.80"></a>
 <span class="sourceLineNo">081</span><a name="line.81"></a>
-<span class="sourceLineNo">082</span>    for (GbifTerm t : GbifTerm.listByGroup(GbifTerm.GROUP_TAXON)) {<a name="line.82"></a>
+<span class="sourceLineNo">082</span>    for (GbifTerm t : GbifTerm.listByGroup(DwcTerm.GROUP_TAXON)) {<a name="line.82"></a>
 <span class="sourceLineNo">083</span>      if (!arrayTerms.contains(t)) {<a name="line.83"></a>
 <span class="sourceLineNo">084</span>        assertTrue("Missing taxonomic term in GbifTerm.TAXONOMIC_TERMS: " + t.qualifiedName(), arrayTerms.contains(t));<a name="line.84"></a>
 <span class="sourceLineNo">085</span>      }<a name="line.85"></a>
