@@ -15,21 +15,91 @@ public enum GbifTerm implements Term, AlternativeNames {
   VernacularName(GbifTerm.GROUP_ROW_TYPE, "VernacularNames", "Vernacular", "Vernaculars"),
   Multimedia(GbifTerm.GROUP_ROW_TYPE),
 
-  // Dataset properties
+  /**
+   * The UUID key for the dataset registered in GBIF.
+   */
   datasetKey(GbifTerm.GROUP_DATASET),
+
+  /**
+   * The ISO code of the country of the organization that publishes the dataset to which the occurrence belongs.
+   */
   publishingCountry(GbifTerm.GROUP_DATASET),
 
-  // Occurrence properties
+  /**
+   * Numerical, stable identifier assigned by GBIF to an Occurrence record.
+   */
   gbifID(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Timestamp of the last time the record has been (re)interpreted by GBIF.
+   */
   lastInterpreted(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * The uncertainty radius for lat/lon in decimal degrees.
+   */
   coordinateAccuracy(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Elevation in meters usually above sea level (altitude).
+   * <p>
+   * The elevation is the absolute height of the observed location. If depth is given it should be included in the
+   * elevation value. For example a location 100m below the surface of a lake in 2000m altitude has a depth of 100 and
+   * an elevation of 1900.
+   * </p>
+   * <p>
+   * The elevation is calculated using the equation: (minimumElevationInMeters + maximumElevationInMeters) / 2.
+   * For consistency and ease of use GBIF decided to always use a value in meters plus it's accurracy instead of
+   * min/max values which are sometimes used in Darwin Core. See also depth & distanceAboveSurface.
+   * </p>
+   */
   elevation(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Elevation accuracy is the uncertainty for the elevation in meters.
+   * <p>
+   * The elevation accuracy is calculated using the equation: (maximumElevationInMeters - minimumElevationInMeters) / 2
+   * in case a minimum and maximum verbatim value is given.
+   * </p>
+   */
   elevationAccuracy(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Depth in meters below the surface.
+   * <p>
+   * Complimentary to elevation, depth indicates the distance to the surface, usually in water or ground.
+   * For example a location 100m below the surface of a lake in 2000m altitude has a depth of 100 and
+   * an elevation of 1900.
+   * </p>
+   * <p>
+   * The depth is calculated using the equation: (minimumDepthInMeters + maximumDepthInMeters) / 2.
+   * For consistency and ease of use GBIF decided to always use a value in meters plus it's accurracy instead of
+   * min/max values which are sometimes used in Darwin Core. See also elevation & distanceAboveSurface.
+   * </p>
+   */
   depth(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Depth accuracy is the uncertainty for the depth in meters.
+   * <p>
+   * The depth accuracy is calculated using the equation: (maximumDepthInMeters - minimumDepthInMeters) / 2
+   * in case a minimum and maximum verbatim value is given.
+   * </p>
+   */
   depthAccuracy(DwcTerm.GROUP_OCCURRENCE),
+
   distanceAboveSurface(DwcTerm.GROUP_OCCURRENCE),
   distanceAboveSurfaceAccuracy(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Any issue found during processing and interpretation or the record.
+   * See <a href="http://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/OccurrenceIssue.html">OccurrenceIssue enumeration</a> for possible values.
+   */
   issue(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * The media type given as Dublin Core type values, in particular StillImage, MovingImage or Sound.
+   */
   mediaType(DwcTerm.GROUP_OCCURRENCE),
   // experimental Occurrence properties
   verbatimLabel(DwcTerm.GROUP_OCCURRENCE),
@@ -37,34 +107,114 @@ public enum GbifTerm implements Term, AlternativeNames {
   // Types and Specimen checklist extension
   typeDesignatedBy(DwcTerm.GROUP_OCCURRENCE),
   typeDesignationType(DwcTerm.GROUP_OCCURRENCE),
-  // booleans for geospatial issues
+
+  /**
+   * Boolean indicating that a valid latitude and longitude exists.
+   * Even if existing it might still have issues, see hasGeospatialIssues and issue.
+   */
   hasCoordinate(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Boolean indicating that some spatial validation rule has not passed.
+   * Primarily used to indicate that the record should not be displayed on a map.
+   */
   hasGeospatialIssues(DwcTerm.GROUP_OCCURRENCE),
 
-  // Taxon properties
   /**
    * The GBIF backbone key.
-   * taxonID is only used for the source ids similar to occurrenceID
+   * <p>
+   * The best matching, accepted GBIF backbone name usage representing this occurrence.
+   * In case the verbatim scientific name and its classification can only be matched to a higher rank this will
+   * represent the lowest matching rank. In the worst case this could just be for example Animalia.
+   * </p>
+   * <p>
+   * In contrast dwc:taxonID is only used for the source ids similar to occurrenceID
+   * </p>
    */
   taxonKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted kingdom in the GBIF backbone.
+   */
   kingdomKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted phylum in the GBIF backbone.
+   */
   phylumKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted class in the GBIF backbone.
+   */
   classKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted order in the GBIF backbone.
+   */
   orderKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted family in the GBIF backbone.
+   */
   familyKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted genus in the GBIF backbone.
+   */
   genusKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted subgenus in the GBIF backbone.
+   */
   subgenusKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The backbone key to the accepted species.
+   * In case the taxonKey is of a higher rank than species (e.g. genus) speciesKey is null.
+   * In case taxonKey represents an infraspecific taxon the speciesKey points to the species
+   * the infraspecies is classified as. In case of taxonKey being a species the speciesKey is the same.
+   */
   speciesKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The canonical name without authorship of the accepted species.
+   */
   species(DwcTerm.GROUP_TAXON),
   // experimental Taxon properties
   canonicalName(DwcTerm.GROUP_TAXON),
   nameType(DwcTerm.GROUP_TAXON),
-  genericName(DwcTerm.GROUP_TAXON),    // proposed as dwc, but not yet ratified
-  typifiedName(DwcTerm.GROUP_IDENTIFICATION),    // proposed as dwc, but not yet ratified
 
-  // GBIF Crawling
+  /**
+   * The genus part of the scientific name.
+   * <p>
+   * If the scientific name is considered to be a synonym dwc:genus refers to the accepted genus, not to the
+   * genus part of the synonym. This genericName always holds the genus part of the name no matter its classification
+   * or taxonomic status.
+   * Term proposed in Darwin Core, but not yet ratified.
+   * </p>
+   */
+  genericName(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The scientific name the type status of this specimen applies to.
+   * Term proposed in Darwin Core, but not yet ratified.
+   */
+  typifiedName(DwcTerm.GROUP_IDENTIFICATION),
+
+  /**
+   * The kind of protocol used when the record was last crawled by GBIF.
+   * See <a href="http://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/EndpointType.html">EndpointType enumeration</a> for possible values.
+   */
   protocol(GbifTerm.GROUP_CRAWLING),
+
+  /**
+   * The date this record was last parsed from raw xml/json into a verbatim GBIF record.
+   */
   lastParsed(GbifTerm.GROUP_CRAWLING),
+
+  /**
+   * The date this record was last crawled/harvested by GBIF from the endpoint.
+   */
   lastCrawled(GbifTerm.GROUP_CRAWLING),
 
   // Species Profile checklist extension
