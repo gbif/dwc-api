@@ -75,8 +75,8 @@ public class DwcTermTest {
     assertEquals(9, new HashSet<DwcTerm>(identificationTerms).size());
 
     List<DwcTerm> occurrenceTerms = DwcTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
-    assertEquals(24, occurrenceTerms.size());
-    assertEquals(24, new HashSet<DwcTerm>(occurrenceTerms).size());
+    assertEquals(23, occurrenceTerms.size());
+    assertEquals(23, new HashSet<DwcTerm>(occurrenceTerms).size());
 
     List<DwcTerm> relationshipTerms = DwcTerm.listByGroup(DwcTerm.GROUP_RESOURCERELATIONSHIP);
     assertEquals(8, relationshipTerms.size());
