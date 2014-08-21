@@ -41,14 +41,16 @@ public enum GbifTerm implements Term, AlternativeNames {
   coordinateAccuracy(DwcTerm.GROUP_OCCURRENCE),
 
   /**
-   * Elevation in meters usually above sea level (altitude).
+   * Elevation in meters above sea level (altitude).
    * <p>
-   * The elevation is the absolute height of the observed location. If depth is given it should be included in the
-   * elevation value. For example a location 100m below the surface of a lake in 2000m altitude has a depth of 100 and
+   * The elevation is the absolute vertical position of the observed location (z-coordinate).
+   * If depth is given or not will not impact the 3-dimensional position.
+   * For example a location 100m below the surface of a lake in 2000m altitude has a depth of 100 and
    * an elevation of 1900.
    * </p>
    * <p>
-   * The elevation is calculated using the equation: (minimumElevationInMeters + maximumElevationInMeters) / 2.
+   * If minimum and maximum values are given the elevation is calculated using the equation:
+   * (minimumElevationInMeters + maximumElevationInMeters) / 2.
    * For consistency and ease of use GBIF decided to always use a value in meters plus it's accurracy instead of
    * min/max values which are sometimes used in Darwin Core. See also depth & distanceAboveSurface.
    * </p>
@@ -67,7 +69,8 @@ public enum GbifTerm implements Term, AlternativeNames {
   /**
    * Depth in meters below the surface.
    * <p>
-   * Complimentary to elevation, depth indicates the distance to the surface, usually in water or ground.
+   * Complimentary and relative to elevation, depth indicates the distance to the earth surface, whether that is water
+   * or ground.
    * For example a location 100m below the surface of a lake in 2000m altitude has a depth of 100 and
    * an elevation of 1900.
    * </p>

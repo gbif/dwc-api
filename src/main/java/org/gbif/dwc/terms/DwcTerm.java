@@ -140,10 +140,6 @@ public enum DwcTerm implements Term, AlternativeNames {
   namePublishedInYear(DwcTerm.GROUP_TAXON),
   nomenclaturalCode(DwcTerm.GROUP_TAXON),
   nomenclaturalStatus(DwcTerm.GROUP_TAXON),
-  /**
-   * @deprecated occurrenceDetails is deprecated in favor over the more general term dc:references
-   */
-  @Deprecated occurrenceDetails(DwcTerm.GROUP_OCCURRENCE),
   occurrenceID(DwcTerm.GROUP_OCCURRENCE),
   occurrenceRemarks(DwcTerm.GROUP_OCCURRENCE),
   occurrenceStatus(DwcTerm.GROUP_OCCURRENCE),
