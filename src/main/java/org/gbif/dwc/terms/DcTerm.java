@@ -1,5 +1,10 @@
 package org.gbif.dwc.terms;
 
+/**
+ * All Dublin Core terms with namespace http://purl.org/dc/terms/. A small subset of 15 terms exist as DcElement under
+ * a different namespace, but DcTerm values must be a member of a specific class and therefore given by URI, whereas
+ * DcElement values are allowed to be free text.
+ */
 public enum DcTerm implements Term, AlternativeNames {
   abstract_,
   accessRights,
@@ -59,8 +64,8 @@ public enum DcTerm implements Term, AlternativeNames {
   Location;
 
   public static final String NS = "http://purl.org/dc/terms/";
-  public static final String PREFIX = "dc";
-  static final String[] PREFIXES = {NS, PREFIX + ":", "http://purl.org/dc/elements/1.1/", "dct", "dcterm:", "dcterms:"};
+  public static final String PREFIX = "dcterms";
+  static final String[] PREFIXES = {NS, PREFIX + ":", "dct", "dcterm:"};
 
   public final String[] alternatives;
 

@@ -48,7 +48,7 @@ public class TermFactory {
     addTerms(GbifTerm.values(), GbifTerm.PREFIXES);
     addTerms(GbifInternalTerm.values(), new String[0]);
     addTerms(IucnTerm.values(), IucnTerm.PREFIXES);
-
+    addTerms(DcElement.values(), DcElement.PREFIXES);
   }
 
   private <T extends Term & AlternativeNames> void addTerms(T[] terms, String[] prefixes) {

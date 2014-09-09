@@ -43,7 +43,7 @@ public class TermFactoryTest {
     assertEquals(DwcTerm.scientificName, factory.findTerm("ScientificName"));
     assertEquals(DwcTerm.scientificName, factory.findTerm("dwc:scientificName"));
     assertEquals(DwcTerm.scientificName, factory.findTerm("http://rs.tdwg.org/dwc/terms/scientificName"));
-    assertEquals(DcTerm.identifier, factory.findTerm("dc:identifier"));
+    assertEquals(DcElement.identifier, factory.findTerm("dc:identifier"));
     assertEquals(DcTerm.identifier, factory.findTerm("identifier"));
     assertEquals(DcTerm.identifier, factory.findTerm("ID"));
     assertEquals(DwcTerm.parentNameUsageID, factory.findTerm("dwc:higherTaxonID"));
