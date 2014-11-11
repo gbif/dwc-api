@@ -61,7 +61,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   associatedTaxa(DwcTerm.GROUP_OCCURRENCE),
   otherCatalogNumbers(DwcTerm.GROUP_OCCURRENCE),
   occurrenceRemarks(DwcTerm.GROUP_OCCURRENCE),
-  organismID(DwcTerm.GROUP_ORGANISM),
+  organismID(DwcTerm.GROUP_ORGANISM, "individualID"),
   organismName(DwcTerm.GROUP_ORGANISM),
   organismScope(DwcTerm.GROUP_ORGANISM),
   associatedOccurrences(DwcTerm.GROUP_ORGANISM),
