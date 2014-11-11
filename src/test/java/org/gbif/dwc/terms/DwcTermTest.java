@@ -46,7 +46,7 @@ public class DwcTermTest {
 
   @Test
   public void testNumberOfGroups() {
-    assertEquals(9, DwcTerm.GROUPS.length);
+    assertEquals(10, DwcTerm.GROUPS.length);
   }
 
   /**
@@ -54,41 +54,45 @@ public class DwcTermTest {
    */
   @Test
   public void testListByGroup() {
-    List<DwcTerm> taxonTerms = DwcTerm.listByGroup(DwcTerm.GROUP_TAXON);
-    assertEquals(34, taxonTerms.size());
-    assertEquals(34, new HashSet<DwcTerm>(taxonTerms).size());
+    List<DwcTerm> occurrenceTerms = DwcTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
+    assertEquals(20, occurrenceTerms.size());
+    assertEquals(20, new HashSet<DwcTerm>(occurrenceTerms).size());
+
+    List<DwcTerm> organismTerms = DwcTerm.listByGroup(DwcTerm.GROUP_ORGANISM);
+    assertEquals(8, organismTerms.size());
+    assertEquals(8, new HashSet<DwcTerm>(organismTerms).size());
 
     List<DwcTerm> materialTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MATERIAL_SAMPLE);
     assertEquals(2, materialTerms.size());
     assertEquals(2, new HashSet<DwcTerm>(materialTerms).size());
 
+    List<DwcTerm> eventTerms = DwcTerm.listByGroup(DwcTerm.GROUP_EVENT);
+    assertEquals(16, eventTerms.size());
+    assertEquals(16, new HashSet<DwcTerm>(eventTerms).size());
+
     List<DwcTerm> locationTerms = DwcTerm.listByGroup(DwcTerm.GROUP_LOCATION);
     assertEquals(44, locationTerms.size());
     assertEquals(44, new HashSet<DwcTerm>(locationTerms).size());
 
-    List<DwcTerm> eventTerms = DwcTerm.listByGroup(DwcTerm.GROUP_EVENT);
-    assertEquals(16, eventTerms.size());
-    assertEquals(16, new HashSet<DwcTerm>(eventTerms).size());
+    List<DwcTerm> geologicalTerms = DwcTerm.listByGroup(DwcTerm.GROUP_GEOLOGICALCONTEXT);
+    assertEquals(19, geologicalTerms.size());
+    assertEquals(19, new HashSet<DwcTerm>(geologicalTerms).size());
 
     List<DwcTerm> identificationTerms = DwcTerm.listByGroup(DwcTerm.GROUP_IDENTIFICATION);
     assertEquals(9, identificationTerms.size());
     assertEquals(9, new HashSet<DwcTerm>(identificationTerms).size());
 
-    List<DwcTerm> occurrenceTerms = DwcTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
-    assertEquals(23, occurrenceTerms.size());
-    assertEquals(23, new HashSet<DwcTerm>(occurrenceTerms).size());
-
-    List<DwcTerm> relationshipTerms = DwcTerm.listByGroup(DwcTerm.GROUP_RESOURCERELATIONSHIP);
-    assertEquals(8, relationshipTerms.size());
-    assertEquals(8, new HashSet<DwcTerm>(relationshipTerms).size());
+    List<DwcTerm> taxonTerms = DwcTerm.listByGroup(DwcTerm.GROUP_TAXON);
+    assertEquals(34, taxonTerms.size());
+    assertEquals(34, new HashSet<DwcTerm>(taxonTerms).size());
 
     List<DwcTerm> measurementTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MEASUREMENTORFACT);
     assertEquals(10, measurementTerms.size());
     assertEquals(10, new HashSet<DwcTerm>(measurementTerms).size());
 
-    List<DwcTerm> geologicalTerms = DwcTerm.listByGroup(DwcTerm.GROUP_GEOLOGICALCONTEXT);
-    assertEquals(19, geologicalTerms.size());
-    assertEquals(19, new HashSet<DwcTerm>(geologicalTerms).size());
+    List<DwcTerm> relationshipTerms = DwcTerm.listByGroup(DwcTerm.GROUP_RESOURCERELATIONSHIP);
+    assertEquals(8, relationshipTerms.size());
+    assertEquals(8, new HashSet<DwcTerm>(relationshipTerms).size());
 
     List<DwcTerm> recordTerms = DwcTerm.listByGroup("Record");
     assertEquals(11, recordTerms.size());
