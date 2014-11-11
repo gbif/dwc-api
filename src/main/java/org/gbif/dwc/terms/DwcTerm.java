@@ -42,6 +42,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   informationWithheld(DwcTerm.GROUP_RECORD),
   dataGeneralizations(DwcTerm.GROUP_RECORD),
   dynamicProperties(DwcTerm.GROUP_RECORD),
+
   occurrenceID(DwcTerm.GROUP_OCCURRENCE),
   catalogNumber(DwcTerm.GROUP_OCCURRENCE, "catalogNumberNumeric"),
   recordNumber(DwcTerm.GROUP_OCCURRENCE, "collectorNumber"),
@@ -61,6 +62,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   associatedTaxa(DwcTerm.GROUP_OCCURRENCE),
   otherCatalogNumbers(DwcTerm.GROUP_OCCURRENCE),
   occurrenceRemarks(DwcTerm.GROUP_OCCURRENCE),
+
   organismID(DwcTerm.GROUP_ORGANISM, "individualID"),
   organismName(DwcTerm.GROUP_ORGANISM),
   organismScope(DwcTerm.GROUP_ORGANISM),
@@ -68,7 +70,9 @@ public enum DwcTerm implements Term, AlternativeNames {
   associatedOrganisms(DwcTerm.GROUP_ORGANISM),
   previousIdentifications(DwcTerm.GROUP_ORGANISM),
   organismRemarks(DwcTerm.GROUP_ORGANISM),
-  materialSampleID(DwcTerm.GROUP_MATERIALSAMPLE),
+
+  materialSampleID(DwcTerm.GROUP_MATERIAL_SAMPLE),
+
   eventID(DwcTerm.GROUP_EVENT),
   fieldNumber(DwcTerm.GROUP_EVENT),
   eventDate(DwcTerm.GROUP_EVENT, "earliestDateCollected", "latestDateCollected"),
@@ -84,6 +88,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   samplingEffort(DwcTerm.GROUP_EVENT),
   fieldNotes(DwcTerm.GROUP_EVENT),
   eventRemarks(DwcTerm.GROUP_EVENT),
+
   locationID(DwcTerm.GROUP_LOCATION),
   higherGeographyID(DwcTerm.GROUP_LOCATION),
   higherGeography(DwcTerm.GROUP_LOCATION),
@@ -128,6 +133,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   georeferenceSources(DwcTerm.GROUP_LOCATION),
   georeferenceVerificationStatus(DwcTerm.GROUP_LOCATION),
   georeferenceRemarks(DwcTerm.GROUP_LOCATION),
+
   geologicalContextID(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   earliestEonOrLowestEonothem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   latestEonOrHighestEonothem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
@@ -146,6 +152,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   formation(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   member(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   bed(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+
   identificationID(DwcTerm.GROUP_IDENTIFICATION),
   identificationQualifier(DwcTerm.GROUP_IDENTIFICATION),
   typeStatus(DwcTerm.GROUP_IDENTIFICATION),
@@ -154,6 +161,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   identificationReferences(DwcTerm.GROUP_IDENTIFICATION),
   identificationVerificationStatus(DwcTerm.GROUP_IDENTIFICATION),
   identificationRemarks(DwcTerm.GROUP_IDENTIFICATION),
+
   taxonID(DwcTerm.GROUP_TAXON, "nameUsageID"),
   scientificNameID(DwcTerm.GROUP_TAXON, "nameID"),
   acceptedNameUsageID(DwcTerm.GROUP_TAXON, "acceptedTaxonID"),
@@ -190,7 +198,25 @@ public enum DwcTerm implements Term, AlternativeNames {
   nomenclaturalCode(DwcTerm.GROUP_TAXON),
   taxonomicStatus(DwcTerm.GROUP_TAXON),
   nomenclaturalStatus(DwcTerm.GROUP_TAXON),
-  taxonRemarks(DwcTerm.GROUP_TAXON, "taxonRemark");
+  taxonRemarks(DwcTerm.GROUP_TAXON, "taxonRemark"),
+
+  measurementID(DwcTerm.GROUP_MEASUREMENTORFACT),
+  measurementType(DwcTerm.GROUP_MEASUREMENTORFACT),
+  measurementValue(DwcTerm.GROUP_MEASUREMENTORFACT),
+  measurementAccuracy(DwcTerm.GROUP_MEASUREMENTORFACT),
+  measurementUnit(DwcTerm.GROUP_MEASUREMENTORFACT),
+  measurementDeterminedBy(DwcTerm.GROUP_MEASUREMENTORFACT),
+  measurementDeterminedDate(DwcTerm.GROUP_MEASUREMENTORFACT),
+  measurementMethod(DwcTerm.GROUP_MEASUREMENTORFACT),
+  measurementRemarks(DwcTerm.GROUP_MEASUREMENTORFACT),
+
+  resourceRelationshipID(DwcTerm.GROUP_RESOURCERELATIONSHIP),
+  resourceID(DwcTerm.GROUP_RESOURCERELATIONSHIP),
+  relatedResourceID(DwcTerm.GROUP_RESOURCERELATIONSHIP),
+  relationshipOfResource(DwcTerm.GROUP_RESOURCERELATIONSHIP),
+  relationshipAccordingTo(DwcTerm.GROUP_RESOURCERELATIONSHIP),
+  relationshipEstablishedDate(DwcTerm.GROUP_RESOURCERELATIONSHIP),
+  relationshipRemarks(DwcTerm.GROUP_RESOURCERELATIONSHIP);
 
   public static final String NS = "http://rs.tdwg.org/dwc/terms/";
   public static final String PREFIX = "dwc";
