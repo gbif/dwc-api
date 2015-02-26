@@ -27,6 +27,10 @@ public class TermFactoryTest {
     addTerms(names, GbifTerm.values());
     addTerms(names, GbifInternalTerm.values());
     addTerms(names, IucnTerm.values());
+
+    addTerms(names, AcTerm.values());
+    addTerms(names, XmpTerm.values());
+    addTerms(names, XmpRightsTerm.values());
   }
 
   private void addTerms(Set<String> names, Term[] terms) {

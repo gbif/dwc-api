@@ -9,7 +9,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class GbifTermTest {
+public class GbifTermTest extends TermBaseTest {
+
+  public GbifTermTest() {
+    super(GbifTerm.class, GbifTerm.PREFIXES);
+  }
 
   @Test
   public void testTerm() {

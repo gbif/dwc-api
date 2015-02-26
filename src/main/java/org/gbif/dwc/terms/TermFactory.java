@@ -49,11 +49,14 @@ public class TermFactory {
     addTerms(GbifInternalTerm.values(), new String[0]);
     addTerms(IucnTerm.values(), IucnTerm.PREFIXES);
     addTerms(DcElement.values(), DcElement.PREFIXES);
+    addTerms(AcTerm.values(), AcTerm.PREFIXES);
+    addTerms(XmpTerm.values(), XmpTerm.PREFIXES);
+    addTerms(XmpRightsTerm.values(), XmpRightsTerm.PREFIXES);
   }
 
   private <T extends Term & AlternativeNames> void addTerms(T[] terms, String[] prefixes) {
     for (T term : terms) {
-      addTerm(term.simpleName(), term);
+      addTerm(term.simpleName(), term, true);
       addTerm(term.qualifiedName(), term);
       for (String pre : prefixes) {
         addTerm(pre + term.simpleName(), term);
@@ -69,10 +72,14 @@ public class TermFactory {
   }
 
   public void addTerm(String key, Term term) {
+    addTerm(key, term, false);
+  }
+
+  public void addTerm(String key, Term term, boolean isClassTerm) {
     if (key == null || key.trim().isEmpty()) {
       return;
     }
-    key = normaliseTerm(key);
+    key = normaliseTerm(key, isClassTerm);
     if (terms.containsKey(key)) {
       Term t1 = terms.get(key);
       if (!t1.equals(term)) {
@@ -88,7 +95,18 @@ public class TermFactory {
    * @return a purely alphanumerical, lower cased term with all other characters replaced
    */
   public static String normaliseTerm(String term) {
-    return NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("").toLowerCase();
+    return normaliseTerm(term, false);
+  }
+
+  public static String normaliseTerm(String term, boolean keepInitialCase) {
+    String x = NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("");
+    if (x.isEmpty()) {
+      return "";
+    } else if (x.length() == 1) {
+      return keepInitialCase ? String.valueOf(x.charAt(0)) : x.toLowerCase();
+    } else {
+      return keepInitialCase ? x.charAt(0)+x.substring(1).toLowerCase() : x.toLowerCase();
+    }
   }
 
   /**
@@ -103,27 +121,39 @@ public class TermFactory {
    * will also work fine. Unknown simple names will be put into the namespace http://unknown.org when a new UnknownTerm
    * instance is created.
    */
-  public Term findTerm(String termName) throws IllegalArgumentException {
+  public Term findTerm(final String termName) throws IllegalArgumentException {
     if (termName == null || termName.trim().isEmpty()) {
       return null;
     }
-    // normalise terms
-    Term term;
-    String normTermName = normaliseTerm(termName);
-    // try known terms first
-    if (terms.containsKey(normTermName)) {
-      return terms.get(normTermName);
+    // first try term just as it is
+    if (terms.containsKey(termName)) {
+      return terms.get(termName);
+    }
+
+    // try normalised term next with initial
+    if (terms.containsKey(normaliseTerm(termName, true))) {
+      return terms.get(normaliseTerm(termName, true));
+
+    } else if (terms.containsKey(normaliseTerm(termName))) {
+        return terms.get(normaliseTerm(termName));
+
     } else {
-      // create new term instance
-      try {
-        term = UnknownTerm.build(termName);
-      } catch (IllegalArgumentException e) {
-        // simple names as found in ATB file headers are rejected
-        // convert into a standard unknown term namespace and try again
-        term = UnknownTerm.build(UNKNOWN_NAMESPACE + termName);
-      }
-      addTerm(normTermName, term);
+      return createUnknownTerm(termName);
+    }
+  }
+
+  private Term createUnknownTerm(String termName) {
+    // create new term instance
+    Term term;
+    try {
+      term = UnknownTerm.build(termName);
       addTerm(termName, term);
+    } catch (IllegalArgumentException e) {
+      // simple names as found in ATB file headers are rejected
+      // convert into a standard unknown term namespace and try again
+      term = UnknownTerm.build(UNKNOWN_NAMESPACE + termName);
+      addTerm(termName, term);
+      addTerm(term.qualifiedName(), term);
     }
     return term;
   }

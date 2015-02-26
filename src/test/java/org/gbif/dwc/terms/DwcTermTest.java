@@ -26,7 +26,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
-public class DwcTermTest {
+public class DwcTermTest extends TermBaseTest<DwcTerm> {
+
+  public DwcTermTest() {
+    super(DwcTerm.class, DwcTerm.PREFIXES);
+  }
 
   @Test
   public void testClassTerm() {
