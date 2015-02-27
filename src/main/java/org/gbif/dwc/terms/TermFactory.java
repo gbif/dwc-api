@@ -52,6 +52,7 @@ public class TermFactory {
     addTerms(AcTerm.values(), AcTerm.PREFIXES);
     addTerms(XmpTerm.values(), XmpTerm.PREFIXES);
     addTerms(XmpRightsTerm.values(), XmpRightsTerm.PREFIXES);
+    addTerms(EolReferenceTerm.values(), EolReferenceTerm.PREFIXES);
   }
 
   private <T extends Term & AlternativeNames> void addTerms(T[] terms, String[] prefixes) {

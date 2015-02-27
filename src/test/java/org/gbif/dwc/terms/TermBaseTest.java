@@ -16,18 +16,26 @@ public abstract class TermBaseTest<T extends Term> {
   private final Class<T> clazz;
   private final T[] values;
   private final String[] prefixes;
+  private final String[] forbiddenChars;
 
   public TermBaseTest(Class<T> clazz, String[] prefixes) {
+    this(clazz, prefixes, new String[]{"_","-"});
+  }
+
+  public TermBaseTest(Class<T> clazz, String[] prefixes, String[] forbiddenChars) {
     this.clazz = clazz;
     this.prefixes = prefixes;
+    this.forbiddenChars = forbiddenChars;
     values = clazz.getEnumConstants();
   }
 
   @Test
   public void testNames() throws Exception {
     for (T t : values) {
-      assertFalse("Bad term: " + t.simpleName(), t.simpleName().contains("_"));
-      assertFalse("Bad term: " + t.qualifiedName(), t.qualifiedName().contains("_"));
+      for (String c : forbiddenChars) {
+        assertFalse("Term contains forbidden character " + c + " : " + t.simpleName(), t.simpleName().contains(c));
+        assertFalse("Term contains forbidden character " + c + " : " + t.qualifiedName(), t.qualifiedName().contains(c));
+      }
     }
   }
 
