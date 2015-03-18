@@ -1,5 +1,8 @@
 package org.gbif.dwc.terms;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -71,5 +74,19 @@ public class UnknownTermTest {
     assertNotEquals(me2, me4);
     assertEquals(me3, me4);
 
+  }
+
+  @Test
+  public void testSet() throws Exception {
+    Set<Term> terms = new HashSet<Term>();
+    terms.add(UnknownTerm.build("http://me.com/#me"));
+    terms.add(UnknownTerm.build("http://me.com/me"));
+    terms.add(UnknownTerm.build("http://me.org/me"));
+    terms.add(UnknownTerm.build("http://me.org/me", "oscar"));
+    terms.add(DcTerm.title);
+    terms.add(DcElement.title);
+    terms.add(DwcTerm.bed);
+
+    assertEquals(6, terms.size());
   }
 }
