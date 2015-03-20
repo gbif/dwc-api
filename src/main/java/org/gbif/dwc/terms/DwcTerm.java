@@ -48,6 +48,8 @@ public enum DwcTerm implements Term, AlternativeNames {
   recordNumber(DwcTerm.GROUP_OCCURRENCE, "collectorNumber"),
   recordedBy(DwcTerm.GROUP_OCCURRENCE, "collector"),
   individualCount(DwcTerm.GROUP_OCCURRENCE),
+  organismQuantity(DwcTerm.GROUP_OCCURRENCE),
+  organismQuantityType(DwcTerm.GROUP_OCCURRENCE),
   sex(DwcTerm.GROUP_OCCURRENCE),
   lifeStage(DwcTerm.GROUP_OCCURRENCE),
   reproductiveCondition(DwcTerm.GROUP_OCCURRENCE),
@@ -74,6 +76,7 @@ public enum DwcTerm implements Term, AlternativeNames {
   materialSampleID(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
   eventID(DwcTerm.GROUP_EVENT),
+  parentEventID(DwcTerm.GROUP_EVENT),
   fieldNumber(DwcTerm.GROUP_EVENT),
   eventDate(DwcTerm.GROUP_EVENT, "earliestDateCollected", "latestDateCollected"),
   eventTime(DwcTerm.GROUP_EVENT),
@@ -86,6 +89,8 @@ public enum DwcTerm implements Term, AlternativeNames {
   habitat(DwcTerm.GROUP_EVENT),
   samplingProtocol(DwcTerm.GROUP_EVENT),
   samplingEffort(DwcTerm.GROUP_EVENT),
+  sampleSizeValue(DwcTerm.GROUP_EVENT),
+  sampleSizeUnit(DwcTerm.GROUP_EVENT),
   fieldNotes(DwcTerm.GROUP_EVENT),
   eventRemarks(DwcTerm.GROUP_EVENT),
 
