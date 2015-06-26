@@ -1,5 +1,5 @@
 -classpath
-'/var/lib/jenkins/jobs/dwc-api/workspace/target/classes:/var/lib/jenkins/.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.12/jackson-core-asl-1.9.12.jar:/var/lib/jenkins/.m2/repository/org/codehaus/jackson/jackson-mapper-asl/1.9.12/jackson-mapper-asl-1.9.12.jar:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar'
+'/var/lib/jenkins/jobs/dwc-api/workspace/target/classes:/var/lib/jenkins/.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.12/jackson-core-asl-1.9.12.jar:/var/lib/jenkins/.m2/repository/org/codehaus/jackson/jackson-mapper-asl/1.9.12/jackson-mapper-asl-1.9.12.jar:/var/lib/jenkins/.m2/repository/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar'
 -encoding
 'UTF-8'
 -protected
