@@ -17,7 +17,7 @@
 'UTF-8'
 -docfilessubdirs
 -doctitle
-'Darwin Core API 1.13-SNAPSHOT API'
+'Darwin Core API 1.14-SNAPSHOT API'
 -link
 'http://freemarker.org/docs/api'
 -link
@@ -30,4 +30,4 @@
 -use
 -version
 -windowtitle
-'Darwin Core API 1.13-SNAPSHOT API'
+'Darwin Core API 1.14-SNAPSHOT API'
