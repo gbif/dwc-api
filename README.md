@@ -1,8 +1,13 @@
 # dwc-api
 
-A term enumeration and factory for [Darwin Core](http://rs.tdwg.org/dwc/) and similar terms.
+The Dwc API library provides:
+ * Enumerations representing [Darwin Core](http://rs.tdwg.org/dwc/) terms
+ * Enumerations representing terms or a subset of terms from other standard (e.g. [Dublin Core](http://dublincore.org/documents/dcmi-terms/), [Audubon Core](http://terms.tdwg.org/wiki/Audubon_Core))
+ * Handling of unknown terms through [UnknownTerm](http://gbif.github.io/dwc-api/apidocs/org/gbif/dwc/terms/UnknownTerm.html)
+ * Factory for getting Term instances
+ * Utilities like JSON serialization and Term comparator
 
-## Build
+## To build the project
 ```
 mvn clean install
 ```
@@ -18,5 +23,8 @@ Term scientificNameFromPrefixAndSimpleName = factory.findTerm("dwc:scientificNam
 Term scientificNameFromQualifiedName = factory.findTerm("http://rs.tdwg.org/dwc/terms/scientificName");
 ```
 
-## Requirements
- * Build as Java 6 artifact until the [IPT](https://github.com/gbif/ipt) moves to Java 7.
+## Policies
+ * Built as Java 6 artifact until the [IPT](https://github.com/gbif/ipt) moves to Java 7.
+
+## JavaDocs
+http://gbif.github.io/dwc-api/apidocs/
