@@ -2,7 +2,7 @@
 
 The Dwc API library provides:
  * Enumerations representing [Darwin Core](http://rs.tdwg.org/dwc/) terms
- * Enumerations representing terms or a subset of terms from other standard (e.g. [Dublin Core](http://dublincore.org/documents/dcmi-terms/), [Audubon Core](http://terms.tdwg.org/wiki/Audubon_Core))
+ * Enumerations representing terms or a subset of terms from other standards (e.g. [Dublin Core](http://dublincore.org/documents/dcmi-terms/), [Audubon Core](http://terms.tdwg.org/wiki/Audubon_Core))
  * Handling of unknown terms through [UnknownTerm](http://gbif.github.io/dwc-api/apidocs/org/gbif/dwc/terms/UnknownTerm.html)
  * Factory for getting Term instances
  * Utilities like JSON serialization and Term comparator
