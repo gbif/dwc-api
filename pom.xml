@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.gbif</groupId>
         <artifactId>motherpom</artifactId>
-        <version>23</version>
+        <version>25.1</version>
     </parent>
 
     <artifactId>dwc-api</artifactId>
