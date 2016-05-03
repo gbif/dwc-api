@@ -90,4 +90,10 @@ public class GbifTermTest extends TermBaseTest {
     }
   }
 
+  @Test
+  public void testDeprecated() {
+    assertFalse(GbifTerm.gbifID.isDeprecated());
+    assertTrue(GbifTerm.coordinateAccuracy.isDeprecated());
+  }
+
 }

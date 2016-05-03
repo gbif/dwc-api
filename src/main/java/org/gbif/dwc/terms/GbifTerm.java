@@ -38,6 +38,7 @@ public enum GbifTerm implements Term, AlternativeNames {
   /**
    * The uncertainty radius for lat/lon in decimal degrees.
    */
+  @Deprecated
   coordinateAccuracy(DwcTerm.GROUP_OCCURRENCE),
 
   /**
@@ -266,11 +267,17 @@ public enum GbifTerm implements Term, AlternativeNames {
     GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.genericName};
 
   private final String groupName;
+  private final boolean isDeprecated;
   public final String[] normAlts;
 
-  private GbifTerm(String groupName, String... alternatives) {
+  GbifTerm(String groupName, String... alternatives) {
     this.groupName = groupName;
-    normAlts = alternatives;
+    this.normAlts = alternatives;
+    boolean deprecatedAnnotationPresent = false;
+    try {
+      deprecatedAnnotationPresent = GbifTerm.class.getField(this.name()).isAnnotationPresent(Deprecated.class);
+    } catch (NoSuchFieldException ignore) { }
+    this.isDeprecated = deprecatedAnnotationPresent;
   }
 
   /**
@@ -340,6 +347,14 @@ public enum GbifTerm implements Term, AlternativeNames {
    */
   public boolean isClass() {
     return Character.isUpperCase(simpleName().charAt(0));
+  }
+
+  /**
+   *
+   * @return true if the Term is annotated with @Deprecated.
+   */
+  public boolean isDeprecated(){
+    return isDeprecated;
   }
 
 }
