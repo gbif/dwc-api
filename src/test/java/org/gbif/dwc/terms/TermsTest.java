@@ -6,6 +6,8 @@ import java.util.Map;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit tests for {@link Terms}
@@ -27,5 +29,12 @@ public class TermsTest {
     record.put(AcTerm.caption, "The AcTerm title");
     record.put(DcElement.creator, "Steven Seagal");
     assertEquals("The AcTerm title", Terms.getValueOfFirst(record, AcTerm.caption, DcTerm.title));
+  }
+
+  @Test
+  public void testIsTermValueBlank(){
+    assertTrue(Terms.isTermValueBlank("\\N"));
+    assertTrue(Terms.isTermValueBlank("NULL"));
+    assertFalse(Terms.isTermValueBlank("ANULLSTRING"));
   }
 }

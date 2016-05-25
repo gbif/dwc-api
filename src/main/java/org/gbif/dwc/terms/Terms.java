@@ -12,6 +12,12 @@ public class Terms {
   private static final Pattern NULL_PATTERN = Pattern.compile("^\\s*(\\\\N|\\\\?NULL)\\s*$");
 
   /**
+   * static utility class
+   */
+  private Terms() {
+  }
+
+  /**
    * Tries various terms in given order until it finds a non empty value.
    *
    * @param record
@@ -31,7 +37,7 @@ public class Terms {
   }
 
   private static String clean(String str) {
-    if (str == null || str.isEmpty() || NULL_PATTERN.matcher(str).find()) {
+    if (isTermValueBlank(str)) {
       return null;
     }
     str = str.trim();
@@ -39,5 +45,15 @@ public class Terms {
       return null;
     }
     return str;
+  }
+
+  /**
+   * Check if the value provided should be considered "blank" in the context of a {@link Term} value.
+   *
+   * @param termValue
+   * @return
+   */
+  public static boolean isTermValueBlank(String termValue){
+    return termValue == null || termValue.isEmpty() || NULL_PATTERN.matcher(termValue).find();
   }
 }
