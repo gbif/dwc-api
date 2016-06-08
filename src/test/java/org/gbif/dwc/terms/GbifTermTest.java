@@ -33,7 +33,7 @@ public class GbifTermTest extends TermBaseTest {
 
   @Test
   public void testNumberOfGroups() {
-    assertEquals(8, GbifTerm.GROUPS.length);
+    assertEquals(9, GbifTerm.GROUPS.length);
   }
 
   /**
@@ -46,8 +46,12 @@ public class GbifTermTest extends TermBaseTest {
     assertEquals(2, new HashSet<GbifTerm>(datasetTerms).size());
 
     List<GbifTerm> occurrenceTerms = GbifTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
-    assertEquals(17, occurrenceTerms.size());
-    assertEquals(17, new HashSet<GbifTerm>(occurrenceTerms).size());
+    assertEquals(11, occurrenceTerms.size());
+    assertEquals(11, new HashSet<GbifTerm>(occurrenceTerms).size());
+
+    List<GbifTerm> locationTerms = GbifTerm.listByGroup(DwcTerm.GROUP_LOCATION);
+    assertEquals(6, locationTerms.size());
+    assertEquals(6, new HashSet<GbifTerm>(locationTerms).size());
 
     List<GbifTerm> rowTerms = GbifTerm.listByGroup(GbifTerm.GROUP_ROW_TYPE);
     assertEquals(9, rowTerms.size());

@@ -56,7 +56,7 @@ public enum GbifTerm implements Term, AlternativeNames {
    * min/max values which are sometimes used in Darwin Core. See also depth & distanceAboveSurface.
    * </p>
    */
-  elevation(DwcTerm.GROUP_OCCURRENCE),
+  elevation(DwcTerm.GROUP_LOCATION),
 
   /**
    * Elevation accuracy is the uncertainty for the elevation in meters.
@@ -65,7 +65,7 @@ public enum GbifTerm implements Term, AlternativeNames {
    * in case a minimum and maximum verbatim value is given.
    * </p>
    */
-  elevationAccuracy(DwcTerm.GROUP_OCCURRENCE),
+  elevationAccuracy(DwcTerm.GROUP_LOCATION),
 
   /**
    * Depth in meters below the surface.
@@ -81,7 +81,7 @@ public enum GbifTerm implements Term, AlternativeNames {
    * min/max values which are sometimes used in Darwin Core. See also elevation & distanceAboveSurface.
    * </p>
    */
-  depth(DwcTerm.GROUP_OCCURRENCE),
+  depth(DwcTerm.GROUP_LOCATION),
 
   /**
    * Depth accuracy is the uncertainty for the depth in meters.
@@ -90,10 +90,10 @@ public enum GbifTerm implements Term, AlternativeNames {
    * in case a minimum and maximum verbatim value is given.
    * </p>
    */
-  depthAccuracy(DwcTerm.GROUP_OCCURRENCE),
+  depthAccuracy(DwcTerm.GROUP_LOCATION),
 
-  distanceAboveSurface(DwcTerm.GROUP_OCCURRENCE),
-  distanceAboveSurfaceAccuracy(DwcTerm.GROUP_OCCURRENCE),
+  distanceAboveSurface(DwcTerm.GROUP_LOCATION),
+  distanceAboveSurfaceAccuracy(DwcTerm.GROUP_LOCATION),
 
   /**
    * Any issue found during processing and interpretation or the record.
@@ -256,7 +256,7 @@ public enum GbifTerm implements Term, AlternativeNames {
    */
   public static final String[] GROUPS = {GROUP_CRAWLING, GROUP_DATASET, DwcTerm.GROUP_OCCURRENCE, GROUP_ROW_TYPE,
     GROUP_SPECIES_DISTRIBUTION_EXTENSION, GROUP_SPECIES_PROFILE_EXTENSION, DwcTerm.GROUP_TAXON,
-    GROUP_VERNACULAR_NAME_EXTENSION};
+    GROUP_VERNACULAR_NAME_EXTENSION, DwcTerm.GROUP_LOCATION};
 
   /**
    * Lists all GBIF terms in taxon group.
