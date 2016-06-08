@@ -239,7 +239,12 @@ public enum GbifTerm implements Term, AlternativeNames {
   isPreferredName(GbifTerm.GROUP_VERNACULAR_NAME_EXTENSION),
 
   // Distribution checklist extension
-  appendixCITES(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION);
+  appendixCITES(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),
+
+  /**
+   * Boolean indicating if the publishing country is different
+   */
+  repatriated(DwcTerm.GROUP_OCCURRENCE);
 
   public static final String NS = "http://rs.gbif.org/terms/1.0/";
   public static final String PREFIX = "gbif";
