@@ -21,11 +21,6 @@ public enum GbifTerm implements Term, AlternativeNames {
   datasetKey(GbifTerm.GROUP_DATASET),
 
   /**
-   * The license applied to the dataset.
-   */
-  datasetLicense(GbifTerm.GROUP_DATASET),
-
-  /**
    * The ISO code of the country of the organization that publishes the dataset to which the occurrence belongs.
    */
   publishingCountry(GbifTerm.GROUP_DATASET),
