@@ -1,9 +1,10 @@
 package org.gbif.dwc.terms;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum GbifTerm implements Term, AlternativeNames {
+public enum GbifTerm implements Term, AlternativeNames, Serializable {
   // row types
   Description(GbifTerm.GROUP_ROW_TYPE),
   Distribution(GbifTerm.GROUP_ROW_TYPE),

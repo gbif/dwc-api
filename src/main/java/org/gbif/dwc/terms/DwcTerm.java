@@ -1,14 +1,15 @@
 package org.gbif.dwc.terms;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * All Darwin Core terms with namespace http://rs.tdwg.org/dwc/terms/ as an 
+ * All Darwin Core terms with namespace http://rs.tdwg.org/dwc/terms/ as an
  * enumeration with alternative term names found sometimes in data.
  * Old, deprecated terms are kept but marked as such.
  */
-public enum DwcTerm implements Term, AlternativeNames {
+public enum DwcTerm implements Term, AlternativeNames, Serializable {
 
   /**
    * CLASS TERMS
@@ -243,20 +244,20 @@ public enum DwcTerm implements Term, AlternativeNames {
    * @see <a href="http://rs.tdwg.org/dwc/terms/index.htm#theterms">DwC Quick Reference Guide</a>
    */
   public static final String[] GROUPS =
-    {GROUP_RECORD, GROUP_OCCURRENCE, GROUP_ORGANISM, GROUP_EVENT, GROUP_LOCATION, 
-	  GROUP_GEOLOGICALCONTEXT, GROUP_IDENTIFICATION, GROUP_TAXON, 
+    {GROUP_RECORD, GROUP_OCCURRENCE, GROUP_ORGANISM, GROUP_EVENT, GROUP_LOCATION,
+	  GROUP_GEOLOGICALCONTEXT, GROUP_IDENTIFICATION, GROUP_TAXON,
 	  GROUP_MEASUREMENTORFACT, GROUP_RESOURCERELATIONSHIP};
 
   public static final DwcTerm[] TAXONOMIC_TERMS =
-    {DwcTerm.taxonID, DwcTerm.scientificNameID, DwcTerm.acceptedNameUsageID, 
-	  DwcTerm.parentNameUsageID, DwcTerm.originalNameUsageID, 
+    {DwcTerm.taxonID, DwcTerm.scientificNameID, DwcTerm.acceptedNameUsageID,
+	  DwcTerm.parentNameUsageID, DwcTerm.originalNameUsageID,
 	  DwcTerm.nameAccordingToID, DwcTerm.namePublishedInID, DwcTerm.taxonConceptID,
-      DwcTerm.scientificName, DwcTerm.acceptedNameUsage, DwcTerm.parentNameUsage, 
-	  DwcTerm.originalNameUsage, DwcTerm.nameAccordingTo, DwcTerm.namePublishedIn, 
-	  DwcTerm.namePublishedInYear, DwcTerm.higherClassification, DwcTerm.kingdom, 
-	  DwcTerm.phylum, DwcTerm.class_, DwcTerm.order, DwcTerm.family, DwcTerm.genus, 
-	  DwcTerm.subgenus, DwcTerm.specificEpithet, DwcTerm.infraspecificEpithet, 
-	  DwcTerm.taxonRank, DwcTerm.verbatimTaxonRank, DwcTerm.scientificNameAuthorship, 
+      DwcTerm.scientificName, DwcTerm.acceptedNameUsage, DwcTerm.parentNameUsage,
+	  DwcTerm.originalNameUsage, DwcTerm.nameAccordingTo, DwcTerm.namePublishedIn,
+	  DwcTerm.namePublishedInYear, DwcTerm.higherClassification, DwcTerm.kingdom,
+	  DwcTerm.phylum, DwcTerm.class_, DwcTerm.order, DwcTerm.family, DwcTerm.genus,
+	  DwcTerm.subgenus, DwcTerm.specificEpithet, DwcTerm.infraspecificEpithet,
+	  DwcTerm.taxonRank, DwcTerm.verbatimTaxonRank, DwcTerm.scientificNameAuthorship,
 	  DwcTerm.vernacularName, DwcTerm.nomenclaturalCode, DwcTerm.taxonomicStatus,
       DwcTerm.nomenclaturalStatus, DwcTerm.taxonRemarks};
 
@@ -264,7 +265,7 @@ public enum DwcTerm implements Term, AlternativeNames {
    * List of all higher rank terms in dwc, ordered by rank and starting with kingdom.
    */
   public static final DwcTerm[] HIGHER_RANKS =
-    {DwcTerm.kingdom, DwcTerm.phylum, DwcTerm.class_, DwcTerm.order, DwcTerm.family, 
+    {DwcTerm.kingdom, DwcTerm.phylum, DwcTerm.class_, DwcTerm.order, DwcTerm.family,
 	  DwcTerm.genus, DwcTerm.subgenus};
 
   /**
@@ -273,8 +274,8 @@ public enum DwcTerm implements Term, AlternativeNames {
   //TODO: create dynamically via method!
   // Location is not in this list because it is in the dcterms namespace.
   public static final DwcTerm[] CLASS_TERMS =
-    {DwcTerm.Occurrence, DwcTerm.Organism, DwcTerm.MaterialSample, DwcTerm.Event, 
-	  DwcTerm.GeologicalContext, DwcTerm.Identification, DwcTerm.Taxon, 
+    {DwcTerm.Occurrence, DwcTerm.Organism, DwcTerm.MaterialSample, DwcTerm.Event,
+	  DwcTerm.GeologicalContext, DwcTerm.Identification, DwcTerm.Taxon,
 	  DwcTerm.MeasurementOrFact, DwcTerm.ResourceRelationship};
 
   private final String groupName;

@@ -1,8 +1,9 @@
 package org.gbif.dwc.terms;
 
+import java.io.Serializable;
 import java.net.URI;
 
-public class UnknownTerm implements Term {
+public class UnknownTerm implements Term, Serializable {
 
   private final URI uri;
   private final String name;

@@ -1,11 +1,13 @@
 package org.gbif.dwc.terms;
 
+import java.io.Serializable;
+
 /**
  * All Dublin Core terms with namespace http://purl.org/dc/terms/. A small subset of 15 terms exist as DcElement under
  * a different namespace, but DcTerm values must be a member of a specific class and therefore given by URI, whereas
  * DcElement values are allowed to be free text.
  */
-public enum DcTerm implements Term, AlternativeNames {
+public enum DcTerm implements Term, AlternativeNames, Serializable {
   abstract_,
   accessRights,
   accrualMethod,
