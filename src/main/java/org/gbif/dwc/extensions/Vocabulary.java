@@ -20,7 +20,7 @@ import java.util.Objects;
 /**
  * Taken from https://github.com/gbif/dwca-validator3/
  */
-public class Vocabulary implements Comparable {
+public class Vocabulary implements Comparable<Vocabulary> {
   private String uri;
   private String title;
   private String description;
@@ -118,9 +118,8 @@ public class Vocabulary implements Comparable {
   }
 
   @Override
-  public int compareTo(Object object) {
-    Vocabulary myClass = (Vocabulary) object;
-    return Objects.compare(this.uri, myClass.uri, String::compareTo);
+  public int compareTo(Vocabulary object) {
+    return Objects.compare(this.uri, object.uri, String::compareTo);
   }
 
   @Override

@@ -1,8 +1,5 @@
 package org.gbif.dwc.extensions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
@@ -21,10 +18,6 @@ public class VocabularyConceptTest {
     VocabularyConcept b = new VocabularyConcept();
     b.setUri("http://1");
     a.setOrder(2);
-
-    List<VocabularyConcept> v = new ArrayList<>();
-    v.add(a);
-    v.add(b);
 
     assertTrue(a.compareTo(b) > 0);
   }

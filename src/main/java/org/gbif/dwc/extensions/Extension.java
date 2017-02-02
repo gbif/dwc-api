@@ -15,6 +15,7 @@ import org.gbif.dwc.terms.TermFactory;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +26,13 @@ import java.util.Objects;
  * Taken from https://github.com/gbif/dwca-validator3/
  */
 public class Extension implements Comparable<Extension>{
+
+  private static final Comparator<Extension> COMPARATOR =
+          Comparator.comparing(((Extension ext) -> ext.getRowType() == null ? null :
+                  ext.getRowType().qualifiedName()), Comparator.nullsLast(Comparator.naturalOrder()))
+                  .thenComparing(ext -> ext.getUrl() == null ? null : ext.getUrl().toString(),
+                          Comparator.nullsLast(Comparator.naturalOrder()));
+
   private String title; // human title
   private String name; // table, file & xml tag naming. no whitespace allowed
   private URL url;
@@ -34,7 +42,7 @@ public class Extension implements Comparable<Extension>{
   private String namespace;
   private URL link; // to documentation
   private boolean installed;
-  private List<ExtensionProperty> properties = new ArrayList<ExtensionProperty>();
+  private List<ExtensionProperty> properties = new ArrayList<>();
   private boolean core = false;
   private boolean dev = false;
   private Date modified = new Date();
@@ -50,20 +58,11 @@ public class Extension implements Comparable<Extension>{
     properties.add(property);
   }
 
-  /**
-   * @see Comparable#compareTo(Object)
-   */
+  @Override
   public int compareTo(Extension object) {
-//    return new CompareToBuilder()
-//            .append(this.rowType.qualifiedName(), object.rowType.qualifiedName())
-//            .append(this.url.toString(), object.url.toString())
-//            .toComparison();
-    return -1;
+    return COMPARATOR.compare(this, object);
   }
 
-  /**
-   * @see Object#equals(Object)
-   */
   @Override
   public boolean equals(Object other) {
     if (this == other) {
@@ -134,7 +133,7 @@ public class Extension implements Comparable<Extension>{
   }
 
   /**
-   * @see Object#hashCode()
+   * @see Objects#hash
    */
   @Override
   public int hashCode() {
@@ -218,12 +217,9 @@ public class Extension implements Comparable<Extension>{
     this.title = title;
   }
 
-  /**
-   * @see Object#toString()
-   */
   @Override
   public String toString() {
-    return "";//new ToStringBuilder(this).append("name", this.name).append("rowType", this.rowType).toString();
+    return new StringBuilder().append("name:" + this.name).append(", rowType:" + this.rowType).toString();
   }
 
 }

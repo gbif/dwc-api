@@ -24,16 +24,13 @@ import java.util.Set;
  *
  * Taken from https://github.com/gbif/dwca-validator3/
  */
-public class VocabularyConcept implements Comparable {
+public class VocabularyConcept implements Comparable<VocabularyConcept> {
 
-  //used to ensure type inference
-  private static final Comparator<VocabularyConcept> COMPARATOR_INIT =
+  private static final Comparator<VocabularyConcept> COMPARATOR =
           Comparator.comparing(VocabularyConcept::getVocabulary,
-                  Comparator.nullsFirst(Comparator.naturalOrder()));
-
-  private static final Comparator<VocabularyConcept> COMPARATOR = COMPARATOR_INIT
-          .thenComparing(VocabularyConcept::getOrder)
-          .thenComparing(VocabularyConcept::getUri);
+                  Comparator.nullsFirst(Comparator.naturalOrder()))
+                  .thenComparing(VocabularyConcept::getOrder)
+                  .thenComparing(VocabularyConcept::getUri);
 
   private Vocabulary vocabulary;
   private String identifier; // usually short, e.g. DE
@@ -72,7 +69,6 @@ public class VocabularyConcept implements Comparable {
   public Integer getOrder() {
     return order;
   }
-
 
   public VocabularyTerm getPreferredTerm(String lang) {
     VocabularyTerm tEN = null;
@@ -155,8 +151,8 @@ public class VocabularyConcept implements Comparable {
   }
 
   @Override
-  public int compareTo(Object object) {
-    return COMPARATOR.compare(this, (VocabularyConcept) object);
+  public int compareTo(VocabularyConcept object) {
+    return COMPARATOR.compare(this, object);
   }
 
   @Override
