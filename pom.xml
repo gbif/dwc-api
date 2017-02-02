@@ -30,8 +30,7 @@
     </distributionManagement>
 
     <properties>
-        <!-- The IPT depends on this project and so this must stay at java 6 until IPT is upgraded -->
-        <jdkLevel>1.6</jdkLevel>
+        <jdkLevel>1.8</jdkLevel>
 
         <junit.version>4.12</junit.version>
         <logback.version>1.1.3</logback.version>

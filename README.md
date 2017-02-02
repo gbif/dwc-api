@@ -23,8 +23,5 @@ Term scientificNameFromPrefixAndSimpleName = factory.findTerm("dwc:scientificNam
 Term scientificNameFromQualifiedName = factory.findTerm("http://rs.tdwg.org/dwc/terms/scientificName");
 ```
 
-## Policies
- * Built as Java 6 artifact until the [IPT](https://github.com/gbif/ipt) moves to Java 7 (see https://github.com/gbif/ipt/issues/1222).
-
 ## Documentation
 [JavaDocs](http://gbif.github.io/dwc-api/apidocs/)
