@@ -1,11 +1,11 @@
 package org.gbif.dwc.terms;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Simple, threadsafe factory for terms that knows about all ConceptTerms of this library and keeps singletons for
@@ -43,31 +43,44 @@ public class TermFactory {
   }
 
   private void loadKnownTerms() {
-    addTerms(DwcTerm.values(), DwcTerm.PREFIXES);
-    addTerms(DcTerm.values(), DcTerm.PREFIXES);
-    addTerms(GbifTerm.values(), GbifTerm.PREFIXES);
-    addTerms(GbifInternalTerm.values(), new String[0]);
-    addTerms(IucnTerm.values(), IucnTerm.PREFIXES);
-    addTerms(DcElement.values(), DcElement.PREFIXES);
-    addTerms(AcTerm.values(), AcTerm.PREFIXES);
-    addTerms(XmpTerm.values(), XmpTerm.PREFIXES);
-    addTerms(XmpRightsTerm.values(), XmpRightsTerm.PREFIXES);
-    addTerms(EolReferenceTerm.values(), EolReferenceTerm.PREFIXES);
+    addAltTerms(DwcTerm.values(), DwcTerm.PREFIXES);
+    addAltTerms(DcTerm.values(), DcTerm.PREFIXES);
+    addAltTerms(GbifTerm.values(), GbifTerm.PREFIXES);
+    addAltTerms(GbifInternalTerm.values(), new String[0]);
+    addAltTerms(IucnTerm.values(), IucnTerm.PREFIXES);
+    addAltTerms(DcElement.values(), DcElement.PREFIXES);
+    addAltTerms(AcTerm.values(), AcTerm.PREFIXES);
+    addAltTerms(XmpTerm.values(), XmpTerm.PREFIXES);
+    addAltTerms(XmpRightsTerm.values(), XmpRightsTerm.PREFIXES);
+    addAltTerms(EolReferenceTerm.values(), EolReferenceTerm.PREFIXES);
   }
 
-  private <T extends Term & AlternativeNames> void addTerms(T[] terms, String[] prefixes) {
+  private <T extends Term & AlternativeNames> void addAltTerms(T[] terms, String[] prefixes) {
+    addTerms(terms, prefixes);
+    // also add alternatives
     for (T term : terms) {
-      addTerm(term.simpleName(), term, true);
-      addTerm(term.qualifiedName(), term);
-      for (String pre : prefixes) {
-        addTerm(pre + term.simpleName(), term);
-      }
-      // also index alt names
       for (String alt : term.alternativeNames()) {
         addTerm(alt, term);
         for (String pre : prefixes) {
           addTerm(pre + alt, term);
         }
+      }
+    }
+  }
+
+  /**
+   * Adds known terms to the factory.
+   * An array of terms can be given several known prefixes to appear under.
+   * @param terms
+   * @param prefixes
+   * @param <T>
+   */
+  public <T extends Term> void addTerms(T[] terms, String[] prefixes) {
+    for (T term : terms) {
+      addTerm(term.simpleName(), term, true);
+      addTerm(term.qualifiedName(), term);
+      for (String pre : prefixes) {
+        addTerm(pre + term.simpleName(), term);
       }
     }
   }
