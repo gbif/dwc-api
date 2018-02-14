@@ -55,7 +55,7 @@ public class TermFactory {
     addAltTerms(EolReferenceTerm.values(), EolReferenceTerm.PREFIXES);
   }
 
-  private <T extends Term & AlternativeNames> void addAltTerms(T[] terms, String[] prefixes) {
+  public <T extends Term & AlternativeNames> void addAltTerms(T[] terms, String[] prefixes) {
     addTerms(terms, prefixes);
     // also add alternatives
     for (T term : terms) {
