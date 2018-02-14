@@ -1,10 +1,13 @@
 package org.gbif.dwc.terms;
 
 /**
- * Package visible interface for terms that have known alternative names.
+ * Optional interface for terms that have known alternative names the TermFactory should be aware of.
  */
-interface AlternativeNames {
+public interface AlternativeNames {
 
+  /**
+   * @return array of simple, alternative term names
+   */
   String[] alternativeNames();
 
 }
