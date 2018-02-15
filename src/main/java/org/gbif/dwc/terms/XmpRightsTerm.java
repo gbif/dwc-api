@@ -36,4 +36,9 @@ public enum XmpRightsTerm implements Term, AlternativeNames {
     return NS + simpleName();
   }
 
+  @Override
+  public boolean isClass() {
+    return false;
+  }
+
 }

@@ -38,4 +38,9 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
     return EMPTY;
   }
 
+  @Override
+  public boolean isClass() {
+    return false;
+  }
+
 }

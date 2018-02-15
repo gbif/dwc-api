@@ -47,14 +47,12 @@ public enum DcElement implements Term, AlternativeNames {
     return alternatives;
   }
 
-  /**
-   * @return true if the dc term is defining a class instead of a property, e.g. Location
-   */
+  @Override
   public boolean isClass() {
-    return Character.isUpperCase(simpleName().charAt(0));
+    return false;
   }
 
-  private DcElement(String... alternatives) {
+  DcElement(String... alternatives) {
     this.alternatives = alternatives;
   }
 }

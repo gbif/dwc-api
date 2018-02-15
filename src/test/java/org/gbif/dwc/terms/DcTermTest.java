@@ -28,8 +28,8 @@ public class DcTermTest {
   @Test
   public void testTermEquality() throws Exception {
     for (DcTerm t : DcTerm.values()) {
-      Term found = TERM_FACTORY.findTerm(t.simpleName());
-      assertEquals(t, found);
+      assertEquals(t, TERM_FACTORY.findTerm(t.qualifiedName()));
+      assertEquals(t, TERM_FACTORY.findTerm(t.simpleName(), t.isClass()));
     }
   }
 

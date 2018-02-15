@@ -21,6 +21,7 @@ public class TermFactory {
   private static final Object LOCK = new Object();
 
   private final Map<String, Term> terms = new HashMap<String, Term>();
+  private final Map<String, Term> classTerms = new HashMap<String, Term>();
 
   public static TermFactory instance() {
     if (initialized) {
@@ -49,10 +50,10 @@ public class TermFactory {
     addAltTerms(GbifInternalTerm.values(), new String[0]);
     addAltTerms(IucnTerm.values(), IucnTerm.PREFIXES);
     addAltTerms(DcElement.values(), DcElement.PREFIXES);
+    addAltTerms(AcefTerm.values(), AcefTerm.PREFIXES);
     addAltTerms(AcTerm.values(), AcTerm.PREFIXES);
     addAltTerms(XmpTerm.values(), XmpTerm.PREFIXES);
     addAltTerms(XmpRightsTerm.values(), XmpRightsTerm.PREFIXES);
-    addAltTerms(EolReferenceTerm.values(), EolReferenceTerm.PREFIXES);
   }
 
   public <T extends Term & AlternativeNames> void addAltTerms(T[] terms, String[] prefixes) {
@@ -77,7 +78,7 @@ public class TermFactory {
    */
   public <T extends Term> void addTerms(T[] terms, String[] prefixes) {
     for (T term : terms) {
-      addTerm(term.simpleName(), term, true);
+      addTerm(term.simpleName(), term);
       addTerm(term.qualifiedName(), term);
       for (String pre : prefixes) {
         addTerm(pre + term.simpleName(), term);
@@ -86,47 +87,44 @@ public class TermFactory {
   }
 
   public void addTerm(String key, Term term) {
-    addTerm(key, term, false);
-  }
-
-  public void addTerm(String key, Term term, boolean isClassTerm) {
     if (key == null || key.trim().isEmpty()) {
       return;
     }
-    key = normaliseTerm(key, isClassTerm);
-    if (terms.containsKey(key)) {
-      Term t1 = terms.get(key);
+    key = normaliseTerm(key);
+
+    // keep class terms distinct
+    Map<String, Term> map = termMap(term.isClass());
+    if (map.containsKey(key)) {
+      Term t1 = map.get(key);
       if (!t1.equals(term)) {
-        LOG
-          .warn("Terms {} and {} are both known as \"{}\". Keeping only {}", terms.get(key), term, key, terms.get(key));
+        LOG.warn("{} terms {} and {} are both known as \"{}\". Keeping only earlier {}", term.isClass() ? "Class" : "Property", map.get(key), term, key, map.get(key));
       }
     } else {
-      terms.put(key, term);
+      map.put(key, term);
     }
+  }
+
+  private Map<String, Term> termMap(boolean isClass) {
+    return isClass ? classTerms : terms;
   }
 
   /**
    * @return a purely alphanumerical, lower cased term with all other characters replaced
    */
   public static String normaliseTerm(String term) {
-    return normaliseTerm(term, false);
-  }
-
-  public static String normaliseTerm(String term, boolean keepInitialCase) {
     String x = NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("");
     if (x.isEmpty()) {
       return "";
-    } else if (x.length() == 1) {
-      return keepInitialCase ? String.valueOf(x.charAt(0)) : x.toLowerCase();
-    } else {
-      return keepInitialCase ? x.charAt(0)+x.substring(1).toLowerCase() : x.toLowerCase();
     }
+    return x.toLowerCase();
   }
 
   /**
-   * This is the main method to get a term from the factory.
+   * This is the main method to get a term from the factory searching both for property or class terms.
    * It will lookup matching terms applying some normalization and known synonyms first.
-   * If nothing matches the factory creates a new UnknownTerm instance and keeps it for further requests so that
+   * In case of ambiguous terms Class terms will be preferred.
+   *
+   * If nothing matches the factory creates a new UnknownTerm property instance and keeps it for further requests so that
    * all terms with the same qualified name return a single UnknownTerm instance.
    *
    * For clearly bad term names an IllegalArgumentException is thrown.
@@ -136,31 +134,76 @@ public class TermFactory {
    * instance is created.
    */
   public Term findTerm(final String termName) throws IllegalArgumentException {
+    Term t = findTermOnly(termName, true);
+    if (t == null) {
+      t = findTermOnly(termName, false);
+    }
+    // create new term if needed
+    if (t == null) {
+      t = createUnknownTerm(termName, false);
+    }
+    return t;
+  }
+
+  /**
+   * This method works just as findTerm(final String termName) but restricts
+   * the results to just property terms.
+   */
+  public Term findPropertyTerm(final String termName) throws IllegalArgumentException {
+    return findTerm(termName, false);
+  }
+
+  /**
+   * This method works just as findTerm(final String termName) but restricts
+   * the results to just class terms.
+   */
+  public Term findClassTerm(final String termName) throws IllegalArgumentException {
+    return findTerm(termName, true);
+  }
+
+  /**
+   * This method works just as findTerm(final String termName) but restricts
+   * the results to just property or class terms.
+   */
+  public Term findTerm(final String termName, boolean isClassTerm) throws IllegalArgumentException {
     if (termName == null || termName.trim().isEmpty()) {
       return null;
     }
-    // first try term just as it is
-    if (terms.containsKey(termName)) {
-      return terms.get(termName);
+
+    Term t = findTermOnly(termName, isClassTerm);
+    // create new term if needed
+    if (t == null) {
+      t = createUnknownTerm(termName, isClassTerm);
     }
-
-    // try normalised term next with initial
-    if (terms.containsKey(normaliseTerm(termName, true))) {
-      return terms.get(normaliseTerm(termName, true));
-
-    } else if (terms.containsKey(normaliseTerm(termName))) {
-        return terms.get(normaliseTerm(termName));
-
-    } else {
-      return createUnknownTerm(termName);
-    }
+    return t;
   }
 
-  private Term createUnknownTerm(String termName) {
+  /**
+   * Does not create Unknown terms
+   */
+  private Term findTermOnly(final String termName, boolean isClassTerm) throws IllegalArgumentException {
+    if (termName == null || termName.trim().isEmpty()) {
+      return null;
+    }
+
+    Map<String, Term> map = termMap(isClassTerm);
+    // first try term just as it is
+    if (map.containsKey(termName)) {
+      return map.get(termName);
+    }
+
+    // try normalised term otherwise
+    if (map.containsKey(normaliseTerm(termName))) {
+      return map.get(normaliseTerm(termName));
+    }
+    return null;
+  }
+
+  private Term createUnknownTerm(String termName, boolean isClassTerm) {
     // create new term instance
     Term term;
     try {
-      term = UnknownTerm.build(termName);
+      term = UnknownTerm.build(termName, isClassTerm);
       addTerm(termName, term);
     } catch (IllegalArgumentException e) {
       // simple names as found in ATB file headers are rejected

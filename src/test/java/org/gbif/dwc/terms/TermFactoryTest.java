@@ -1,18 +1,17 @@
 package org.gbif.dwc.terms;
 
+import org.junit.Test;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class TermFactoryTest {
+  final TermFactory TF = TermFactory.instance();
 
   /**
    * GBIF code assumes a term coming from any of the Term enumerations here have unique simple names.
@@ -28,6 +27,7 @@ public class TermFactoryTest {
     addTerms(names, GbifInternalTerm.values());
     addTerms(names, IucnTerm.values());
 
+    addTerms(names, AcefTerm.values());
     addTerms(names, AcTerm.values());
     addTerms(names, XmpTerm.values());
     addTerms(names, XmpRightsTerm.values());
@@ -42,22 +42,26 @@ public class TermFactoryTest {
 
   @Test
   public void testFindTerm() {
-    TermFactory factory = TermFactory.instance();
+    assertEquals(DwcTerm.scientificName, TF.findTerm("ScientificName"));
+    assertEquals(DwcTerm.scientificName, TF.findTerm("dwc:scientificName"));
+    assertEquals(DwcTerm.scientificName, TF.findTerm("http://rs.tdwg.org/dwc/terms/scientificName"));
+    assertEquals(DcElement.identifier, TF.findTerm("dc:identifier"));
+    assertEquals(GbifTerm.Identifier, TF.findTerm("identifier"));
+    assertEquals(GbifTerm.Identifier, TF.findClassTerm("identifier"));
+    assertEquals(DcTerm.identifier, TF.findPropertyTerm("identifier"));
+    assertEquals(DcTerm.identifier, TF.findTerm("ID"));
+    assertEquals(DwcTerm.parentNameUsageID, TF.findTerm("dwc:higherTaxonID"));
 
-    assertEquals(DwcTerm.scientificName, factory.findTerm("ScientificName"));
-    assertEquals(DwcTerm.scientificName, factory.findTerm("dwc:scientificName"));
-    assertEquals(DwcTerm.scientificName, factory.findTerm("http://rs.tdwg.org/dwc/terms/scientificName"));
-    assertEquals(DcElement.identifier, factory.findTerm("dc:identifier"));
-    assertEquals(DcTerm.identifier, factory.findTerm("identifier"));
-    assertEquals(DcTerm.identifier, factory.findTerm("ID"));
-    assertEquals(DwcTerm.parentNameUsageID, factory.findTerm("dwc:higherTaxonID"));
+    assertEquals(GbifInternalTerm.unitQualifier, TF.findTerm("UNIT_QUALIFIER"));
 
-    assertEquals(GbifInternalTerm.unitQualifier, factory.findTerm("UNIT_QUALIFIER"));
+    assertEquals("threatStatus", TF.findTerm("http://rs.gbif.org/terms/1.0/threatStatus").simpleName());
+    assertEquals("threatStatus", TF.findTerm("http://rs.gbif.org/terms/1321.43/threatStatus").simpleName());
 
-    assertEquals("threatStatus", factory.findTerm("http://rs.gbif.org/terms/1.0/threatStatus").simpleName());
-    assertEquals("threatStatus", factory.findTerm("http://rs.gbif.org/terms/1321.43/threatStatus").simpleName());
-
-    assertEquals(DwcTerm.catalogNumber, factory.findTerm("\"catalogNumber\""));
+    assertEquals(DwcTerm.catalogNumber, TF.findTerm("\"catalogNumber\""));
+    assertEquals(AcefTerm.Source, TF.findTerm("acef:source"));
+    assertEquals(DwcTerm.family, TF.findTerm("dwc:family"));
+    assertEquals(DwcTerm.family, TF.findTerm("family"));
+    assertEquals(AcefTerm.Family, TF.findTerm("acef:family"));
   }
 
   @Test

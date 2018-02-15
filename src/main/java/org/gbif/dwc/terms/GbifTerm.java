@@ -348,9 +348,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
     return PREFIX + ":" + name();
   }
 
-  /**
-   * @return true if the term is defining a class or row type instead of a property, e.g. VernacularName
-   */
+  @Override
   public boolean isClass() {
     return Character.isUpperCase(simpleName().charAt(0));
   }

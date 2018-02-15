@@ -33,11 +33,9 @@ public enum IucnTerm implements Term, AlternativeNames {
     return PREFIX + ":" + name();
   }
 
-  /**
-   * @return true if the term is defining a class instead of a property
-   */
+  @Override
   public boolean isClass() {
-    return Character.isUpperCase(simpleName().charAt(0));
+    return false;
   }
 
 }

@@ -336,6 +336,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   /**
    * @return true if the dwc term is defining a class instead of a property, e.g. Taxon
    */
+  @Override
   public boolean isClass() {
     return Character.isUpperCase(simpleName().charAt(0));
   }

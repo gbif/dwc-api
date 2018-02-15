@@ -7,16 +7,26 @@ public class UnknownTerm implements Term, Serializable {
 
   private final URI uri;
   private final String name;
+  private final boolean isClass;
 
   public static UnknownTerm build(String qualifiedName){
-    return new UnknownTerm(URI.create(qualifiedName));
+    return build(qualifiedName, false);
+  }
+
+  public static UnknownTerm build(String qualifiedName, boolean isClass){
+    return new UnknownTerm(URI.create(qualifiedName), isClass);
   }
 
   public static UnknownTerm build(String qualifiedName, String simpleName){
-    return new UnknownTerm(URI.create(qualifiedName), simpleName);
+    return build(qualifiedName, simpleName, false);
   }
 
-  public UnknownTerm(URI uri, String name) {
+  public static UnknownTerm build(String qualifiedName, String simpleName, boolean isClass){
+    return new UnknownTerm(URI.create(qualifiedName), simpleName, isClass);
+  }
+
+  public UnknownTerm(URI uri, String name, boolean isClass) {
+    this.isClass = isClass;
     if (uri == null || !uri.isAbsolute()) {
       throw new IllegalArgumentException("The qualified name URI must be an absolute URI");
     }
@@ -27,7 +37,7 @@ public class UnknownTerm implements Term, Serializable {
     this.name = name;
   }
 
-  public UnknownTerm(URI uri) {
+  public UnknownTerm(URI uri, boolean isClass) {
     if (uri == null || !uri.isAbsolute()) {
       throw new IllegalArgumentException("The qualified name URI is required and must be an absolute URI");
     }
@@ -59,6 +69,7 @@ public class UnknownTerm implements Term, Serializable {
     }
     this.uri = uri;
     this.name = name;
+    this.isClass = isClass;
   }
 
   @Override
@@ -69,6 +80,11 @@ public class UnknownTerm implements Term, Serializable {
   @Override
   public String simpleName() {
     return name;
+  }
+
+  @Override
+  public boolean isClass() {
+    return isClass;
   }
 
   @Override

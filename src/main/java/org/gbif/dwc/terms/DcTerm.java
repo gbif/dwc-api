@@ -96,11 +96,12 @@ public enum DcTerm implements Term, AlternativeNames, Serializable {
   /**
    * @return true if the dc term is defining a class instead of a property, e.g. Location
    */
+  @Override
   public boolean isClass() {
     return Character.isUpperCase(simpleName().charAt(0));
   }
 
-  private DcTerm(String... alternatives) {
+  DcTerm(String... alternatives) {
     this.alternatives = alternatives;
   }
 

@@ -25,8 +25,7 @@ public class DcElementTest {
   @Test
   public void testTermEquality() throws Exception {
     for (DcTerm t : DcTerm.values()) {
-      Term found = TERM_FACTORY.findTerm(t.qualifiedName());
-      assertEquals(t, found);
+      assertEquals(t, TERM_FACTORY.findTerm(t.qualifiedName()));
     }
   }
 

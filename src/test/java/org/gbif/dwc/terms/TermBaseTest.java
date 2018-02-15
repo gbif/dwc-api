@@ -46,8 +46,8 @@ public abstract class TermBaseTest<T extends Term> {
   @Test
   public void testTermEquality() throws Exception {
     for (T t : values) {
-      Term found = TERM_FACTORY.findTerm(t.simpleName());
-      assertEquals(t, found);
+      assertEquals(t, TERM_FACTORY.findTerm(t.qualifiedName()));
+      assertEquals(t, TERM_FACTORY.findTerm(t.simpleName(), t.isClass()));
     }
   }
 

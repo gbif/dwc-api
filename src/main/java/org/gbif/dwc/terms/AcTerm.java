@@ -85,4 +85,9 @@ public enum AcTerm implements Term, AlternativeNames {
     return NS + simpleName();
   }
 
+  @Override
+  public boolean isClass() {
+    return false;
+  }
+
 }
