@@ -4,7 +4,7 @@ package org.gbif.dwc.terms;
  * As per CoL Data Submission Format, ver. 4 of 29th September 2014: List of tables and fields
  */
 public enum AcefTerm implements Term, AlternativeNames {
-  ACCEPTED_SPECIES,
+  AcceptedSpecies(true),
   AcceptedTaxonID,
   Kingdom,
   Phylum,
@@ -30,7 +30,7 @@ public enum AcefTerm implements Term, AlternativeNames {
   GSDNameGUID,
 
   //
-  ACCEPTED_INFRA_SPECIFIC_TAXA,
+  AcceptedInfraSpecificTaxa(true),
   ParentSpeciesID,
   InfraSpeciesEpithet("InfraSpecies"),
   InfraSpeciesAuthorString,
@@ -41,7 +41,7 @@ public enum AcefTerm implements Term, AlternativeNames {
   SYNONYMS,
 
   // COMMON NAMES
-  COMMON_NAMES,
+  CommonNames(true, "CommonName"),
   CommonName,
   TransliteratedName,
   Country,
@@ -50,24 +50,25 @@ public enum AcefTerm implements Term, AlternativeNames {
   ReferenceID,
 
   // DISTRIBUTION
-  DISTRIBUTION,
+  Distribution(true, "Distributions"),
   DistributionElement,
   StandardInUse,
   DistributionStatus,
 
   // REFERENCE
-  REFERENCE,
-  Author,
+  Reference(true, "References"),
+  Author("Authors"),
   Year,
   Title,
   Source,
+  NameReferencesLinks,
 
-  // NAME REFERENCES LINKS
-  NAME_REFERENCES_LINKS,
+  // NAME REFERENCES
+  NameReferences(true, "NameReferenceLinks", "NameReferencesLinks", "NameReferecesLinks"),
   ReferenceType,
 
   // SOURCE DATABASE
-  SOURCE_DATABASE,
+  SourceDatabase(true),
   DatabaseFullName,
   DatabaseShortName,
   DatabaseVersion,
@@ -86,12 +87,18 @@ public enum AcefTerm implements Term, AlternativeNames {
 
   public static final String NS = "http://rs.col.plus/terms/acef/";
   public static final String PREFIX = "acef";
-  static final String[] PREFIXES = {NS, PREFIX + ":", "col:"};
+  static final String[] PREFIXES = {PREFIX + ":", "col:"};
 
+  private final boolean isClass;
   private final String[] alternatives;
 
-  AcefTerm(String ... alternatives) {
+  AcefTerm(boolean isClass, String ... alternatives) {
     this.alternatives = alternatives;
+    this.isClass = isClass;
+  }
+
+  AcefTerm(String ... alternatives) {
+    this(false, alternatives);
   }
 
   /**
@@ -128,7 +135,7 @@ public enum AcefTerm implements Term, AlternativeNames {
 
   @Override
   public boolean isClass() {
-    return name().equals(name().toUpperCase());
+    return isClass;
   }
 
 }

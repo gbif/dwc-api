@@ -14,8 +14,8 @@ public enum XmpRightsTerm implements Term, AlternativeNames {
   WebStatement;
 
   public static final String NS = "http://ns.adobe.com/xap/1.0/rights/";
-  public static final String PREFIX = "xmpRights";
-  static final String[] PREFIXES = {NS, PREFIX + ":", "xmpr:", "adobe:"};
+  public static final String PREFIX = "xmp";
+  static final String[] PREFIXES = {PREFIX + ":", "adobe:"};
 
   public String toString() {
     return PREFIX + ":" + this.name();

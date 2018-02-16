@@ -17,16 +17,18 @@ public abstract class TermBaseTest<T extends Term> {
   private final T[] values;
   private final String[] prefixes;
   private final String[] forbiddenChars;
+  private final boolean skipSimple;
 
   public TermBaseTest(Class<T> clazz, String[] prefixes) {
-    this(clazz, prefixes, new String[]{"_","-"});
+    this(clazz, prefixes, new String[]{"_","-"}, false);
   }
 
-  public TermBaseTest(Class<T> clazz, String[] prefixes, String[] forbiddenChars) {
+  public TermBaseTest(Class<T> clazz, String[] prefixes, String[] forbiddenChars, boolean skipSimple) {
     this.clazz = clazz;
     this.prefixes = prefixes;
     this.forbiddenChars = forbiddenChars;
     values = clazz.getEnumConstants();
+    this.skipSimple = skipSimple;
   }
 
   @Test
@@ -44,28 +46,29 @@ public abstract class TermBaseTest<T extends Term> {
    * the Term returned is the same as the original one.
    */
   @Test
-  public void testTermEquality() throws Exception {
+  public void testFindSimpleTerm() throws Exception {
+    if (!skipSimple) {
+      for (T t : values) {
+          assertEquals(t, TERM_FACTORY.findTerm(t.simpleName(), t.isClass()));
+      }
+    }
+  }
+
+  @Test
+  public void testFindPrefixedTerms() {
     for (T t : values) {
-      assertEquals(t, TERM_FACTORY.findTerm(t.qualifiedName()));
-      assertEquals(t, TERM_FACTORY.findTerm(t.simpleName(), t.isClass()));
+      for (String pre : prefixes) {
+        Term found = TERM_FACTORY.findTerm(pre+t.simpleName(), t.isClass());
+        assertEquals(t, found);
+      }
     }
   }
 
   @Test
   public void testFindQualifiedTerm() {
     for (T t : values) {
-      Term found = TERM_FACTORY.findTerm(t.qualifiedName());
-      assertEquals(t, found);
+      assertEquals(t, TERM_FACTORY.findTerm(t.qualifiedName(), t.isClass()));
     }
   }
 
-  @Test
-  public void testPrefixedTerms() {
-    for (T t : values) {
-      for (String pre : prefixes) {
-        Term found = TERM_FACTORY.findTerm(pre+t.simpleName());
-        assertEquals(t, found);
-      }
-    }
-  }
 }

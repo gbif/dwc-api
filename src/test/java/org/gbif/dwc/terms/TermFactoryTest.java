@@ -14,8 +14,10 @@ public class TermFactoryTest {
   final TermFactory TF = TermFactory.instance();
 
   /**
-   * GBIF code assumes a term coming from any of the Term enumerations here have unique simple names.
+   * GBIF code assumes a term coming from any of the Term enumerations mostly have unique simple names.
    * This tests verifies that!
+   *
+   * AcefTerm is known to overlap, so its excluded, see skipSimple in AcefTermTest.
    */
   @Test
   public void testKnownTermUniqueness() {
@@ -27,7 +29,6 @@ public class TermFactoryTest {
     addTerms(names, GbifInternalTerm.values());
     addTerms(names, IucnTerm.values());
 
-    addTerms(names, AcefTerm.values());
     addTerms(names, AcTerm.values());
     addTerms(names, XmpTerm.values());
     addTerms(names, XmpRightsTerm.values());
@@ -50,7 +51,7 @@ public class TermFactoryTest {
     assertEquals(GbifTerm.Identifier, TF.findClassTerm("identifier"));
     assertEquals(DcTerm.identifier, TF.findPropertyTerm("identifier"));
     assertEquals(DcTerm.identifier, TF.findTerm("ID"));
-    assertEquals(DwcTerm.parentNameUsageID, TF.findTerm("dwc:higherTaxonID"));
+    assertEquals(DwcTerm.parentNameUsageID, TF.findTerm("dwc:higherNameUsageID"));
 
     assertEquals(GbifInternalTerm.unitQualifier, TF.findTerm("UNIT_QUALIFIER"));
 

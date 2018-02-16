@@ -24,7 +24,7 @@ public enum DcElement implements Term, AlternativeNames {
 
   public static final String NS = "http://purl.org/dc/elements/1.1/";
   public static final String PREFIX = "dc";
-  static final String[] PREFIXES = {NS, PREFIX + ":"};
+  static final String[] PREFIXES = {PREFIX + ":"};
 
   public final String[] alternatives;
 

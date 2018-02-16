@@ -78,6 +78,9 @@ public class TermFactory {
    */
   public <T extends Term> void addTerms(T[] terms, String[] prefixes) {
     for (T term : terms) {
+      if (term == AcefTerm.CommonName || term == AcefTerm.CommonNames) {
+        LOG.info("its me");
+      }
       addTerm(term.simpleName(), term);
       addTerm(term.qualifiedName(), term);
       for (String pre : prefixes) {
@@ -90,7 +93,6 @@ public class TermFactory {
     if (key == null || key.trim().isEmpty()) {
       return;
     }
-    key = normaliseTerm(key);
 
     // keep class terms distinct
     Map<String, Term> map = termMap(term.isClass());
@@ -101,6 +103,11 @@ public class TermFactory {
       }
     } else {
       map.put(key, term);
+      // also add a normalised version
+      key = normaliseTerm(key);
+      if (!map.containsKey(key)) {
+        map.put(key, term);
+      }
     }
   }
 
@@ -113,6 +120,8 @@ public class TermFactory {
    */
   public static String normaliseTerm(String term) {
     String x = NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("");
+    // remove http(s)
+    x = x.replaceFirst("^https?", "");
     if (x.isEmpty()) {
       return "";
     }

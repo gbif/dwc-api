@@ -64,7 +64,7 @@ public enum AcTerm implements Term, AlternativeNames {
 
   public static final String NS = "http://rs.tdwg.org/ac/terms/";
   public static final String PREFIX = "ac";
-  static final String[] PREFIXES = {NS, PREFIX + ":"};
+  static final String[] PREFIXES = {PREFIX + ":"};
 
   public String toString() {
     return PREFIX + ":" + this.name();

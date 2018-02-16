@@ -5,7 +5,7 @@ public enum IucnTerm implements Term, AlternativeNames {
 
   public static final String NS = "http://iucn.org/terms/";
   public static final String PREFIX = "iucn";
-  static final String[] PREFIXES = {NS, PREFIX + ":"};
+  static final String[] PREFIXES = {PREFIX + ":"};
 
   public final String[] normAlts;
 

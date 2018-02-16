@@ -249,7 +249,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
 
   public static final String NS = "http://rs.gbif.org/terms/1.0/";
   public static final String PREFIX = "gbif";
-  static final String[] PREFIXES = {NS, PREFIX + ":"};
+  static final String[] PREFIXES = {PREFIX + ":"};
   public static final String GROUP_CRAWLING = "Crawling";
   public static final String GROUP_DATASET = "Dataset";
   public static final String GROUP_ROW_TYPE = "RowType";
