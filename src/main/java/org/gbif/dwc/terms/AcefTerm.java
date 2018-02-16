@@ -38,7 +38,7 @@ public enum AcefTerm implements Term, AlternativeNames {
   InfraSpeciesURL,
 
   // SYNONYMS
-  SYNONYMS,
+  Synonyms(true),
 
   // COMMON NAMES
   CommonNames(true, "CommonName"),

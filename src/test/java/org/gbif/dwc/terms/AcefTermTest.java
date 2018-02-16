@@ -15,6 +15,6 @@ public class AcefTermTest extends TermBaseTest<AcefTerm>{
 
   @Test
   public void testClassTerms () {
-    assertEquals(7, Stream.of(AcefTerm.values()).filter(Term::isClass).count());
+    assertEquals(8, Stream.of(AcefTerm.values()).filter(Term::isClass).count());
   }
 }
