@@ -31,7 +31,7 @@ public enum AcefTerm implements Term, AlternativeNames {
 
   //
   AcceptedInfraSpecificTaxa(true),
-  ParentSpeciesID,
+  ParentSpeciesID("parentID"),
   InfraSpeciesEpithet("InfraSpecies"),
   InfraSpeciesAuthorString,
   InfraSpeciesMarker,
