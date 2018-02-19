@@ -39,6 +39,7 @@ public enum AcefTerm implements Term, AlternativeNames {
 
   // SYNONYMS
   Synonyms(true),
+  ID,
 
   // COMMON NAMES
   CommonNames(true, "CommonName"),
