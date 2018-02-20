@@ -78,9 +78,6 @@ public class TermFactory {
    */
   public <T extends Term> void addTerms(T[] terms, String[] prefixes) {
     for (T term : terms) {
-      if (term == AcefTerm.CommonName || term == AcefTerm.CommonNames) {
-        LOG.info("its me");
-      }
       addTerm(term.simpleName(), term);
       addTerm(term.qualifiedName(), term);
       for (String pre : prefixes) {
