@@ -18,6 +18,8 @@ public enum AcefTerm implements Term, AlternativeNames {
   AuthorString,
   GSDNameStatus,
   Sp2000NameStatus,
+  IsFossil,
+  IsRecent,
   IsExtinct,
   HasPreHolocene,
   HasModern,
