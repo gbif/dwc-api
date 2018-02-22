@@ -71,8 +71,14 @@ public enum DcTerm implements Term, AlternativeNames, Serializable {
 
   public final String[] alternatives;
 
+  @Override
+  public String prefixedName() {
+    return PREFIX + ":" + simpleName();
+  }
+
+  @Override
   public String toString() {
-    return PREFIX + ":" + this.name();
+    return prefixedName();
   }
 
   @Override

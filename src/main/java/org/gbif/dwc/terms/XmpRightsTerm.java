@@ -17,9 +17,6 @@ public enum XmpRightsTerm implements Term, AlternativeNames {
   public static final String PREFIX = "xmp";
   static final String[] PREFIXES = {PREFIX + ":", "adobe:"};
 
-  public String toString() {
-    return PREFIX + ":" + this.name();
-  }
 
   @Override
   public String simpleName() {
@@ -34,6 +31,16 @@ public enum XmpRightsTerm implements Term, AlternativeNames {
   @Override
   public String qualifiedName() {
     return NS + simpleName();
+  }
+
+  @Override
+  public String prefixedName() {
+    return PREFIX + ":" + simpleName();
+  }
+
+  @Override
+  public String toString() {
+    return prefixedName();
   }
 
   @Override

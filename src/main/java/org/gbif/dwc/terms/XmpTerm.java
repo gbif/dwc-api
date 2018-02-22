@@ -17,8 +17,15 @@ public enum XmpTerm implements Term, AlternativeNames {
   public static final String PREFIX = "xmp";
   static final String[] PREFIXES = {PREFIX + ":", "adobe:"};
 
+
+  @Override
+  public String prefixedName() {
+    return PREFIX + ":" + simpleName();
+  }
+
+  @Override
   public String toString() {
-    return PREFIX + ":" + this.name();
+    return prefixedName();
   }
 
   @Override

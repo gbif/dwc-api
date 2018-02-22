@@ -28,8 +28,14 @@ public enum DcElement implements Term, AlternativeNames {
 
   public final String[] alternatives;
 
+  @Override
+  public String prefixedName() {
+    return PREFIX + ":" + name();
+  }
+
+  @Override
   public String toString() {
-    return NS + this.name();
+    return prefixedName();
   }
 
   @Override

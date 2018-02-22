@@ -89,7 +89,12 @@ public class UnknownTerm implements Term, Serializable {
 
   @Override
   public String toString() {
-    return uri.toString();
+    return qualifiedName();
+  }
+
+  @Override
+  public String prefixedName() {
+    return qualifiedName();
   }
 
   @Override

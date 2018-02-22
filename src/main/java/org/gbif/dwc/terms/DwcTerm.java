@@ -359,8 +359,12 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   }
 
   @Override
-  public String toString() {
-    return PREFIX + ":" + name();
+  public String prefixedName() {
+    return PREFIX + ":" + simpleName();
   }
 
+  @Override
+  public String toString() {
+    return prefixedName();
+  }
 }

@@ -127,8 +127,13 @@ public enum AcefTerm implements Term, AlternativeNames {
   }
 
   @Override
-  public String toString() {
+  public String prefixedName() {
     return PREFIX + ":" + name();
+  }
+
+  @Override
+  public String toString() {
+    return prefixedName();
   }
 
   @Override

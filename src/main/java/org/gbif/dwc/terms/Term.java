@@ -18,6 +18,12 @@ public interface Term extends Serializable {
   String simpleName();
 
   /**
+   * The simple term name prefixed by a short unique namespace abbreviation.
+   * For example dwc:scientificName.
+   */
+  String prefixedName();
+
+  /**
    * The full qualified term uri including the namespace.
    * For example http://rs.tdwg.org/dwc/terms/scientificName.
    */

@@ -344,8 +344,13 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   }
 
   @Override
+  public String prefixedName() {
+    return PREFIX + ":" + simpleName();
+  }
+
+  @Override
   public String toString() {
-    return PREFIX + ":" + name();
+    return prefixedName();
   }
 
   @Override

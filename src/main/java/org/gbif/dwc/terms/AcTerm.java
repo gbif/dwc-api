@@ -66,8 +66,14 @@ public enum AcTerm implements Term, AlternativeNames {
   public static final String PREFIX = "ac";
   static final String[] PREFIXES = {PREFIX + ":"};
 
+  @Override
+  public String prefixedName() {
+    return PREFIX + ":" + name();
+  }
+
+  @Override
   public String toString() {
-    return PREFIX + ":" + this.name();
+    return prefixedName();
   }
 
   @Override
