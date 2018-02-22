@@ -6,6 +6,7 @@ import org.gbif.dwc.terms.jackson.TermDeserializer;
 import org.gbif.dwc.terms.jackson.TermSerializer;
 
 import java.io.Serializable;
+import java.net.URI;
 
 @JsonSerialize(using= TermSerializer.class)
 @JsonDeserialize(using= TermDeserializer.class)
@@ -35,4 +36,15 @@ public interface Term extends Serializable {
    * @return true if the term is defining a class instead of a property, e.g. Taxon
    */
   boolean isClass();
+
+  /**
+   * A unique standard prefix representing the namespace.
+   * For example dwc.
+   */
+  String prefix();
+
+  /**
+   * The namespace the terms are in
+   */
+  URI namespace();
 }

@@ -1,18 +1,16 @@
 package org.gbif.dwc.terms;
 
+import org.junit.Test;
+
 import java.util.HashSet;
 import java.util.List;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class GbifTermTest extends TermBaseTest {
 
   public GbifTermTest() {
-    super(GbifTerm.class, GbifTerm.PREFIXES);
+    super(GbifTerm.class);
   }
 
   @Test

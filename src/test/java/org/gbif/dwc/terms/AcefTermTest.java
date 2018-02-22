@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class AcefTermTest extends TermBaseTest<AcefTerm>{
 
   public AcefTermTest() {
-    super(AcefTerm.class, AcefTerm.PREFIXES, new String[]{"_","-"}, true);
+    super(AcefTerm.class, new String[]{"_","-"}, true);
   }
 
   @Test

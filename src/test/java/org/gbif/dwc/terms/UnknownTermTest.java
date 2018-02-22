@@ -1,9 +1,10 @@
 package org.gbif.dwc.terms;
 
+import org.junit.Test;
+
+import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -18,6 +19,17 @@ public class UnknownTermTest {
     UnknownTerm.build("http://me.com/#me");
     UnknownTerm.build("http://me.com/me");
     UnknownTerm.build("http://me.org/me");
+
+
+    assertEquals(UnknownTerm.build("http://me.org/me"), UnknownTerm.build("http://me.org/me"));
+    assertEquals(UnknownTerm.fromSimpleName("me"), UnknownTerm.build("http://unknown.org/me"));
+  }
+
+  @Test
+  public void testNamespace() throws Exception {
+    assertEquals(URI.create("http://me.com"), UnknownTerm.build("http://me.com/me").namespace());
+    assertEquals(URI.create("https://me.com"), UnknownTerm.build("https://me.com/me").namespace());
+    assertEquals(URI.create("http://unknown.org"), UnknownTerm.fromSimpleName("me").namespace());
   }
 
   @Test(expected = IllegalArgumentException.class)

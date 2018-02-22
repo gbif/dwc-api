@@ -1,5 +1,7 @@
 package org.gbif.dwc.terms;
 
+import java.net.URI;
+
 /**
  * Terms for Adobe XMP have URIs that are not resolvable. Instead, visit
  * <a href="http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart1.pdf">XMP Specification Part 1, Sec 8.4 </a>
@@ -13,9 +15,9 @@ public enum XmpTerm implements Term, AlternativeNames {
   Rating,
   CreateDate;
 
-  public static final String NS = "http://ns.adobe.com/xap/1.0/";
-  public static final String PREFIX = "xmp";
-  static final String[] PREFIXES = {PREFIX + ":", "adobe:"};
+  private static final String PREFIX = "xmp";
+  private static final String NS = "http://ns.adobe.com/xap/1.0/";
+  private static final URI NS_URI = URI.create(NS);
 
 
   @Override
@@ -48,4 +50,13 @@ public enum XmpTerm implements Term, AlternativeNames {
     return false;
   }
 
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return NS_URI;
+  }
 }

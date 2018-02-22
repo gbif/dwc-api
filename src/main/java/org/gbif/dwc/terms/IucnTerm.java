@@ -1,11 +1,13 @@
 package org.gbif.dwc.terms;
 
+import java.net.URI;
+
 public enum IucnTerm implements Term, AlternativeNames {
   threatStatus;
 
-  public static final String NS = "http://iucn.org/terms/";
-  public static final String PREFIX = "iucn";
-  static final String[] PREFIXES = {PREFIX + ":"};
+  private static final String PREFIX = "iucn";
+  private static final String NS = "http://iucn.org/terms/";
+  private static final URI NS_URI = URI.create(NS);
 
   public final String[] normAlts;
 
@@ -36,6 +38,16 @@ public enum IucnTerm implements Term, AlternativeNames {
   @Override
   public String toString() {
     return prefixedName();
+  }
+
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return NS_URI;
   }
 
   @Override

@@ -15,7 +15,6 @@ public class TermFactory {
 
   private static final Logger LOG = LoggerFactory.getLogger(TermFactory.class);
   private static final Pattern NON_ALPHA_NUM_PATTERN = Pattern.compile("[^a-zA-Z0-9#-]+");
-  private static final String UNKNOWN_NAMESPACE = "http://unknown.org/";
   private static TermFactory singleton;
   private static boolean initialized = false;
   private static final Object LOCK = new Object();
@@ -44,26 +43,27 @@ public class TermFactory {
   }
 
   private void loadKnownTerms() {
-    addAltTerms(DwcTerm.values(), DwcTerm.PREFIXES);
-    addAltTerms(DcTerm.values(), DcTerm.PREFIXES);
-    addAltTerms(GbifTerm.values(), GbifTerm.PREFIXES);
-    addAltTerms(GbifInternalTerm.values(), new String[0]);
-    addAltTerms(IucnTerm.values(), IucnTerm.PREFIXES);
-    addAltTerms(DcElement.values(), DcElement.PREFIXES);
-    addAltTerms(AcefTerm.values(), AcefTerm.PREFIXES);
-    addAltTerms(AcTerm.values(), AcTerm.PREFIXES);
-    addAltTerms(XmpTerm.values(), XmpTerm.PREFIXES);
-    addAltTerms(XmpRightsTerm.values(), XmpRightsTerm.PREFIXES);
+    addAltTerms(DwcTerm.values(), "darwin", "darwincore", "dw");
+    addAltTerms(DcTerm.values(), "dct", "dcterm");
+    addAltTerms(GbifTerm.values());
+    addAltTerms(GbifInternalTerm.values());
+    addAltTerms(IucnTerm.values());
+    addAltTerms(DcElement.values());
+    addAltTerms(AcefTerm.values(), "col");
+    addAltTerms(AcTerm.values());
+    addAltTerms(XmpTerm.values(), "adobe");
+    addAltTerms(XmpRightsTerm.values(), "xmp", "adobe"); // the same as above, but luckily different simple term names
   }
 
-  public <T extends Term & AlternativeNames> void addAltTerms(T[] terms, String[] prefixes) {
-    addTerms(terms, prefixes);
+  public <T extends Term & AlternativeNames> void addAltTerms(T[] terms, String ... altPrefixes) {
+    addTerms(terms, altPrefixes);
     // also add alternatives
     for (T term : terms) {
       for (String alt : term.alternativeNames()) {
         addTerm(alt, term);
-        for (String pre : prefixes) {
-          addTerm(pre + alt, term);
+        addTerm(term.prefix() + ":" + alt, term);
+        for (String pre : altPrefixes) {
+          addTerm(pre + ":" + alt, term);
         }
       }
     }
@@ -71,17 +71,18 @@ public class TermFactory {
 
   /**
    * Adds known terms to the factory.
-   * An array of terms can be given several known prefixes to appear under.
+   * An array of terms can be given additional alternative prefixes they are known under.
    * @param terms
-   * @param prefixes
+   * @param altPrefixes optional list of alternative prefixes. Should NOT be ending with a colon
    * @param <T>
    */
-  public <T extends Term> void addTerms(T[] terms, String[] prefixes) {
+  public <T extends Term> void addTerms(T[] terms, String[] altPrefixes) {
     for (T term : terms) {
       addTerm(term.simpleName(), term);
+      addTerm(term.prefixedName(), term);
       addTerm(term.qualifiedName(), term);
-      for (String pre : prefixes) {
-        addTerm(pre + term.simpleName(), term);
+      for (String pre : altPrefixes) {
+        addTerm(pre + ":" + term.simpleName(), term);
       }
     }
   }
@@ -214,7 +215,7 @@ public class TermFactory {
     } catch (IllegalArgumentException e) {
       // simple names as found in ATB file headers are rejected
       // convert into a standard unknown term namespace and try again
-      term = UnknownTerm.build(UNKNOWN_NAMESPACE + termName);
+      term = UnknownTerm.fromSimpleName(termName);
       addTerm(termName, term);
       addTerm(term.qualifiedName(), term);
     }

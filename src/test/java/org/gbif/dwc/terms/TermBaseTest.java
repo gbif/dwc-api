@@ -15,17 +15,15 @@ public abstract class TermBaseTest<T extends Term> {
 
   private final Class<T> clazz;
   private final T[] values;
-  private final String[] prefixes;
   private final String[] forbiddenChars;
   private final boolean skipSimple;
 
-  public TermBaseTest(Class<T> clazz, String[] prefixes) {
-    this(clazz, prefixes, new String[]{"_","-"}, false);
+  public TermBaseTest(Class<T> clazz) {
+    this(clazz, new String[]{"_","-"}, false);
   }
 
-  public TermBaseTest(Class<T> clazz, String[] prefixes, String[] forbiddenChars, boolean skipSimple) {
+  public TermBaseTest(Class<T> clazz, String[] forbiddenChars, boolean skipSimple) {
     this.clazz = clazz;
-    this.prefixes = prefixes;
     this.forbiddenChars = forbiddenChars;
     values = clazz.getEnumConstants();
     this.skipSimple = skipSimple;
@@ -57,10 +55,8 @@ public abstract class TermBaseTest<T extends Term> {
   @Test
   public void testFindPrefixedTerms() {
     for (T t : values) {
-      for (String pre : prefixes) {
-        Term found = TERM_FACTORY.findTerm(pre+t.simpleName(), t.isClass());
-        assertEquals(t, found);
-      }
+      Term found = TERM_FACTORY.findTerm(t.prefixedName(), t.isClass());
+      assertEquals(t, found);
     }
   }
 

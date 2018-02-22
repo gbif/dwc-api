@@ -9,9 +9,13 @@ import static org.junit.Assert.assertFalse;
 /**
  *
  */
-public class DcTermTest {
+public class DcTermTest extends TermBaseTest<DcTerm>{
 
   private static final TermFactory TERM_FACTORY = TermFactory.instance();
+
+  public DcTermTest() {
+    super(DcTerm.class);
+  }
 
   @Test
   public void testNames() throws Exception {

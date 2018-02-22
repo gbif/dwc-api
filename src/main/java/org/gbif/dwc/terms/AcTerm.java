@@ -1,5 +1,7 @@
 package org.gbif.dwc.terms;
 
+import java.net.URI;
+
 /**
  * All Audubon Core terms with namespace http://rs.tdwg.org/ac/terms/.
  * See
@@ -62,9 +64,9 @@ public enum AcTerm implements Term, AlternativeNames {
   variantDescription,
   variantLiteral;
 
-  public static final String NS = "http://rs.tdwg.org/ac/terms/";
-  public static final String PREFIX = "ac";
-  static final String[] PREFIXES = {PREFIX + ":"};
+  private static final String PREFIX = "ac";
+  private static final String NS = "http://rs.tdwg.org/ac/terms/";
+  private static final URI NS_URI = URI.create(NS);
 
   @Override
   public String prefixedName() {
@@ -96,4 +98,13 @@ public enum AcTerm implements Term, AlternativeNames {
     return false;
   }
 
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return NS_URI;
+  }
 }

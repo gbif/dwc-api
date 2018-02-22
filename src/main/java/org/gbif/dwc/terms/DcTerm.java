@@ -1,6 +1,7 @@
 package org.gbif.dwc.terms;
 
 import java.io.Serializable;
+import java.net.URI;
 
 /**
  * All Dublin Core terms with namespace http://purl.org/dc/terms/. A small subset of 15 terms exist as DcElement under
@@ -65,10 +66,9 @@ public enum DcTerm implements Term, AlternativeNames, Serializable {
   valid,
   Location;
 
-  public static final String NS = "http://purl.org/dc/terms/";
-  public static final String PREFIX = "dcterms";
-  static final String[] PREFIXES = {NS, PREFIX + ":", "dct", "dcterm:"};
-
+  private static final String PREFIX = "dcterms";
+  private static final String NS = "http://purl.org/dc/terms/";
+  private static final URI NS_URI = URI.create(NS);
   public final String[] alternatives;
 
   @Override
@@ -105,6 +105,16 @@ public enum DcTerm implements Term, AlternativeNames, Serializable {
   @Override
   public boolean isClass() {
     return Character.isUpperCase(simpleName().charAt(0));
+  }
+
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return NS_URI;
   }
 
   DcTerm(String... alternatives) {

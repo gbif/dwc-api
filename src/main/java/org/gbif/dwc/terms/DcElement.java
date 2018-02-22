@@ -1,5 +1,7 @@
 package org.gbif.dwc.terms;
 
+import java.net.URI;
+
 /**
  * All Dublin Core terms with namespace http://purl.org/dc/elements/1.1/. All terms exist as DcTerm under a different
  * namespace, but DcElement values are allowed to be free text, whereas DcTerm values must be a member of a specific
@@ -22,9 +24,9 @@ public enum DcElement implements Term, AlternativeNames {
   title,
   type;
 
-  public static final String NS = "http://purl.org/dc/elements/1.1/";
-  public static final String PREFIX = "dc";
-  static final String[] PREFIXES = {PREFIX + ":"};
+  private static final String PREFIX = "dc";
+  private static final String NS = "http://purl.org/dc/elements/1.1/";
+  private static final URI NS_URI = URI.create(NS);
 
   public final String[] alternatives;
 
@@ -56,6 +58,16 @@ public enum DcElement implements Term, AlternativeNames {
   @Override
   public boolean isClass() {
     return false;
+  }
+
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return NS_URI;
   }
 
   DcElement(String... alternatives) {

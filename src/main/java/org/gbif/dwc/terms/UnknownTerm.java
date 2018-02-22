@@ -9,6 +9,13 @@ public class UnknownTerm implements Term, Serializable {
   private final String name;
   private final boolean isClass;
 
+  private static final String PREFIX = "unknown";
+  private static final String NS = "http://unknown.org/";
+
+  public static UnknownTerm fromSimpleName(String simpleName){
+    return build(NS + simpleName, false);
+  }
+
   public static UnknownTerm build(String qualifiedName){
     return build(qualifiedName, false);
   }
@@ -112,4 +119,13 @@ public class UnknownTerm implements Term, Serializable {
     return qualifiedName().hashCode();
   }
 
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return URI.create(uri.getScheme() + "://" + uri.getAuthority());
+  }
 }

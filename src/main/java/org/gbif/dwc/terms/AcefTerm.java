@@ -1,5 +1,7 @@
 package org.gbif.dwc.terms;
 
+import java.net.URI;
+
 /**
  * As per CoL Data Submission Format, ver. 4 of 29th September 2014: List of tables and fields
  */
@@ -88,9 +90,9 @@ public enum AcefTerm implements Term, AlternativeNames {
   LogoFileName,
   ContactPerson;
 
-  public static final String NS = "http://rs.col.plus/terms/acef/";
-  public static final String PREFIX = "acef";
-  static final String[] PREFIXES = {PREFIX + ":", "col:"};
+  private static final String PREFIX = "acef";
+  private static final String NS = "http://rs.col.plus/terms/acef/";
+  private static final URI NS_URI = URI.create(NS);
 
   private final boolean isClass;
   private final String[] alternatives;
@@ -144,6 +146,16 @@ public enum AcefTerm implements Term, AlternativeNames {
   @Override
   public boolean isClass() {
     return isClass;
+  }
+
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return NS_URI;
   }
 
 }

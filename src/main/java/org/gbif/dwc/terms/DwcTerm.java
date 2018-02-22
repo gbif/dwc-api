@@ -1,6 +1,7 @@
 package org.gbif.dwc.terms;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -224,9 +225,10 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   relationshipEstablishedDate(DwcTerm.GROUP_RESOURCERELATIONSHIP),
   relationshipRemarks(DwcTerm.GROUP_RESOURCERELATIONSHIP);
 
-  public static final String NS = "http://rs.tdwg.org/dwc/terms/";
-  public static final String PREFIX = "dwc";
-  static final String[] PREFIXES = {NS, PREFIX + ":", "darwin:", "darwincore:", "dw:"};
+  private static final String PREFIX = "dwc";
+  private static final String NS = "http://rs.tdwg.org/dwc/terms/";
+  private static final URI NS_URI = URI.create(NS);
+
   public static final String GROUP_RECORD = "Record";
   public static final String GROUP_OCCURRENCE = "Occurrence";
   public static final String GROUP_ORGANISM = "Organism";
@@ -361,6 +363,16 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   @Override
   public String prefixedName() {
     return PREFIX + ":" + simpleName();
+  }
+
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return NS_URI;
   }
 
   @Override

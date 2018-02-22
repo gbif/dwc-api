@@ -1,6 +1,7 @@
 package org.gbif.dwc.terms;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -247,9 +248,10 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    */
   repatriated(DwcTerm.GROUP_OCCURRENCE);
 
-  public static final String NS = "http://rs.gbif.org/terms/1.0/";
-  public static final String PREFIX = "gbif";
-  static final String[] PREFIXES = {PREFIX + ":"};
+  private static final String PREFIX = "gbif";
+  private static final String NS = "http://rs.gbif.org/terms/1.0/";
+  private static final URI NS_URI = URI.create(NS);
+
   public static final String GROUP_CRAWLING = "Crawling";
   public static final String GROUP_DATASET = "Dataset";
   public static final String GROUP_ROW_TYPE = "RowType";
@@ -356,6 +358,16 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   @Override
   public boolean isClass() {
     return Character.isUpperCase(simpleName().charAt(0));
+  }
+
+  @Override
+  public String prefix() {
+    return PREFIX;
+  }
+
+  @Override
+  public URI namespace() {
+    return NS_URI;
   }
 
   /**
