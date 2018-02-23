@@ -48,9 +48,9 @@ public enum AcefTerm implements Term, AlternativeNames {
   // COMMON NAMES
   CommonNames(true, "CommonName"),
   CommonName,
-  TransliteratedName,
+  TransliteratedName("TransliteratedNames"),
   Country,
-  Area,
+  Area("Areas"),
   Language,
   ReferenceID,
 
@@ -66,10 +66,10 @@ public enum AcefTerm implements Term, AlternativeNames {
   Year,
   Title,
   Source,
-  NameReferencesLinks,
+  Details("Detail"),
 
   // NAME REFERENCES
-  NameReferences(true, "NameReferenceLinks", "NameReferencesLinks", "NameReferecesLinks"),
+  NameReferencesLinks(true, "NameReferences", "NameReferenceLinks", "NameReferenceLink", "NameReferecesLinks"),
   ReferenceType,
 
   // SOURCE DATABASE
