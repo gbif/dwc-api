@@ -56,6 +56,13 @@ public class TermFactoryTest {
     assertEquals(DwcTerm.acceptedNameUsageID, TF.findTerm("dwc:acceptedTaxonID"));
     assertEquals(DwcTerm.acceptedNameUsageID, TF.findTerm("acceptedTaxonID"));
     assertEquals(DwcTerm.acceptedNameUsageID, TF.findTerm("http://rs.tdwg.org/dwc/terms/acceptedTaxonId"));
+    assertEquals(DwcTerm.acceptedNameUsageID, TF.findPropertyTerm("dwc:acceptedTaxonId"));
+    assertEquals(DwcTerm.acceptedNameUsageID, TF.findPropertyTerm("dwc:acceptedTaxonID"));
+    assertEquals(DwcTerm.acceptedNameUsageID, TF.findPropertyTerm("acceptedTaxonID"));
+    assertEquals(DwcTerm.acceptedNameUsageID, TF.findPropertyTerm("http://rs.tdwg.org/dwc/terms/acceptedTaxonId"));
+    assertEquals(AcefTerm.AcceptedTaxonID, TF.findPropertyTerm("AcceptedTaxonID"));
+    assertEquals(AcefTerm.AcceptedTaxonID, TF.findTerm("acef:AcceptedTaxonID"));
+    assertEquals(AcefTerm.AcceptedTaxonID, TF.findPropertyTerm("acef:AcceptedTaxonID"));
 
     assertEquals(GbifInternalTerm.unitQualifier, TF.findTerm("UNIT_QUALIFIER"));
 
