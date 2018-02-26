@@ -171,8 +171,8 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
 
   taxonID(DwcTerm.GROUP_TAXON, "nameUsageID"),
   scientificNameID(DwcTerm.GROUP_TAXON, "nameID"),
-  acceptedNameUsageID(DwcTerm.GROUP_TAXON),
-  parentNameUsageID(DwcTerm.GROUP_TAXON, "higherNameUsageID"),
+  acceptedNameUsageID(DwcTerm.GROUP_TAXON, "acceptedTaxonID"),
+  parentNameUsageID(DwcTerm.GROUP_TAXON, "higherNameUsageID", "parentTaxonID"),
   originalNameUsageID(DwcTerm.GROUP_TAXON, "originalNameID", "basionymID"),
   nameAccordingToID(DwcTerm.GROUP_TAXON, "taxonAccordingToID"),
   namePublishedInID(DwcTerm.GROUP_TAXON),
