@@ -62,6 +62,7 @@ public class TermFactory {
       for (String alt : term.alternativeNames()) {
         addTerm(alt, term);
         addTerm(term.prefix() + ":" + alt, term);
+        addTerm(term.namespace().resolve(alt).toString(), term);
         for (String pre : altPrefixes) {
           addTerm(pre + ":" + alt, term);
         }
