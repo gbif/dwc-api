@@ -90,7 +90,7 @@ public class TermFactoryTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void addBadTerm() {
+  public void badTerm() {
     TermFactory factory = TermFactory.instance();
     factory.findTerm("Hallo Tim");
   }
@@ -115,7 +115,7 @@ public class TermFactoryTest {
     assertEquals(UnknownTerm.class, eva.getClass());
     assertEquals("http://unknown.org/tim/Eva", eva.qualifiedName());
     assertEquals("http://unknown.org", tim.namespace().toString());
-    assertEquals("tim:Eva", eva.prefixedName());
+    assertEquals("http://unknown.org/tim/Eva", eva.prefixedName());
     assertEquals("Eva", eva.simpleName());
 
     assertNotEquals(hallo, tim);

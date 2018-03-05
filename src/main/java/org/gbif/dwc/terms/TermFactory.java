@@ -209,17 +209,9 @@ public class TermFactory {
 
   private Term createUnknownTerm(String termName, boolean isClassTerm) {
     // create new term instance
-    Term term;
-    try {
-      term = UnknownTerm.build(termName, isClassTerm);
-      addTerm(termName, term);
-    } catch (IllegalArgumentException e) {
-      // simple names as found in ATB file headers are rejected
-      // convert into a standard unknown term namespace and try again
-      term = UnknownTerm.fromSimpleName(termName);
-      addTerm(termName, term);
-      addTerm(term.qualifiedName(), term);
-    }
+    Term term = UnknownTerm.build(termName, isClassTerm);
+    addTerm(termName, term);
+    addTerm(term.qualifiedName(), term);
     return term;
   }
 

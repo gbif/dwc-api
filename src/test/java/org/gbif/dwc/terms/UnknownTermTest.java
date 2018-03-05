@@ -22,14 +22,14 @@ public class UnknownTermTest {
 
 
     assertEquals(UnknownTerm.build("http://me.org/me"), UnknownTerm.build("http://me.org/me"));
-    assertEquals(UnknownTerm.fromSimpleName("me"), UnknownTerm.build("http://unknown.org/me"));
+    assertEquals(UnknownTerm.build("me"), UnknownTerm.build("http://unknown.org/me"));
   }
 
   @Test
   public void testNamespace() throws Exception {
     assertEquals(URI.create("http://me.com"), UnknownTerm.build("http://me.com/me").namespace());
     assertEquals(URI.create("https://me.com"), UnknownTerm.build("https://me.com/me").namespace());
-    assertEquals(URI.create("http://unknown.org"), UnknownTerm.fromSimpleName("me").namespace());
+    assertEquals(URI.create("http://unknown.org"), UnknownTerm.build("me").namespace());
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -37,9 +37,11 @@ public class UnknownTermTest {
     UnknownTerm.build("http://me.com/");
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testBuildError2() {
-    UnknownTerm.build("gbif.org/verbatimLabel");
+    Term u = UnknownTerm.build("gbif.org/verbatimLabel");
+    assertEquals("http://unknown.org/gbif.org/verbatimLabel", u.qualifiedName());
+    assertEquals("verbatimLabel", u.simpleName());
   }
 
   @Test
