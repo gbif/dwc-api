@@ -7,9 +7,10 @@ public class UnknownTerm implements Term, Serializable {
 
   private final URI uri;
   private final String name;
+  private final String prefix;
   private final boolean isClass;
 
-  private static final String PREFIX = "unknown";
+  private static final String DEFAULT_PREFIX = "unknown";
   private static final String NS = "http://unknown.org/";
 
   public static UnknownTerm fromSimpleName(String simpleName){
@@ -29,10 +30,14 @@ public class UnknownTerm implements Term, Serializable {
   }
 
   public static UnknownTerm build(String qualifiedName, String simpleName, boolean isClass){
-    return new UnknownTerm(URI.create(qualifiedName), simpleName, isClass);
+    return new UnknownTerm(URI.create(qualifiedName), simpleName, DEFAULT_PREFIX, isClass);
   }
 
-  public UnknownTerm(URI uri, String name, boolean isClass) {
+  public static UnknownTerm build(String qualifiedName, String simpleName, String prefix, boolean isClass){
+    return new UnknownTerm(URI.create(qualifiedName), simpleName, DEFAULT_PREFIX, isClass);
+  }
+
+  public UnknownTerm(URI uri, String name, String prefix, boolean isClass) {
     this.isClass = isClass;
     if (uri == null || !uri.isAbsolute()) {
       throw new IllegalArgumentException("The qualified name URI must be an absolute URI");
@@ -42,6 +47,7 @@ public class UnknownTerm implements Term, Serializable {
     }
     this.uri = uri;
     this.name = name;
+    this.prefix = prefix == null || prefix.trim().equals("") ? DEFAULT_PREFIX : prefix;
   }
 
   public UnknownTerm(URI uri, boolean isClass) {
@@ -49,6 +55,7 @@ public class UnknownTerm implements Term, Serializable {
       throw new IllegalArgumentException("The qualified name URI is required and must be an absolute URI");
     }
 
+    String prefix = null;
     String name = null;
     if (uri.getFragment() != null) {
       name = uri.getFragment();
@@ -57,7 +64,7 @@ public class UnknownTerm implements Term, Serializable {
       name = uri.getPath();
       // remove trailing and ending slash if existing
       if (name.endsWith("/")) {
-        name = name.substring(0, name.length()-1);
+        name = name.substring(0, name.length() - 1);
       }
       if (name.startsWith("/")) {
         name = name.substring(1);
@@ -68,6 +75,12 @@ public class UnknownTerm implements Term, Serializable {
         name = name.substring(pos + 1);
       }
 
+    } else if (uri.getScheme() != null && uri.getSchemeSpecificPart() != null) {
+        // prefix:name
+        prefix = uri.getScheme();
+        name = uri.getSchemeSpecificPart();
+        uri = URI.create(NS+prefix+"/"+name);
+
     } else {
       throw new IllegalArgumentException("The qualified name URI must have a path or fragment to automatically derive a simple name");
     }
@@ -77,6 +90,7 @@ public class UnknownTerm implements Term, Serializable {
     this.uri = uri;
     this.name = name;
     this.isClass = isClass;
+    this.prefix = prefix != null ? prefix : DEFAULT_PREFIX;
   }
 
   @Override
@@ -101,7 +115,7 @@ public class UnknownTerm implements Term, Serializable {
 
   @Override
   public String prefixedName() {
-    return qualifiedName();
+    return prefix + ":" + simpleName();
   }
 
   @Override
@@ -121,7 +135,7 @@ public class UnknownTerm implements Term, Serializable {
 
   @Override
   public String prefix() {
-    return PREFIX;
+    return prefix;
   }
 
   @Override

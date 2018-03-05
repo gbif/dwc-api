@@ -108,7 +108,15 @@ public class TermFactoryTest {
     Term tim = factory.findTerm("Tim");
     assertEquals(UnknownTerm.class, tim.getClass());
     assertEquals("http://unknown.org/Tim", tim.qualifiedName());
+    assertEquals("http://unknown.org", tim.namespace().toString());
     assertEquals("Tim", tim.simpleName());
+
+    Term eva = factory.findTerm("tim:Eva");
+    assertEquals(UnknownTerm.class, eva.getClass());
+    assertEquals("http://unknown.org/tim/Eva", eva.qualifiedName());
+    assertEquals("http://unknown.org", tim.namespace().toString());
+    assertEquals("tim:Eva", eva.prefixedName());
+    assertEquals("Eva", eva.simpleName());
 
     assertNotEquals(hallo, tim);
   }

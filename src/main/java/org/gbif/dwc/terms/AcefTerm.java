@@ -74,7 +74,7 @@ public enum AcefTerm implements Term, AlternativeNames {
 
   // SOURCE DATABASE
   SourceDatabase(true),
-  DatabaseFullName,
+  DatabaseFullName(false, "DatabaseName"),
   DatabaseShortName,
   DatabaseVersion,
   ReleaseDate,
@@ -82,7 +82,7 @@ public enum AcefTerm implements Term, AlternativeNames {
   TaxonomicCoverage,
   GroupNameInEnglish,
   Abstract,
-  Organisation,
+  Organisation(false, "Organization"),
   HomeURL,
   Coverage,
   Completeness,

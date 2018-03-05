@@ -42,9 +42,9 @@ public class UnknownTermTest {
     UnknownTerm.build("gbif.org/verbatimLabel");
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testBuildError3() {
-    UnknownTerm.build("gbif:verbatimLabel");
+  @Test
+  public void testPrefixedName() {
+    assertEquals("http://unknown.org/gbif/verbatimLabel", UnknownTerm.build("gbif:verbatimLabel").qualifiedName());
   }
 
   @Test
