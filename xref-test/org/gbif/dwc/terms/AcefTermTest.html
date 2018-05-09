@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>AcefTermTest xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../testapidocs/org/gbif/dwc/terms/AcefTermTest.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> org.gbif.dwc.terms;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> org.junit.Test;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> java.util.stream.Stream;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.Assert.assertEquals;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../org/gbif/dwc/terms/AcefTermTest.html">AcefTermTest</a> <strong class="jxr_keyword">extends</strong> TermBaseTest&lt;AcefTerm&gt;{
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../org/gbif/dwc/terms/AcefTermTest.html">AcefTermTest</a>() {
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>      <strong class="jxr_keyword">super</strong>(AcefTerm.<strong class="jxr_keyword">class</strong>, <strong class="jxr_keyword">new</strong> String[]{<span class="jxr_string">"_"</span>,<span class="jxr_string">"-"</span>}, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>    }
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>    @Test
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testClassTerms () {
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>      assertEquals(8, Stream.of(AcefTerm.values()).filter(Term::isClass).count());
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>    }
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2018 <a href="http://www.gbif.org">Global Biodiversity Information Facility</a>. All rights reserved.</div>
+</body>
+</html>
