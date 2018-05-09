@@ -142,8 +142,15 @@ public class TermFactory {
    * instance is created.
    */
   public Term findTerm(final String termName) throws IllegalArgumentException {
+    // First try an exact match.
+    if (terms.containsKey(termName)) {
+      return terms.get(termName);
+    }
+
+    // Try class term
     Term t = findTermOnly(termName, true);
     if (t == null) {
+      // Try property term
       t = findTermOnly(termName, false);
     }
     // create new term if needed

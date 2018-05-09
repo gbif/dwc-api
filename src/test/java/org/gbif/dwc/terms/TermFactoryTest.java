@@ -47,8 +47,9 @@ public class TermFactoryTest {
     assertEquals(DwcTerm.scientificName, TF.findTerm("dwc:scientificName"));
     assertEquals(DwcTerm.scientificName, TF.findTerm("http://rs.tdwg.org/dwc/terms/scientificName"));
     assertEquals(DcElement.identifier, TF.findTerm("dc:identifier"));
-    assertEquals(GbifTerm.Identifier, TF.findTerm("identifier"));
+    assertEquals(GbifTerm.Identifier, TF.findTerm("Identifier"));
     assertEquals(GbifTerm.Identifier, TF.findClassTerm("identifier"));
+    assertEquals(DcTerm.identifier, TF.findTerm("identifier"));
     assertEquals(DcTerm.identifier, TF.findPropertyTerm("identifier"));
     assertEquals(DcTerm.identifier, TF.findTerm("ID"));
     assertEquals(DwcTerm.parentNameUsageID, TF.findTerm("dwc:higherNameUsageID"));
@@ -63,6 +64,11 @@ public class TermFactoryTest {
     assertEquals(AcefTerm.AcceptedTaxonID, TF.findPropertyTerm("AcceptedTaxonID"));
     assertEquals(AcefTerm.AcceptedTaxonID, TF.findTerm("acef:AcceptedTaxonID"));
     assertEquals(AcefTerm.AcceptedTaxonID, TF.findPropertyTerm("acef:AcceptedTaxonID"));
+
+    assertEquals(DwcTerm.vernacularName, TF.findTerm("dwc:vernacularName"));
+    assertEquals(DwcTerm.vernacularName, TF.findTerm("vernacularName"));
+    assertEquals(GbifTerm.VernacularName, TF.findTerm("VernacularName"));
+    assertEquals(GbifTerm.VernacularName, TF.findTerm("gbif:VernacularName"));
 
     assertEquals(GbifInternalTerm.unitQualifier, TF.findTerm("UNIT_QUALIFIER"));
 
