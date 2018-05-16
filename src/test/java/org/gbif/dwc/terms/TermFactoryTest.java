@@ -76,7 +76,7 @@ public class TermFactoryTest {
     assertEquals("threatStatus", TF.findTerm("http://rs.gbif.org/terms/1321.43/threatStatus").simpleName());
 
     assertEquals(DwcTerm.catalogNumber, TF.findTerm("\"catalogNumber\""));
-    assertEquals(AcefTerm.Source, TF.findTerm("acef:source"));
+    assertEquals(AcefTerm.Details, TF.findTerm("acef:source"));
     assertEquals(DwcTerm.family, TF.findTerm("dwc:family"));
     assertEquals(DwcTerm.family, TF.findTerm("family"));
     assertEquals(AcefTerm.Family, TF.findTerm("acef:family"));

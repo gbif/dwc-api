@@ -65,8 +65,7 @@ public enum AcefTerm implements Term, AlternativeNames {
   Author("Authors"),
   Year,
   Title,
-  Source,
-  Details("Detail"),
+  Details("Detail", "Source"),
 
   // NAME REFERENCES
   NameReferencesLinks(true, "NameReferences", "NameReferenceLinks", "NameReferenceLink", "NameReferecesLinks"),
