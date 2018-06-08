@@ -21,11 +21,6 @@ public enum XmpTerm implements Term, AlternativeNames {
 
 
   @Override
-  public String prefixedName() {
-    return PREFIX + ":" + simpleName();
-  }
-
-  @Override
   public String toString() {
     return prefixedName();
   }
@@ -38,11 +33,6 @@ public enum XmpTerm implements Term, AlternativeNames {
   @Override
   public String[] alternativeNames() {
     return new String[]{};
-  }
-
-  @Override
-  public String qualifiedName() {
-    return NS + simpleName();
   }
 
   @Override

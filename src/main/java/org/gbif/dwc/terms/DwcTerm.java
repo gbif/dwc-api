@@ -295,16 +295,6 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
 
 
   /**
-   * The full qualified term uri including the namespace.
-   * For example http://rs.tdwg.org/dwc/terms/scientificName.
-   * @return full qualified term uri
-   */
-  @Override
-  public String qualifiedName() {
-    return NS + simpleName();
-  }
-
-  /**
    * The simple term name without a namespace.
    * For example scientificName.
    * @return simple term name
@@ -358,11 +348,6 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
       }
     }
     return terms;
-  }
-
-  @Override
-  public String prefixedName() {
-    return PREFIX + ":" + simpleName();
   }
 
   @Override

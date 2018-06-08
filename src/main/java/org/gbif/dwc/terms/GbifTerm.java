@@ -289,17 +289,6 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   }
 
   /**
-   * The full qualified term uri including the namespace.
-   * For example http://rs.gbif.org/terms/1.0/taxonKey.
-   *
-   * @return full qualified term uri
-   */
-  @Override
-  public String qualifiedName() {
-    return NS + simpleName();
-  }
-
-  /**
    * The simple term name without a namespace.
    * For example taxonKey.
    *
@@ -343,11 +332,6 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
       }
     }
     return terms;
-  }
-
-  @Override
-  public String prefixedName() {
-    return PREFIX + ":" + simpleName();
   }
 
   @Override

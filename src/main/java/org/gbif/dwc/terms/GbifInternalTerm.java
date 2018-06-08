@@ -23,18 +23,8 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   private static final String[] EMPTY = new String[0];
 
   @Override
-  public String qualifiedName() {
-    return NS + simpleName();
-  }
-
-  @Override
   public String simpleName() {
     return name();
-  }
-
-  @Override
-  public String prefixedName() {
-    return PREFIX + ":" + simpleName();
   }
 
   @Override

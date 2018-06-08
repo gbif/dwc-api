@@ -31,11 +31,6 @@ public enum DcElement implements Term, AlternativeNames {
   public final String[] alternatives;
 
   @Override
-  public String prefixedName() {
-    return PREFIX + ":" + name();
-  }
-
-  @Override
   public String toString() {
     return prefixedName();
   }
@@ -43,11 +38,6 @@ public enum DcElement implements Term, AlternativeNames {
   @Override
   public String simpleName() {
     return name();
-  }
-
-  @Override
-  public String qualifiedName() {
-    return NS + simpleName();
   }
 
   @Override

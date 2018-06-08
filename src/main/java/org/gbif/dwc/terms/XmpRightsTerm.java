@@ -31,16 +31,6 @@ public enum XmpRightsTerm implements Term, AlternativeNames {
   }
 
   @Override
-  public String qualifiedName() {
-    return NS + simpleName();
-  }
-
-  @Override
-  public String prefixedName() {
-    return PREFIX + ":" + simpleName();
-  }
-
-  @Override
   public String toString() {
     return prefixedName();
   }

@@ -13,6 +13,18 @@ import java.net.URI;
 public interface Term extends Serializable {
 
   /**
+   * A unique standard prefix representing the namespace.
+   * For example dwc.
+   */
+  String prefix();
+
+  /**
+   * The namespace the terms are in.
+   * Default implementations here expect the namespace to end with a slash.
+   */
+  URI namespace();
+
+  /**
    * The simple term name without any namespace or paths.
    * For example scientificName.
    */
@@ -22,13 +34,17 @@ public interface Term extends Serializable {
    * The simple term name prefixed by a short unique namespace abbreviation.
    * For example dwc:scientificName.
    */
-  String prefixedName();
+  default String prefixedName() {
+    return prefix() + ":" + simpleName();
+  }
 
   /**
    * The full qualified term uri including the namespace.
    * For example http://rs.tdwg.org/dwc/terms/scientificName.
    */
-  String qualifiedName();
+  default String qualifiedName() {
+    return namespace() + simpleName();
+  }
 
   /**
    * Informs if a term is generally used as a class term, i.e. defining rowTypes not properties.
@@ -37,14 +53,4 @@ public interface Term extends Serializable {
    */
   boolean isClass();
 
-  /**
-   * A unique standard prefix representing the namespace.
-   * For example dwc.
-   */
-  String prefix();
-
-  /**
-   * The namespace the terms are in
-   */
-  URI namespace();
 }

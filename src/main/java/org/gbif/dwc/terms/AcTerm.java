@@ -69,11 +69,6 @@ public enum AcTerm implements Term, AlternativeNames {
   private static final URI NS_URI = URI.create(NS);
 
   @Override
-  public String prefixedName() {
-    return PREFIX + ":" + name();
-  }
-
-  @Override
   public String toString() {
     return prefixedName();
   }
@@ -86,11 +81,6 @@ public enum AcTerm implements Term, AlternativeNames {
   @Override
   public String[] alternativeNames() {
     return new String[]{};
-  }
-
-  @Override
-  public String qualifiedName() {
-    return NS + simpleName();
   }
 
   @Override
