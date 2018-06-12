@@ -82,16 +82,4 @@ public class DcTermTest extends TermBaseTest<DcTerm>{
     Term term = TERM_FACTORY.findTerm(name);
     assertEquals("http://purl.org/dc/terms/rights", term.qualifiedName());
   }
-
-  /**
-   * There are 15 terms in DcElement that share the same name with DcTerm elements. This test ensures, that
-   * when a term lookup is done with the prefix "dcterm", the DcTerm under the /terms namespace
-   * is returned, not the DcElements term under the /elements/1.1/ namespace.
-   */
-  @Test
-  public void testFindTermWithDctermPrefix() {
-    String name = "dcterm:rights";
-    Term term = TERM_FACTORY.findTerm(name);
-    assertEquals("http://purl.org/dc/terms/rights", term.qualifiedName());
-  }
 }

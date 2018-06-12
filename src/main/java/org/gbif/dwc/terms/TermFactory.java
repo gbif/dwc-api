@@ -3,8 +3,7 @@ package org.gbif.dwc.terms;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -21,6 +20,7 @@ public class TermFactory {
 
   private final Map<String, Term> terms = new HashMap<String, Term>();
   private final Map<String, Term> classTerms = new HashMap<String, Term>();
+  private final Set<Class> registeredEnumClasses = new HashSet<>();
 
   public static TermFactory instance() {
     if (initialized) {
@@ -43,52 +43,63 @@ public class TermFactory {
   }
 
   private void loadKnownTerms() {
-    addAltTerms(DwcTerm.values(), "darwin", "darwincore", "dw");
-    addAltTerms(DcTerm.values(), "dct", "dcterm");
-    addAltTerms(GbifTerm.values());
-    addAltTerms(GbifInternalTerm.values());
-    addAltTerms(IucnTerm.values());
-    addAltTerms(DcElement.values());
-    addAltTerms(AcefTerm.values(), "col");
-    addAltTerms(AcTerm.values());
-    addAltTerms(XmpTerm.values(), "adobe");
-    addAltTerms(XmpRightsTerm.values(), "xmp", "adobe"); // the same as above, but luckily different simple term names
+    registerTermEnum(DwcTerm.class);
+    registerTermEnum(DcTerm.class, "dct");
+    registerTermEnum(GbifTerm.class);
+    registerTermEnum(GbifInternalTerm.class);
+    registerTermEnum(IucnTerm.class);
+    registerTermEnum(DcElement.class);
+    registerTermEnum(AcefTerm.class);
+    registerTermEnum(AcTerm.class);
+    registerTermEnum(XmpTerm.class, "adobe");
+    registerTermEnum(XmpRightsTerm.class, "xmp", "adobe"); // the same as above, but luckily different simple term names
   }
 
-  public <T extends Term & AlternativeNames> void addAltTerms(T[] terms, String ... altPrefixes) {
-    addTerms(terms, altPrefixes);
-    // also add alternatives
-    for (T term : terms) {
-      for (String alt : term.alternativeNames()) {
-        addTerm(alt, term);
-        addTerm(term.prefix() + ":" + alt, term);
-        addTerm(term.namespace().resolve(alt).toString(), term);
-        for (String pre : altPrefixes) {
-          addTerm(pre + ":" + alt, term);
+  public void registerTerm(Term term) {
+    addTerm(term);
+  }
+
+  public void registerTerm(UnknownTerm term) {
+    addTerm(term.qualifiedName(), term);
+  }
+
+  /**
+   * Registers all terms from a term enumeration.
+   * If the same class is registered again it will be silently ignored.
+   *
+   * @param altPrefixes alternative prefixes to be used to register simple prefixed term names
+   */
+  public <T extends Enum & Term & AlternativeNames> void registerTermEnum(Class<T> termClass, String ... altPrefixes) {
+    if (registeredEnumClasses.contains(termClass)) {
+      LOG.debug("{} is already registered", termClass);
+    } else {
+      registeredEnumClasses.add(termClass);
+      for (T term : termClass.getEnumConstants()) {
+        // add regular term representations (simple, prefixed & qualified)
+        addTerm(term, altPrefixes);
+        // add alternatives
+        for (String alt : term.alternativeNames()) {
+          addTerm(alt, term);
+          addTerm(term.prefix() + ":" + alt, term);
+          addTerm(term.namespace().resolve(alt).toString(), term);
+          for (String pre : altPrefixes) {
+            addTerm(pre + ":" + alt, term);
+          }
         }
       }
     }
   }
 
-  /**
-   * Adds known terms to the factory.
-   * An array of terms can be given additional alternative prefixes they are known under.
-   * @param terms
-   * @param altPrefixes optional list of alternative prefixes. Should NOT be ending with a colon
-   * @param <T>
-   */
-  public <T extends Term> void addTerms(T[] terms, String[] altPrefixes) {
-    for (T term : terms) {
-      addTerm(term.simpleName(), term);
-      addTerm(term.prefixedName(), term);
-      addTerm(term.qualifiedName(), term);
-      for (String pre : altPrefixes) {
-        addTerm(pre + ":" + term.simpleName(), term);
-      }
+  private void addTerm(Term term, String ... altPrefixes) {
+    addTerm(term.simpleName(), term);
+    addTerm(term.prefixedName(), term);
+    addTerm(term.qualifiedName(), term);
+    for (String pre : altPrefixes) {
+      addTerm(pre + ":" + term.simpleName(), term);
     }
   }
 
-  public void addTerm(String key, Term term) {
+  private void addTerm(String key, Term term) {
     if (key == null || key.trim().isEmpty()) {
       return;
     }
