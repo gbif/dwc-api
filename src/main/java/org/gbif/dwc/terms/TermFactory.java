@@ -20,7 +20,7 @@ public class TermFactory {
 
   private final Map<String, Term> terms = new HashMap<String, Term>();
   private final Map<String, Term> classTerms = new HashMap<String, Term>();
-  private final Set<Class> registeredEnumClasses = new HashSet<>();
+  private final Set<Class<? extends Enum>> registeredEnumClasses = new HashSet<>();
 
   public static TermFactory instance() {
     if (initialized) {
@@ -53,6 +53,13 @@ public class TermFactory {
     registerTermEnum(AcTerm.class);
     registerTermEnum(XmpTerm.class, "adobe");
     registerTermEnum(XmpRightsTerm.class, "xmp", "adobe"); // the same as above, but luckily different simple term names
+  }
+
+  /**
+   * @return the set of term enum classes that have been registered with this TermFactory
+   */
+  public Set<Class<? extends Enum>> listRegisteredTermEnums() {
+    return Collections.unmodifiableSet(registeredEnumClasses);
   }
 
   public void registerTerm(Term term) {
