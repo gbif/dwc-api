@@ -15,7 +15,7 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   xmlSchema,
   publishingOrgKey,
   unitQualifier,
-  gbifNetworkKey,
+  networkKey,
   installationKey;
 
   private static final String PREFIX = "gbint";
