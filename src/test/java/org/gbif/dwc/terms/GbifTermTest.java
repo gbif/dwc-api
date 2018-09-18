@@ -56,8 +56,8 @@ public class GbifTermTest extends TermBaseTest {
     assertEquals(9, new HashSet<GbifTerm>(rowTerms).size());
 
     List<GbifTerm> distributionTerms = GbifTerm.listByGroup(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION);
-    assertEquals(1, distributionTerms.size());
-    assertEquals(1, new HashSet<GbifTerm>(distributionTerms).size());
+    assertEquals(2, distributionTerms.size());
+    assertEquals(2, new HashSet<GbifTerm>(distributionTerms).size());
 
     List<GbifTerm> profileTerms = GbifTerm.listByGroup(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION);
     assertEquals(10, profileTerms.size());
