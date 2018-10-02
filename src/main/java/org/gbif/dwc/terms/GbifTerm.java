@@ -139,6 +139,12 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    */
   taxonKey(DwcTerm.GROUP_TAXON),
 
+
+  /**
+   * The GBIF backbone key of the accepted taxon key.
+   */
+  acceptedTaxonKey(DwcTerm.GROUP_TAXON),
+
   /**
    * The key to the accepted kingdom in the GBIF backbone.
    */
@@ -200,6 +206,11 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * </p>
    */
   genericName(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The scientific name the type associated acceptedNubKey.
+   */
+  acceptedScientificName(DwcTerm.GROUP_TAXON),
 
   /**
    * The scientific name the type status of this specimen applies to.
@@ -271,9 +282,9 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * Lists all GBIF terms in taxon group.
    */
   public static final GbifTerm[] TAXONOMIC_TERMS =
-  {GbifTerm.taxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey, GbifTerm.orderKey,
-    GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey, GbifTerm.species,
-    GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.genericName};
+  {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
+   GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
+   GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.genericName, GbifTerm.acceptedScientificName};
 
   private final String groupName;
   private final boolean isDeprecated;
