@@ -53,6 +53,8 @@ public class TermFactory {
     registerTermEnum(AcTerm.class);
     registerTermEnum(XmpTerm.class, "adobe");
     registerTermEnum(XmpRightsTerm.class, "xmp", "adobe"); // the same as above, but luckily different simple term names
+  
+    registerQualifiedTermEnum(DwcaTerm.class);
   }
 
   /**
@@ -96,7 +98,24 @@ public class TermFactory {
       }
     }
   }
-
+  
+  /**
+   * Registers all terms from a new term enumeration, but only adds their qualified and prefixed names.
+   * This is to avoid clashes with other usually more important terms that should be known by their simple name.
+   */
+  public <T extends Enum & Term> void registerQualifiedTermEnum(Class<T> termClass) {
+    if (registeredEnumClasses.contains(termClass)) {
+      LOG.debug("{} is already registered", termClass);
+    } else {
+      registeredEnumClasses.add(termClass);
+      for (T term : termClass.getEnumConstants()) {
+        // add only the prefixed and qualified representation to avoid clashes
+        addTerm(term.prefixedName(), term);
+        addTerm(term.qualifiedName(), term);
+      }
+    }
+  }
+  
   private void addTerm(Term term, String ... altPrefixes) {
     addTerm(term.simpleName(), term);
     addTerm(term.prefixedName(), term);

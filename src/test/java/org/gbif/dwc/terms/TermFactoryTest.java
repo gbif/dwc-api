@@ -51,7 +51,7 @@ public class TermFactoryTest {
     assertEquals(GbifTerm.Identifier, TF.findClassTerm("identifier"));
     assertEquals(DcTerm.identifier, TF.findTerm("identifier"));
     assertEquals(DcTerm.identifier, TF.findPropertyTerm("identifier"));
-    assertEquals(DcTerm.identifier, TF.findTerm("ID"));
+    assertEquals(DcTerm.identifier, TF.findTerm("id"));
     assertEquals(DwcTerm.parentNameUsageID, TF.findTerm("dwc:higherNameUsageID"));
     assertEquals(DwcTerm.acceptedNameUsageID, TF.findTerm("dwc:acceptedTaxonId"));
     assertEquals(DwcTerm.acceptedNameUsageID, TF.findTerm("dwc:acceptedTaxonID"));
@@ -80,6 +80,8 @@ public class TermFactoryTest {
     assertEquals(DwcTerm.family, TF.findTerm("dwc:family"));
     assertEquals(DwcTerm.family, TF.findTerm("family"));
     assertEquals(AcefTerm.Family, TF.findTerm("acef:family"));
+  
+    assertEquals(DwcaTerm.ID, TF.findTerm("dwca:ID"));
   }
 
   @Test
