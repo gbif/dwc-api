@@ -253,7 +253,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
 
   // Distribution checklist extension
   appendixCITES(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),
-  numOfOccurrences(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),
+  numberOfOccurrences(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),
 
   /**
    * Boolean indicating if the publishing country is different
