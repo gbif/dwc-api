@@ -73,8 +73,8 @@ public enum AcefTerm implements Term, AlternativeNames {
 
   // SOURCE DATABASE
   SourceDatabase(true),
-  DatabaseFullName(false, "DatabaseName"),
-  DatabaseShortName,
+  DatabaseFullName,
+  DatabaseShortName(false, "DatabaseName"),
   DatabaseVersion,
   ReleaseDate,
   AuthorsEditors,
