@@ -213,6 +213,11 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   acceptedScientificName(DwcTerm.GROUP_TAXON),
 
   /**
+   * Scientific name as provided by the source.
+   */
+  verbatimScientificName(DwcTerm.GROUP_TAXON),
+
+  /**
    * The scientific name the type status of this specimen applies to.
    * Term proposed in Darwin Core, but not yet ratified.
    */
@@ -284,7 +289,8 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   public static final GbifTerm[] TAXONOMIC_TERMS =
   {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
    GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
-   GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.genericName, GbifTerm.acceptedScientificName};
+   GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.genericName, GbifTerm.acceptedScientificName,
+   GbifTerm.verbatimScientificName};
 
   private final String groupName;
   private final boolean isDeprecated;

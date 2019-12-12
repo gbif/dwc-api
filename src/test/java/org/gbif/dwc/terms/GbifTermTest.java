@@ -64,8 +64,8 @@ public class GbifTermTest extends TermBaseTest {
     assertEquals(10, new HashSet<GbifTerm>(profileTerms).size());
 
     List<GbifTerm> taxonTerms = GbifTerm.listByGroup(DwcTerm.GROUP_TAXON);
-    assertEquals(15, taxonTerms.size());
-    assertEquals(15, new HashSet<GbifTerm>(taxonTerms).size());
+    assertEquals(16, taxonTerms.size());
+    assertEquals(16, new HashSet<GbifTerm>(taxonTerms).size());
 
     List<GbifTerm> crawlingTerms = GbifTerm.listByGroup(GbifTerm.GROUP_CRAWLING);
     assertEquals(3, crawlingTerms.size());

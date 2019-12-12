@@ -16,7 +16,12 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   publishingOrgKey,
   unitQualifier,
   networkKey,
-  installationKey;
+  installationKey,
+  projectId,
+  programmeAcronym,
+  collectionKey,
+  institutionKey;
+
 
   private static final String PREFIX = "gbint";
   private static final String NS = "http://rs.gbif.org/terms/internal/";
