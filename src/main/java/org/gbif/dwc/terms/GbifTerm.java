@@ -266,7 +266,11 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   repatriated(DwcTerm.GROUP_OCCURRENCE),
 
   // Calculated relative organism quantity, based on organism and sample measure types
-  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE);
+  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),
+
+  // To support user identifiers, like ORCID and WIKIDATA and etc.
+  recordedByID(DwcTerm.GROUP_OCCURRENCE),
+  identifiedByID(DwcTerm.GROUP_OCCURRENCE);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
