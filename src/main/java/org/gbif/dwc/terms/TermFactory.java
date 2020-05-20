@@ -135,7 +135,7 @@ public class TermFactory {
     if (map.containsKey(key)) {
       Term t1 = map.get(key);
       if (!t1.equals(term)) {
-        LOG.warn("{} terms {} and {} are both known as \"{}\". Keeping only earlier {}", term.isClass() ? "Class" : "Property", map.get(key), term, key, map.get(key));
+        LOG.info("{} terms {} and {} are both known as \"{}\". Keeping only earlier {}", term.isClass() ? "Class" : "Property", map.get(key), term, key, map.get(key));
       }
     } else {
       map.put(key, term);
