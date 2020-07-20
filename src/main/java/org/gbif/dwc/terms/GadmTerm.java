@@ -4,9 +4,13 @@ import java.net.URI;
 
 public enum GadmTerm implements Term, AlternativeNames {
   level0Gid(DwcTerm.GROUP_LOCATION),
+  level0Name(DwcTerm.GROUP_LOCATION),
   level1Gid(DwcTerm.GROUP_LOCATION),
+  level1Name(DwcTerm.GROUP_LOCATION),
   level2Gid(DwcTerm.GROUP_LOCATION),
-  level3Gid(DwcTerm.GROUP_LOCATION);
+  level2Name(DwcTerm.GROUP_LOCATION),
+  level3Gid(DwcTerm.GROUP_LOCATION),
+  level3Name(DwcTerm.GROUP_LOCATION);
 
   private static final String PREFIX = "gadm";
   private static final String NS = "http://gadm.org/terms/";
@@ -47,5 +51,4 @@ public enum GadmTerm implements Term, AlternativeNames {
   public boolean isClass() {
     return false;
   }
-
 }
