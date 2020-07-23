@@ -143,7 +143,7 @@
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>     <strong class="jxr_keyword">if</strong> (map.containsKey(key)) {
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>       <a href="../../../../org/gbif/dwc/terms/Term.html">Term</a> t1 = map.get(key);
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>       <strong class="jxr_keyword">if</strong> (!t1.equals(term)) {
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>         LOG.warn(<span class="jxr_string">"{} terms {} and {} are both known as \&quot;{}\&quot;. Keeping only earlier {}"</span>, term.isClass() ? <span class="jxr_string">"Class"</span> : <span class="jxr_string">"Property"</span>, map.get(key), term, key, map.get(key));
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>         LOG.info(<span class="jxr_string">"{} terms {} and {} are both known as \&quot;{}\&quot;. Keeping only earlier {}"</span>, term.isClass() ? <span class="jxr_string">"Class"</span> : <span class="jxr_string">"Property"</span>, map.get(key), term, key, map.get(key));
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>       }
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>     } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>       map.put(key, term);
