@@ -13,7 +13,7 @@ public enum GadmTerm implements Term, AlternativeNames {
   level3Name(DwcTerm.GROUP_LOCATION);
 
   private static final String PREFIX = "gadm";
-  private static final String NS = "http://gadm.org/terms/";
+  private static final String NS = "http://rs.gbif.org/terms/gadm/3.0/";
   private static final URI NS_URI = URI.create(NS);
 
   public final String[] normAlts;
