@@ -20,7 +20,8 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   projectId,
   programmeAcronym,
   collectionKey,
-  institutionKey;
+  institutionKey,
+  hostingOrganizationKey;
 
 
   private static final String PREFIX = "gbint";
