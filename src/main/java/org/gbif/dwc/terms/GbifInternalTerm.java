@@ -22,7 +22,7 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   collectionKey,
   institutionKey,
   hostingOrganizationKey,
-  isClustered,
+  isInCluster,
   extensions;
 
 
