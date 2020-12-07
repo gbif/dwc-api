@@ -23,7 +23,7 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   institutionKey,
   hostingOrganizationKey,
   isInCluster,
-  extensions;
+  dwcaExtension;
 
 
   private static final String PREFIX = "gbint";
