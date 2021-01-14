@@ -22,6 +22,8 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   collectionKey,
   institutionKey,
   hostingOrganizationKey,
+  isInCluster,
+  dwcaExtension,
   lifeStageLineage;
 
 
