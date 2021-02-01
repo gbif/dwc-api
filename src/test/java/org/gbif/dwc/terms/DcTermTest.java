@@ -5,10 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-
-/**
- *
- */
 public class DcTermTest extends TermBaseTest<DcTerm>{
 
   private static final TermFactory TERM_FACTORY = TermFactory.instance();
@@ -18,6 +14,7 @@ public class DcTermTest extends TermBaseTest<DcTerm>{
   }
 
   @Test
+  @Override
   public void testNames() throws Exception {
     for (DcTerm t : DcTerm.values()) {
       assertFalse("Bad term: " + t.simpleName(), t.simpleName().contains("_"));
