@@ -17,11 +17,11 @@ package org.gbif.dwc.terms;
 
 import java.util.stream.Stream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AcefTermTest extends TermBaseTest<AcefTerm>{
+public class AcefTermTest extends TermBaseTest<AcefTerm> {
 
   public AcefTermTest() {
     super(AcefTerm.class, new String[]{"_","-"}, true);

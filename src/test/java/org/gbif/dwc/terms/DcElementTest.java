@@ -15,21 +15,21 @@
  */
 package org.gbif.dwc.terms;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class DcElementTest {
 
   private static final TermFactory TERM_FACTORY = TermFactory.instance();
 
   @Test
-  public void testNames() throws Exception {
+  public void testNames() {
     for (DcElement t : DcElement.values()) {
-      assertFalse("Bad term: " + t.simpleName(), t.simpleName().contains("_"));
-      assertFalse("Bad term: " + t.qualifiedName(), t.qualifiedName().contains("_"));
-      assertFalse("Bad term: " + t.qualifiedName(), t.isClass());
+      assertFalse(t.simpleName().contains("_"), "Bad term: " + t.simpleName());
+      assertFalse(t.qualifiedName().contains("_"), "Bad term: " + t.qualifiedName());
+      assertFalse(t.isClass(), "Bad term: " + t.qualifiedName());
     }
   }
 
@@ -38,7 +38,7 @@ public class DcElementTest {
    * verifies the Term returned is the same as the original one.
    */
   @Test
-  public void testTermEquality() throws Exception {
+  public void testTermEquality() {
     for (DcTerm t : DcTerm.values()) {
       assertEquals(t, TERM_FACTORY.findTerm(t.qualifiedName()));
     }

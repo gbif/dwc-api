@@ -19,15 +19,16 @@ import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UnknownTermTest {
 
   @Test
-  public void testBuild() throws Exception {
+  public void testBuild() {
     UnknownTerm.build("http://me.com/#me");
     UnknownTerm.build("http://me.com/me");
     UnknownTerm.build("http://me.org/me");
@@ -38,15 +39,15 @@ public class UnknownTermTest {
   }
 
   @Test
-  public void testNamespace() throws Exception {
+  public void testNamespace() {
     assertEquals(URI.create("http://me.com"), UnknownTerm.build("http://me.com/me").namespace());
     assertEquals(URI.create("https://me.com"), UnknownTerm.build("https://me.com/me").namespace());
     assertEquals(URI.create("http://unknown.org"), UnknownTerm.build("me").namespace());
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testBuildError() {
-    UnknownTerm.build("http://me.com/");
+    assertThrows(IllegalArgumentException.class, () -> UnknownTerm.build("http://me.com/"));
   }
 
   @Test
@@ -62,7 +63,7 @@ public class UnknownTermTest {
   }
 
   @Test
-  public void testQualifiedName() throws Exception {
+  public void testQualifiedName() {
     Term me = UnknownTerm.build("http://me.com/#me");
     assertEquals("http://me.com/#me", me.qualifiedName());
 
@@ -74,7 +75,7 @@ public class UnknownTermTest {
   }
 
   @Test
-  public void testSimpleName() throws Exception {
+  public void testSimpleName() {
     Term me1 = UnknownTerm.build("http://me.com/#me");
     Term me2 = UnknownTerm.build("http://me.com/me");
     Term me3 = UnknownTerm.build("http://me.org/me");
@@ -85,7 +86,7 @@ public class UnknownTermTest {
   }
 
   @Test
-  public void testEquals() throws Exception {
+  public void testEquals() {
     Term me1 = UnknownTerm.build("http://me.com/#me");
     Term me2 = UnknownTerm.build("http://me.com/me");
     Term me3 = UnknownTerm.build("http://me.org/me");
@@ -103,8 +104,8 @@ public class UnknownTermTest {
   }
 
   @Test
-  public void testSet() throws Exception {
-    Set<Term> terms = new HashSet<Term>();
+  public void testSet() {
+    Set<Term> terms = new HashSet<>();
     terms.add(UnknownTerm.build("http://me.com/#me"));
     terms.add(UnknownTerm.build("http://me.com/me"));
     terms.add(UnknownTerm.build("http://me.org/me"));

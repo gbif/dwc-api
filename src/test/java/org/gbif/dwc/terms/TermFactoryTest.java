@@ -21,11 +21,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TermFactoryTest {
+
   final TermFactory TF = TermFactory.instance();
 
   /**
@@ -36,7 +40,7 @@ public class TermFactoryTest {
    */
   @Test
   public void testKnownTermUniqueness() {
-    Set<String> names = new HashSet<String>();
+    Set<String> names = new HashSet<>();
 
     addTerms(names, DwcTerm.values());
     addTerms(names, DcTerm.values());
@@ -51,7 +55,7 @@ public class TermFactoryTest {
 
   private void addTerms(Set<String> names, Term[] terms) {
     for (Term t : terms) {
-      assertFalse("Duplicate simple name "+t.simpleName(), names.contains(t.simpleName()));
+      assertFalse(names.contains(t.simpleName()), "Duplicate simple name " + t.simpleName());
       names.add(t.simpleName());
     }
   }
@@ -112,10 +116,10 @@ public class TermFactoryTest {
     assertNotEquals(me2, me3);
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void badTerm() {
     TermFactory factory = TermFactory.instance();
-    factory.findTerm("Hallo Tim");
+    assertThrows(IllegalArgumentException.class, () -> factory.findTerm("Hallo Tim"));
   }
 
   @Test
@@ -156,7 +160,6 @@ public class TermFactoryTest {
     assertNotEquals(t1, t3);
     assertNotEquals(t2, t3);
   }
-
 
   /**
      * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.

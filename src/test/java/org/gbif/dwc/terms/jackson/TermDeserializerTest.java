@@ -24,13 +24,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TermDeserializerTest {
 
@@ -39,7 +39,7 @@ public class TermDeserializerTest {
    */
   static class Occ {
     private Term term;
-    private Map<Term, String> data = new HashMap<Term, String>();
+    private Map<Term, String> data = new HashMap<>();
 
     @JsonSerialize(keyUsing = TermKeySerializer.class)
     @JsonDeserialize(keyUsing = TermKeyDeserializer.class)

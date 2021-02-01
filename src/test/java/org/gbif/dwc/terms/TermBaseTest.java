@@ -15,10 +15,10 @@
  */
 package org.gbif.dwc.terms;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Generic tests for all Term implementing classes.
@@ -44,11 +44,11 @@ public abstract class TermBaseTest<T extends Term> {
   }
 
   @Test
-  public void testNames() throws Exception {
+  public void testNames() {
     for (T t : values) {
       for (String c : forbiddenChars) {
-        assertFalse("Term contains forbidden character " + c + " : " + t.simpleName(), t.simpleName().contains(c));
-        assertFalse("Term contains forbidden character " + c + " : " + t.qualifiedName(), t.qualifiedName().contains(c));
+        assertFalse(t.simpleName().contains(c), "Term contains forbidden character " + c + " : " + t.simpleName());
+        assertFalse(t.qualifiedName().contains(c), "Term contains forbidden character " + c + " : " + t.qualifiedName());
       }
     }
   }
@@ -58,7 +58,7 @@ public abstract class TermBaseTest<T extends Term> {
    * the Term returned is the same as the original one.
    */
   @Test
-  public void testFindSimpleTerm() throws Exception {
+  public void testFindSimpleTerm() {
     if (!skipSimple) {
       for (T t : values) {
           assertEquals(t, TERM_FACTORY.findTerm(t.simpleName(), t.isClass()));
@@ -80,5 +80,4 @@ public abstract class TermBaseTest<T extends Term> {
       assertEquals(t, TERM_FACTORY.findTerm(t.qualifiedName(), t.isClass()));
     }
   }
-
 }

@@ -16,20 +16,19 @@
 package org.gbif.dwc.terms;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TermComparatorTest {
 
   @Test
-  public void testCompare() throws Exception {
+  public void testCompare() {
     TermComparator comp = new TermComparator();
 
-    List<Term> terms = new ArrayList<Term>();
+    List<Term> terms = new ArrayList<>();
     terms.add(DwcTerm.basisOfRecord);
     terms.add(DcTerm.title);
     terms.add(DcTerm.references);
@@ -38,7 +37,7 @@ public class TermComparatorTest {
     terms.add(GbifTerm.canonicalName);
     terms.add(GbifTerm.depth);
 
-    Collections.sort(terms, comp);
+    terms.sort(comp);
 
     assertEquals(IucnTerm.threatStatus, terms.get(0));
     assertEquals(DcTerm.references, terms.get(1));
