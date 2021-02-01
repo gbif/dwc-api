@@ -9,10 +9,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.junit.Test;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import static org.junit.Assert.assertEquals;
 
@@ -83,8 +84,8 @@ public class TermDeserializerTest {
   @Test
   public void testTermMap() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
-    Integer counter = 0;
-    Map<Term, Integer> terms = new HashMap<Term, Integer>();
+    int counter = 0;
+    Map<Term, Integer> terms = new HashMap<>();
     for (Term t : DwcTerm.values()) {
       terms.put(t, counter++);
     }
@@ -117,5 +118,4 @@ public class TermDeserializerTest {
 
     assertEquals(o, mapper.readValue(json, Occ.class));
   }
-
 }

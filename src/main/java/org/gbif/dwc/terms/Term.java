@@ -1,15 +1,18 @@
 package org.gbif.dwc.terms;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.gbif.dwc.terms.jackson.TermDeserializer;
+import org.gbif.dwc.terms.jackson.TermKeyDeserializer;
+import org.gbif.dwc.terms.jackson.TermKeySerializer;
 import org.gbif.dwc.terms.jackson.TermSerializer;
 
 import java.io.Serializable;
 import java.net.URI;
 
-@JsonSerialize(using= TermSerializer.class)
-@JsonDeserialize(using= TermDeserializer.class)
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize(using = TermSerializer.class, keyUsing = TermKeySerializer.class)
+@JsonDeserialize(using = TermDeserializer.class, keyUsing = TermKeyDeserializer.class)
 public interface Term extends Serializable {
 
   /**

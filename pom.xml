@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>dwc-api</artifactId>
-    <version>1.31-SNAPSHOT</version>
+    <version>1.31-jackson2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Darwin Core API</name>
@@ -35,7 +35,7 @@
         <junit.version>4.12</junit.version>
         <logback.version>1.1.3</logback.version>
         <slf4j.version>1.7.12</slf4j.version>
-        <jackson.version>1.9.12</jackson.version>
+        <jackson.version>2.11.3</jackson.version>
     </properties>
 
     <developers>
@@ -64,14 +64,19 @@
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.codehaus.jackson</groupId>
-          <artifactId>jackson-core-asl</artifactId>
-          <version>${jackson.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.codehaus.jackson</groupId>
-          <artifactId>jackson-mapper-asl</artifactId>
-          <version>${jackson.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

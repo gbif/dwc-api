@@ -2,16 +2,13 @@ package org.gbif.dwc.terms.jackson;
 
 import org.gbif.dwc.terms.Term;
 
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.module.SimpleModule;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
-/**
- *
- */
 public class DwcModule extends SimpleModule {
 
   public DwcModule() {
-    super("Dwc API", new Version(1,0,0,null));
+    super("Dwc API", new Version(1, 0, 0, null, null, null));
     addSerializer(Term.class, new TermSerializer());
     addDeserializer(Term.class, new TermDeserializer());
     addKeySerializer(Term.class, new TermKeySerializer());
