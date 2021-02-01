@@ -1,95 +1,124 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.gbif</groupId>
-        <artifactId>motherpom</artifactId>
-        <version>50</version>
-    </parent>
+  <parent>
+    <groupId>org.gbif</groupId>
+    <artifactId>motherpom</artifactId>
+    <version>50</version>
+  </parent>
 
-    <artifactId>dwc-api</artifactId>
-    <version>1.31-jackson2-SNAPSHOT</version>
-    <packaging>jar</packaging>
+  <artifactId>dwc-api</artifactId>
+  <version>1.31-jackson2-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-    <name>Darwin Core API</name>
-    <description>Enumeration of all Darwin Core and Dublin Core terms</description>
+  <name>Darwin Core API</name>
+  <description>Enumeration of all Darwin Core and Dublin Core terms</description>
+  <url>https://github.com/gbif/${project.artifactId}</url>
+
+  <scm>
+    <connection>scm:git:git@github.com:gbif/${project.artifactId}.git</connection>
     <url>https://github.com/gbif/${project.artifactId}</url>
+    <developerConnection>scm:git:git@github.com:gbif/${project.artifactId}.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
 
-    <scm>
-      <connection>scm:git:git@github.com:gbif/${project.artifactId}.git</connection>
-      <url>https://github.com/gbif/${project.artifactId}</url>
-      <developerConnection>scm:git:git@github.com:gbif/${project.artifactId}.git</developerConnection>
-      <tag>HEAD</tag>
-    </scm>
-    
-    <distributionManagement>
-      <site>
-        <id>gh-pages</id>
-        <url>http://gbif.github.io/${project.artifactId}/</url>
-      </site>
-    </distributionManagement>
+  <distributionManagement>
+    <site>
+      <id>gh-pages</id>
+      <url>http://gbif.github.io/${project.artifactId}/</url>
+    </site>
+  </distributionManagement>
 
-    <properties>
-        <jdkLevel>1.8</jdkLevel>
+  <properties>
+    <jdkLevel>1.8</jdkLevel>
+    <main.basedir>${project.basedir}</main.basedir>
 
-        <junit.version>4.12</junit.version>
-        <logback.version>1.2.3</logback.version>
-        <slf4j.version>1.7.30</slf4j.version>
-        <jackson.version>2.11.3</jackson.version>
-    </properties>
+    <junit.version>4.12</junit.version>
+    <logback.version>1.2.3</logback.version>
+    <slf4j.version>1.7.30</slf4j.version>
+    <jackson.version>2.11.3</jackson.version>
+  </properties>
 
-    <developers>
-        <developer>
-            <name>Markus Döring</name>
-            <email>mdoering@gbif.org</email>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
+  <developers>
+    <developer>
+      <name>Markus Döring</name>
+      <email>mdoering@gbif.org</email>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
 
-    <repositories>
-        <repository>
-            <id>gbif-all</id>
-            <url>http://repository.gbif.org/content/groups/gbif</url>
-        </repository>
-    </repositories>
+  <repositories>
+    <repository>
+      <id>gbif-all</id>
+      <url>http://repository.gbif.org/content/groups/gbif</url>
+    </repository>
+  </repositories>
 
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <plugins>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>spotless-check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <java>
+            <licenseHeader>
+              <file>${main.basedir}/gbif-license-header</file>
+            </licenseHeader>
+            <removeUnusedImports/>
+            <importOrder>
+              <file>${main.basedir}/gbif.importorder</file>
+            </importOrder>
+          </java>
+        </configuration>
+      </plugin>
+    </plugins>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>
