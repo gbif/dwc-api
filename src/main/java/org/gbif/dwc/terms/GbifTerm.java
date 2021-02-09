@@ -270,7 +270,12 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
 
   // To support user identifiers, like ORCID and WIKIDATA and etc.
   recordedByID(DwcTerm.GROUP_OCCURRENCE),
-  identifiedByID(DwcTerm.GROUP_IDENTIFICATION);
+  identifiedByID(DwcTerm.GROUP_IDENTIFICATION),
+
+  //IUCN Red List category
+  iucnRedListCategory(DwcTerm.GROUP_TAXON);
+
+
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
