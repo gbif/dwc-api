@@ -1,20 +1,35 @@
+/*
+ * Copyright 2021 Global Biodiversity Information Facility (GBIF)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.gbif.dwc.terms;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class DcElementTest {
 
   private static final TermFactory TERM_FACTORY = TermFactory.instance();
 
   @Test
-  public void testNames() throws Exception {
+  public void testNames() {
     for (DcElement t : DcElement.values()) {
-      assertFalse("Bad term: " + t.simpleName(), t.simpleName().contains("_"));
-      assertFalse("Bad term: " + t.qualifiedName(), t.qualifiedName().contains("_"));
-      assertFalse("Bad term: " + t.qualifiedName(), t.isClass());
+      assertFalse(t.simpleName().contains("_"), "Bad term: " + t.simpleName());
+      assertFalse(t.qualifiedName().contains("_"), "Bad term: " + t.qualifiedName());
+      assertFalse(t.isClass(), "Bad term: " + t.qualifiedName());
     }
   }
 
@@ -23,7 +38,7 @@ public class DcElementTest {
    * verifies the Term returned is the same as the original one.
    */
   @Test
-  public void testTermEquality() throws Exception {
+  public void testTermEquality() {
     for (DcTerm t : DcTerm.values()) {
       assertEquals(t, TERM_FACTORY.findTerm(t.qualifiedName()));
     }

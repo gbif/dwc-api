@@ -1,6 +1,19 @@
+/*
+ * Copyright 2021 Global Biodiversity Information Facility (GBIF)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.gbif.dwc.terms;
-
-import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,9 +21,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TermFactoryTest {
+
   final TermFactory TF = TermFactory.instance();
 
   /**
@@ -21,7 +40,7 @@ public class TermFactoryTest {
    */
   @Test
   public void testKnownTermUniqueness() {
-    Set<String> names = new HashSet<String>();
+    Set<String> names = new HashSet<>();
 
     addTerms(names, DwcTerm.values());
     addTerms(names, DcTerm.values());
@@ -36,7 +55,7 @@ public class TermFactoryTest {
 
   private void addTerms(Set<String> names, Term[] terms) {
     for (Term t : terms) {
-      assertFalse("Duplicate simple name "+t.simpleName(), names.contains(t.simpleName()));
+      assertFalse(names.contains(t.simpleName()), "Duplicate simple name " + t.simpleName());
       names.add(t.simpleName());
     }
   }
@@ -97,10 +116,10 @@ public class TermFactoryTest {
     assertNotEquals(me2, me3);
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void badTerm() {
     TermFactory factory = TermFactory.instance();
-    factory.findTerm("Hallo Tim");
+    assertThrows(IllegalArgumentException.class, () -> factory.findTerm("Hallo Tim"));
   }
 
   @Test
@@ -141,7 +160,6 @@ public class TermFactoryTest {
     assertNotEquals(t1, t3);
     assertNotEquals(t2, t3);
   }
-
 
   /**
      * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.

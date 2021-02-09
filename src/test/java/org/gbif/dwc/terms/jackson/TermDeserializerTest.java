@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 Global Biodiversity Information Facility (GBIF)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.gbif.dwc.terms.jackson;
 
 import org.gbif.dwc.terms.DwcTerm;
@@ -9,12 +24,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TermDeserializerTest {
 
@@ -23,7 +39,7 @@ public class TermDeserializerTest {
    */
   static class Occ {
     private Term term;
-    private Map<Term, String> data = new HashMap<Term, String>();
+    private Map<Term, String> data = new HashMap<>();
 
     @JsonSerialize(keyUsing = TermKeySerializer.class)
     @JsonDeserialize(keyUsing = TermKeyDeserializer.class)
@@ -83,8 +99,8 @@ public class TermDeserializerTest {
   @Test
   public void testTermMap() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
-    Integer counter = 0;
-    Map<Term, Integer> terms = new HashMap<Term, Integer>();
+    int counter = 0;
+    Map<Term, Integer> terms = new HashMap<>();
     for (Term t : DwcTerm.values()) {
       terms.put(t, counter++);
     }
@@ -117,5 +133,4 @@ public class TermDeserializerTest {
 
     assertEquals(o, mapper.readValue(json, Occ.class));
   }
-
 }
