@@ -270,7 +270,18 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
 
   // To support user identifiers, like ORCID and WIKIDATA and etc.
   recordedByID(DwcTerm.GROUP_OCCURRENCE),
-  identifiedByID(DwcTerm.GROUP_IDENTIFICATION);
+  identifiedByID(DwcTerm.GROUP_IDENTIFICATION),
+
+  //MeasurementsOrFacts filters
+  /**
+   * Boolean indicating that the record contains a length measurement.
+   */
+  hasLength(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Boolean indicating that the record contains a mass/weight measurement.
+   */
+  hasWeight(DwcTerm.GROUP_OCCURRENCE);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
