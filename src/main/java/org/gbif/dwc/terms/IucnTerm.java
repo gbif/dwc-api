@@ -18,7 +18,17 @@ package org.gbif.dwc.terms;
 import java.net.URI;
 
 public enum IucnTerm implements Term, AlternativeNames {
-  threatStatus;
+
+  /**
+   * @deprecated this terms has been deprecated in favor of iucnRedListCategory.
+   */
+  @Deprecated
+  threatStatus,
+
+  /**
+   * IUCN Red List Category or conservation status.
+   **/
+  iucnRedListCategory;
 
   private static final String PREFIX = "iucn";
   private static final String NS = "http://iucn.org/terms/";
