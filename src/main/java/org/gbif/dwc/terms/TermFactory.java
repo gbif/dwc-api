@@ -74,6 +74,7 @@ public class TermFactory {
     registerTermEnum(XmpRightsTerm.class, "xmp", "adobe"); // the same as above, but luckily different simple term names
   
     registerQualifiedTermEnum(DwcaTerm.class);
+    addTerm(BibTexTerm.CLASS_TERM);
   }
 
   /**
@@ -211,7 +212,11 @@ public class TermFactory {
     }
     // create new term if needed
     if (t == null) {
-      t = createUnknownTerm(termName, false);
+      if (termName.startsWith(BibTexTerm.NS) || termName.startsWith(BibTexTerm.PREFIX+":")) {
+        t = createBibtexTerm(termName, termName.startsWith(BibTexTerm.NS));
+      } else {
+        t = createUnknownTerm(termName, false);
+      }
     }
     return t;
   }
@@ -275,6 +280,14 @@ public class TermFactory {
     Term term = UnknownTerm.build(termName, isClassTerm);
     addTerm(termName, term);
     addTerm(term.qualifiedName(), term);
+    return term;
+  }
+
+  private Term createBibtexTerm(String termName, boolean qualified) {
+    // create new term instance
+    Term term = qualified ? BibTexTerm.buildFromURI(termName) : BibTexTerm.buildFromPrefix(termName);
+    addTerm(term.qualifiedName(), term);
+    addTerm(term.prefixedName(), term);
     return term;
   }
 

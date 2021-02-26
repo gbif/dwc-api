@@ -72,6 +72,9 @@ public class UnknownTermTest {
 
     me = UnknownTerm.build("http://me.org/me");
     assertEquals("http://me.org/me", me.qualifiedName());
+
+    me = new UnknownTerm(URI.create("http://me.org/me"), "me", false);
+    assertEquals("http://me.org/me", me.qualifiedName());
   }
 
   @Test

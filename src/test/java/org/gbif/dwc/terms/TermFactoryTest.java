@@ -101,6 +101,13 @@ public class TermFactoryTest {
     assertEquals(AcefTerm.Family, TF.findTerm("acef:family"));
   
     assertEquals(DwcaTerm.ID, TF.findTerm("dwca:ID"));
+
+    assertEquals(BibTexTerm.CLASS_TERM, TF.findTerm("bib:BibTeX"));
+    assertEquals(BibTexTerm.CLASS_TERM, TF.findTerm("http://bibtex.org/BibTeX"));
+
+    Term t = BibTexTerm.buildFromURI("http://bibtex.org/creator");
+    assertEquals(t, TF.findTerm("http://bibtex.org/creator"));
+    assertEquals(t, TF.findTerm("bib:creator"));
   }
 
   @Test
