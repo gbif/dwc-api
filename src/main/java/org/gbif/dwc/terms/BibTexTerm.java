@@ -16,10 +16,7 @@
 package org.gbif.dwc.terms;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 
 public class BibTexTerm implements Term, Serializable {
 
