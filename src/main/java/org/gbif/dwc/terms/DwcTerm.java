@@ -20,7 +20,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * All Darwin Core terms with namespace http://rs.tdwg.org/dwc/terms/ as an
