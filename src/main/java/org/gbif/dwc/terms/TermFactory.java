@@ -109,10 +109,12 @@ public class TermFactory {
         // add alternatives
         for (String alt : term.alternativeNames()) {
           addTerm(alt, term);
-          addTerm(term.prefix() + ":" + alt, term);
-          addTerm(term.namespace().resolve(alt).toString(), term);
-          for (String pre : altPrefixes) {
-            addTerm(pre + ":" + alt, term);
+          if (!alt.startsWith("http") && !alt.contains(":")) {
+            addTerm(term.prefix() + ":" + alt, term);
+            addTerm(term.namespace().resolve(alt).toString(), term);
+            for (String pre : altPrefixes) {
+              addTerm(pre + ":" + alt, term);
+            }
           }
         }
       }

@@ -212,17 +212,6 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   nameType(DwcTerm.GROUP_TAXON),
 
   /**
-   * The genus part of the scientific name.
-   * <p>
-   * If the scientific name is considered to be a synonym dwc:genus refers to the accepted genus, not to the
-   * genus part of the synonym. This genericName always holds the genus part of the name no matter its classification
-   * or taxonomic status.
-   * Term proposed in Darwin Core, but not yet ratified.
-   * </p>
-   */
-  genericName(DwcTerm.GROUP_TAXON),
-
-  /**
    * The scientific name the type associated acceptedNubKey.
    */
   acceptedScientificName(DwcTerm.GROUP_TAXON),
@@ -281,11 +270,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   repatriated(DwcTerm.GROUP_OCCURRENCE),
 
   // Calculated relative organism quantity, based on organism and sample measure types
-  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),
-
-  // To support user identifiers, like ORCID and WIKIDATA and etc.
-  recordedByID(DwcTerm.GROUP_OCCURRENCE),
-  identifiedByID(DwcTerm.GROUP_IDENTIFICATION);
+  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
@@ -311,7 +296,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   public static final GbifTerm[] TAXONOMIC_TERMS =
   {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
    GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
-   GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.genericName, GbifTerm.acceptedScientificName,
+   GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,
    GbifTerm.verbatimScientificName};
 
   private final String groupName;

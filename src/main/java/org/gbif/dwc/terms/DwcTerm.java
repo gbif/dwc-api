@@ -18,7 +18,9 @@ package org.gbif.dwc.terms;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * All Darwin Core terms with namespace http://rs.tdwg.org/dwc/terms/ as an
@@ -64,6 +66,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   catalogNumber(DwcTerm.GROUP_OCCURRENCE, "catalogNumberNumeric"),
   recordNumber(DwcTerm.GROUP_OCCURRENCE, "collectorNumber"),
   recordedBy(DwcTerm.GROUP_OCCURRENCE, "collector"),
+  recordedByID(DwcTerm.GROUP_OCCURRENCE, "gbif:recordedByID", "http://rs.gbif.org/terms/1.0/recordedByID"),
   individualCount(DwcTerm.GROUP_OCCURRENCE),
   organismQuantity(DwcTerm.GROUP_OCCURRENCE),
   organismQuantityType(DwcTerm.GROUP_OCCURRENCE),
@@ -72,10 +75,14 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   reproductiveCondition(DwcTerm.GROUP_OCCURRENCE),
   behavior(DwcTerm.GROUP_OCCURRENCE),
   establishmentMeans(DwcTerm.GROUP_OCCURRENCE),
+  degreeOfEstablishment(DwcTerm.GROUP_OCCURRENCE),
+  pathway(DwcTerm.GROUP_OCCURRENCE),
+  georeferenceVerificationStatus(DwcTerm.GROUP_OCCURRENCE),
   occurrenceStatus(DwcTerm.GROUP_OCCURRENCE),
   preparations(DwcTerm.GROUP_OCCURRENCE),
   disposition(DwcTerm.GROUP_OCCURRENCE),
   associatedMedia(DwcTerm.GROUP_OCCURRENCE),
+  associatedOccurrences(DwcTerm.GROUP_OCCURRENCE),
   associatedReferences(DwcTerm.GROUP_OCCURRENCE),
   associatedSequences(DwcTerm.GROUP_OCCURRENCE),
   associatedTaxa(DwcTerm.GROUP_OCCURRENCE),
@@ -85,7 +92,6 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   organismID(DwcTerm.GROUP_ORGANISM, "individualID"),
   organismName(DwcTerm.GROUP_ORGANISM),
   organismScope(DwcTerm.GROUP_ORGANISM),
-  associatedOccurrences(DwcTerm.GROUP_ORGANISM),
   associatedOrganisms(DwcTerm.GROUP_ORGANISM),
   previousIdentifications(DwcTerm.GROUP_ORGANISM),
   organismRemarks(DwcTerm.GROUP_ORGANISM),
@@ -105,9 +111,9 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   verbatimEventDate(DwcTerm.GROUP_EVENT),
   habitat(DwcTerm.GROUP_EVENT),
   samplingProtocol(DwcTerm.GROUP_EVENT),
-  samplingEffort(DwcTerm.GROUP_EVENT),
   sampleSizeValue(DwcTerm.GROUP_EVENT),
   sampleSizeUnit(DwcTerm.GROUP_EVENT),
+  samplingEffort(DwcTerm.GROUP_EVENT),
   fieldNotes(DwcTerm.GROUP_EVENT),
   eventRemarks(DwcTerm.GROUP_EVENT),
 
@@ -128,6 +134,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   minimumElevationInMeters(DwcTerm.GROUP_LOCATION),
   maximumElevationInMeters(DwcTerm.GROUP_LOCATION),
   verbatimElevation(DwcTerm.GROUP_LOCATION),
+  verticalDatum(DwcTerm.GROUP_LOCATION),
   minimumDepthInMeters(DwcTerm.GROUP_LOCATION),
   maximumDepthInMeters(DwcTerm.GROUP_LOCATION),
   verbatimDepth(DwcTerm.GROUP_LOCATION),
@@ -153,7 +160,6 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   georeferencedDate(DwcTerm.GROUP_LOCATION),
   georeferenceProtocol(DwcTerm.GROUP_LOCATION),
   georeferenceSources(DwcTerm.GROUP_LOCATION),
-  georeferenceVerificationStatus(DwcTerm.GROUP_LOCATION),
   georeferenceRemarks(DwcTerm.GROUP_LOCATION),
 
   geologicalContextID(DwcTerm.GROUP_GEOLOGICALCONTEXT),
@@ -176,9 +182,11 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   bed(DwcTerm.GROUP_GEOLOGICALCONTEXT),
 
   identificationID(DwcTerm.GROUP_IDENTIFICATION),
+  verbatimIdentification(DwcTerm.GROUP_IDENTIFICATION),
   identificationQualifier(DwcTerm.GROUP_IDENTIFICATION),
   typeStatus(DwcTerm.GROUP_IDENTIFICATION),
   identifiedBy(DwcTerm.GROUP_IDENTIFICATION),
+  identifiedByID(DwcTerm.GROUP_IDENTIFICATION, "gbif:identifiedByID", "http://rs.gbif.org/terms/1.0/identifiedByID"),
   dateIdentified(DwcTerm.GROUP_IDENTIFICATION),
   identificationReferences(DwcTerm.GROUP_IDENTIFICATION),
   identificationVerificationStatus(DwcTerm.GROUP_IDENTIFICATION),
@@ -209,10 +217,14 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   class_(DwcTerm.GROUP_TAXON, "class"),
   order(DwcTerm.GROUP_TAXON),
   family(DwcTerm.GROUP_TAXON),
+  subfamily(DwcTerm.GROUP_TAXON),
   genus(DwcTerm.GROUP_TAXON),
+  genericName(DwcTerm.GROUP_TAXON, "gbif:genericName", "http://rs.gbif.org/terms/1.0/genericName"),
   subgenus(DwcTerm.GROUP_TAXON),
+  infragenericEpithet(DwcTerm.GROUP_TAXON),
   specificEpithet(DwcTerm.GROUP_TAXON),
   infraspecificEpithet(DwcTerm.GROUP_TAXON),
+  cultivarEpithet(DwcTerm.GROUP_TAXON),
   taxonRank(DwcTerm.GROUP_TAXON, "rank"),
   verbatimTaxonRank(DwcTerm.GROUP_TAXON),
   scientificNameAuthorship(DwcTerm.GROUP_TAXON),
@@ -234,6 +246,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
 
   resourceRelationshipID(DwcTerm.GROUP_RESOURCERELATIONSHIP),
   resourceID(DwcTerm.GROUP_RESOURCERELATIONSHIP),
+  relationshipOfResourceID(DwcTerm.GROUP_RESOURCERELATIONSHIP),
   relatedResourceID(DwcTerm.GROUP_RESOURCERELATIONSHIP),
   relationshipOfResource(DwcTerm.GROUP_RESOURCERELATIONSHIP),
   relationshipAccordingTo(DwcTerm.GROUP_RESOURCERELATIONSHIP),
@@ -265,35 +278,23 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
 	  GROUP_GEOLOGICALCONTEXT, GROUP_IDENTIFICATION, GROUP_TAXON,
 	  GROUP_MEASUREMENTORFACT, GROUP_RESOURCERELATIONSHIP};
 
-  public static final DwcTerm[] TAXONOMIC_TERMS =
-    {DwcTerm.taxonID, DwcTerm.scientificNameID, DwcTerm.acceptedNameUsageID,
-	  DwcTerm.parentNameUsageID, DwcTerm.originalNameUsageID,
-	  DwcTerm.nameAccordingToID, DwcTerm.namePublishedInID, DwcTerm.taxonConceptID,
-      DwcTerm.scientificName, DwcTerm.acceptedNameUsage, DwcTerm.parentNameUsage,
-	  DwcTerm.originalNameUsage, DwcTerm.nameAccordingTo, DwcTerm.namePublishedIn,
-	  DwcTerm.namePublishedInYear, DwcTerm.higherClassification, DwcTerm.kingdom,
-	  DwcTerm.phylum, DwcTerm.class_, DwcTerm.order, DwcTerm.family, DwcTerm.genus,
-	  DwcTerm.subgenus, DwcTerm.specificEpithet, DwcTerm.infraspecificEpithet,
-	  DwcTerm.taxonRank, DwcTerm.verbatimTaxonRank, DwcTerm.scientificNameAuthorship,
-	  DwcTerm.vernacularName, DwcTerm.nomenclaturalCode, DwcTerm.taxonomicStatus,
-      DwcTerm.nomenclaturalStatus, DwcTerm.taxonRemarks};
+  public static final DwcTerm[] TAXONOMIC_TERMS = Arrays.stream(values())
+                                                        .filter(t -> !t.isClass() && t.getGroup().equals(GROUP_TAXON))
+                                                        .toArray(DwcTerm[]::new);
 
   /**
    * List of all higher rank terms in dwc, ordered by rank and starting with kingdom.
    */
   public static final DwcTerm[] HIGHER_RANKS =
-    {DwcTerm.kingdom, DwcTerm.phylum, DwcTerm.class_, DwcTerm.order, DwcTerm.family,
-	  DwcTerm.genus, DwcTerm.subgenus};
+    {DwcTerm.kingdom, DwcTerm.phylum, DwcTerm.class_, DwcTerm.order,
+        DwcTerm.family, DwcTerm.subfamily, DwcTerm.genus, DwcTerm.subgenus};
 
   /**
    * List of all class terms in dwc.
    */
-  //TODO: create dynamically via method!
-  // Location is not in this list because it is in the dcterms namespace.
-  public static final DwcTerm[] CLASS_TERMS =
-    {DwcTerm.Occurrence, DwcTerm.Organism, DwcTerm.MaterialSample, DwcTerm.Event,
-	  DwcTerm.GeologicalContext, DwcTerm.Identification, DwcTerm.Taxon,
-	  DwcTerm.MeasurementOrFact, DwcTerm.ResourceRelationship};
+  public static final DwcTerm[] CLASS_TERMS = Arrays.stream(values())
+                                                    .filter(DwcTerm::isClass)
+                                                    .toArray(DwcTerm[]::new);
 
   private final String groupName;
   public final String normQName;

@@ -30,13 +30,13 @@
   </distributionManagement>
 
   <properties>
-    <jdkLevel>1.8</jdkLevel>
+    <java.version>1.8</java.version>
     <main.basedir>${project.basedir}</main.basedir>
 
     <junit.version>5.6.3</junit.version>
     <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.30</slf4j.version>
-    <jackson.version>2.11.3</jackson.version>
+    <jackson.version>2.12.4</jackson.version>
   </properties>
 
   <developers>

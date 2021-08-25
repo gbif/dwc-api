@@ -57,12 +57,12 @@ public class DwcTermTest extends TermBaseTest<DwcTerm> {
   @Test
   public void testListByGroup() {
     List<DwcTerm> occurrenceTerms = DwcTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
-    assertEquals(22, occurrenceTerms.size());
-    assertEquals(22, new HashSet<>(occurrenceTerms).size());
+    assertEquals(27, occurrenceTerms.size());
+    assertEquals(27, new HashSet<>(occurrenceTerms).size());
 
     List<DwcTerm> organismTerms = DwcTerm.listByGroup(DwcTerm.GROUP_ORGANISM);
-    assertEquals(8, organismTerms.size());
-    assertEquals(8, new HashSet<>(organismTerms).size());
+    assertEquals(7, organismTerms.size());
+    assertEquals(7, new HashSet<>(organismTerms).size());
 
     List<DwcTerm> materialTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MATERIAL_SAMPLE);
     assertEquals(2, materialTerms.size());
@@ -81,20 +81,20 @@ public class DwcTermTest extends TermBaseTest<DwcTerm> {
     assertEquals(19, new HashSet<>(geologicalTerms).size());
 
     List<DwcTerm> identificationTerms = DwcTerm.listByGroup(DwcTerm.GROUP_IDENTIFICATION);
-    assertEquals(9, identificationTerms.size());
-    assertEquals(9, new HashSet<>(identificationTerms).size());
+    assertEquals(11, identificationTerms.size());
+    assertEquals(11, new HashSet<>(identificationTerms).size());
 
     List<DwcTerm> taxonTerms = DwcTerm.listByGroup(DwcTerm.GROUP_TAXON);
-    assertEquals(34, taxonTerms.size());
-    assertEquals(34, new HashSet<>(taxonTerms).size());
+    assertEquals(38, taxonTerms.size());
+    assertEquals(38, new HashSet<>(taxonTerms).size());
 
     List<DwcTerm> measurementTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MEASUREMENTORFACT);
     assertEquals(10, measurementTerms.size());
     assertEquals(10, new HashSet<>(measurementTerms).size());
 
     List<DwcTerm> relationshipTerms = DwcTerm.listByGroup(DwcTerm.GROUP_RESOURCERELATIONSHIP);
-    assertEquals(8, relationshipTerms.size());
-    assertEquals(8, new HashSet<>(relationshipTerms).size());
+    assertEquals(9, relationshipTerms.size());
+    assertEquals(9, new HashSet<>(relationshipTerms).size());
 
     List<DwcTerm> recordTerms = DwcTerm.listByGroup("Record");
     assertEquals(11, recordTerms.size());

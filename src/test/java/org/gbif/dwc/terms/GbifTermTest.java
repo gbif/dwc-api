@@ -61,8 +61,8 @@ public class GbifTermTest extends TermBaseTest<GbifTerm> {
     assertEquals(2, new HashSet<>(datasetTerms).size());
 
     List<GbifTerm> occurrenceTerms = GbifTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
-    assertEquals(13, occurrenceTerms.size());
-    assertEquals(13, new HashSet<>(occurrenceTerms).size());
+    assertEquals(12, occurrenceTerms.size());
+    assertEquals(12, new HashSet<>(occurrenceTerms).size());
 
     List<GbifTerm> locationTerms = GbifTerm.listByGroup(DwcTerm.GROUP_LOCATION);
     assertEquals(6, locationTerms.size());
@@ -81,8 +81,8 @@ public class GbifTermTest extends TermBaseTest<GbifTerm> {
     assertEquals(10, new HashSet<>(profileTerms).size());
 
     List<GbifTerm> taxonTerms = GbifTerm.listByGroup(DwcTerm.GROUP_TAXON);
-    assertEquals(16, taxonTerms.size());
-    assertEquals(16, new HashSet<>(taxonTerms).size());
+    assertEquals(15, taxonTerms.size());
+    assertEquals(15, new HashSet<>(taxonTerms).size());
 
     List<GbifTerm> crawlingTerms = GbifTerm.listByGroup(GbifTerm.GROUP_CRAWLING);
     assertEquals(3, crawlingTerms.size());
