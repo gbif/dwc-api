@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.gbif</groupId>
     <artifactId>motherpom</artifactId>
-    <version>50</version>
+    <version>54</version>
   </parent>
 
   <artifactId>dwc-api</artifactId>
@@ -25,12 +25,11 @@
   <distributionManagement>
     <site>
       <id>gh-pages</id>
-      <url>http://gbif.github.io/${project.artifactId}/</url>
+      <url>https://gbif.github.io/${project.artifactId}/</url>
     </site>
   </distributionManagement>
 
   <properties>
-    <java.version>1.8</java.version>
     <main.basedir>${project.basedir}</main.basedir>
 
     <junit.version>5.6.3</junit.version>
@@ -50,7 +49,7 @@
   <repositories>
     <repository>
       <id>gbif-all</id>
-      <url>http://repository.gbif.org/content/groups/gbif</url>
+      <url>https://repository.gbif.org/content/groups/gbif</url>
     </repository>
   </repositories>
 
@@ -60,26 +59,6 @@
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>spotless-check</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <java>
-            <licenseHeader>
-              <file>${main.basedir}/gbif-license-header</file>
-            </licenseHeader>
-            <removeUnusedImports />
-            <importOrder>
-              <file>${main.basedir}/gbif.importorder</file>
-            </importOrder>
-          </java>
-        </configuration>
       </plugin>
     </plugins>
 
