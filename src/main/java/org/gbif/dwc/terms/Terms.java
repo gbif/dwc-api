@@ -15,8 +15,13 @@
  */
 package org.gbif.dwc.terms;
 
+import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Utility methods for {@link Term}
@@ -24,6 +29,7 @@ import java.util.regex.Pattern;
 public class Terms {
 
   private static final Pattern NULL_PATTERN = Pattern.compile("^\\s*(\\\\N|\\\\?NULL)\\s*$");
+  private static final List<Term> VOCABULARY_BACKED_TERMS = findVocabularyBackedTerms();
 
   /**
    * static utility class
@@ -34,8 +40,6 @@ public class Terms {
   /**
    * Tries various terms in given order until it finds a non empty value.
    *
-   * @param record
-   * @param terms
    * @return value or null
    */
   public static String getValueOfFirst(Map<Term, String> record, Term... terms) {
@@ -55,7 +59,7 @@ public class Terms {
       return null;
     }
     str = str.trim();
-    if(str.isEmpty()){
+    if (str.isEmpty()) {
       return null;
     }
     return str;
@@ -63,11 +67,52 @@ public class Terms {
 
   /**
    * Check if the value provided should be considered "blank" in the context of a {@link Term} value.
-   *
-   * @param termValue
-   * @return
    */
-  public static boolean isTermValueBlank(String termValue){
+  public static boolean isTermValueBlank(String termValue) {
     return termValue == null || termValue.isEmpty() || NULL_PATTERN.matcher(termValue).find();
+  }
+
+  /**
+   * Returns all the {@link Term} that are annotated with {@link Vocabulary}.
+   */
+  public static List<Term> getVocabularyBackedTerms() {
+    return VOCABULARY_BACKED_TERMS;
+  }
+
+  private static List<Term> findVocabularyBackedTerms() {
+    return Stream.of(getTerms(AcefTerm.class),
+                     getTerms(AcTerm.class),
+                     getTerms(DcTerm.class),
+                     getTerms(DwcaTerm.class),
+                     getTerms(DwcTerm.class),
+                     getTerms(GadmTerm.class),
+                     getTerms(GbifInternalTerm.class),
+                     getTerms(GbifTerm.class),
+                     getTerms(IucnTerm.class),
+                     getTerms(XmpRightsTerm.class),
+                     getTerms(XmpTerm.class),
+                     getTerms(GbifTerm.class))
+      .flatMap(Arrays::stream)
+      .filter(Terms::isVocabulary)
+      .collect(Collectors.toList());
+  }
+
+  private static <T extends Term> Term[] getTerms(Class<T> term) {
+    return term.getEnumConstants();
+  }
+
+  /**
+   * @return true if the term is a handled/annotated as Vocabulary.
+   */
+  public static boolean isVocabulary(Term term) {
+    return term instanceof Enum && hasTermAnnotation(term, Vocabulary.class);
+  }
+
+  private static boolean hasTermAnnotation(Term term, Class<? extends Annotation> annotation) {
+    try {
+      return term.getClass().getField(((Enum<?>) term).name()).isAnnotationPresent(annotation);
+    } catch (NoSuchFieldException ex) {
+      throw new IllegalArgumentException(ex);
+    }
   }
 }
