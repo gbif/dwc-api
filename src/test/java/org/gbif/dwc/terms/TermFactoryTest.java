@@ -164,7 +164,8 @@ public class TermFactoryTest {
     assertEquals(UnknownTerm.class, eva.getClass());
     assertEquals("http://unknown.org/tim/Eva", eva.qualifiedName());
     assertEquals("http://unknown.org", tim.namespace().toString());
-    assertEquals("http://unknown.org/tim/Eva", eva.prefixedName());
+    assertEquals("http://unknown.org/tim/Eva", eva.qualifiedName());
+    assertEquals("tim:Eva", eva.prefixedName());
     assertEquals("Eva", eva.simpleName());
 
     assertNotEquals(hallo, tim);

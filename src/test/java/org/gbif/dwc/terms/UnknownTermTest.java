@@ -59,7 +59,9 @@ public class UnknownTermTest {
 
   @Test
   public void testPrefixedName() {
-    assertEquals("http://unknown.org/gbif/verbatimLabel", UnknownTerm.build("gbif:verbatimLabel").qualifiedName());
+    assertEquals("gbif:verbatimLabel", UnknownTerm.build("gbif:verbatimLabel").prefixedName());
+    assertEquals("unknown:verbatimLabel", UnknownTerm.build("unknown:verbatimLabel").prefixedName());
+    assertEquals("unknown:fooBar", UnknownTerm.build("fooBar").prefixedName());
   }
 
   @Test
@@ -73,7 +75,7 @@ public class UnknownTermTest {
     me = UnknownTerm.build("http://me.org/me");
     assertEquals("http://me.org/me", me.qualifiedName());
 
-    me = new UnknownTerm(URI.create("http://me.org/me"), "me", false);
+    me = new UnknownTerm(URI.create("http://me.org/me"), "me", "me", false);
     assertEquals("http://me.org/me", me.qualifiedName());
   }
 
@@ -109,7 +111,6 @@ public class UnknownTermTest {
   @Test
   public void testSet() {
     Set<Term> terms = new HashSet<>();
-    terms.add(UnknownTerm.build("http://me.com/#me"));
     terms.add(UnknownTerm.build("http://me.com/me"));
     terms.add(UnknownTerm.build("http://me.org/me"));
     terms.add(UnknownTerm.build("http://me.org/me", "oscar"));

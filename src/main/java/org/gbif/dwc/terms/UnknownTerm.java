@@ -20,26 +20,48 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UnknownTerm implements Term, Serializable {
 
   private final URI uri;
   private final String name;
+  private final String prefix;
   private final boolean isClass;
 
-  private static final String NS = "http://unknown.org/";
+  private static final String NS = "unknown.org";
+  private static final String SCHEME = "http://";
+  private static final String URL = SCHEME + NS + "/";
+  private static final String PREFIX = "unknown";
+  private static final Pattern PREFIX_PATTERN = Pattern.compile("^([a-zA-Z0-9]+):([a-zA-Z0-9._+# -]+)$");
 
   public static UnknownTerm build(String name){
     return build(name, false);
   }
 
+  private static URI unknownURI(String name) {
+    return URI.create(URL + name);
+  }
+
   public static UnknownTerm build(String name, boolean isClass){
+    Matcher m = PREFIX_PATTERN.matcher(name);
+    if (m.find()) {
+      if (m.group(1).equalsIgnoreCase(PREFIX)) {
+        // unknown:
+        return new UnknownTerm(unknownURI(m.group(2)), PREFIX, m.group(2), isClass);
+      } else {
+        return new UnknownTerm(unknownURI(m.group(1) + "/" + m.group(2)), m.group(1), m.group(2), isClass);
+      }
+    }
     URI uri = URI.create(name);
     if (uri.getAuthority() != null) {
       return new UnknownTerm(uri, isClass);
 
     } else if (uri.getScheme() != null) {
-      return build(NS + uri.getScheme() + "/" + uri.getSchemeSpecificPart(), isClass);
+      String scheme = uri.getScheme().equalsIgnoreCase(PREFIX) ? "" : uri.getScheme() + "/";
+      return build(URL + scheme + uri.getSchemeSpecificPart(), isClass);
 
     } else {
       if (!name.contains("/") && !name.contains("#")) {
@@ -48,7 +70,7 @@ public class UnknownTerm implements Term, Serializable {
         } catch (UnsupportedEncodingException e) {
         }
       }
-      return build(NS + name, isClass);
+      return build(URL +name, isClass);
     }
   }
 
@@ -57,10 +79,10 @@ public class UnknownTerm implements Term, Serializable {
   }
 
   public static UnknownTerm build(String qualifiedName, String simpleName, boolean isClass){
-    return new UnknownTerm(URI.create(qualifiedName), simpleName, isClass);
+    return new UnknownTerm(URI.create(qualifiedName), null, simpleName, isClass);
   }
 
-  public UnknownTerm(URI uri, String name, boolean isClass) {
+  public UnknownTerm(URI uri, String prefix, String name, boolean isClass) {
     this.isClass = isClass;
     if (uri == null || !uri.isAbsolute()) {
       throw new IllegalArgumentException("The qualified name URI must be an absolute URI");
@@ -70,19 +92,25 @@ public class UnknownTerm implements Term, Serializable {
     }
     this.uri = uri;
     this.name = name;
+    this.prefix = prefix != null ? prefix : (
+        uri.getAuthority().equalsIgnoreCase(NS) ? PREFIX : null
+    );
   }
 
   public UnknownTerm(URI uri, boolean isClass) {
+    this(uri, null, extractName(uri), isClass);
+  }
+
+  private static String extractName(URI uri) {
     if (uri == null || !uri.isAbsolute()) {
       throw new IllegalArgumentException("The qualified name URI is required and must be an absolute URI");
     }
 
-    String name = null;
     if (uri.getFragment() != null) {
-      name = uri.getFragment();
+      return uri.getFragment();
 
     } else if (uri.getPath() != null) {
-      name = uri.getPath();
+      String name = uri.getPath();
       // remove trailing and ending slash if existing
       if (name.endsWith("/")) {
         name = name.substring(0, name.length() - 1);
@@ -95,16 +123,11 @@ public class UnknownTerm implements Term, Serializable {
       if (pos > 0) {
         name = name.substring(pos + 1);
       }
+      return name;
 
     } else {
       throw new IllegalArgumentException("The qualified name URI must have a path or fragment to automatically derive a simple name");
     }
-    if (name == null || name.isEmpty()) {
-      throw new IllegalArgumentException("The simple name is required");
-    }
-    this.uri = uri;
-    this.name = name;
-    this.isClass = isClass;
   }
 
   @Override
@@ -124,12 +147,22 @@ public class UnknownTerm implements Term, Serializable {
 
   @Override
   public String toString() {
-    return qualifiedName();
+    return prefixedName();
   }
 
   @Override
   public String prefixedName() {
-    return qualifiedName();
+    return prefix != null ? prefix + ":" + simpleName() : qualifiedName();
+  }
+
+  @Override
+  public String prefix() {
+    return prefix;
+  }
+
+  @Override
+  public URI namespace() {
+    return URI.create(uri.getScheme() + "://" + uri.getAuthority());
   }
 
   @Override
@@ -144,16 +177,6 @@ public class UnknownTerm implements Term, Serializable {
 
   @Override
   public int hashCode() {
-    return qualifiedName().hashCode();
-  }
-
-  @Override
-  public String prefix() {
-    return null;
-  }
-
-  @Override
-  public URI namespace() {
-    return URI.create(uri.getScheme() + "://" + uri.getAuthority());
+    return Objects.hash(uri, name, prefix, isClass);
   }
 }
