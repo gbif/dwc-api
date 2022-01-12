@@ -13,7 +13,7 @@
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> *</em>
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> *     <a href="http://www.apache.org/licenses/LICENSE-2." target="alexandria_uri">http://www.apache.org/licenses/LICENSE-2.</a>0</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> *     <a href="http://www.apache.org/licenses/LICENSE-2.0" target="alexandria_uri">http://www.apache.org/licenses/LICENSE-2.0</a></em>
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> * Unless required by applicable law or agreed to in writing, software</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_comment"> * distributed under the License is distributed on an "AS IS" BASIS,</em>
@@ -28,7 +28,7 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> enum <a href="../../../../org/gbif/dwc/terms/GbifTerm.html">GbifTerm</a> <strong class="jxr_keyword">implements</strong> Term, AlternativeNames, Serializable {
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> enum <a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a> <strong class="jxr_keyword">implements</strong> Term, AlternativeNames, Serializable {
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>    <em class="jxr_comment">// row types</em>
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>    Description(GbifTerm.GROUP_ROW_TYPE),
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>    Distribution(GbifTerm.GROUP_ROW_TYPE),
@@ -301,7 +301,7 @@
 <a class="jxr_linenumber" name="L293" href="#L293">293</a>   <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L294" href="#L294">294</a> <em class="jxr_javadoccomment">   * Lists all GBIF terms in taxon group.</em>
 <a class="jxr_linenumber" name="L295" href="#L295">295</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L296" href="#L296">296</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../org/gbif/dwc/terms/GbifTerm.html">GbifTerm</a>[] TAXONOMIC_TERMS =
+<a class="jxr_linenumber" name="L296" href="#L296">296</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a>[] TAXONOMIC_TERMS =
 <a class="jxr_linenumber" name="L297" href="#L297">297</a>   {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
 <a class="jxr_linenumber" name="L298" href="#L298">298</a>    GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
 <a class="jxr_linenumber" name="L299" href="#L299">299</a>    GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,
@@ -311,7 +311,7 @@
 <a class="jxr_linenumber" name="L303" href="#L303">303</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> isDeprecated;
 <a class="jxr_linenumber" name="L304" href="#L304">304</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> String[] normAlts;
 <a class="jxr_linenumber" name="L305" href="#L305">305</a> 
-<a class="jxr_linenumber" name="L306" href="#L306">306</a>   <a href="../../../../org/gbif/dwc/terms/GbifTerm.html">GbifTerm</a>(String groupName, String... alternatives) {
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>   <a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a>(String groupName, String... alternatives) {
 <a class="jxr_linenumber" name="L307" href="#L307">307</a>     <strong class="jxr_keyword">this</strong>.groupName = groupName;
 <a class="jxr_linenumber" name="L308" href="#L308">308</a>     <strong class="jxr_keyword">this</strong>.normAlts = alternatives;
 <a class="jxr_linenumber" name="L309" href="#L309">309</a>     <strong class="jxr_keyword">boolean</strong> deprecatedAnnotationPresent = false;
@@ -359,7 +359,7 @@
 <a class="jxr_linenumber" name="L351" href="#L351">351</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L352" href="#L352">352</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;GbifTerm&gt; listByGroup(String group) {
 <a class="jxr_linenumber" name="L353" href="#L353">353</a>     List&lt;GbifTerm&gt; terms = <strong class="jxr_keyword">new</strong> ArrayList&lt;GbifTerm&gt;();
-<a class="jxr_linenumber" name="L354" href="#L354">354</a>     <strong class="jxr_keyword">for</strong> (GbifTerm t : GbifTerm.values()) {
+<a class="jxr_linenumber" name="L354" href="#L354">354</a>     <strong class="jxr_keyword">for</strong> (<a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a> t : GbifTerm.values()) {
 <a class="jxr_linenumber" name="L355" href="#L355">355</a>       <strong class="jxr_keyword">if</strong> (t.getGroup().equalsIgnoreCase(group)) {
 <a class="jxr_linenumber" name="L356" href="#L356">356</a>         terms.add(t);
 <a class="jxr_linenumber" name="L357" href="#L357">357</a>       }
@@ -398,6 +398,6 @@
 <a class="jxr_linenumber" name="L390" href="#L390">390</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2021 <a href="https://www.gbif.org">Global Biodiversity Information Facility</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2022 <a href="https://www.gbif.org">Global Biodiversity Information Facility</a>. All rights reserved.</div>
 </body>
 </html>
