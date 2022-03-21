@@ -97,22 +97,31 @@ public class UnknownTermTest {
     Term me3 = UnknownTerm.build("http://me.org/me");
 
     assertNotEquals(me1, me2);
+    assertNotEquals(me1.hashCode(), me2.hashCode());
     assertNotEquals(me1, me3);
+    assertNotEquals(me1.hashCode(), me3.hashCode());
     assertNotEquals(me2, me3);
+    assertNotEquals(me2.hashCode(), me3.hashCode());
 
     // only qualified names are relevant when deciding if a term is equal
     Term me4 = UnknownTerm.build("http://me.org/me", "oscar");
     assertNotEquals(me1, me4);
+    assertNotEquals(me1.hashCode(), me4.hashCode());
     assertNotEquals(me2, me4);
+    assertNotEquals(me2.hashCode(), me4.hashCode());
     assertEquals(me3, me4);
-
+    assertEquals(me3.hashCode(), me4.hashCode());
   }
 
   @Test
   public void testSet() {
     Set<Term> terms = new HashSet<>();
+    terms.add(UnknownTerm.build("http://me.com/#me"));
     terms.add(UnknownTerm.build("http://me.com/me"));
     terms.add(UnknownTerm.build("http://me.org/me"));
+    // duplicate
+    terms.add(UnknownTerm.build("http://me.org/me"));
+    // same qualified name, so it should be ignored!
     terms.add(UnknownTerm.build("http://me.org/me", "oscar"));
     terms.add(DcTerm.title);
     terms.add(DcElement.title);

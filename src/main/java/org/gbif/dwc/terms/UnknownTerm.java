@@ -177,6 +177,6 @@ public class UnknownTerm implements Term, Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(uri, name, prefix, isClass);
+    return qualifiedName().hashCode();
   }
 }
