@@ -270,7 +270,10 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   repatriated(DwcTerm.GROUP_OCCURRENCE),
 
   // Calculated relative organism quantity, based on organism and sample measure types
-  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE);
+  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),
+
+  // The type for event records
+  eventType(DwcTerm.GROUP_EVENT);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
