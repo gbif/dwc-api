@@ -38,7 +38,11 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   institutionKey,
   hostingOrganizationKey,
   isInCluster,
-  dwcaExtension;
+  dwcaExtension,
+  datasetTitle,
+
+  //Experimental Terms for Events indexing
+  parentEventGbifId;
 
 
   private static final String PREFIX = "gbint";
