@@ -106,7 +106,7 @@
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">   * @param altPrefixes alternative prefixes to be used to register simple prefixed term names</em>
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>   <strong class="jxr_keyword">public</strong> &lt;T <strong class="jxr_keyword">extends</strong> Enum &amp; <a name="Term" href="../../../../org/gbif/dwc/terms/Term.html#Term">Term</a> &amp; AlternativeNames&gt; <strong class="jxr_keyword">void</strong> registerTermEnum(Class&lt;T&gt; termClass, String ... altPrefixes) {
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> &lt;T <strong class="jxr_keyword">extends</strong> Enum &amp; <a name="Term" href="../../../../org/gbif/dwc/terms/Term.html#Term">Term</a> &amp; AlternativeNames&gt; <strong class="jxr_keyword">void</strong> registerTermEnum(Class&lt;T&gt; termClass, String ... altPrefixes) {
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>     <strong class="jxr_keyword">if</strong> (registeredEnumClasses.contains(termClass)) {
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>       LOG.debug(<span class="jxr_string">"{} is already registered"</span>, termClass);
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>     } <strong class="jxr_keyword">else</strong> {
