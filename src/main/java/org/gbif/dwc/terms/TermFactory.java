@@ -98,7 +98,7 @@ public class TermFactory {
    *
    * @param altPrefixes alternative prefixes to be used to register simple prefixed term names
    */
-  public <T extends Enum & Term & AlternativeNames> void registerTermEnum(Class<T> termClass, String ... altPrefixes) {
+  public synchronized <T extends Enum & Term & AlternativeNames> void registerTermEnum(Class<T> termClass, String ... altPrefixes) {
     if (registeredEnumClasses.contains(termClass)) {
       LOG.debug("{} is already registered", termClass);
     } else {
