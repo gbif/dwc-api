@@ -113,6 +113,11 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   distanceAboveSurfaceAccuracy(DwcTerm.GROUP_LOCATION),
 
   /**
+   * The distance in metres from a known centroid, e.g. a country centroid.
+   */
+  distanceFromCentroidInMeters(DwcTerm.GROUP_LOCATION),
+
+  /**
    * Any issue found during processing and interpretation or the record.
    * See <a href="http://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/OccurrenceIssue.html">OccurrenceIssue enumeration</a> for possible values.
    */
