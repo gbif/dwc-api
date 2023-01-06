@@ -15,18 +15,17 @@
  */
 package org.gbif.dwc.terms;
 
+import com.google.common.reflect.ClassPath;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TermFactoryTest {
 
@@ -57,6 +56,20 @@ public class TermFactoryTest {
     for (Term t : terms) {
       assertFalse(names.contains(t.simpleName()), "Duplicate simple name " + t.simpleName());
       names.add(t.simpleName());
+    }
+  }
+
+  @Test
+  public void testCompleteness() throws Exception {
+    for (ClassPath.ClassInfo info : ClassPath.from(getClass().getClassLoader()).getTopLevelClasses(DwcTerm.class.getPackage().getName())) {
+      Class<?> cl = info.load();
+      if (cl.isEnum() && Term.class.isAssignableFrom(cl)) {
+        Class<Term> tcl = (Class<Term>) cl;
+        for (Term t : tcl.getEnumConstants()) {
+          assertEquals(t, TF.findTerm(t.qualifiedName()), "Unknown term " + t.qualifiedName());
+          assertEquals(t, TF.findTerm(t.prefixedName()), "Unknown term " + t.prefixedName());
+        }
+      }
     }
   }
 
