@@ -63,7 +63,6 @@ public class TermFactory {
 
   private void loadKnownTerms() {
     registerTermEnum(DwcTerm.class);
-    registerTermEnum(DwcaTerm.class);
     registerTermEnum(DcTerm.class, "dct");
     registerTermEnum(GbifTerm.class);
     registerTermEnum(GbifInternalTerm.class);
@@ -73,6 +72,7 @@ public class TermFactory {
     registerTermEnum(AcTerm.class);
     registerTermEnum(PlaziTerm.class);
     registerTermEnum(GadmTerm.class);
+    registerTermEnum(DwcaTerm.class);
     registerTermEnum(XmpTerm.class, "adobe");
     registerTermEnum(XmpRightsTerm.class, "xmp", "adobe"); // the same as above, but luckily different simple term names
   
