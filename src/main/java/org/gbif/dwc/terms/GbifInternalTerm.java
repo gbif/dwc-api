@@ -32,7 +32,6 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   unitQualifier,
   networkKey,
   installationKey,
-  projectId,
   programmeAcronym,
   collectionKey,
   institutionKey,

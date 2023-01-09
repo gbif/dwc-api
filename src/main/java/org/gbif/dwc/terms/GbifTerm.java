@@ -278,7 +278,9 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
   // The type for event records
-  @Vocabulary eventType(DwcTerm.GROUP_EVENT);
+  @Vocabulary eventType(DwcTerm.GROUP_EVENT),
+
+  projectId(DwcTerm.GROUP_OCCURRENCE);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
