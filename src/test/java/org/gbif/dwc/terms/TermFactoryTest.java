@@ -15,15 +15,18 @@
  */
 package org.gbif.dwc.terms;
 
+import com.google.common.collect.Sets;
 import com.google.common.reflect.ClassPath;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,9 +50,16 @@ public class TermFactoryTest {
     addTerms(names, GbifInternalTerm.values());
     addTerms(names, IucnTerm.values());
 
-    addTerms(names, AcTerm.values());
+    addTerms(names, termsBut(AcTerm.values(), AcTerm.Multimedia, AcTerm.relatedResourceID));
     addTerms(names, XmpTerm.values());
     addTerms(names, XmpRightsTerm.values());
+  }
+
+  private Term[] termsBut(Term[] terms, Term... exclude) {
+    Set<Term> excl = Sets.newHashSet(exclude);
+    return Arrays.stream(terms)
+                 .filter(t -> !excl.contains(t))
+                 .collect(Collectors.toList()).toArray(new Term[]{});
   }
 
   private void addTerms(Set<String> names, Term[] terms) {

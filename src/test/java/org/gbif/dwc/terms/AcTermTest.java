@@ -15,9 +15,31 @@
  */
 package org.gbif.dwc.terms;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AcTermTest extends TermBaseTest<AcTerm> {
 
   public AcTermTest() {
-    super(AcTerm.class);
+    super(AcTerm.class, new String[]{"_","-"}, true);
+  }
+
+  @Test
+  public void classTerms() {
+    int counter = 0;
+    int classCounter = 0;
+
+    for (AcTerm t : AcTerm.values()) {
+      counter++;
+      if (t.isClass()) {
+        classCounter++;
+      }
+    }
+    assertEquals(3, classCounter);
+    assertEquals(71, counter);
+
+    assertEquals(AcTerm.Multimedia, TermFactory.instance().findTerm("ac:Multimedia", true));
+    assertEquals(GbifTerm.Multimedia, TermFactory.instance().findTerm("Multimedia", true));
   }
 }

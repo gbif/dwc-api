@@ -18,14 +18,18 @@ package org.gbif.dwc.terms;
 import java.net.URI;
 
 /**
- * All Audubon Core terms with namespace http://rs.tdwg.org/ac/terms/.
+ * All Audiovisual Core terms with namespace http://rs.tdwg.org/ac/terms/.
  * See
  * <ul>
- *   <li>http://terms.tdwg.org/wiki/Audubon_Core_Term_List</li>
- *   <li>http://terms.tdwg.org/wiki/Audubon_Core</li>
+ *   <li>http://rs.tdwg.org/ac/doc/termlist/2022-02-23 verison implemented here</li>
+ *   <li>https://ac.tdwg.org/termlist/</li>
  * </ul>
  */
 public enum AcTerm implements Term, AlternativeNames {
+
+  Multimedia, // this row type term is not defined in the AC termlist, but used in the GBIF extension and required for DwC-A
+  RegionOfInterest,
+  ServiceAccessPoint,
 
   accessURI,
   associatedObservationReference,
@@ -39,14 +43,24 @@ public enum AcTerm implements Term, AlternativeNames {
   comments,
   derivedFrom,
   digitizationDate,
+  endTime,
+  endTimestamp,
+  frameRate,
+  freqHigh,
+  freqLow,
   fundingAttribution,
   furtherInformationURL,
-  hasServiceAccessPoint,
   hashFunction,
   hashValue,
+  hasROI,
+  hasServiceAccessPoint,
+  heightFrac,
   IDofContainingCollection,
+  isROIOf,
   licenseLogoURL,
   licensingException,
+  mediaDuration,
+  mediaSpeed,
   metadataCreator,
   metadataCreatorLiteral,
   metadataLanguage,
@@ -59,16 +73,20 @@ public enum AcTerm implements Term, AlternativeNames {
   providerID,
   providerLiteral,
   providerManagedID,
-// we leave this AC term out as the simple name exists already in DwC!
-//  relatedResourceID,
+  radius,
+  relatedResourceID,
   resourceCreationTechnique,
   reviewer,
   reviewerComments,
   reviewerLiteral,
   serviceExpectation,
+  startTime,
+  startTimestamp,
   subjectCategoryVocabulary,
   subjectOrientation,
+  subjectOrientationLiteral,
   subjectPart,
+  subjectPartLiteral,
   subtype,
   subtypeLiteral,
   tag,
@@ -77,7 +95,10 @@ public enum AcTerm implements Term, AlternativeNames {
   timeOfDay,
   variant,
   variantDescription,
-  variantLiteral;
+  variantLiteral,
+  widthFrac,
+  xFrac,
+  yFrac;
 
   private static final String PREFIX = "ac";
   private static final String NS = "http://rs.tdwg.org/ac/terms/";
@@ -100,7 +121,7 @@ public enum AcTerm implements Term, AlternativeNames {
 
   @Override
   public boolean isClass() {
-    return false;
+    return this == Multimedia || this == RegionOfInterest || this == ServiceAccessPoint;
   }
 
   @Override
