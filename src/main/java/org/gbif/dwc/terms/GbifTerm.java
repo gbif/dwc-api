@@ -22,14 +22,59 @@ import java.util.List;
 
 public enum GbifTerm implements Term, AlternativeNames, Serializable {
   // row types
+
+  /**
+   * The <a href="http://rs.gbif.org/terms/1.0/Description">GBIF Taxon Description</a>
+   * extension row type.
+   */
   Description(GbifTerm.GROUP_ROW_TYPE),
+
+  /**
+   * The <a href="http://rs.gbif.org/terms/1.0/Distribution">GBIF Species Distribution</a>
+   * extension row type.
+   */
   Distribution(GbifTerm.GROUP_ROW_TYPE),
+
+  /**
+   * The <a href="http://rs.gbif.org/terms/1.0/Identifier">GBIF Alternative Identifiers</a>
+   * extension row type.
+   */
   Identifier(GbifTerm.GROUP_ROW_TYPE),
+
+  /**
+   * The deprecated <a href="http://rs.gbif.org/terms/1.0/Image">GBIF Simple Images</a>
+   * extension row type.
+   */
   Image(GbifTerm.GROUP_ROW_TYPE, "Images"),
+
+  /**
+   * The <a href="http://rs.gbif.org/terms/1.0/References">GBIF Literature References</a>
+   * extension row type.
+   */
   Reference(GbifTerm.GROUP_ROW_TYPE, "References"),
+
+  /**
+   * The <a href="http://rs.gbif.org/terms/1.0/SpeciesProfile">GBIF Species Profile</a>
+   * extension row type.
+   */
   SpeciesProfile(GbifTerm.GROUP_ROW_TYPE, "SpeciesMiniProfile", "SpeciesInfo", "SpeciesData", "SpeciesFactsheet"),
+
+  /**
+   * The <a href="http://rs.gbif.org/terms/1.0/TypesAndSpecimen">GBIF Types and Specimen</a>
+   * extension row type.
+   */
   TypesAndSpecimen(GbifTerm.GROUP_ROW_TYPE, "Specimen", "Types", "TypeDesignation"),
+
+  /**
+   * The <a href="http://rs.gbif.org/terms/1.0/VernacularNames">GBIF Vernacular Names</a>
+   * extension row type.
+   */
   VernacularName(GbifTerm.GROUP_ROW_TYPE, "VernacularNames", "Vernacular", "Vernaculars"),
+
+  /**
+   * The <a href="http://rs.gbif.org/terms/1.0/Multimedia">GBIF Simple Multimedia</a>
+   * extension row type.
+   */
   Multimedia(GbifTerm.GROUP_ROW_TYPE),
 
   /**
@@ -38,7 +83,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   datasetKey(GbifTerm.GROUP_DATASET),
 
   /**
-   * The ISO code of the country of the organization that publishes the dataset to which the occurrence belongs.
+   * The ISO 3166 2-letter code of the country of the organization that publishes the dataset to which the occurrence belongs.
    */
   publishingCountry(GbifTerm.GROUP_DATASET),
 
@@ -48,18 +93,18 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   gbifID(DwcTerm.GROUP_OCCURRENCE),
 
   /**
-   * Timestamp of the last time the record has been (re)interpreted by GBIF.
+   * Timestamp of the last time the record was (re)interpreted by GBIF.
    */
   lastInterpreted(DwcTerm.GROUP_OCCURRENCE),
 
   /**
-   * The uncertainty radius for lat/lon in decimal degrees.
+   * The uncertainty radius for the latitude and longitude in decimal degrees.
    */
   @Deprecated
   coordinateAccuracy(DwcTerm.GROUP_OCCURRENCE),
 
   /**
-   * Elevation in meters above sea level (altitude).
+   * Elevation in metres above sea level (altitude).
    * <p>
    * The elevation is the absolute vertical position of the observed location (z-coordinate).
    * If depth is given or not will not impact the 3-dimensional position.
@@ -68,24 +113,24 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * </p>
    * <p>
    * If minimum and maximum values are given the elevation is calculated using the equation:
-   * (minimumElevationInMeters + maximumElevationInMeters) / 2.
-   * For consistency and ease of use GBIF decided to always use a value in meters plus it's accurracy instead of
+   * <code>(minimumElevationInMeters + maximumElevationInMeters) / 2</code>.
+   * For consistency and ease of use GBIF decided to always use a value in metres plus its accuracy instead of
    * min/max values which are sometimes used in Darwin Core. See also depth & distanceAboveSurface.
    * </p>
    */
   elevation(DwcTerm.GROUP_LOCATION),
 
   /**
-   * Elevation accuracy is the uncertainty for the elevation in meters.
+   * Elevation accuracy is the uncertainty for the elevation in metres.
    * <p>
-   * The elevation accuracy is calculated using the equation: (maximumElevationInMeters - minimumElevationInMeters) / 2
+   * The elevation accuracy is calculated using the equation: <code>(maximumElevationInMeters - minimumElevationInMeters) / 2</code>
    * in case a minimum and maximum verbatim value is given.
    * </p>
    */
   elevationAccuracy(DwcTerm.GROUP_LOCATION),
 
   /**
-   * Depth in meters below the surface.
+   * Depth in metres below the surface.
    * <p>
    * Complimentary and relative to elevation, depth indicates the distance to the earth surface, whether that is water
    * or ground.
@@ -93,23 +138,34 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * an elevation of 1900.
    * </p>
    * <p>
-   * The depth is calculated using the equation: (minimumDepthInMeters + maximumDepthInMeters) / 2.
-   * For consistency and ease of use GBIF decided to always use a value in meters plus it's accurracy instead of
+   * The depth is calculated using the equation: <code>(minimumDepthInMeters + maximumDepthInMeters) / 2</code>.
+   * For consistency and ease of use GBIF decided to always use a value in meters plus it's accuracy instead of
    * min/max values which are sometimes used in Darwin Core. See also elevation & distanceAboveSurface.
    * </p>
    */
   depth(DwcTerm.GROUP_LOCATION),
 
   /**
-   * Depth accuracy is the uncertainty for the depth in meters.
+   * Depth accuracy is the uncertainty for the depth in metres.
    * <p>
-   * The depth accuracy is calculated using the equation: (maximumDepthInMeters - minimumDepthInMeters) / 2
+   * The depth accuracy is calculated using the equation: <code>(maximumDepthInMeters - minimumDepthInMeters) / 2</code>
    * in case a minimum and maximum verbatim value is given.
    * </p>
    */
   depthAccuracy(DwcTerm.GROUP_LOCATION),
 
+  /**
+   * Replaced by Darwin Core terms <a href="http://rs.tdwg.org/dwc/terms/minimumDistanceAboveSurfaceInMeters">dwc:minimumDistanceAboveSurfaceInMeters</a>
+   * and <a href="http://rs.tdwg.org/dwc/terms/maximumDistanceAboveSurfaceInMeters">dwc:maximumDistanceAboveSurfaceInMeters</a>.
+   */
+  @Deprecated
   distanceAboveSurface(DwcTerm.GROUP_LOCATION),
+
+  /**
+   * Replaced by Darwin Core terms <a href="http://rs.tdwg.org/dwc/terms/minimumDistanceAboveSurfaceInMeters">dwc:minimumDistanceAboveSurfaceInMeters</a>
+   * and <a href="http://rs.tdwg.org/dwc/terms/maximumDistanceAboveSurfaceInMeters">dwc:maximumDistanceAboveSurfaceInMeters</a>.
+   */
+  @Deprecated
   distanceAboveSurfaceAccuracy(DwcTerm.GROUP_LOCATION),
 
   /**
@@ -119,7 +175,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
 
   /**
    * Any issue found during processing and interpretation or the record.
-   * See <a href="http://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/OccurrenceIssue.html">OccurrenceIssue enumeration</a> for possible values.
+   * See <a href="https://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/OccurrenceIssue.html">OccurrenceIssue enumeration</a> for possible values.
    */
   issue(DwcTerm.GROUP_OCCURRENCE),
 
@@ -127,9 +183,11 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * The media type given as Dublin Core type values, in particular StillImage, MovingImage or Sound.
    */
   mediaType(DwcTerm.GROUP_OCCURRENCE),
+
   // experimental Occurrence properties
   verbatimLabel(DwcTerm.GROUP_OCCURRENCE),
   infraspecificMarker(DwcTerm.GROUP_OCCURRENCE),
+
   // Types and Specimen checklist extension
   typeDesignatedBy(DwcTerm.GROUP_OCCURRENCE),
   typeDesignationType(DwcTerm.GROUP_OCCURRENCE),
@@ -212,6 +270,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * The canonical name without authorship of the accepted species.
    */
   species(DwcTerm.GROUP_TAXON),
+
   // experimental Taxon properties
   canonicalName(DwcTerm.GROUP_TAXON),
   nameType(DwcTerm.GROUP_TAXON),
@@ -270,14 +329,18 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   numberOfOccurrences(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),
 
   /**
-   * Boolean indicating if the publishing country is different
+   * Boolean indicating if the publishing country is different to the location country.
    */
   repatriated(DwcTerm.GROUP_OCCURRENCE),
 
-  // Calculated relative organism quantity, based on organism and sample measure types
+  /*
+   * Calculated relative organism quantity, based on organism and sample measure types
+   */
   relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
-  // The type for event records
+  /**
+   * The type for event records.
+   */
   @Vocabulary eventType(DwcTerm.GROUP_EVENT),
 
   projectId(DwcTerm.GROUP_OCCURRENCE);
