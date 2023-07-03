@@ -185,7 +185,6 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   mediaType(DwcTerm.GROUP_OCCURRENCE),
 
   // experimental Occurrence properties
-  verbatimLabel(DwcTerm.GROUP_OCCURRENCE),
   infraspecificMarker(DwcTerm.GROUP_OCCURRENCE),
 
   // Types and Specimen checklist extension
@@ -337,11 +336,6 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * Calculated relative organism quantity, based on organism and sample measure types
    */
   relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),
-
-  /**
-   * The type for event records.
-   */
-  @Vocabulary eventType(DwcTerm.GROUP_EVENT),
 
   projectId(DwcTerm.GROUP_OCCURRENCE);
 
