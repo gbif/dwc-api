@@ -43,7 +43,6 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   Taxon(DwcTerm.GROUP_TAXON),
   MeasurementOrFact(DwcTerm.GROUP_MEASUREMENTORFACT),
   ResourceRelationship(DwcTerm.GROUP_RESOURCERELATIONSHIP),
-  MaterialEntity(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
   /**
    * PROPERTY TERMS
@@ -97,7 +96,6 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   organismRemarks(DwcTerm.GROUP_ORGANISM),
 
   materialSampleID(DwcTerm.GROUP_MATERIAL_SAMPLE),
-  materialEntityID(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
   eventID(DwcTerm.GROUP_EVENT),
   parentEventID(DwcTerm.GROUP_EVENT),
