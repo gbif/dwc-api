@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marker annotation to define if Term value is backed by a controlled vocabulary.
+ * Marker annotation to declare a controlled vocabulary exists in the GBIF vocabulary server.
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
