@@ -65,20 +65,20 @@
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>    @Test
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testListByGroup() {
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>      List&lt;DwcTerm&gt; occurrenceTerms = DwcTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>      assertEquals(27, occurrenceTerms.size());
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>      assertEquals(27, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(occurrenceTerms).size());
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      assertEquals(29, occurrenceTerms.size());
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      assertEquals(29, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(occurrenceTerms).size());
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      List&lt;DwcTerm&gt; organismTerms = DwcTerm.listByGroup(DwcTerm.GROUP_ORGANISM);
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>      assertEquals(7, organismTerms.size());
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      assertEquals(7, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(organismTerms).size());
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      List&lt;DwcTerm&gt; materialTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MATERIAL_SAMPLE);
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>      assertEquals(4, materialTerms.size());
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      assertEquals(4, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(materialTerms).size());
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      assertEquals(3, materialTerms.size());
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>      assertEquals(3, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(materialTerms).size());
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      List&lt;DwcTerm&gt; eventTerms = DwcTerm.listByGroup(DwcTerm.GROUP_EVENT);
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>      assertEquals(19, eventTerms.size());
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>      assertEquals(19, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(eventTerms).size());
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      assertEquals(20, eventTerms.size());
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>      assertEquals(20, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(eventTerms).size());
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>      List&lt;DwcTerm&gt; locationTerms = DwcTerm.listByGroup(DwcTerm.GROUP_LOCATION);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>      assertEquals(44, locationTerms.size());
@@ -93,12 +93,12 @@
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>      assertEquals(11, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(identificationTerms).size());
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>      List&lt;DwcTerm&gt; taxonTerms = DwcTerm.listByGroup(DwcTerm.GROUP_TAXON);
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>      assertEquals(38, taxonTerms.size());
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>      assertEquals(38, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(taxonTerms).size());
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>      assertEquals(41, taxonTerms.size());
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>      assertEquals(41, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(taxonTerms).size());
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>      List&lt;DwcTerm&gt; measurementTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MEASUREMENTORFACT);
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>      assertEquals(10, measurementTerms.size());
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>      assertEquals(10, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(measurementTerms).size());
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>      assertEquals(11, measurementTerms.size());
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      assertEquals(11, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(measurementTerms).size());
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>      List&lt;DwcTerm&gt; relationshipTerms = DwcTerm.listByGroup(DwcTerm.GROUP_RESOURCERELATIONSHIP);
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>      assertEquals(9, relationshipTerms.size());
