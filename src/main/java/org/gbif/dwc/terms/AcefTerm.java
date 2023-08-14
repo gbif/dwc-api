@@ -105,7 +105,7 @@ public enum AcefTerm implements Term, AlternativeNames {
   ContactPerson;
 
   private static final String PREFIX = "acef";
-  private static final String NS = "http://rs.col.plus/terms/acef/";
+  private static final String NS = "https://terms.catalogueoflife.org/acef/";
   private static final URI NS_URI = URI.create(NS);
 
   private final boolean isClass;
