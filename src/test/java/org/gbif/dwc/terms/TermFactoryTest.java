@@ -131,6 +131,12 @@ public class TermFactoryTest {
     Term t = BibTexTerm.buildFromURI("http://bibtex.org/creator");
     assertEquals(t, TF.findTerm("http://bibtex.org/creator"));
     assertEquals(t, TF.findTerm("bib:creator"));
+
+    // ACEF namespace has changed: https://github.com/gbif/portal-feedback/issues/4890
+    assertEquals(AcefTerm.Country, TF.findTerm("acef:Country"));
+    assertEquals(AcefTerm.Country, TF.findTerm("http://rs.col.plus/terms/acef/Country"));
+    assertEquals(AcefTerm.Country, TF.findTerm("https://rs.col.plus/terms/acef/Country"));
+    assertEquals(DwcTerm.country, TF.findTerm("country"));
   }
 
   @Test

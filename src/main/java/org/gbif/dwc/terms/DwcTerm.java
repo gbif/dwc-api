@@ -72,7 +72,9 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   sex(DwcTerm.GROUP_OCCURRENCE),
   @Vocabulary lifeStage(DwcTerm.GROUP_OCCURRENCE),
   reproductiveCondition(DwcTerm.GROUP_OCCURRENCE),
+  caste(DwcTerm.GROUP_OCCURRENCE),
   behavior(DwcTerm.GROUP_OCCURRENCE),
+  vitality(DwcTerm.GROUP_OCCURRENCE),
   @Vocabulary establishmentMeans(DwcTerm.GROUP_OCCURRENCE),
   @Vocabulary degreeOfEstablishment(DwcTerm.GROUP_OCCURRENCE),
   @Vocabulary pathway(DwcTerm.GROUP_OCCURRENCE),
@@ -96,9 +98,11 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   organismRemarks(DwcTerm.GROUP_ORGANISM),
 
   materialSampleID(DwcTerm.GROUP_MATERIAL_SAMPLE),
+  verbatimLabel(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
   eventID(DwcTerm.GROUP_EVENT),
   parentEventID(DwcTerm.GROUP_EVENT),
+  @Vocabulary eventType(DwcTerm.GROUP_EVENT),
   fieldNumber(DwcTerm.GROUP_EVENT),
   eventDate(DwcTerm.GROUP_EVENT, "earliestDateCollected", "latestDateCollected"),
   eventTime(DwcTerm.GROUP_EVENT),
@@ -215,8 +219,11 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
    */
   class_(DwcTerm.GROUP_TAXON, "class"),
   order(DwcTerm.GROUP_TAXON),
+  superfamily(DwcTerm.GROUP_TAXON),
   family(DwcTerm.GROUP_TAXON),
   subfamily(DwcTerm.GROUP_TAXON),
+  tribe(DwcTerm.GROUP_TAXON),
+  subtribe(DwcTerm.GROUP_TAXON),
   genus(DwcTerm.GROUP_TAXON),
   genericName(DwcTerm.GROUP_TAXON, "gbif:genericName", "http://rs.gbif.org/terms/1.0/genericName"),
   subgenus(DwcTerm.GROUP_TAXON),
@@ -234,6 +241,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   taxonRemarks(DwcTerm.GROUP_TAXON, "taxonRemark"),
 
   measurementID(DwcTerm.GROUP_MEASUREMENTORFACT),
+  parentMeasurementID(DwcTerm.GROUP_MEASUREMENTORFACT),
   measurementType(DwcTerm.GROUP_MEASUREMENTORFACT),
   measurementValue(DwcTerm.GROUP_MEASUREMENTORFACT),
   measurementAccuracy(DwcTerm.GROUP_MEASUREMENTORFACT),
@@ -286,7 +294,9 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
    */
   public static final DwcTerm[] HIGHER_RANKS =
     {DwcTerm.kingdom, DwcTerm.phylum, DwcTerm.class_, DwcTerm.order,
-        DwcTerm.family, DwcTerm.subfamily, DwcTerm.genus, DwcTerm.subgenus};
+        DwcTerm.superfamily, DwcTerm.family, DwcTerm.subfamily,
+        DwcTerm.tribe, DwcTerm.subtribe,
+        DwcTerm.genus, DwcTerm.subgenus};
 
   /**
    * List of all class terms in dwc.
