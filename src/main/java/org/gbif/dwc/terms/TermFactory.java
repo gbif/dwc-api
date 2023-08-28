@@ -68,7 +68,7 @@ public class TermFactory {
     registerTermEnum(GbifInternalTerm.class);
     registerTermEnum(IucnTerm.class);
     registerTermEnum(DcElement.class);
-    registerTermEnum(AcefTerm.class);
+    registerTermEnum(AcefTerm.class, "http://rs.col.plus/terms/acef/");
     registerTermEnum(AcTerm.class);
     registerTermEnum(PlaziTerm.class);
     registerTermEnum(GadmTerm.class);
