@@ -65,8 +65,8 @@ public class DwcTermTest extends TermBaseTest<DwcTerm> {
     assertEquals(7, new HashSet<>(organismTerms).size());
 
     List<DwcTerm> materialTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MATERIAL_SAMPLE);
-    assertEquals(3, materialTerms.size());
-    assertEquals(3, new HashSet<>(materialTerms).size());
+    assertEquals(5, materialTerms.size());
+    assertEquals(5, new HashSet<>(materialTerms).size());
 
     List<DwcTerm> eventTerms = DwcTerm.listByGroup(DwcTerm.GROUP_EVENT);
     assertEquals(20, eventTerms.size());
