@@ -57,16 +57,16 @@ public class DwcTermTest extends TermBaseTest<DwcTerm> {
   @Test
   public void testListByGroup() {
     List<DwcTerm> occurrenceTerms = DwcTerm.listByGroup(DwcTerm.GROUP_OCCURRENCE);
-    assertEquals(29, occurrenceTerms.size());
-    assertEquals(29, new HashSet<>(occurrenceTerms).size());
+    assertEquals(26, occurrenceTerms.size());
+    assertEquals(26, new HashSet<>(occurrenceTerms).size());
 
     List<DwcTerm> organismTerms = DwcTerm.listByGroup(DwcTerm.GROUP_ORGANISM);
     assertEquals(7, organismTerms.size());
     assertEquals(7, new HashSet<>(organismTerms).size());
 
     List<DwcTerm> materialTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MATERIAL_ENTITY);
-    assertEquals(4, materialTerms.size());
-    assertEquals(4, new HashSet<>(materialTerms).size());
+    assertEquals(7, materialTerms.size());
+    assertEquals(7, new HashSet<>(materialTerms).size());
 
     List<DwcTerm> sampleTerms = DwcTerm.listByGroup(DwcTerm.GROUP_MATERIAL_SAMPLE);
     assertEquals(2, sampleTerms.size());

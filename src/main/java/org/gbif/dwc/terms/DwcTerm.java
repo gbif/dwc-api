@@ -81,12 +81,12 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   @Vocabulary pathway(DwcTerm.GROUP_OCCURRENCE),
   georeferenceVerificationStatus(DwcTerm.GROUP_OCCURRENCE),
   occurrenceStatus(DwcTerm.GROUP_OCCURRENCE),
-  preparations(DwcTerm.GROUP_OCCURRENCE),
-  disposition(DwcTerm.GROUP_OCCURRENCE),
+  preparations(DwcTerm.GROUP_MATERIAL_ENTITY),
+  disposition(DwcTerm.GROUP_MATERIAL_ENTITY),
   associatedMedia(DwcTerm.GROUP_OCCURRENCE),
   associatedOccurrences(DwcTerm.GROUP_OCCURRENCE),
   associatedReferences(DwcTerm.GROUP_OCCURRENCE),
-  associatedSequences(DwcTerm.GROUP_OCCURRENCE),
+  associatedSequences(DwcTerm.GROUP_MATERIAL_ENTITY),
   associatedTaxa(DwcTerm.GROUP_OCCURRENCE),
   otherCatalogNumbers(DwcTerm.GROUP_OCCURRENCE),
   occurrenceRemarks(DwcTerm.GROUP_OCCURRENCE),
@@ -101,7 +101,6 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   materialEntityID(DwcTerm.GROUP_MATERIAL_ENTITY),
   materialEntityRemarks(DwcTerm.GROUP_MATERIAL_ENTITY),
   verbatimLabel(DwcTerm.GROUP_MATERIAL_ENTITY),
-
   materialSampleID(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
   eventID(DwcTerm.GROUP_EVENT),
