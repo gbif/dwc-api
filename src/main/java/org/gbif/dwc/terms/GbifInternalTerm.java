@@ -40,6 +40,10 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   dwcaExtension,
   datasetTitle,
 
+  // Lower and upper endpoints for eventDates
+  eventDateGte,
+  eventDateLte,
+
   //Experimental Terms for Events indexing
   parentEventGbifId;
 
