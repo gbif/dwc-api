@@ -335,134 +335,139 @@
 <span class="sourceLineNo">327</span>  appendixCITES(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),<a name="line.327"></a>
 <span class="sourceLineNo">328</span>  numberOfOccurrences(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),<a name="line.328"></a>
 <span class="sourceLineNo">329</span><a name="line.329"></a>
-<span class="sourceLineNo">330</span>  /**<a name="line.330"></a>
-<span class="sourceLineNo">331</span>   * Boolean indicating if the publishing country is different to the location country.<a name="line.331"></a>
-<span class="sourceLineNo">332</span>   */<a name="line.332"></a>
-<span class="sourceLineNo">333</span>  repatriated(DwcTerm.GROUP_OCCURRENCE),<a name="line.333"></a>
-<span class="sourceLineNo">334</span><a name="line.334"></a>
-<span class="sourceLineNo">335</span>  /*<a name="line.335"></a>
-<span class="sourceLineNo">336</span>   * Calculated relative organism quantity, based on organism and sample measure types<a name="line.336"></a>
-<span class="sourceLineNo">337</span>   */<a name="line.337"></a>
-<span class="sourceLineNo">338</span>  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),<a name="line.338"></a>
-<span class="sourceLineNo">339</span><a name="line.339"></a>
-<span class="sourceLineNo">340</span>  projectId(DwcTerm.GROUP_OCCURRENCE);<a name="line.340"></a>
-<span class="sourceLineNo">341</span><a name="line.341"></a>
-<span class="sourceLineNo">342</span>  private static final String PREFIX = "gbif";<a name="line.342"></a>
-<span class="sourceLineNo">343</span>  private static final String NS = "http://rs.gbif.org/terms/1.0/";<a name="line.343"></a>
-<span class="sourceLineNo">344</span>  private static final URI NS_URI = URI.create(NS);<a name="line.344"></a>
-<span class="sourceLineNo">345</span><a name="line.345"></a>
-<span class="sourceLineNo">346</span>  public static final String GROUP_CRAWLING = "Crawling";<a name="line.346"></a>
-<span class="sourceLineNo">347</span>  public static final String GROUP_DATASET = "Dataset";<a name="line.347"></a>
-<span class="sourceLineNo">348</span>  public static final String GROUP_ROW_TYPE = "RowType";<a name="line.348"></a>
-<span class="sourceLineNo">349</span>  public static final String GROUP_SPECIES_DISTRIBUTION_EXTENSION = "SpeciesDistribution";<a name="line.349"></a>
-<span class="sourceLineNo">350</span>  public static final String GROUP_SPECIES_PROFILE_EXTENSION = "SpeciesProfile";<a name="line.350"></a>
-<span class="sourceLineNo">351</span>  public static final String GROUP_VERNACULAR_NAME_EXTENSION = "VernacularName";<a name="line.351"></a>
-<span class="sourceLineNo">352</span><a name="line.352"></a>
-<span class="sourceLineNo">353</span>  /**<a name="line.353"></a>
-<span class="sourceLineNo">354</span>   * Lists all GBIF term groups.<a name="line.354"></a>
-<span class="sourceLineNo">355</span>   */<a name="line.355"></a>
-<span class="sourceLineNo">356</span>  public static final String[] GROUPS = {GROUP_CRAWLING, GROUP_DATASET, DwcTerm.GROUP_OCCURRENCE, GROUP_ROW_TYPE,<a name="line.356"></a>
-<span class="sourceLineNo">357</span>    GROUP_SPECIES_DISTRIBUTION_EXTENSION, GROUP_SPECIES_PROFILE_EXTENSION, DwcTerm.GROUP_TAXON,<a name="line.357"></a>
-<span class="sourceLineNo">358</span>    GROUP_VERNACULAR_NAME_EXTENSION, DwcTerm.GROUP_LOCATION};<a name="line.358"></a>
-<span class="sourceLineNo">359</span><a name="line.359"></a>
-<span class="sourceLineNo">360</span>  /**<a name="line.360"></a>
-<span class="sourceLineNo">361</span>   * Lists all GBIF terms in taxon group.<a name="line.361"></a>
-<span class="sourceLineNo">362</span>   */<a name="line.362"></a>
-<span class="sourceLineNo">363</span>  public static final GbifTerm[] TAXONOMIC_TERMS =<a name="line.363"></a>
-<span class="sourceLineNo">364</span>  {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,<a name="line.364"></a>
-<span class="sourceLineNo">365</span>   GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,<a name="line.365"></a>
-<span class="sourceLineNo">366</span>   GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,<a name="line.366"></a>
-<span class="sourceLineNo">367</span>   GbifTerm.verbatimScientificName};<a name="line.367"></a>
-<span class="sourceLineNo">368</span><a name="line.368"></a>
-<span class="sourceLineNo">369</span>  private final String groupName;<a name="line.369"></a>
-<span class="sourceLineNo">370</span>  private final boolean isDeprecated;<a name="line.370"></a>
-<span class="sourceLineNo">371</span>  public final String[] normAlts;<a name="line.371"></a>
-<span class="sourceLineNo">372</span><a name="line.372"></a>
-<span class="sourceLineNo">373</span>  GbifTerm(String groupName, String... alternatives) {<a name="line.373"></a>
-<span class="sourceLineNo">374</span>    this.groupName = groupName;<a name="line.374"></a>
-<span class="sourceLineNo">375</span>    this.normAlts = alternatives;<a name="line.375"></a>
-<span class="sourceLineNo">376</span>    boolean deprecatedAnnotationPresent = false;<a name="line.376"></a>
-<span class="sourceLineNo">377</span>    try {<a name="line.377"></a>
-<span class="sourceLineNo">378</span>      deprecatedAnnotationPresent = GbifTerm.class.getField(this.name()).isAnnotationPresent(Deprecated.class);<a name="line.378"></a>
-<span class="sourceLineNo">379</span>    } catch (NoSuchFieldException ignore) { }<a name="line.379"></a>
-<span class="sourceLineNo">380</span>    this.isDeprecated = deprecatedAnnotationPresent;<a name="line.380"></a>
-<span class="sourceLineNo">381</span>  }<a name="line.381"></a>
-<span class="sourceLineNo">382</span><a name="line.382"></a>
-<span class="sourceLineNo">383</span>  /**<a name="line.383"></a>
-<span class="sourceLineNo">384</span>   * The simple term name without a namespace.<a name="line.384"></a>
-<span class="sourceLineNo">385</span>   * For example taxonKey.<a name="line.385"></a>
-<span class="sourceLineNo">386</span>   *<a name="line.386"></a>
-<span class="sourceLineNo">387</span>   * @return simple term name<a name="line.387"></a>
-<span class="sourceLineNo">388</span>   */<a name="line.388"></a>
-<span class="sourceLineNo">389</span>  @Override<a name="line.389"></a>
-<span class="sourceLineNo">390</span>  public String simpleName() {<a name="line.390"></a>
-<span class="sourceLineNo">391</span>    return name();<a name="line.391"></a>
-<span class="sourceLineNo">392</span>  }<a name="line.392"></a>
-<span class="sourceLineNo">393</span><a name="line.393"></a>
-<span class="sourceLineNo">394</span>  /**<a name="line.394"></a>
-<span class="sourceLineNo">395</span>   * Array of alternative simple names in use for the term.<a name="line.395"></a>
-<span class="sourceLineNo">396</span>   *<a name="line.396"></a>
-<span class="sourceLineNo">397</span>   * @return simple term name<a name="line.397"></a>
-<span class="sourceLineNo">398</span>   */<a name="line.398"></a>
-<span class="sourceLineNo">399</span>  @Override<a name="line.399"></a>
-<span class="sourceLineNo">400</span>  public String[] alternativeNames() {<a name="line.400"></a>
-<span class="sourceLineNo">401</span>    return normAlts;<a name="line.401"></a>
-<span class="sourceLineNo">402</span>  }<a name="line.402"></a>
-<span class="sourceLineNo">403</span><a name="line.403"></a>
-<span class="sourceLineNo">404</span>  /**<a name="line.404"></a>
-<span class="sourceLineNo">405</span>   * The optional group the term is grouped in.<a name="line.405"></a>
-<span class="sourceLineNo">406</span>   * For example Occurrence, Taxon, etc.<a name="line.406"></a>
-<span class="sourceLineNo">407</span>   */<a name="line.407"></a>
-<span class="sourceLineNo">408</span>  public String getGroup() {<a name="line.408"></a>
-<span class="sourceLineNo">409</span>    return groupName;<a name="line.409"></a>
-<span class="sourceLineNo">410</span>  }<a name="line.410"></a>
-<span class="sourceLineNo">411</span><a name="line.411"></a>
-<span class="sourceLineNo">412</span><a name="line.412"></a>
-<span class="sourceLineNo">413</span>  /**<a name="line.413"></a>
-<span class="sourceLineNo">414</span>   * List all terms that belong to a given group.<a name="line.414"></a>
-<span class="sourceLineNo">415</span>   *<a name="line.415"></a>
-<span class="sourceLineNo">416</span>   * @param group the group to list terms for<a name="line.416"></a>
-<span class="sourceLineNo">417</span>   * @return the list of GBIF terms in the given group<a name="line.417"></a>
-<span class="sourceLineNo">418</span>   */<a name="line.418"></a>
-<span class="sourceLineNo">419</span>  public static List&lt;GbifTerm&gt; listByGroup(String group) {<a name="line.419"></a>
-<span class="sourceLineNo">420</span>    List&lt;GbifTerm&gt; terms = new ArrayList&lt;GbifTerm&gt;();<a name="line.420"></a>
-<span class="sourceLineNo">421</span>    for (GbifTerm t : GbifTerm.values()) {<a name="line.421"></a>
-<span class="sourceLineNo">422</span>      if (t.getGroup().equalsIgnoreCase(group)) {<a name="line.422"></a>
-<span class="sourceLineNo">423</span>        terms.add(t);<a name="line.423"></a>
-<span class="sourceLineNo">424</span>      }<a name="line.424"></a>
-<span class="sourceLineNo">425</span>    }<a name="line.425"></a>
-<span class="sourceLineNo">426</span>    return terms;<a name="line.426"></a>
-<span class="sourceLineNo">427</span>  }<a name="line.427"></a>
-<span class="sourceLineNo">428</span><a name="line.428"></a>
-<span class="sourceLineNo">429</span>  @Override<a name="line.429"></a>
-<span class="sourceLineNo">430</span>  public String toString() {<a name="line.430"></a>
-<span class="sourceLineNo">431</span>    return prefixedName();<a name="line.431"></a>
+<span class="sourceLineNo">330</span>  /** Boolean indicating if the publishing country is different to the location country. */<a name="line.330"></a>
+<span class="sourceLineNo">331</span>  repatriated(DwcTerm.GROUP_OCCURRENCE),<a name="line.331"></a>
+<span class="sourceLineNo">332</span><a name="line.332"></a>
+<span class="sourceLineNo">333</span>  /** Calculated relative organism quantity, based on organism and sample measure types */<a name="line.333"></a>
+<span class="sourceLineNo">334</span>  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),<a name="line.334"></a>
+<span class="sourceLineNo">335</span><a name="line.335"></a>
+<span class="sourceLineNo">336</span>  projectId(DwcTerm.GROUP_OCCURRENCE),<a name="line.336"></a>
+<span class="sourceLineNo">337</span><a name="line.337"></a>
+<span class="sourceLineNo">338</span>  /** Flag occurrence when associatedSequences/extension exists */<a name="line.338"></a>
+<span class="sourceLineNo">339</span>  isSequenced(DwcTerm.GROUP_OCCURRENCE),<a name="line.339"></a>
+<span class="sourceLineNo">340</span><a name="line.340"></a>
+<span class="sourceLineNo">341</span>  /** GBIF region based on country code */<a name="line.341"></a>
+<span class="sourceLineNo">342</span>  gbifRegion(DwcTerm.GROUP_LOCATION),<a name="line.342"></a>
+<span class="sourceLineNo">343</span><a name="line.343"></a>
+<span class="sourceLineNo">344</span>  /** GBIF region based on publishing country code */<a name="line.344"></a>
+<span class="sourceLineNo">345</span>  publishedByGbifRegion(DwcTerm.GROUP_LOCATION);<a name="line.345"></a>
+<span class="sourceLineNo">346</span><a name="line.346"></a>
+<span class="sourceLineNo">347</span>  private static final String PREFIX = "gbif";<a name="line.347"></a>
+<span class="sourceLineNo">348</span>  private static final String NS = "http://rs.gbif.org/terms/1.0/";<a name="line.348"></a>
+<span class="sourceLineNo">349</span>  private static final URI NS_URI = URI.create(NS);<a name="line.349"></a>
+<span class="sourceLineNo">350</span><a name="line.350"></a>
+<span class="sourceLineNo">351</span>  public static final String GROUP_CRAWLING = "Crawling";<a name="line.351"></a>
+<span class="sourceLineNo">352</span>  public static final String GROUP_DATASET = "Dataset";<a name="line.352"></a>
+<span class="sourceLineNo">353</span>  public static final String GROUP_ROW_TYPE = "RowType";<a name="line.353"></a>
+<span class="sourceLineNo">354</span>  public static final String GROUP_SPECIES_DISTRIBUTION_EXTENSION = "SpeciesDistribution";<a name="line.354"></a>
+<span class="sourceLineNo">355</span>  public static final String GROUP_SPECIES_PROFILE_EXTENSION = "SpeciesProfile";<a name="line.355"></a>
+<span class="sourceLineNo">356</span>  public static final String GROUP_VERNACULAR_NAME_EXTENSION = "VernacularName";<a name="line.356"></a>
+<span class="sourceLineNo">357</span><a name="line.357"></a>
+<span class="sourceLineNo">358</span>  /**<a name="line.358"></a>
+<span class="sourceLineNo">359</span>   * Lists all GBIF term groups.<a name="line.359"></a>
+<span class="sourceLineNo">360</span>   */<a name="line.360"></a>
+<span class="sourceLineNo">361</span>  public static final String[] GROUPS = {GROUP_CRAWLING, GROUP_DATASET, DwcTerm.GROUP_OCCURRENCE, GROUP_ROW_TYPE,<a name="line.361"></a>
+<span class="sourceLineNo">362</span>    GROUP_SPECIES_DISTRIBUTION_EXTENSION, GROUP_SPECIES_PROFILE_EXTENSION, DwcTerm.GROUP_TAXON,<a name="line.362"></a>
+<span class="sourceLineNo">363</span>    GROUP_VERNACULAR_NAME_EXTENSION, DwcTerm.GROUP_LOCATION};<a name="line.363"></a>
+<span class="sourceLineNo">364</span><a name="line.364"></a>
+<span class="sourceLineNo">365</span>  /**<a name="line.365"></a>
+<span class="sourceLineNo">366</span>   * Lists all GBIF terms in taxon group.<a name="line.366"></a>
+<span class="sourceLineNo">367</span>   */<a name="line.367"></a>
+<span class="sourceLineNo">368</span>  public static final GbifTerm[] TAXONOMIC_TERMS =<a name="line.368"></a>
+<span class="sourceLineNo">369</span>  {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,<a name="line.369"></a>
+<span class="sourceLineNo">370</span>   GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,<a name="line.370"></a>
+<span class="sourceLineNo">371</span>   GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,<a name="line.371"></a>
+<span class="sourceLineNo">372</span>   GbifTerm.verbatimScientificName};<a name="line.372"></a>
+<span class="sourceLineNo">373</span><a name="line.373"></a>
+<span class="sourceLineNo">374</span>  private final String groupName;<a name="line.374"></a>
+<span class="sourceLineNo">375</span>  private final boolean isDeprecated;<a name="line.375"></a>
+<span class="sourceLineNo">376</span>  public final String[] normAlts;<a name="line.376"></a>
+<span class="sourceLineNo">377</span><a name="line.377"></a>
+<span class="sourceLineNo">378</span>  GbifTerm(String groupName, String... alternatives) {<a name="line.378"></a>
+<span class="sourceLineNo">379</span>    this.groupName = groupName;<a name="line.379"></a>
+<span class="sourceLineNo">380</span>    this.normAlts = alternatives;<a name="line.380"></a>
+<span class="sourceLineNo">381</span>    boolean deprecatedAnnotationPresent = false;<a name="line.381"></a>
+<span class="sourceLineNo">382</span>    try {<a name="line.382"></a>
+<span class="sourceLineNo">383</span>      deprecatedAnnotationPresent = GbifTerm.class.getField(this.name()).isAnnotationPresent(Deprecated.class);<a name="line.383"></a>
+<span class="sourceLineNo">384</span>    } catch (NoSuchFieldException ignore) { }<a name="line.384"></a>
+<span class="sourceLineNo">385</span>    this.isDeprecated = deprecatedAnnotationPresent;<a name="line.385"></a>
+<span class="sourceLineNo">386</span>  }<a name="line.386"></a>
+<span class="sourceLineNo">387</span><a name="line.387"></a>
+<span class="sourceLineNo">388</span>  /**<a name="line.388"></a>
+<span class="sourceLineNo">389</span>   * The simple term name without a namespace.<a name="line.389"></a>
+<span class="sourceLineNo">390</span>   * For example taxonKey.<a name="line.390"></a>
+<span class="sourceLineNo">391</span>   *<a name="line.391"></a>
+<span class="sourceLineNo">392</span>   * @return simple term name<a name="line.392"></a>
+<span class="sourceLineNo">393</span>   */<a name="line.393"></a>
+<span class="sourceLineNo">394</span>  @Override<a name="line.394"></a>
+<span class="sourceLineNo">395</span>  public String simpleName() {<a name="line.395"></a>
+<span class="sourceLineNo">396</span>    return name();<a name="line.396"></a>
+<span class="sourceLineNo">397</span>  }<a name="line.397"></a>
+<span class="sourceLineNo">398</span><a name="line.398"></a>
+<span class="sourceLineNo">399</span>  /**<a name="line.399"></a>
+<span class="sourceLineNo">400</span>   * Array of alternative simple names in use for the term.<a name="line.400"></a>
+<span class="sourceLineNo">401</span>   *<a name="line.401"></a>
+<span class="sourceLineNo">402</span>   * @return simple term name<a name="line.402"></a>
+<span class="sourceLineNo">403</span>   */<a name="line.403"></a>
+<span class="sourceLineNo">404</span>  @Override<a name="line.404"></a>
+<span class="sourceLineNo">405</span>  public String[] alternativeNames() {<a name="line.405"></a>
+<span class="sourceLineNo">406</span>    return normAlts;<a name="line.406"></a>
+<span class="sourceLineNo">407</span>  }<a name="line.407"></a>
+<span class="sourceLineNo">408</span><a name="line.408"></a>
+<span class="sourceLineNo">409</span>  /**<a name="line.409"></a>
+<span class="sourceLineNo">410</span>   * The optional group the term is grouped in.<a name="line.410"></a>
+<span class="sourceLineNo">411</span>   * For example Occurrence, Taxon, etc.<a name="line.411"></a>
+<span class="sourceLineNo">412</span>   */<a name="line.412"></a>
+<span class="sourceLineNo">413</span>  public String getGroup() {<a name="line.413"></a>
+<span class="sourceLineNo">414</span>    return groupName;<a name="line.414"></a>
+<span class="sourceLineNo">415</span>  }<a name="line.415"></a>
+<span class="sourceLineNo">416</span><a name="line.416"></a>
+<span class="sourceLineNo">417</span><a name="line.417"></a>
+<span class="sourceLineNo">418</span>  /**<a name="line.418"></a>
+<span class="sourceLineNo">419</span>   * List all terms that belong to a given group.<a name="line.419"></a>
+<span class="sourceLineNo">420</span>   *<a name="line.420"></a>
+<span class="sourceLineNo">421</span>   * @param group the group to list terms for<a name="line.421"></a>
+<span class="sourceLineNo">422</span>   * @return the list of GBIF terms in the given group<a name="line.422"></a>
+<span class="sourceLineNo">423</span>   */<a name="line.423"></a>
+<span class="sourceLineNo">424</span>  public static List&lt;GbifTerm&gt; listByGroup(String group) {<a name="line.424"></a>
+<span class="sourceLineNo">425</span>    List&lt;GbifTerm&gt; terms = new ArrayList&lt;GbifTerm&gt;();<a name="line.425"></a>
+<span class="sourceLineNo">426</span>    for (GbifTerm t : GbifTerm.values()) {<a name="line.426"></a>
+<span class="sourceLineNo">427</span>      if (t.getGroup().equalsIgnoreCase(group)) {<a name="line.427"></a>
+<span class="sourceLineNo">428</span>        terms.add(t);<a name="line.428"></a>
+<span class="sourceLineNo">429</span>      }<a name="line.429"></a>
+<span class="sourceLineNo">430</span>    }<a name="line.430"></a>
+<span class="sourceLineNo">431</span>    return terms;<a name="line.431"></a>
 <span class="sourceLineNo">432</span>  }<a name="line.432"></a>
 <span class="sourceLineNo">433</span><a name="line.433"></a>
 <span class="sourceLineNo">434</span>  @Override<a name="line.434"></a>
-<span class="sourceLineNo">435</span>  public boolean isClass() {<a name="line.435"></a>
-<span class="sourceLineNo">436</span>    return Character.isUpperCase(simpleName().charAt(0));<a name="line.436"></a>
+<span class="sourceLineNo">435</span>  public String toString() {<a name="line.435"></a>
+<span class="sourceLineNo">436</span>    return prefixedName();<a name="line.436"></a>
 <span class="sourceLineNo">437</span>  }<a name="line.437"></a>
 <span class="sourceLineNo">438</span><a name="line.438"></a>
 <span class="sourceLineNo">439</span>  @Override<a name="line.439"></a>
-<span class="sourceLineNo">440</span>  public String prefix() {<a name="line.440"></a>
-<span class="sourceLineNo">441</span>    return PREFIX;<a name="line.441"></a>
+<span class="sourceLineNo">440</span>  public boolean isClass() {<a name="line.440"></a>
+<span class="sourceLineNo">441</span>    return Character.isUpperCase(simpleName().charAt(0));<a name="line.441"></a>
 <span class="sourceLineNo">442</span>  }<a name="line.442"></a>
 <span class="sourceLineNo">443</span><a name="line.443"></a>
 <span class="sourceLineNo">444</span>  @Override<a name="line.444"></a>
-<span class="sourceLineNo">445</span>  public URI namespace() {<a name="line.445"></a>
-<span class="sourceLineNo">446</span>    return NS_URI;<a name="line.446"></a>
+<span class="sourceLineNo">445</span>  public String prefix() {<a name="line.445"></a>
+<span class="sourceLineNo">446</span>    return PREFIX;<a name="line.446"></a>
 <span class="sourceLineNo">447</span>  }<a name="line.447"></a>
 <span class="sourceLineNo">448</span><a name="line.448"></a>
-<span class="sourceLineNo">449</span>  /**<a name="line.449"></a>
-<span class="sourceLineNo">450</span>   *<a name="line.450"></a>
-<span class="sourceLineNo">451</span>   * @return true if the Term is annotated with @Deprecated.<a name="line.451"></a>
-<span class="sourceLineNo">452</span>   */<a name="line.452"></a>
-<span class="sourceLineNo">453</span>  public boolean isDeprecated(){<a name="line.453"></a>
-<span class="sourceLineNo">454</span>    return isDeprecated;<a name="line.454"></a>
-<span class="sourceLineNo">455</span>  }<a name="line.455"></a>
-<span class="sourceLineNo">456</span><a name="line.456"></a>
-<span class="sourceLineNo">457</span>}<a name="line.457"></a>
+<span class="sourceLineNo">449</span>  @Override<a name="line.449"></a>
+<span class="sourceLineNo">450</span>  public URI namespace() {<a name="line.450"></a>
+<span class="sourceLineNo">451</span>    return NS_URI;<a name="line.451"></a>
+<span class="sourceLineNo">452</span>  }<a name="line.452"></a>
+<span class="sourceLineNo">453</span><a name="line.453"></a>
+<span class="sourceLineNo">454</span>  /**<a name="line.454"></a>
+<span class="sourceLineNo">455</span>   *<a name="line.455"></a>
+<span class="sourceLineNo">456</span>   * @return true if the Term is annotated with @Deprecated.<a name="line.456"></a>
+<span class="sourceLineNo">457</span>   */<a name="line.457"></a>
+<span class="sourceLineNo">458</span>  public boolean isDeprecated(){<a name="line.458"></a>
+<span class="sourceLineNo">459</span>    return isDeprecated;<a name="line.459"></a>
+<span class="sourceLineNo">460</span>  }<a name="line.460"></a>
+<span class="sourceLineNo">461</span><a name="line.461"></a>
+<span class="sourceLineNo">462</span>}<a name="line.462"></a>
 
 
 

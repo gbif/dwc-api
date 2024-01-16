@@ -139,105 +139,111 @@
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>     Term t = BibTexTerm.buildFromURI(<span class="jxr_string">"http://bibtex.org/creator"</span>);
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>     assertEquals(t, TF.findTerm(<span class="jxr_string">"http://bibtex.org/creator"</span>));
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>     assertEquals(t, TF.findTerm(<span class="jxr_string">"bib:creator"</span>));
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>   }
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>   @Test
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addUnknownTerm() {
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>     TermFactory factory = TermFactory.instance();
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>     Term me1 = factory.findTerm(<span class="jxr_string">"http://me.com/#me"</span>);
-<a class="jxr_linenumber" name="L141" href="#L141">141</a>     Term me2 = factory.findTerm(<span class="jxr_string">"http://me.com/me"</span>);
-<a class="jxr_linenumber" name="L142" href="#L142">142</a>     Term me3 = factory.findTerm(<span class="jxr_string">"http://me.org/me"</span>);
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>     assertNotEquals(me1, me2);
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>     assertNotEquals(me1, me3);
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>     assertNotEquals(me2, me3);
-<a class="jxr_linenumber" name="L147" href="#L147">147</a>   }
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> 
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>   @Test
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> badTerm() {
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>     TermFactory factory = TermFactory.instance();
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>     assertThrows(IllegalArgumentException.<strong class="jxr_keyword">class</strong>, () -&gt; factory.findTerm(<span class="jxr_string">"Hallo Tim"</span>));
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>     <em class="jxr_comment">// ACEF namespace has changed: https://github.com/gbif/portal-feedback/issues/4890</em>
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>     assertEquals(AcefTerm.Country, TF.findTerm(<span class="jxr_string">"acef:Country"</span>));
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>     assertEquals(AcefTerm.Country, TF.findTerm(<span class="jxr_string">"http://rs.col.plus/terms/acef/Country"</span>));
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>     assertEquals(AcefTerm.Country, TF.findTerm(<span class="jxr_string">"https://rs.col.plus/terms/acef/Country"</span>));
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>     assertEquals(DwcTerm.country, TF.findTerm(<span class="jxr_string">"country"</span>));
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>   }
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> 
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>   @Test
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addUnknownTerm() {
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>     TermFactory factory = TermFactory.instance();
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> 
+<a class="jxr_linenumber" name="L146" href="#L146">146</a>     Term me1 = factory.findTerm(<span class="jxr_string">"http://me.com/#me"</span>);
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>     Term me2 = factory.findTerm(<span class="jxr_string">"http://me.com/me"</span>);
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>     Term me3 = factory.findTerm(<span class="jxr_string">"http://me.org/me"</span>);
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>     assertNotEquals(me1, me2);
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>     assertNotEquals(me1, me3);
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>     assertNotEquals(me2, me3);
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>   }
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>   @Test
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removedGbifTerms() {
-<a class="jxr_linenumber" name="L157" href="#L157">157</a>     assertEquals(DwcTerm.genericName, TF.findTerm(<span class="jxr_string">"genericName"</span>));
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>     assertEquals(DwcTerm.recordedByID, TF.findTerm(<span class="jxr_string">"recordedByID"</span>));
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>     assertEquals(DwcTerm.identifiedByID, TF.findTerm(<span class="jxr_string">"identifiedByID"</span>));
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> badTerm() {
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>     TermFactory factory = TermFactory.instance();
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>     assertThrows(IllegalArgumentException.<strong class="jxr_keyword">class</strong>, () -&gt; factory.findTerm(<span class="jxr_string">"Hallo Tim"</span>));
+<a class="jxr_linenumber" name="L159" href="#L159">159</a>   }
 <a class="jxr_linenumber" name="L160" href="#L160">160</a> 
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>     assertEquals(DwcTerm.genericName, TF.findTerm(<span class="jxr_string">"http://rs.gbif.org/terms/1.0/genericName"</span>));
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>     assertEquals(DwcTerm.recordedByID, TF.findTerm(<span class="jxr_string">"http://rs.gbif.org/terms/1.0/recordedByID"</span>));
-<a class="jxr_linenumber" name="L163" href="#L163">163</a>     assertEquals(DwcTerm.identifiedByID, TF.findTerm(<span class="jxr_string">"http://rs.gbif.org/terms/1.0/identifiedByID"</span>));
-<a class="jxr_linenumber" name="L164" href="#L164">164</a> 
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>     assertEquals(DwcTerm.genericName, TF.findTerm(<span class="jxr_string">"gbif:genericName"</span>));
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>     assertEquals(DwcTerm.recordedByID, TF.findTerm(<span class="jxr_string">"gbif:recordedByID"</span>));
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>     assertEquals(DwcTerm.identifiedByID, TF.findTerm(<span class="jxr_string">"gbif:identifiedByID"</span>));
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>   }
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> 
-<a class="jxr_linenumber" name="L170" href="#L170">170</a>   @Test
-<a class="jxr_linenumber" name="L171" href="#L171">171</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addSimpleTerm() {
-<a class="jxr_linenumber" name="L172" href="#L172">172</a>     TermFactory factory = TermFactory.instance();
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> 
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>     Term hallo = factory.findTerm(<span class="jxr_string">"hallo"</span>);
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>     assertEquals(UnknownTerm.<strong class="jxr_keyword">class</strong>, hallo.getClass());
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>     assertEquals(<span class="jxr_string">"http://unknown.org/hallo"</span>, hallo.qualifiedName());
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>     assertEquals(<span class="jxr_string">"hallo"</span>, hallo.simpleName());
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>   @Test
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removedGbifTerms() {
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>     assertEquals(DwcTerm.genericName, TF.findTerm(<span class="jxr_string">"genericName"</span>));
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>     assertEquals(DwcTerm.recordedByID, TF.findTerm(<span class="jxr_string">"recordedByID"</span>));
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>     assertEquals(DwcTerm.identifiedByID, TF.findTerm(<span class="jxr_string">"identifiedByID"</span>));
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>     assertEquals(DwcTerm.genericName, TF.findTerm(<span class="jxr_string">"http://rs.gbif.org/terms/1.0/genericName"</span>));
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>     assertEquals(DwcTerm.recordedByID, TF.findTerm(<span class="jxr_string">"http://rs.gbif.org/terms/1.0/recordedByID"</span>));
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>     assertEquals(DwcTerm.identifiedByID, TF.findTerm(<span class="jxr_string">"http://rs.gbif.org/terms/1.0/identifiedByID"</span>));
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>     assertEquals(DwcTerm.genericName, TF.findTerm(<span class="jxr_string">"gbif:genericName"</span>));
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>     assertEquals(DwcTerm.recordedByID, TF.findTerm(<span class="jxr_string">"gbif:recordedByID"</span>));
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>     assertEquals(DwcTerm.identifiedByID, TF.findTerm(<span class="jxr_string">"gbif:identifiedByID"</span>));
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>   }
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>   @Test
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addSimpleTerm() {
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>     TermFactory factory = TermFactory.instance();
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>     Term tim = factory.findTerm(<span class="jxr_string">"Tim"</span>);
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>     assertEquals(UnknownTerm.<strong class="jxr_keyword">class</strong>, tim.getClass());
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>     assertEquals(<span class="jxr_string">"http://unknown.org/Tim"</span>, tim.qualifiedName());
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>     assertEquals(<span class="jxr_string">"http://unknown.org"</span>, tim.namespace().toString());
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>     assertEquals(<span class="jxr_string">"Tim"</span>, tim.simpleName());
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>     Term hallo = factory.findTerm(<span class="jxr_string">"hallo"</span>);
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>     assertEquals(UnknownTerm.<strong class="jxr_keyword">class</strong>, hallo.getClass());
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>     assertEquals(<span class="jxr_string">"http://unknown.org/hallo"</span>, hallo.qualifiedName());
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>     assertEquals(<span class="jxr_string">"hallo"</span>, hallo.simpleName());
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>     Term eva = factory.findTerm(<span class="jxr_string">"tim:Eva"</span>);
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>     assertEquals(UnknownTerm.<strong class="jxr_keyword">class</strong>, eva.getClass());
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>     assertEquals(<span class="jxr_string">"http://unknown.org/tim/Eva"</span>, eva.qualifiedName());
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>     Term tim = factory.findTerm(<span class="jxr_string">"Tim"</span>);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>     assertEquals(UnknownTerm.<strong class="jxr_keyword">class</strong>, tim.getClass());
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>     assertEquals(<span class="jxr_string">"http://unknown.org/Tim"</span>, tim.qualifiedName());
 <a class="jxr_linenumber" name="L189" href="#L189">189</a>     assertEquals(<span class="jxr_string">"http://unknown.org"</span>, tim.namespace().toString());
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>     assertEquals(<span class="jxr_string">"http://unknown.org/tim/Eva"</span>, eva.qualifiedName());
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>     assertEquals(<span class="jxr_string">"tim:Eva"</span>, eva.prefixedName());
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>     assertEquals(<span class="jxr_string">"Eva"</span>, eva.simpleName());
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> 
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>     assertNotEquals(hallo, tim);
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>   }
-<a class="jxr_linenumber" name="L196" href="#L196">196</a> 
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>   @Test
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addUnknownSimpleTerm() {
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>     TermFactory factory = TermFactory.instance();
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> 
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>     Term t1 = factory.findTerm(<span class="jxr_string">"me"</span>);
-<a class="jxr_linenumber" name="L202" href="#L202">202</a>     Term t2 = factory.findTerm(<span class="jxr_string">"me"</span>);
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>     Term t3 = factory.findTerm(<span class="jxr_string">"Ne"</span>);
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> 
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>     assertEquals(t1, t2);
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>     assertNotEquals(t1, t3);
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>     assertNotEquals(t2, t3);
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>   }
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> 
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L211" href="#L211">211</a> <em class="jxr_javadoccomment">     * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.</em>
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L213" href="#L213">213</a>   @Test
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testMultithreadStart() <strong class="jxr_keyword">throws</strong> InterruptedException {
-<a class="jxr_linenumber" name="L215" href="#L215">215</a>     <strong class="jxr_keyword">int</strong> threadCount = 100;
-<a class="jxr_linenumber" name="L216" href="#L216">216</a>     ExecutorService tp = Executors.newFixedThreadPool(threadCount);
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>     <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; threadCount; i++) {
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>       tp.submit(<strong class="jxr_keyword">new</strong> TermFactoryLoader());
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>     }
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>     tp.shutdown();
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>     tp.awaitTermination(30, TimeUnit.SECONDS);
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>   }
-<a class="jxr_linenumber" name="L223" href="#L223">223</a> 
-<a class="jxr_linenumber" name="L224" href="#L224">224</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> TermFactoryLoader <strong class="jxr_keyword">implements</strong> Runnable {
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>     @Override
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run() {
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>       TermFactory.instance();
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>     }
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>   }
-<a class="jxr_linenumber" name="L230" href="#L230">230</a> }
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>     assertEquals(<span class="jxr_string">"Tim"</span>, tim.simpleName());
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> 
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>     Term eva = factory.findTerm(<span class="jxr_string">"tim:Eva"</span>);
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>     assertEquals(UnknownTerm.<strong class="jxr_keyword">class</strong>, eva.getClass());
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>     assertEquals(<span class="jxr_string">"http://unknown.org/tim/Eva"</span>, eva.qualifiedName());
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>     assertEquals(<span class="jxr_string">"http://unknown.org"</span>, tim.namespace().toString());
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>     assertEquals(<span class="jxr_string">"http://unknown.org/tim/Eva"</span>, eva.qualifiedName());
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>     assertEquals(<span class="jxr_string">"tim:Eva"</span>, eva.prefixedName());
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>     assertEquals(<span class="jxr_string">"Eva"</span>, eva.simpleName());
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> 
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>     assertNotEquals(hallo, tim);
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>   }
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> 
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>   @Test
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addUnknownSimpleTerm() {
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>     TermFactory factory = TermFactory.instance();
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> 
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>     Term t1 = factory.findTerm(<span class="jxr_string">"me"</span>);
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>     Term t2 = factory.findTerm(<span class="jxr_string">"me"</span>);
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>     Term t3 = factory.findTerm(<span class="jxr_string">"Ne"</span>);
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> 
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>     assertEquals(t1, t2);
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>     assertNotEquals(t1, t3);
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>     assertNotEquals(t2, t3);
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>   }
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> 
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> <em class="jxr_javadoccomment">     * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.</em>
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>   @Test
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testMultithreadStart() <strong class="jxr_keyword">throws</strong> InterruptedException {
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>     <strong class="jxr_keyword">int</strong> threadCount = 100;
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>     ExecutorService tp = Executors.newFixedThreadPool(threadCount);
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>     <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; threadCount; i++) {
+<a class="jxr_linenumber" name="L224" href="#L224">224</a>       tp.submit(<strong class="jxr_keyword">new</strong> TermFactoryLoader());
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>     }
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>     tp.shutdown();
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>     tp.awaitTermination(30, TimeUnit.SECONDS);
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>   }
+<a class="jxr_linenumber" name="L229" href="#L229">229</a> 
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> TermFactoryLoader <strong class="jxr_keyword">implements</strong> Runnable {
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>     @Override
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run() {
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>       TermFactory.instance();
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>     }
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>   }
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2023 <a href="https://www.gbif.org">Global Biodiversity Information Facility</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2024 <a href="https://www.gbif.org">Global Biodiversity Information Facility</a>. All rights reserved.</div>
 </body>
 </html>
