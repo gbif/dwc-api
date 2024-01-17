@@ -327,17 +327,22 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   appendixCITES(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),
   numberOfOccurrences(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),
 
-  /**
-   * Boolean indicating if the publishing country is different to the location country.
-   */
+  /** Boolean indicating if the publishing country is different to the location country. */
   repatriated(DwcTerm.GROUP_OCCURRENCE),
 
-  /*
-   * Calculated relative organism quantity, based on organism and sample measure types
-   */
+  /** Calculated relative organism quantity, based on organism and sample measure types */
   relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
-  projectId(DwcTerm.GROUP_OCCURRENCE);
+  projectId(DwcTerm.GROUP_OCCURRENCE),
+
+  /** Flag occurrence when associatedSequences/extension exists */
+  isSequenced(DwcTerm.GROUP_OCCURRENCE),
+
+  /** GBIF region based on country code */
+  gbifRegion(DwcTerm.GROUP_LOCATION),
+
+  /** GBIF region based on publishing country code */
+  publishedByGbifRegion(DwcTerm.GROUP_LOCATION);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
