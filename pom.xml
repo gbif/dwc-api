@@ -41,6 +41,7 @@
     <coverage.dir>${project.basedir}/target/coverage</coverage.dir>
     <coverage.report.it.dir>${project.basedir}/target/site/jacoco-it</coverage.report.it.dir>
     <coverage.report.ut.dir>${project.basedir}/target/site/jacoco-ut</coverage.report.ut.dir>
+    <sonar.jacoco.reportPaths>${jacoco.merged.output.file},${coverage.dir}/jacoco-ut.exec</sonar.jacoco.reportPaths>
   </properties>
 
   <developers>
