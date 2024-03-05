@@ -36,6 +36,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
    */
   Occurrence(DwcTerm.GROUP_OCCURRENCE, "DarwinCore", "SimpleDarwinCore"),
   Organism(DwcTerm.GROUP_ORGANISM),
+  MaterialEntity(DwcTerm.GROUP_MATERIAL_ENTITY),
   MaterialSample(DwcTerm.GROUP_MATERIAL_SAMPLE),
   Event(DwcTerm.GROUP_EVENT),
   GeologicalContext(DwcTerm.GROUP_GEOLOGICALCONTEXT),
@@ -80,12 +81,12 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   @Vocabulary pathway(DwcTerm.GROUP_OCCURRENCE),
   georeferenceVerificationStatus(DwcTerm.GROUP_OCCURRENCE),
   occurrenceStatus(DwcTerm.GROUP_OCCURRENCE),
-  preparations(DwcTerm.GROUP_OCCURRENCE),
-  disposition(DwcTerm.GROUP_OCCURRENCE),
+  preparations(DwcTerm.GROUP_MATERIAL_ENTITY),
+  disposition(DwcTerm.GROUP_MATERIAL_ENTITY),
   associatedMedia(DwcTerm.GROUP_OCCURRENCE),
   associatedOccurrences(DwcTerm.GROUP_OCCURRENCE),
   associatedReferences(DwcTerm.GROUP_OCCURRENCE),
-  associatedSequences(DwcTerm.GROUP_OCCURRENCE),
+  associatedSequences(DwcTerm.GROUP_MATERIAL_ENTITY),
   associatedTaxa(DwcTerm.GROUP_OCCURRENCE),
   otherCatalogNumbers(DwcTerm.GROUP_OCCURRENCE),
   occurrenceRemarks(DwcTerm.GROUP_OCCURRENCE),
@@ -97,8 +98,10 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   previousIdentifications(DwcTerm.GROUP_ORGANISM),
   organismRemarks(DwcTerm.GROUP_ORGANISM),
 
+  materialEntityID(DwcTerm.GROUP_MATERIAL_ENTITY),
+  materialEntityRemarks(DwcTerm.GROUP_MATERIAL_ENTITY),
+  verbatimLabel(DwcTerm.GROUP_MATERIAL_ENTITY),
   materialSampleID(DwcTerm.GROUP_MATERIAL_SAMPLE),
-  verbatimLabel(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
   eventID(DwcTerm.GROUP_EVENT),
   parentEventID(DwcTerm.GROUP_EVENT),
@@ -166,16 +169,16 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   georeferenceRemarks(DwcTerm.GROUP_LOCATION),
 
   geologicalContextID(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  earliestEonOrLowestEonothem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  latestEonOrHighestEonothem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  earliestEraOrLowestErathem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  latestEraOrHighestErathem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  earliestPeriodOrLowestSystem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  latestPeriodOrHighestSystem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  earliestEpochOrLowestSeries(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  latestEpochOrHighestSeries(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  earliestAgeOrLowestStage(DwcTerm.GROUP_GEOLOGICALCONTEXT),
-  latestAgeOrHighestStage(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary earliestEonOrLowestEonothem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary latestEonOrHighestEonothem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary earliestEraOrLowestErathem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary latestEraOrHighestErathem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary earliestPeriodOrLowestSystem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary latestPeriodOrHighestSystem(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary earliestEpochOrLowestSeries(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary latestEpochOrHighestSeries(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary earliestAgeOrLowestStage(DwcTerm.GROUP_GEOLOGICALCONTEXT),
+  @Vocabulary latestAgeOrHighestStage(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   lowestBiostratigraphicZone(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   highestBiostratigraphicZone(DwcTerm.GROUP_GEOLOGICALCONTEXT),
   lithostratigraphicTerms(DwcTerm.GROUP_GEOLOGICALCONTEXT),
@@ -267,6 +270,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   public static final String GROUP_RECORD = "Record";
   public static final String GROUP_OCCURRENCE = "Occurrence";
   public static final String GROUP_ORGANISM = "Organism";
+  public static final String GROUP_MATERIAL_ENTITY = "MaterialEntity";
   public static final String GROUP_MATERIAL_SAMPLE = "MaterialSample";
   public static final String GROUP_EVENT = "Event";
   public static final String GROUP_LOCATION = "Location";
@@ -281,7 +285,8 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
    * @see <a href="http://rs.tdwg.org/dwc/terms/index.htm#theterms">DwC Quick Reference Guide</a>
    */
   public static final String[] GROUPS =
-    {GROUP_RECORD, GROUP_OCCURRENCE, GROUP_ORGANISM, GROUP_EVENT, GROUP_LOCATION,
+    {GROUP_RECORD, GROUP_OCCURRENCE, GROUP_ORGANISM,
+    GROUP_MATERIAL_ENTITY, GROUP_MATERIAL_SAMPLE, GROUP_EVENT, GROUP_LOCATION,
 	  GROUP_GEOLOGICALCONTEXT, GROUP_IDENTIFICATION, GROUP_TAXON,
 	  GROUP_MEASUREMENTORFACT, GROUP_RESOURCERELATIONSHIP};
 
