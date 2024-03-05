@@ -37,6 +37,11 @@
     <junit.version>5.9.1</junit.version>
     <logback.version>1.2.11</logback.version>
     <slf4j.version>1.7.36</slf4j.version>
+
+    <!-- JaCoCo -->
+    <coverage.dir>${project.basedir}/target/coverage</coverage.dir>
+    <coverage.report.it.dir>${project.basedir}/target/site/jacoco-it</coverage.report.it.dir>
+    <coverage.report.ut.dir>${project.basedir}/target/site/jacoco-ut</coverage.report.ut.dir>
   </properties>
 
   <developers>
@@ -61,8 +66,12 @@
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
       </plugin>
-    </plugins>
 
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
 
   <dependencies>
