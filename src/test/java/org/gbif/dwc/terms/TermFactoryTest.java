@@ -50,9 +50,23 @@ public class TermFactoryTest {
     addTerms(names, GbifInternalTerm.values());
     addTerms(names, IucnTerm.values());
 
+    // Audubon Core
     addTerms(names, termsBut(AcTerm.values(), AcTerm.Multimedia, AcTerm.relatedResourceID));
+    addTerms(names, ExifTerm.values());
+    addTerms(names, IptcTerm.values());
+    addTerms(names, PhotoshopTerm.values());
     addTerms(names, XmpTerm.values());
     addTerms(names, XmpRightsTerm.values());
+
+    // Terms for extensions supported in GBIF downloads.
+    addTerms(names, ChronoTerm.values());
+    addTerms(names, GbifDnaTerm.values());
+    addTerms(names, GbifMiqeTerm.values());
+    addTerms(names, GermplasmTerm.values());
+    addTerms(names, termsBut(GgbnTerm.values(), GgbnTerm.MaterialSample));
+    addTerms(names, MixsTerm.values());
+    addTerms(names, ObisTerm.values());
+    addTerms(names, WGS84GeoPositioningTerm.values());
   }
 
   private Term[] termsBut(Term[] terms, Term... exclude) {
@@ -122,7 +136,7 @@ public class TermFactoryTest {
     assertEquals(DwcTerm.family, TF.findTerm("dwc:family"));
     assertEquals(DwcTerm.family, TF.findTerm("family"));
     assertEquals(AcefTerm.Family, TF.findTerm("acef:family"));
-  
+
     assertEquals(DwcaTerm.ID, TF.findTerm("dwca:ID"));
 
     assertEquals(BibTexTerm.CLASS_TERM, TF.findTerm("bib:BibTeX"));
