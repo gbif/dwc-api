@@ -17,112 +17,126 @@ package org.gbif.dwc.terms;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.Arrays;
 
 /**
- * All MiXS terms with namespace http://gensc.org/ns/mixs/.
+ * All GenSC (Genomics Standards Consortium) Minimum Information about any Sequence (MIxS) terms
+ * with namespace https://w3id.org/mixs/ or https://w3id.org/gensc/terms/MIXS:.
  *
- * Note URIs here must use the MIXS:0000001 form, but we keep the simple name for casual use (the enum names,
- * the simpleName for CSV headers etc).
+ * Note URIs here must use the https://w3id.org/mixs/0000001 form, but we keep the simple name for casual use
+ * (the enum names, the simpleName for CSV headers etc).
  *
  * See https://genomicsstandardsconsortium.github.io/mixs/
  *
  * See https://github.com/GenomicsStandardsConsortium/mixs/blob/main/src/mixs/schema/mixs.yaml
  */
 public enum MixsTerm implements Term, AlternativeNames, Serializable {
-  samp_size("MIXS:0000001"),
-  samp_collect_device("MIXS:0000002"),
-  isol_growth_condt("MIXS:0000003"),
-  contam_screen_input("MIXS:0000005"),
-  wga_amp_kit("MIXS:0000006"),
-  experimental_factor("MIXS:0000008"),
-  env_broad_scale("MIXS:0000012"),
-  env_local_scale("MIXS:0000013"),
-  env_medium("MIXS:0000014"),
-  rel_to_oxygen("MIXS:0000015"),
-  samp_mat_process("MIXS:0000016"),
-  size_frac("MIXS:0000017"),
-  subspecf_gen_lin("MIXS:0000020"),
-  ploidy("MIXS:0000021"),
-  num_replicons("MIXS:0000022"),
-  extrachrom_elements("MIXS:0000023"),
-  estimated_size("MIXS:0000024"),
-  ref_biomaterial("MIXS:0000025"),
-  source_mat_id("MIXS:0000026"),
-  pathogenicity("MIXS:0000027"),
-  biotic_relationship("MIXS:0000028"),
-  specific_host("MIXS:0000029"),
-  host_spec_range("MIXS:0000030"),
-  host_disease_stat("MIXS:0000031"),
-  trophic_level("MIXS:0000032"),
-  propagation("MIXS:0000033"),
-  encoded_traits("MIXS:0000034"),
-  source_uvig("MIXS:0000035"),
-  virus_enrich_appr("MIXS:0000036"),
-  nucl_acid_ext("MIXS:0000037"),
-  nucl_acid_amp("MIXS:0000038"),
-  lib_size("MIXS:0000039"),
-  lib_reads_seqd("MIXS:0000040"),
-  lib_layout("MIXS:0000041", "lib_const_meth"),
-  lib_vector("MIXS:0000042"),
-  lib_screen("MIXS:0000043"),
-  target_gene("MIXS:0000044"),
-  target_subfragment("MIXS:0000045"),
-  pcr_primers("MIXS:0000046"),
-  mid("MIXS:0000047"),
-  adapters("MIXS:0000048"),
-  pcr_cond("MIXS:0000049"),
-  seq_meth("MIXS:0000050"),
-  seq_quality_check("MIXS:0000051"),
-  chimera_check("MIXS:0000052"),
-  tax_ident("MIXS:0000053"),
-  sc_lysis_method("MIXS:0000054"),
-  wga_amp_appr("MIXS:0000055"),
-  assembly_qual("MIXS:0000056", "finishing_strategy"),
-  assembly_name("MIXS:0000057", "assembly"),
-  assembly_software("MIXS:0000058"),
-  annot("MIXS:0000059", "annot_source"),
-  number_contig("MIXS:0000060"),
-  feat_pred("MIXS:0000061"),
-  ref_db("MIXS:0000062"),
-  sim_search_meth("MIXS:0000063"),
-  tax_class("MIXS:0000064"),
-  _16s_recover("MIXS:0000065", "16s_recover"),
-  _16s_recover_software("MIXS:0000066", "16s_recover_software"),
-  trnas("MIXS:0000067"),
-  trna_ext_software("MIXS:0000068"),
-  compl_score("MIXS:0000069"),
-  compl_software("MIXS:0000070"),
-  compl_appr("MIXS:0000071"),
-  contam_score("MIXS:0000072"),
-  contam_screen_param("MIXS:0000073"),
-  decontam_software("MIXS:0000074"),
-  sort_tech("MIXS:0000075"),
-  sc_lysis_approach("MIXS:0000076"),
-  bin_param("MIXS:0000077"),
-  bin_software("MIXS:0000078"),
-  reassembly_bin("MIXS:0000079"),
-  mag_cov_software("MIXS:0000080"),
-  vir_ident_software("MIXS:0000081"),
-  pred_genome_type("MIXS:0000082"),
-  pred_genome_struc("MIXS:0000083"),
-  detec_type("MIXS:0000084"),
-  otu_class_appr("MIXS:0000085"),
-  otu_seq_comp_appr("MIXS:0000086"),
-  otu_db("MIXS:0000087"),
-  host_pred_appr("MIXS:0000088"),
-  host_pred_est_acc("MIXS:0000089"),
-  sop("MIXS:0000090"),
-  associated_resource("MIXS:0000091"),
-  project_name("MIXS:0000092"),
-  samp_vol_we_dna_ext("MIXS:0000111"),
-  sieving("MIXS:0000322"),
-  pool_dna_extracts("MIXS:0000325"),
-  samp_name("MIXS:0001107"),
-  samp_collect_method("MIXS:0001225");
+  samp_size("0000001"),
+  samp_collect_device("0000002"),
+  isol_growth_condt("0000003"),
+  contam_screen_input("0000005"),
+  wga_amp_kit("0000006"),
+  experimental_factor("0000008"),
+  env_broad_scale("0000012"),
+  env_local_scale("0000013"),
+  env_medium("0000014"),
+  rel_to_oxygen("0000015"),
+  samp_mat_process("0000016"),
+  size_frac("0000017"),
+  subspecf_gen_lin("0000020"),
+  ploidy("0000021"),
+  num_replicons("0000022"),
+  extrachrom_elements("0000023"),
+  estimated_size("0000024"),
+  ref_biomaterial("0000025"),
+  source_mat_id("0000026"),
+  pathogenicity("0000027"),
+  biotic_relationship("0000028"),
+  specific_host("0000029"),
+  host_spec_range("0000030"),
+  host_disease_stat("0000031"),
+  trophic_level("0000032"),
+  propagation("0000033"),
+  encoded_traits("0000034"),
+  source_uvig("0000035"),
+  virus_enrich_appr("0000036"),
+  nucl_acid_ext("0000037"),
+  nucl_acid_amp("0000038"),
+  lib_size("0000039"),
+  lib_reads_seqd("0000040"),
+  lib_layout("0000041", "lib_const_meth"),
+  lib_vector("0000042"),
+  lib_screen("0000043"),
+  target_gene("0000044"),
+  target_subfragment("0000045"),
+  pcr_primers("0000046"),
+  mid("0000047"),
+  adapters("0000048"),
+  pcr_cond("0000049"),
+  seq_meth("0000050"),
+  seq_quality_check("0000051"),
+  chimera_check("0000052"),
+  tax_ident("0000053"),
+  sc_lysis_method("0000054"),
+  wga_amp_appr("0000055"),
+  assembly_qual("0000056", "finishing_strategy"),
+  assembly_name("0000057", "assembly"),
+  assembly_software("0000058"),
+  annot("0000059", "annot_source"),
+  number_contig("0000060"),
+  feat_pred("0000061"),
+  ref_db("0000062"),
+  sim_search_meth("0000063"),
+  tax_class("0000064"),
+  _16s_recover("0000065", "16s_recover"),
+  _16s_recover_software("0000066", "16s_recover_software"),
+  trnas("0000067"),
+  trna_ext_software("0000068"),
+  compl_score("0000069"),
+  compl_software("0000070"),
+  compl_appr("0000071"),
+  contam_score("0000072"),
+  contam_screen_param("0000073"),
+  decontam_software("0000074"),
+  sort_tech("0000075"),
+  sc_lysis_approach("0000076"),
+  bin_param("0000077"),
+  bin_software("0000078"),
+  reassembly_bin("0000079"),
+  mag_cov_software("0000080"),
+  vir_ident_software("0000081"),
+  pred_genome_type("0000082"),
+  pred_genome_struc("0000083"),
+  detec_type("0000084"),
+  otu_class_appr("0000085"),
+  otu_seq_comp_appr("0000086"),
+  otu_db("0000087"),
+  host_pred_appr("0000088"),
+  host_pred_est_acc("0000089"),
+  sop("0000090"),
+  associated_resource("0000091"),
+  project_name("0000092"),
+  samp_vol_we_dna_ext("0000111"),
+  sieving("0000322"),
+  pool_dna_extracts("0000325"),
+  samp_name("0001107"),
+  samp_collect_method("0001225");
 
   private static final String PREFIX = "mixs";
+
+  // This is the current and preferred namespace. The URI given on https://w3id.org/mixs/0000001 (which redirects to
+  // https://genomicsstandardsconsortium.github.io/mixs/0000001/) is itself, https://w3id.org/mixs/0000001.
   private static final String NS = "https://w3id.org/mixs/";
+
+  // This was the namespace before 2022, and was used for the DNA extension.
+  private static final String OLD_NS = "https://w3id.org/gensc/terms/MIXS:";
+
+  // This was a proposed namespace, or may have been the real namespace. It is used in the GGBN extensions.
+  // https://bioregistry.io/registry/mixs says it was temporary, it's possible it was invented by TDWG people.
+  private static final String VERY_OLD_NS = "http://gensc.org/ns/mixs/";
+
   private static final URI NS_URI = URI.create(NS);
+  private final String mixsIdentifier;
   public final String[] alternatives;
 
   @Override
@@ -147,16 +161,13 @@ public enum MixsTerm implements Term, AlternativeNames, Serializable {
   }
 
   @Override
-  public String prefixedName() {
-    return prefix() + ":" + alternatives[0];
+  public String qualifiedName() {
+    return namespace() + mixsIdentifier;
   }
 
-  /**
-   * @return true if the GGBN term is defining a class instead of a property, e.g. Amplification
-   */
   @Override
   public boolean isClass() {
-    return Character.isUpperCase(simpleName().charAt(0));
+    return false;
   }
 
   @Override
@@ -169,7 +180,11 @@ public enum MixsTerm implements Term, AlternativeNames, Serializable {
     return NS_URI;
   }
 
-  MixsTerm(String... alternatives) {
-    this.alternatives = alternatives;
+  MixsTerm(String mixsIdentifier, String... alternatives) {
+    this.mixsIdentifier = mixsIdentifier;
+    this.alternatives = Arrays.copyOf(alternatives, alternatives.length + 3);
+    this.alternatives[alternatives.length] = name();
+    this.alternatives[alternatives.length+1] = OLD_NS + mixsIdentifier;
+    this.alternatives[alternatives.length+2] = VERY_OLD_NS + name();
   }
 }

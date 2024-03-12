@@ -19,7 +19,6 @@ import com.google.common.collect.Sets;
 import com.google.common.reflect.ClassPath;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +27,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TermFactoryTest {
 
@@ -49,6 +51,11 @@ public class TermFactoryTest {
     addTerms(names, GbifTerm.values());
     addTerms(names, GbifInternalTerm.values());
     addTerms(names, IucnTerm.values());
+    //addTerms(names, DcElement.values());
+    //addTerms(names, AcefTerm.values());
+    //addTerms(names, PlaziTerm.values());
+    addTerms(names, GadmTerm.values());
+    //addTerms(names, DwcaTerm.values());
 
     // Audubon Core
     addTerms(names, termsBut(AcTerm.values(), AcTerm.Multimedia, AcTerm.relatedResourceID));
@@ -66,7 +73,7 @@ public class TermFactoryTest {
     addTerms(names, termsBut(GgbnTerm.values(), GgbnTerm.MaterialSample));
     addTerms(names, MixsTerm.values());
     addTerms(names, ObisTerm.values());
-    addTerms(names, WGS84GeoPositioningTerm.values());
+    addTerms(names, Wgs84GeoPositioningTerm.values());
   }
 
   private Term[] termsBut(Term[] terms, Term... exclude) {
@@ -78,7 +85,13 @@ public class TermFactoryTest {
 
   private void addTerms(Set<String> names, Term[] terms) {
     for (Term t : terms) {
-      assertFalse(names.contains(t.simpleName()), "Duplicate simple name " + t.simpleName());
+      assertFalse(names.contains(t.simpleName()), "Duplicate simple name " + t.simpleName() + " for " + t);
+      if (t instanceof AlternativeNames) {
+        for (String a : ((AlternativeNames) t).alternativeNames()) {
+          assertFalse(names.contains(a), "Duplicate alternative name " + a + " for " + t);
+          names.add(a);
+        }
+      }
       names.add(t.simpleName());
     }
   }
@@ -151,6 +164,13 @@ public class TermFactoryTest {
     assertEquals(AcefTerm.Country, TF.findTerm("http://rs.col.plus/terms/acef/Country"));
     assertEquals(AcefTerm.Country, TF.findTerm("https://rs.col.plus/terms/acef/Country"));
     assertEquals(DwcTerm.country, TF.findTerm("country"));
+
+    // MIxS uses unreadable identifiers in qualified names.
+    assertEquals(MixsTerm.samp_size, TF.findTerm("samp_size"));
+    assertEquals(MixsTerm.samp_size, TF.findTerm("mixs:samp_size"));
+    assertEquals(MixsTerm.samp_size, TF.findTerm("https://w3id.org/gensc/terms/MIXS:0000001"));
+    assertEquals(MixsTerm.samp_size, TF.findTerm("https://w3id.org/mixs/0000001"));
+    assertEquals(MixsTerm.lib_reads_seqd, TF.findTerm("http://gensc.org/ns/mixs/lib_reads_seqd"));
   }
 
   @Test

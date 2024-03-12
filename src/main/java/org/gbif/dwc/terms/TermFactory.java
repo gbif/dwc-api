@@ -87,9 +87,9 @@ public class TermFactory {
     registerTermEnum(GbifMiqeTerm.class);
     registerTermEnum(GermplasmTerm.class);
     registerTermEnum(GgbnTerm.class);
-    registerTermEnum(MixsTerm.class, "http://gensc.org/ns/mixs/");
+    registerTermEnum(MixsTerm.class);
     registerTermEnum(ObisTerm.class);
-    registerTermEnum(WGS84GeoPositioningTerm.class);
+    registerTermEnum(Wgs84GeoPositioningTerm.class);
 
     registerQualifiedTermEnum(DwcaTerm.class);
     addTerm(BibTexTerm.CLASS_TERM);
