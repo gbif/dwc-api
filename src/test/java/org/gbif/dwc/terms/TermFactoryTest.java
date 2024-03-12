@@ -171,6 +171,9 @@ public class TermFactoryTest {
     assertEquals(MixsTerm.samp_size, TF.findTerm("https://w3id.org/gensc/terms/MIXS:0000001"));
     assertEquals(MixsTerm.samp_size, TF.findTerm("https://w3id.org/mixs/0000001"));
     assertEquals(MixsTerm.lib_reads_seqd, TF.findTerm("http://gensc.org/ns/mixs/lib_reads_seqd"));
+    assertEquals(MixsTerm.assembly_name, TF.findTerm("http://gensc.org/ns/mixs/assembly"));
+    assertEquals(MixsTerm.assembly_qual, TF.findTerm("http://gensc.org/ns/mixs/finishing_strategy"));
+    assertEquals(MixsTerm.annot, TF.findTerm("http://gensc.org/ns/mixs/annot_source"));
   }
 
   @Test
