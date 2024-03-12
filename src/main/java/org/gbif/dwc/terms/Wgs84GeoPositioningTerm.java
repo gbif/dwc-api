@@ -21,14 +21,14 @@ import java.net.URI;
 /**
  * All WGS84 Geo Positioning terms with namespace http://www.w3.org/2003/01/geo/wgs84_pos#
  */
-public enum WGS84GeoPositioningTerm implements Term, AlternativeNames, Serializable {
+public enum Wgs84GeoPositioningTerm implements Term, AlternativeNames, Serializable {
   SpatialThing,
   Point,
 
-  lat("latitude"),
+  lat("http://www.w3.org/2003/01/geo/wgs84_pos#latitude"),
   location,
-  long_("longitude"),
-  alt("altitude"),
+  long_("http://www.w3.org/2003/01/geo/wgs84_pos#longitude", "http://www.w3.org/2003/01/geo/wgs84_pos#lon"),
+  alt("http://www.w3.org/2003/01/geo/wgs84_pos#altitude"),
   lat_long("lat/long");
 
   private static final String PREFIX = "wgs84geopositioning";
@@ -72,7 +72,7 @@ public enum WGS84GeoPositioningTerm implements Term, AlternativeNames, Serializa
     return NS_URI;
   }
 
-  WGS84GeoPositioningTerm(String... alternatives) {
+  Wgs84GeoPositioningTerm(String... alternatives) {
     this.alternatives = alternatives;
   }
 }

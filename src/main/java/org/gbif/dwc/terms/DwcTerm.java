@@ -82,7 +82,9 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   georeferenceVerificationStatus(DwcTerm.GROUP_OCCURRENCE),
   occurrenceStatus(DwcTerm.GROUP_OCCURRENCE),
   preparations(DwcTerm.GROUP_MATERIAL_ENTITY),
-  disposition(DwcTerm.GROUP_MATERIAL_ENTITY),
+  // Incorrect namespace was used in the GGBN Loan extension: https://rs.gbif.org/extension/ggbn/loan.xml#disposition
+  // https://github.com/gbif/rs.gbif.org/issues/132
+  disposition(DwcTerm.GROUP_MATERIAL_ENTITY, "http://purl.org/dc/terms/disposition"),
   associatedMedia(DwcTerm.GROUP_OCCURRENCE),
   associatedOccurrences(DwcTerm.GROUP_OCCURRENCE),
   associatedReferences(DwcTerm.GROUP_OCCURRENCE),

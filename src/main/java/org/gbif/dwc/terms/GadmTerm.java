@@ -18,14 +18,14 @@ package org.gbif.dwc.terms;
 import java.net.URI;
 
 public enum GadmTerm implements Term, AlternativeNames {
-  level0Gid(DwcTerm.GROUP_LOCATION),
-  level0Name(DwcTerm.GROUP_LOCATION),
-  level1Gid(DwcTerm.GROUP_LOCATION),
-  level1Name(DwcTerm.GROUP_LOCATION),
-  level2Gid(DwcTerm.GROUP_LOCATION),
-  level2Name(DwcTerm.GROUP_LOCATION),
-  level3Gid(DwcTerm.GROUP_LOCATION),
-  level3Name(DwcTerm.GROUP_LOCATION);
+  level0Gid,
+  level0Name,
+  level1Gid,
+  level1Name,
+  level2Gid,
+  level2Name,
+  level3Gid,
+  level3Name;
 
   private static final String PREFIX = "gadm";
   private static final String NS = "http://rs.gbif.org/terms/gadm/3.0/";
