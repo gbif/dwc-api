@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DwcTerm.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Darwin Core API</a> &gt; <a href="index.source.html" class="el_package">org.gbif.dwc.terms</a> &gt; <span class="el_source">DwcTerm.java</span></div><h1>DwcTerm.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Global Biodiversity Information Facility (GBIF)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.gbif.dwc.terms;
+
+import java.io.Serializable;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * All Darwin Core terms with namespace http://rs.tdwg.org/dwc/terms/ as an
+ * enumeration with alternative term names found sometimes in data.
+ * Old, deprecated terms are kept but marked as such.
+ */
+<span class="fc" id="L29">public enum DwcTerm implements Term, AlternativeNames, Serializable {</span>
+
+  /**
+   * CLASS TERMS
+   * Listed in the order given on the Darwin Core Quick Reference Guide.
+   * @see &lt;a href=&quot;http://rs.tdwg.org/dwc/terms/index.htm#theterms&quot;&gt;DwC Quick Reference Guide&lt;/a&gt;
+   * Location is not on this list because it is a term in the dcterm namespace.
+   */
+<span class="fc" id="L37">  Occurrence(DwcTerm.GROUP_OCCURRENCE, &quot;DarwinCore&quot;, &quot;SimpleDarwinCore&quot;),</span>
+<span class="fc" id="L38">  Organism(DwcTerm.GROUP_ORGANISM),</span>
+<span class="fc" id="L39">  MaterialEntity(DwcTerm.GROUP_MATERIAL_ENTITY),</span>
+<span class="fc" id="L40">  MaterialSample(DwcTerm.GROUP_MATERIAL_SAMPLE),</span>
+<span class="fc" id="L41">  Event(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L42">  GeologicalContext(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L43">  Identification(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L44">  Taxon(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L45">  MeasurementOrFact(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L46">  ResourceRelationship(DwcTerm.GROUP_RESOURCERELATIONSHIP),</span>
+
+  /**
+   * PROPERTY TERMS
+   * Listed in the order given on the Darwin Core Quick Reference Guide.
+   * @see &lt;a href=&quot;http://rs.tdwg.org/dwc/terms/index.htm#theterms&quot;&gt;DwC Quick Reference Guide&lt;/a&gt;
+   */
+<span class="fc" id="L53">  institutionID(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L54">  collectionID(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L55">  datasetID(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L56">  institutionCode(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L57">  collectionCode(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L58">  datasetName(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L59">  ownerInstitutionCode(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L60">  basisOfRecord(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L61">  informationWithheld(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L62">  dataGeneralizations(DwcTerm.GROUP_RECORD),</span>
+<span class="fc" id="L63">  dynamicProperties(DwcTerm.GROUP_RECORD),</span>
+
+<span class="fc" id="L65">  occurrenceID(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L66">  catalogNumber(DwcTerm.GROUP_OCCURRENCE, &quot;catalogNumberNumeric&quot;),</span>
+<span class="fc" id="L67">  recordNumber(DwcTerm.GROUP_OCCURRENCE, &quot;collectorNumber&quot;),</span>
+<span class="fc" id="L68">  recordedBy(DwcTerm.GROUP_OCCURRENCE, &quot;collector&quot;),</span>
+<span class="fc" id="L69">  recordedByID(DwcTerm.GROUP_OCCURRENCE, &quot;gbif:recordedByID&quot;, &quot;http://rs.gbif.org/terms/1.0/recordedByID&quot;),</span>
+<span class="fc" id="L70">  individualCount(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L71">  organismQuantity(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L72">  organismQuantityType(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L73">  sex(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L74">  @Vocabulary lifeStage(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L75">  reproductiveCondition(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L76">  caste(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L77">  behavior(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L78">  vitality(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L79">  @Vocabulary establishmentMeans(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L80">  @Vocabulary degreeOfEstablishment(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L81">  @Vocabulary pathway(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L82">  georeferenceVerificationStatus(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L83">  occurrenceStatus(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L84">  preparations(DwcTerm.GROUP_MATERIAL_ENTITY),</span>
+  // Incorrect namespace was used in the GGBN Loan extension: https://rs.gbif.org/extension/ggbn/loan.xml#disposition
+  // https://github.com/gbif/rs.gbif.org/issues/132
+<span class="fc" id="L87">  disposition(DwcTerm.GROUP_MATERIAL_ENTITY, &quot;http://purl.org/dc/terms/disposition&quot;),</span>
+<span class="fc" id="L88">  associatedMedia(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L89">  associatedOccurrences(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L90">  associatedReferences(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L91">  associatedSequences(DwcTerm.GROUP_MATERIAL_ENTITY),</span>
+<span class="fc" id="L92">  associatedTaxa(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L93">  otherCatalogNumbers(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L94">  occurrenceRemarks(DwcTerm.GROUP_OCCURRENCE),</span>
+
+<span class="fc" id="L96">  organismID(DwcTerm.GROUP_ORGANISM, &quot;individualID&quot;),</span>
+<span class="fc" id="L97">  organismName(DwcTerm.GROUP_ORGANISM),</span>
+<span class="fc" id="L98">  organismScope(DwcTerm.GROUP_ORGANISM),</span>
+<span class="fc" id="L99">  associatedOrganisms(DwcTerm.GROUP_ORGANISM),</span>
+<span class="fc" id="L100">  previousIdentifications(DwcTerm.GROUP_ORGANISM),</span>
+<span class="fc" id="L101">  organismRemarks(DwcTerm.GROUP_ORGANISM),</span>
+
+<span class="fc" id="L103">  materialEntityID(DwcTerm.GROUP_MATERIAL_ENTITY),</span>
+<span class="fc" id="L104">  materialEntityRemarks(DwcTerm.GROUP_MATERIAL_ENTITY),</span>
+<span class="fc" id="L105">  verbatimLabel(DwcTerm.GROUP_MATERIAL_ENTITY),</span>
+<span class="fc" id="L106">  materialSampleID(DwcTerm.GROUP_MATERIAL_SAMPLE),</span>
+
+<span class="fc" id="L108">  eventID(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L109">  parentEventID(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L110">  @Vocabulary eventType(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L111">  fieldNumber(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L112">  eventDate(DwcTerm.GROUP_EVENT, &quot;earliestDateCollected&quot;, &quot;latestDateCollected&quot;),</span>
+<span class="fc" id="L113">  eventTime(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L114">  startDayOfYear(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L115">  endDayOfYear(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L116">  year(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L117">  month(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L118">  day(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L119">  verbatimEventDate(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L120">  habitat(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L121">  samplingProtocol(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L122">  sampleSizeValue(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L123">  sampleSizeUnit(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L124">  samplingEffort(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L125">  fieldNotes(DwcTerm.GROUP_EVENT),</span>
+<span class="fc" id="L126">  eventRemarks(DwcTerm.GROUP_EVENT),</span>
+
+<span class="fc" id="L128">  locationID(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L129">  higherGeographyID(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L130">  higherGeography(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L131">  continent(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L132">  waterBody(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L133">  islandGroup(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L134">  island(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L135">  country(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L136">  countryCode(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L137">  stateProvince(DwcTerm.GROUP_LOCATION, &quot;state&quot;, &quot;province&quot;),</span>
+<span class="fc" id="L138">  county(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L139">  municipality(DwcTerm.GROUP_LOCATION, &quot;city&quot;),</span>
+<span class="fc" id="L140">  locality(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L141">  verbatimLocality(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L142">  minimumElevationInMeters(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L143">  maximumElevationInMeters(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L144">  verbatimElevation(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L145">  verticalDatum(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L146">  minimumDepthInMeters(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L147">  maximumDepthInMeters(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L148">  verbatimDepth(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L149">  minimumDistanceAboveSurfaceInMeters(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L150">  maximumDistanceAboveSurfaceInMeters(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L151">  locationAccordingTo(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L152">  locationRemarks(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L153">  decimalLatitude(DwcTerm.GROUP_LOCATION, &quot;latitude&quot;),</span>
+<span class="fc" id="L154">  decimalLongitude(DwcTerm.GROUP_LOCATION, &quot;longitude&quot;),</span>
+<span class="fc" id="L155">  geodeticDatum(DwcTerm.GROUP_LOCATION, &quot;datum&quot;, &quot;horizontaldatum&quot;),</span>
+<span class="fc" id="L156">  coordinateUncertaintyInMeters(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L157">  coordinatePrecision(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L158">  pointRadiusSpatialFit(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L159">  verbatimCoordinates(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L160">  verbatimLatitude(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L161">  verbatimLongitude(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L162">  verbatimCoordinateSystem(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L163">  verbatimSRS(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L164">  footprintWKT(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L165">  footprintSRS(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L166">  footprintSpatialFit(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L167">  georeferencedBy(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L168">  georeferencedDate(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L169">  georeferenceProtocol(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L170">  georeferenceSources(DwcTerm.GROUP_LOCATION),</span>
+<span class="fc" id="L171">  georeferenceRemarks(DwcTerm.GROUP_LOCATION),</span>
+
+<span class="fc" id="L173">  geologicalContextID(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L174">  @Vocabulary earliestEonOrLowestEonothem(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L175">  @Vocabulary latestEonOrHighestEonothem(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L176">  @Vocabulary earliestEraOrLowestErathem(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L177">  @Vocabulary latestEraOrHighestErathem(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L178">  @Vocabulary earliestPeriodOrLowestSystem(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L179">  @Vocabulary latestPeriodOrHighestSystem(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L180">  @Vocabulary earliestEpochOrLowestSeries(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L181">  @Vocabulary latestEpochOrHighestSeries(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L182">  @Vocabulary earliestAgeOrLowestStage(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L183">  @Vocabulary latestAgeOrHighestStage(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L184">  lowestBiostratigraphicZone(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L185">  highestBiostratigraphicZone(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L186">  lithostratigraphicTerms(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L187">  group(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L188">  formation(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L189">  member(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+<span class="fc" id="L190">  bed(DwcTerm.GROUP_GEOLOGICALCONTEXT),</span>
+
+<span class="fc" id="L192">  identificationID(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L193">  verbatimIdentification(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L194">  identificationQualifier(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L195">  typeStatus(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L196">  identifiedBy(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L197">  identifiedByID(DwcTerm.GROUP_IDENTIFICATION, &quot;gbif:identifiedByID&quot;, &quot;http://rs.gbif.org/terms/1.0/identifiedByID&quot;),</span>
+<span class="fc" id="L198">  dateIdentified(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L199">  identificationReferences(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L200">  identificationVerificationStatus(DwcTerm.GROUP_IDENTIFICATION),</span>
+<span class="fc" id="L201">  identificationRemarks(DwcTerm.GROUP_IDENTIFICATION),</span>
+
+<span class="fc" id="L203">  taxonID(DwcTerm.GROUP_TAXON, &quot;nameUsageID&quot;),</span>
+<span class="fc" id="L204">  scientificNameID(DwcTerm.GROUP_TAXON, &quot;nameID&quot;),</span>
+<span class="fc" id="L205">  acceptedNameUsageID(DwcTerm.GROUP_TAXON, &quot;acceptedTaxonID&quot;),</span>
+<span class="fc" id="L206">  parentNameUsageID(DwcTerm.GROUP_TAXON, &quot;higherNameUsageID&quot;, &quot;parentTaxonID&quot;),</span>
+<span class="fc" id="L207">  originalNameUsageID(DwcTerm.GROUP_TAXON, &quot;originalNameID&quot;, &quot;basionymID&quot;),</span>
+<span class="fc" id="L208">  nameAccordingToID(DwcTerm.GROUP_TAXON, &quot;taxonAccordingToID&quot;),</span>
+<span class="fc" id="L209">  namePublishedInID(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L210">  taxonConceptID(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L211">  scientificName(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L212">  acceptedNameUsage(DwcTerm.GROUP_TAXON, &quot;acceptedTaxon&quot;),</span>
+<span class="fc" id="L213">  parentNameUsage(DwcTerm.GROUP_TAXON, &quot;parentTaxon&quot;, &quot;higherTaxon&quot;, &quot;higherNameUsage&quot;),</span>
+<span class="fc" id="L214">  originalNameUsage(DwcTerm.GROUP_TAXON, &quot;originalName&quot;, &quot;originalTaxon&quot;, &quot;basionym&quot;),</span>
+<span class="fc" id="L215">  nameAccordingTo(DwcTerm.GROUP_TAXON, &quot;taxonAccordingTo&quot;),</span>
+<span class="fc" id="L216">  namePublishedIn(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L217">  namePublishedInYear(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L218">  higherClassification(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L219">  kingdom(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L220">  phylum(DwcTerm.GROUP_TAXON),</span>
+  /**
+   * The taxonomic class.
+   * The real Darwin Core term is class, but as java does not allow this name we use a variation instead.
+   */
+<span class="fc" id="L225">  class_(DwcTerm.GROUP_TAXON, &quot;class&quot;),</span>
+<span class="fc" id="L226">  order(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L227">  superfamily(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L228">  family(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L229">  subfamily(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L230">  tribe(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L231">  subtribe(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L232">  genus(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L233">  genericName(DwcTerm.GROUP_TAXON, &quot;gbif:genericName&quot;, &quot;http://rs.gbif.org/terms/1.0/genericName&quot;),</span>
+<span class="fc" id="L234">  subgenus(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L235">  infragenericEpithet(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L236">  specificEpithet(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L237">  infraspecificEpithet(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L238">  cultivarEpithet(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L239">  taxonRank(DwcTerm.GROUP_TAXON, &quot;rank&quot;),</span>
+<span class="fc" id="L240">  verbatimTaxonRank(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L241">  scientificNameAuthorship(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L242">  vernacularName(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L243">  nomenclaturalCode(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L244">  taxonomicStatus(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L245">  nomenclaturalStatus(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L246">  taxonRemarks(DwcTerm.GROUP_TAXON, &quot;taxonRemark&quot;),</span>
+
+<span class="fc" id="L248">  measurementID(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L249">  parentMeasurementID(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L250">  measurementType(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L251">  measurementValue(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L252">  measurementAccuracy(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L253">  measurementUnit(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L254">  measurementDeterminedBy(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L255">  measurementDeterminedDate(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L256">  measurementMethod(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+<span class="fc" id="L257">  measurementRemarks(DwcTerm.GROUP_MEASUREMENTORFACT),</span>
+
+<span class="fc" id="L259">  resourceRelationshipID(DwcTerm.GROUP_RESOURCERELATIONSHIP),</span>
+<span class="fc" id="L260">  resourceID(DwcTerm.GROUP_RESOURCERELATIONSHIP),</span>
+<span class="fc" id="L261">  relationshipOfResourceID(DwcTerm.GROUP_RESOURCERELATIONSHIP),</span>
+<span class="fc" id="L262">  relatedResourceID(DwcTerm.GROUP_RESOURCERELATIONSHIP),</span>
+<span class="fc" id="L263">  relationshipOfResource(DwcTerm.GROUP_RESOURCERELATIONSHIP),</span>
+<span class="fc" id="L264">  relationshipAccordingTo(DwcTerm.GROUP_RESOURCERELATIONSHIP),</span>
+<span class="fc" id="L265">  relationshipEstablishedDate(DwcTerm.GROUP_RESOURCERELATIONSHIP),</span>
+<span class="fc" id="L266">  relationshipRemarks(DwcTerm.GROUP_RESOURCERELATIONSHIP);</span>
+
+  private static final String PREFIX = &quot;dwc&quot;;
+  private static final String NS = &quot;http://rs.tdwg.org/dwc/terms/&quot;;
+<span class="fc" id="L270">  private static final URI NS_URI = URI.create(NS);</span>
+
+  public static final String GROUP_RECORD = &quot;Record&quot;;
+  public static final String GROUP_OCCURRENCE = &quot;Occurrence&quot;;
+  public static final String GROUP_ORGANISM = &quot;Organism&quot;;
+  public static final String GROUP_MATERIAL_ENTITY = &quot;MaterialEntity&quot;;
+  public static final String GROUP_MATERIAL_SAMPLE = &quot;MaterialSample&quot;;
+  public static final String GROUP_EVENT = &quot;Event&quot;;
+  public static final String GROUP_LOCATION = &quot;Location&quot;;
+  public static final String GROUP_GEOLOGICALCONTEXT = &quot;GeologicalContext&quot;;
+  public static final String GROUP_IDENTIFICATION = &quot;Identification&quot;;
+  public static final String GROUP_TAXON = &quot;Taxon&quot;;
+  public static final String GROUP_MEASUREMENTORFACT = &quot;MeasurementOrFact&quot;;
+  public static final String GROUP_RESOURCERELATIONSHIP = &quot;ResourceRelationship&quot;;
+
+  /**
+   * Lists all term groups in the order given on the Darwin Core Quick Reference Guide.
+   * @see &lt;a href=&quot;http://rs.tdwg.org/dwc/terms/index.htm#theterms&quot;&gt;DwC Quick Reference Guide&lt;/a&gt;
+   */
+<span class="fc" id="L289">  public static final String[] GROUPS =</span>
+    {GROUP_RECORD, GROUP_OCCURRENCE, GROUP_ORGANISM,
+    GROUP_MATERIAL_ENTITY, GROUP_MATERIAL_SAMPLE, GROUP_EVENT, GROUP_LOCATION,
+	  GROUP_GEOLOGICALCONTEXT, GROUP_IDENTIFICATION, GROUP_TAXON,
+	  GROUP_MEASUREMENTORFACT, GROUP_RESOURCERELATIONSHIP};
+
+<span class="fc" id="L295">  public static final DwcTerm[] TAXONOMIC_TERMS = Arrays.stream(values())</span>
+<span class="fc bfc" id="L296" title="All 4 branches covered.">                                                        .filter(t -&gt; !t.isClass() &amp;&amp; t.getGroup().equals(GROUP_TAXON))</span>
+<span class="fc" id="L297">                                                        .toArray(DwcTerm[]::new);</span>
+
+  /**
+   * List of all higher rank terms in dwc, ordered by rank and starting with kingdom.
+   */
+<span class="fc" id="L302">  public static final DwcTerm[] HIGHER_RANKS =</span>
+    {DwcTerm.kingdom, DwcTerm.phylum, DwcTerm.class_, DwcTerm.order,
+        DwcTerm.superfamily, DwcTerm.family, DwcTerm.subfamily,
+        DwcTerm.tribe, DwcTerm.subtribe,
+        DwcTerm.genus, DwcTerm.subgenus};
+
+  /**
+   * List of all class terms in dwc.
+   */
+<span class="fc" id="L311">  public static final DwcTerm[] CLASS_TERMS = Arrays.stream(values())</span>
+<span class="fc" id="L312">                                                    .filter(DwcTerm::isClass)</span>
+<span class="fc" id="L313">                                                    .toArray(DwcTerm[]::new);</span>
+
+  private final String groupName;
+  public final String normQName;
+  public final String[] normAlts;
+
+<span class="fc" id="L319">  private DwcTerm(String groupName, String... alternatives) {</span>
+<span class="fc" id="L320">    normQName = TermFactory.normaliseTerm(qualifiedName());</span>
+<span class="fc bfc" id="L321" title="All 2 branches covered.">    for (int i = 0; i &lt; alternatives.length; i++) {</span>
+<span class="fc" id="L322">      alternatives[i] = TermFactory.normaliseTerm(alternatives[i]);</span>
+    }
+<span class="fc" id="L324">    normAlts = alternatives;</span>
+<span class="fc" id="L325">    this.groupName = groupName;</span>
+<span class="fc" id="L326">  }</span>
+
+
+  /**
+   * The simple term name without a namespace.
+   * For example scientificName.
+   * @return simple term name
+   */
+  @Override
+  public String simpleName() {
+<span class="fc bfc" id="L336" title="All 2 branches covered.">    if (this == class_) {</span>
+<span class="fc" id="L337">      return &quot;class&quot;;</span>
+    }
+<span class="fc" id="L339">    return name();</span>
+  }
+
+  /**
+   * Array of alternative simple names in use for the term.
+   * Often based on older dwc versions.
+   * @return simple term name
+   */
+  @Override
+  public String[] alternativeNames() {
+<span class="fc" id="L349">    return normAlts;</span>
+  }
+
+  /**
+   * The optional group the term is grouped in.
+   * For example Taxon, Identification, etc.
+   */
+  public String getGroup() {
+<span class="fc" id="L357">    return groupName;</span>
+  }
+
+  /**
+   * @return true if the dwc term is defining a class instead of a property, e.g. Taxon
+   */
+  @Override
+  public boolean isClass() {
+<span class="fc" id="L365">    return Character.isUpperCase(simpleName().charAt(0));</span>
+  }
+
+  /**
+   * List all terms that belong to a given group.
+   *
+   * @param group the group to list terms for
+   *
+   * @return the list of dwc terms in the given group
+   */
+  public static List&lt;DwcTerm&gt; listByGroup(String group) {
+<span class="fc" id="L376">    List&lt;DwcTerm&gt; terms = new ArrayList&lt;DwcTerm&gt;();</span>
+<span class="fc bfc" id="L377" title="All 2 branches covered.">    for (DwcTerm t : DwcTerm.values()) {</span>
+<span class="fc bfc" id="L378" title="All 2 branches covered.">      if (t.getGroup().equalsIgnoreCase(group)) {</span>
+<span class="fc" id="L379">        terms.add(t);</span>
+      }
+    }
+<span class="fc" id="L382">    return terms;</span>
+  }
+
+  @Override
+  public String prefix() {
+<span class="fc" id="L387">    return PREFIX;</span>
+  }
+
+  @Override
+  public URI namespace() {
+<span class="fc" id="L392">    return NS_URI;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="fc" id="L397">    return prefixedName();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

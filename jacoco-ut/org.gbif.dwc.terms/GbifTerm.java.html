@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GbifTerm.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Darwin Core API</a> &gt; <a href="index.source.html" class="el_package">org.gbif.dwc.terms</a> &gt; <span class="el_source">GbifTerm.java</span></div><h1>GbifTerm.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Global Biodiversity Information Facility (GBIF)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.gbif.dwc.terms;
+
+import java.io.Serializable;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L23">public enum GbifTerm implements Term, AlternativeNames, Serializable {</span>
+  // row types
+
+  /**
+   * The &lt;a href=&quot;http://rs.gbif.org/terms/1.0/Description&quot;&gt;GBIF Taxon Description&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L30">  Description(GbifTerm.GROUP_ROW_TYPE),</span>
+
+  /**
+   * The &lt;a href=&quot;http://rs.gbif.org/terms/1.0/Distribution&quot;&gt;GBIF Species Distribution&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L36">  Distribution(GbifTerm.GROUP_ROW_TYPE),</span>
+
+  /**
+   * The &lt;a href=&quot;http://rs.gbif.org/terms/1.0/Identifier&quot;&gt;GBIF Alternative Identifiers&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L42">  Identifier(GbifTerm.GROUP_ROW_TYPE),</span>
+
+  /**
+   * The deprecated &lt;a href=&quot;http://rs.gbif.org/terms/1.0/Image&quot;&gt;GBIF Simple Images&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L48">  Image(GbifTerm.GROUP_ROW_TYPE, &quot;Images&quot;),</span>
+
+  /**
+   * The &lt;a href=&quot;http://rs.gbif.org/terms/1.0/References&quot;&gt;GBIF Literature References&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L54">  Reference(GbifTerm.GROUP_ROW_TYPE, &quot;References&quot;),</span>
+
+  /**
+   * The &lt;a href=&quot;http://rs.gbif.org/terms/1.0/SpeciesProfile&quot;&gt;GBIF Species Profile&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L60">  SpeciesProfile(GbifTerm.GROUP_ROW_TYPE, &quot;SpeciesMiniProfile&quot;, &quot;SpeciesInfo&quot;, &quot;SpeciesData&quot;, &quot;SpeciesFactsheet&quot;),</span>
+
+  /**
+   * The &lt;a href=&quot;http://rs.gbif.org/terms/1.0/TypesAndSpecimen&quot;&gt;GBIF Types and Specimen&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L66">  TypesAndSpecimen(GbifTerm.GROUP_ROW_TYPE, &quot;Specimen&quot;, &quot;Types&quot;, &quot;TypeDesignation&quot;),</span>
+
+  /**
+   * The &lt;a href=&quot;http://rs.gbif.org/terms/1.0/VernacularNames&quot;&gt;GBIF Vernacular Names&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L72">  VernacularName(GbifTerm.GROUP_ROW_TYPE, &quot;VernacularNames&quot;, &quot;Vernacular&quot;, &quot;Vernaculars&quot;),</span>
+
+  /**
+   * The &lt;a href=&quot;http://rs.gbif.org/terms/1.0/Multimedia&quot;&gt;GBIF Simple Multimedia&lt;/a&gt;
+   * extension row type.
+   */
+<span class="fc" id="L78">  Multimedia(GbifTerm.GROUP_ROW_TYPE),</span>
+
+  /**
+   * The UUID key for the dataset registered in GBIF.
+   */
+<span class="fc" id="L83">  datasetKey(GbifTerm.GROUP_DATASET),</span>
+
+  /**
+   * The ISO 3166 2-letter code of the country of the organization that publishes the dataset to which the occurrence belongs.
+   */
+<span class="fc" id="L88">  publishingCountry(GbifTerm.GROUP_DATASET),</span>
+
+  /**
+   * Numerical, stable identifier assigned by GBIF to an Occurrence record.
+   */
+<span class="fc" id="L93">  gbifID(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /**
+   * Timestamp of the last time the record was (re)interpreted by GBIF.
+   */
+<span class="fc" id="L98">  lastInterpreted(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /**
+   * The uncertainty radius for the latitude and longitude in decimal degrees.
+   */
+<span class="fc" id="L103">  @Deprecated</span>
+  coordinateAccuracy(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
+   * Elevation in metres above sea level (altitude).
+   * &lt;p&gt;
+   * The elevation is the absolute vertical position of the observed location (z-coordinate).
+   * If depth is given or not will not impact the 3-dimensional position.
+   * For example a location 100m below the surface of a lake in 2000m altitude has a depth of 100 and
+   * an elevation of 1900.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   * If minimum and maximum values are given the elevation is calculated using the equation:
+   * &lt;code&gt;(minimumElevationInMeters + maximumElevationInMeters) / 2&lt;/code&gt;.
+   * For consistency and ease of use GBIF decided to always use a value in metres plus its accuracy instead of
+   * min/max values which are sometimes used in Darwin Core. See also depth &amp; distanceAboveSurface.
+   * &lt;/p&gt;
+   */
+<span class="fc" id="L121">  elevation(DwcTerm.GROUP_LOCATION),</span>
+
+  /**
+   * Elevation accuracy is the uncertainty for the elevation in metres.
+   * &lt;p&gt;
+   * The elevation accuracy is calculated using the equation: &lt;code&gt;(maximumElevationInMeters - minimumElevationInMeters) / 2&lt;/code&gt;
+   * in case a minimum and maximum verbatim value is given.
+   * &lt;/p&gt;
+   */
+<span class="fc" id="L130">  elevationAccuracy(DwcTerm.GROUP_LOCATION),</span>
+
+  /**
+   * Depth in metres below the surface.
+   * &lt;p&gt;
+   * Complimentary and relative to elevation, depth indicates the distance to the earth surface, whether that is water
+   * or ground.
+   * For example a location 100m below the surface of a lake in 2000m altitude has a depth of 100 and
+   * an elevation of 1900.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   * The depth is calculated using the equation: &lt;code&gt;(minimumDepthInMeters + maximumDepthInMeters) / 2&lt;/code&gt;.
+   * For consistency and ease of use GBIF decided to always use a value in meters plus it's accuracy instead of
+   * min/max values which are sometimes used in Darwin Core. See also elevation &amp; distanceAboveSurface.
+   * &lt;/p&gt;
+   */
+<span class="fc" id="L146">  depth(DwcTerm.GROUP_LOCATION),</span>
+
+  /**
+   * Depth accuracy is the uncertainty for the depth in metres.
+   * &lt;p&gt;
+   * The depth accuracy is calculated using the equation: &lt;code&gt;(maximumDepthInMeters - minimumDepthInMeters) / 2&lt;/code&gt;
+   * in case a minimum and maximum verbatim value is given.
+   * &lt;/p&gt;
+   */
+<span class="fc" id="L155">  depthAccuracy(DwcTerm.GROUP_LOCATION),</span>
+
+  /**
+   * Replaced by Darwin Core terms &lt;a href=&quot;http://rs.tdwg.org/dwc/terms/minimumDistanceAboveSurfaceInMeters&quot;&gt;dwc:minimumDistanceAboveSurfaceInMeters&lt;/a&gt;
+   * and &lt;a href=&quot;http://rs.tdwg.org/dwc/terms/maximumDistanceAboveSurfaceInMeters&quot;&gt;dwc:maximumDistanceAboveSurfaceInMeters&lt;/a&gt;.
+   */
+<span class="fc" id="L161">  @Deprecated</span>
+  distanceAboveSurface(DwcTerm.GROUP_LOCATION),
+
+  /**
+   * Replaced by Darwin Core terms &lt;a href=&quot;http://rs.tdwg.org/dwc/terms/minimumDistanceAboveSurfaceInMeters&quot;&gt;dwc:minimumDistanceAboveSurfaceInMeters&lt;/a&gt;
+   * and &lt;a href=&quot;http://rs.tdwg.org/dwc/terms/maximumDistanceAboveSurfaceInMeters&quot;&gt;dwc:maximumDistanceAboveSurfaceInMeters&lt;/a&gt;.
+   */
+<span class="fc" id="L168">  @Deprecated</span>
+  distanceAboveSurfaceAccuracy(DwcTerm.GROUP_LOCATION),
+
+  /**
+   * The distance in metres from a known centroid, e.g. a country centroid.
+   */
+<span class="fc" id="L174">  distanceFromCentroidInMeters(DwcTerm.GROUP_LOCATION),</span>
+
+  /**
+   * Any issue found during processing and interpretation or the record.
+   * See &lt;a href=&quot;https://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/OccurrenceIssue.html&quot;&gt;OccurrenceIssue enumeration&lt;/a&gt; for possible values.
+   */
+<span class="fc" id="L180">  issue(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /**
+   * The media type given as Dublin Core type values, in particular StillImage, MovingImage or Sound.
+   */
+<span class="fc" id="L185">  mediaType(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  // experimental Occurrence properties
+<span class="fc" id="L188">  infraspecificMarker(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  // Types and Specimen checklist extension
+<span class="fc" id="L191">  typeDesignatedBy(DwcTerm.GROUP_OCCURRENCE),</span>
+<span class="fc" id="L192">  typeDesignationType(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /**
+   * Boolean indicating that a valid latitude and longitude exists.
+   * Even if existing it might still have issues, see hasGeospatialIssues and issue.
+   */
+<span class="fc" id="L198">  hasCoordinate(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /**
+   * Boolean indicating that some spatial validation rule has not passed.
+   * Primarily used to indicate that the record should not be displayed on a map.
+   */
+<span class="fc" id="L204">  hasGeospatialIssues(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /**
+   * The GBIF backbone key.
+   * &lt;p&gt;
+   * The best matching, accepted GBIF backbone name usage representing this occurrence.
+   * In case the verbatim scientific name and its classification can only be matched to a higher rank this will
+   * represent the lowest matching rank. In the worst case this could just be for example Animalia.
+   * &lt;/p&gt;
+   * &lt;p&gt;
+   * In contrast dwc:taxonID is only used for the source ids similar to occurrenceID
+   * &lt;/p&gt;
+   */
+<span class="fc" id="L217">  taxonKey(DwcTerm.GROUP_TAXON),</span>
+
+
+  /**
+   * The GBIF backbone key of the accepted taxon key.
+   */
+<span class="fc" id="L223">  acceptedTaxonKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The key to the accepted kingdom in the GBIF backbone.
+   */
+<span class="fc" id="L228">  kingdomKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The key to the accepted phylum in the GBIF backbone.
+   */
+<span class="fc" id="L233">  phylumKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The key to the accepted class in the GBIF backbone.
+   */
+<span class="fc" id="L238">  classKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The key to the accepted order in the GBIF backbone.
+   */
+<span class="fc" id="L243">  orderKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The key to the accepted family in the GBIF backbone.
+   */
+<span class="fc" id="L248">  familyKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The key to the accepted genus in the GBIF backbone.
+   */
+<span class="fc" id="L253">  genusKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The key to the accepted subgenus in the GBIF backbone.
+   */
+<span class="fc" id="L258">  subgenusKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The backbone key to the accepted species.
+   * In case the taxonKey is of a higher rank than species (e.g. genus) speciesKey is null.
+   * In case taxonKey represents an infraspecific taxon the speciesKey points to the species
+   * the infraspecies is classified as. In case of taxonKey being a species the speciesKey is the same.
+   */
+<span class="fc" id="L266">  speciesKey(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The canonical name without authorship of the accepted species.
+   */
+<span class="fc" id="L271">  species(DwcTerm.GROUP_TAXON),</span>
+
+  // experimental Taxon properties
+<span class="fc" id="L274">  canonicalName(DwcTerm.GROUP_TAXON),</span>
+<span class="fc" id="L275">  nameType(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The scientific name the type associated acceptedNubKey.
+   */
+<span class="fc" id="L280">  acceptedScientificName(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * Scientific name as provided by the source.
+   */
+<span class="fc" id="L285">  verbatimScientificName(DwcTerm.GROUP_TAXON),</span>
+
+  /**
+   * The scientific name the type status of this specimen applies to.
+   * Term proposed in Darwin Core, but not yet ratified.
+   */
+<span class="fc" id="L291">  typifiedName(DwcTerm.GROUP_IDENTIFICATION),</span>
+
+  /**
+   * The kind of protocol used when the record was last crawled by GBIF.
+   * See &lt;a href=&quot;http://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/EndpointType.html&quot;&gt;EndpointType enumeration&lt;/a&gt; for possible values.
+   */
+<span class="fc" id="L297">  protocol(GbifTerm.GROUP_CRAWLING),</span>
+
+  /**
+   * The date this record was last parsed from raw xml/json into a verbatim GBIF record.
+   */
+<span class="fc" id="L302">  lastParsed(GbifTerm.GROUP_CRAWLING),</span>
+
+  /**
+   * The date this record was last crawled/harvested by GBIF from the endpoint.
+   */
+<span class="fc" id="L307">  lastCrawled(GbifTerm.GROUP_CRAWLING),</span>
+
+  // Species Profile checklist extension
+<span class="fc" id="L310">  isMarine(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),</span>
+<span class="fc" id="L311">  isTerrestrial(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),</span>
+<span class="fc" id="L312">  isFreshwater(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),</span>
+<span class="fc" id="L313">  isHybrid(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),</span>
+<span class="fc" id="L314">  isExtinct(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),</span>
+<span class="fc" id="L315">  livingPeriod(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, &quot;timePeriod&quot;),</span>
+<span class="fc" id="L316">  lifeForm(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),</span>
+<span class="fc" id="L317">  ageInDays(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),</span>
+<span class="fc" id="L318">  sizeInMillimeter(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),</span>
+<span class="fc" id="L319">  massInGram(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, &quot;weightInGram&quot;),</span>
+
+  // Vernacular Name checklist extension
+<span class="fc" id="L322">  organismPart(GbifTerm.GROUP_VERNACULAR_NAME_EXTENSION),</span>
+<span class="fc" id="L323">  isPlural(GbifTerm.GROUP_VERNACULAR_NAME_EXTENSION),</span>
+<span class="fc" id="L324">  isPreferredName(GbifTerm.GROUP_VERNACULAR_NAME_EXTENSION),</span>
+
+  // Distribution checklist extension
+<span class="fc" id="L327">  appendixCITES(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),</span>
+<span class="fc" id="L328">  numberOfOccurrences(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION),</span>
+
+  /** Boolean indicating if the publishing country is different to the location country. */
+<span class="fc" id="L331">  repatriated(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /** Calculated relative organism quantity, based on organism and sample measure types */
+<span class="fc" id="L334">  relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),</span>
+
+<span class="fc" id="L336">  projectId(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /** Flag occurrence when associatedSequences/extension exists */
+<span class="fc" id="L339">  isSequenced(DwcTerm.GROUP_OCCURRENCE),</span>
+
+  /** GBIF region based on country code */
+<span class="fc" id="L342">  gbifRegion(DwcTerm.GROUP_LOCATION),</span>
+
+  /** GBIF region based on publishing country code */
+<span class="fc" id="L345">  publishedByGbifRegion(DwcTerm.GROUP_LOCATION);</span>
+
+  private static final String PREFIX = &quot;gbif&quot;;
+  private static final String NS = &quot;http://rs.gbif.org/terms/1.0/&quot;;
+<span class="fc" id="L349">  private static final URI NS_URI = URI.create(NS);</span>
+
+  public static final String GROUP_CRAWLING = &quot;Crawling&quot;;
+  public static final String GROUP_DATASET = &quot;Dataset&quot;;
+  public static final String GROUP_ROW_TYPE = &quot;RowType&quot;;
+  public static final String GROUP_SPECIES_DISTRIBUTION_EXTENSION = &quot;SpeciesDistribution&quot;;
+  public static final String GROUP_SPECIES_PROFILE_EXTENSION = &quot;SpeciesProfile&quot;;
+  public static final String GROUP_VERNACULAR_NAME_EXTENSION = &quot;VernacularName&quot;;
+
+  /**
+   * Lists all GBIF term groups.
+   */
+<span class="fc" id="L361">  public static final String[] GROUPS = {GROUP_CRAWLING, GROUP_DATASET, DwcTerm.GROUP_OCCURRENCE, GROUP_ROW_TYPE,</span>
+    GROUP_SPECIES_DISTRIBUTION_EXTENSION, GROUP_SPECIES_PROFILE_EXTENSION, DwcTerm.GROUP_TAXON,
+    GROUP_VERNACULAR_NAME_EXTENSION, DwcTerm.GROUP_LOCATION};
+
+  /**
+   * Lists all GBIF terms in taxon group.
+   */
+<span class="fc" id="L368">  public static final GbifTerm[] TAXONOMIC_TERMS =</span>
+  {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
+   GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
+   GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,
+   GbifTerm.verbatimScientificName};
+
+  private final String groupName;
+  private final boolean isDeprecated;
+  public final String[] normAlts;
+
+<span class="fc" id="L378">  GbifTerm(String groupName, String... alternatives) {</span>
+<span class="fc" id="L379">    this.groupName = groupName;</span>
+<span class="fc" id="L380">    this.normAlts = alternatives;</span>
+<span class="fc" id="L381">    boolean deprecatedAnnotationPresent = false;</span>
+    try {
+<span class="fc" id="L383">      deprecatedAnnotationPresent = GbifTerm.class.getField(this.name()).isAnnotationPresent(Deprecated.class);</span>
+<span class="pc" id="L384">    } catch (NoSuchFieldException ignore) { }</span>
+<span class="fc" id="L385">    this.isDeprecated = deprecatedAnnotationPresent;</span>
+<span class="fc" id="L386">  }</span>
+
+  /**
+   * The simple term name without a namespace.
+   * For example taxonKey.
+   *
+   * @return simple term name
+   */
+  @Override
+  public String simpleName() {
+<span class="fc" id="L396">    return name();</span>
+  }
+
+  /**
+   * Array of alternative simple names in use for the term.
+   *
+   * @return simple term name
+   */
+  @Override
+  public String[] alternativeNames() {
+<span class="fc" id="L406">    return normAlts;</span>
+  }
+
+  /**
+   * The optional group the term is grouped in.
+   * For example Occurrence, Taxon, etc.
+   */
+  public String getGroup() {
+<span class="fc" id="L414">    return groupName;</span>
+  }
+
+
+  /**
+   * List all terms that belong to a given group.
+   *
+   * @param group the group to list terms for
+   * @return the list of GBIF terms in the given group
+   */
+  public static List&lt;GbifTerm&gt; listByGroup(String group) {
+<span class="fc" id="L425">    List&lt;GbifTerm&gt; terms = new ArrayList&lt;GbifTerm&gt;();</span>
+<span class="fc bfc" id="L426" title="All 2 branches covered.">    for (GbifTerm t : GbifTerm.values()) {</span>
+<span class="fc bfc" id="L427" title="All 2 branches covered.">      if (t.getGroup().equalsIgnoreCase(group)) {</span>
+<span class="fc" id="L428">        terms.add(t);</span>
+      }
+    }
+<span class="fc" id="L431">    return terms;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="fc" id="L436">    return prefixedName();</span>
+  }
+
+  @Override
+  public boolean isClass() {
+<span class="fc" id="L441">    return Character.isUpperCase(simpleName().charAt(0));</span>
+  }
+
+  @Override
+  public String prefix() {
+<span class="fc" id="L446">    return PREFIX;</span>
+  }
+
+  @Override
+  public URI namespace() {
+<span class="fc" id="L451">    return NS_URI;</span>
+  }
+
+  /**
+   *
+   * @return true if the Term is annotated with @Deprecated.
+   */
+  public boolean isDeprecated(){
+<span class="fc" id="L459">    return isDeprecated;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
