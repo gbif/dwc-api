@@ -342,7 +342,10 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   gbifRegion(DwcTerm.GROUP_LOCATION),
 
   /** GBIF region based on publishing country code */
-  publishedByGbifRegion(DwcTerm.GROUP_LOCATION);
+  publishedByGbifRegion(DwcTerm.GROUP_LOCATION),
+  geologicalTime(DwcTerm.GROUP_OCCURRENCE),
+  lithostratigraphy(DwcTerm.GROUP_OCCURRENCE),
+  biostratigraphy(DwcTerm.GROUP_OCCURRENCE);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
