@@ -15,26 +15,32 @@
  */
 package org.gbif.dwc.terms;
 
+import java.io.Serializable;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
-public enum GadmTerm implements Term, AlternativeNames {
-  level0Gid,
-  level0Name,
-  level1Gid,
-  level1Name,
-  level2Gid,
-  level2Name,
-  level3Gid,
-  level3Name;
+/**
+ * Terms defined in the DNA extension.
+ *
+ * They aren't using the versioned namespace, which ought to be corrected in a future edition of the extension.
+ */
+public enum GbifDnaTerm implements Term, AlternativeNames, Serializable {
+  dna_sequence,
+  pcr_primer_forward,
+  pcr_primer_name_forward,
+  pcr_primer_name_reverse,
+  pcr_primer_reference,
+  pcr_primer_reverse;
 
-  private static final String PREFIX = "gadm";
-  private static final String NS = "http://rs.gbif.org/terms/gadm/3.0/";
+  private static final String PREFIX = "gbifdna";
+  private static final String NS = "http://rs.gbif.org/terms/";
   private static final URI NS_URI = URI.create(NS);
+  public final String[] alternatives;
 
-  public final String[] normAlts;
-
-  GadmTerm(String... alternatives) {
-    normAlts = alternatives;
+  @Override
+  public String toString() {
+    return prefixedName();
   }
 
   @Override
@@ -44,12 +50,12 @@ public enum GadmTerm implements Term, AlternativeNames {
 
   @Override
   public String[] alternativeNames() {
-    return normAlts;
+    return alternatives;
   }
 
   @Override
-  public String toString() {
-    return prefixedName();
+  public boolean isClass() {
+    return false;
   }
 
   @Override
@@ -62,8 +68,7 @@ public enum GadmTerm implements Term, AlternativeNames {
     return NS_URI;
   }
 
-  @Override
-  public boolean isClass() {
-    return false;
+  GbifDnaTerm(String... alternatives) {
+    this.alternatives = alternatives;
   }
 }

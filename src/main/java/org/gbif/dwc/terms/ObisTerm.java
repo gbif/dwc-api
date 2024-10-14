@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Global Biodiversity Information Facility (GBIF)
+ * Copyright 2024 Global Biodiversity Information Facility (GBIF)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,26 +15,27 @@
  */
 package org.gbif.dwc.terms;
 
+import java.io.Serializable;
 import java.net.URI;
 
-public enum GadmTerm implements Term, AlternativeNames {
-  level0Gid,
-  level0Name,
-  level1Gid,
-  level1Name,
-  level2Gid,
-  level2Name,
-  level3Gid,
-  level3Name;
+/**
+ * All OBIS terms with namespace http://rs.iobis.org/obis/terms/.
+ */
+public enum ObisTerm implements Term, AlternativeNames, Serializable {
+  ExtendedMeasurementOrFact,
 
-  private static final String PREFIX = "gadm";
-  private static final String NS = "http://rs.gbif.org/terms/gadm/3.0/";
+  measurementTypeID,
+  measurementUnitID,
+  measurementValueID;
+
+  private static final String PREFIX = "obis";
+  private static final String NS = "http://rs.iobis.org/obis/terms/";
   private static final URI NS_URI = URI.create(NS);
+  public final String[] alternatives;
 
-  public final String[] normAlts;
-
-  GadmTerm(String... alternatives) {
-    normAlts = alternatives;
+  @Override
+  public String toString() {
+    return prefixedName();
   }
 
   @Override
@@ -44,12 +45,15 @@ public enum GadmTerm implements Term, AlternativeNames {
 
   @Override
   public String[] alternativeNames() {
-    return normAlts;
+    return alternatives;
   }
 
+  /**
+   * @return true if the OBIS term is defining a class instead of a property, e.g. ExtendedMeasurementOrFact.
+   */
   @Override
-  public String toString() {
-    return prefixedName();
+  public boolean isClass() {
+    return Character.isUpperCase(simpleName().charAt(0));
   }
 
   @Override
@@ -62,8 +66,7 @@ public enum GadmTerm implements Term, AlternativeNames {
     return NS_URI;
   }
 
-  @Override
-  public boolean isClass() {
-    return false;
+  ObisTerm(String... alternatives) {
+    this.alternatives = alternatives;
   }
 }

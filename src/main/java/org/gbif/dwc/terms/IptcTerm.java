@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Global Biodiversity Information Facility (GBIF)
+ * Copyright 2024 Global Biodiversity Information Facility (GBIF)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,26 +15,31 @@
  */
 package org.gbif.dwc.terms;
 
+import java.io.Serializable;
 import java.net.URI;
 
-public enum GadmTerm implements Term, AlternativeNames {
-  level0Gid,
-  level0Name,
-  level1Gid,
-  level1Name,
-  level2Gid,
-  level2Name,
-  level3Gid,
-  level3Name;
+/**
+ * All International Press Telecommunications Council terms with namespace http://iptc.org/std/Iptc4xmpExt/2008-02-29/.
+ */
+public enum IptcTerm implements Term, AlternativeNames, Serializable {
+  City,
+  CountryCode,
+  CountryName,
+  CVterm,
+  LocationCreated,
+  LocationShown,
+  ProvinceState,
+  Sublocation,
+  WorldRegion;
 
-  private static final String PREFIX = "gadm";
-  private static final String NS = "http://rs.gbif.org/terms/gadm/3.0/";
+  private static final String PREFIX = "iptc";
+  private static final String NS = "http://iptc.org/std/Iptc4xmpExt/2008-02-29/";
   private static final URI NS_URI = URI.create(NS);
+  public final String[] alternatives;
 
-  public final String[] normAlts;
-
-  GadmTerm(String... alternatives) {
-    normAlts = alternatives;
+  @Override
+  public String toString() {
+    return prefixedName();
   }
 
   @Override
@@ -44,12 +49,12 @@ public enum GadmTerm implements Term, AlternativeNames {
 
   @Override
   public String[] alternativeNames() {
-    return normAlts;
+    return alternatives;
   }
 
   @Override
-  public String toString() {
-    return prefixedName();
+  public boolean isClass() {
+    return false;
   }
 
   @Override
@@ -62,8 +67,7 @@ public enum GadmTerm implements Term, AlternativeNames {
     return NS_URI;
   }
 
-  @Override
-  public boolean isClass() {
-    return false;
+  IptcTerm(String... alternatives) {
+    this.alternatives = alternatives;
   }
 }

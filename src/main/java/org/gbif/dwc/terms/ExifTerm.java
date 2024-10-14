@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Global Biodiversity Information Facility (GBIF)
+ * Copyright 2024 Global Biodiversity Information Facility (GBIF)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,26 +15,24 @@
  */
 package org.gbif.dwc.terms;
 
+import java.io.Serializable;
 import java.net.URI;
 
-public enum GadmTerm implements Term, AlternativeNames {
-  level0Gid,
-  level0Name,
-  level1Gid,
-  level1Name,
-  level2Gid,
-  level2Name,
-  level3Gid,
-  level3Name;
+/**
+ * All Adobe EXIF terms with namespace http://ns.adobe.com/exif/1.0/.
+ */
+public enum ExifTerm implements Term, AlternativeNames, Serializable {
+  PixelXDimension,
+  PixelYDimension;
 
-  private static final String PREFIX = "gadm";
-  private static final String NS = "http://rs.gbif.org/terms/gadm/3.0/";
+  private static final String PREFIX = "exif";
+  private static final String NS = "http://ns.adobe.com/exif/1.0/";
   private static final URI NS_URI = URI.create(NS);
+  public final String[] alternatives;
 
-  public final String[] normAlts;
-
-  GadmTerm(String... alternatives) {
-    normAlts = alternatives;
+  @Override
+  public String toString() {
+    return prefixedName();
   }
 
   @Override
@@ -44,12 +42,12 @@ public enum GadmTerm implements Term, AlternativeNames {
 
   @Override
   public String[] alternativeNames() {
-    return normAlts;
+    return alternatives;
   }
 
   @Override
-  public String toString() {
-    return prefixedName();
+  public boolean isClass() {
+    return false;
   }
 
   @Override
@@ -62,8 +60,7 @@ public enum GadmTerm implements Term, AlternativeNames {
     return NS_URI;
   }
 
-  @Override
-  public boolean isClass() {
-    return false;
+  ExifTerm(String... alternatives) {
+    this.alternatives = alternatives;
   }
 }

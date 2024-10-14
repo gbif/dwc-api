@@ -69,13 +69,28 @@ public class TermFactory {
     registerTermEnum(IucnTerm.class);
     registerTermEnum(DcElement.class);
     registerTermEnum(AcefTerm.class, "http://rs.col.plus/terms/acef/");
-    registerTermEnum(AcTerm.class);
     registerTermEnum(PlaziTerm.class);
     registerTermEnum(GadmTerm.class);
     registerTermEnum(DwcaTerm.class);
+
+    // Audubon core
+    registerTermEnum(AcTerm.class);
+    registerTermEnum(ExifTerm.class);
+    registerTermEnum(IptcTerm.class);
+    registerTermEnum(PhotoshopTerm.class);
     registerTermEnum(XmpTerm.class, "adobe");
     registerTermEnum(XmpRightsTerm.class, "xmp", "adobe"); // the same as above, but luckily different simple term names
-  
+
+    // DWCA extensions
+    registerTermEnum(ChronoTerm.class);
+    registerTermEnum(GbifDnaTerm.class);
+    registerTermEnum(GbifMiqeTerm.class);
+    registerTermEnum(GermplasmTerm.class);
+    registerTermEnum(GgbnTerm.class);
+    registerTermEnum(MixsTerm.class);
+    registerTermEnum(ObisTerm.class);
+    registerTermEnum(Wgs84GeoPositioningTerm.class);
+
     registerQualifiedTermEnum(DwcaTerm.class);
     addTerm(BibTexTerm.CLASS_TERM);
   }
@@ -123,7 +138,7 @@ public class TermFactory {
       }
     }
   }
-  
+
   /**
    * Registers all terms from a new term enumeration, but only adds their qualified and prefixed names.
    * This is to avoid clashes with other usually more important terms that should be known by their simple name.
@@ -140,7 +155,7 @@ public class TermFactory {
       }
     }
   }
-  
+
   private void addTerm(Term term, String ... altPrefixes) {
     addTerm(term.simpleName(), term);
     addTerm(term.prefixedName(), term);
