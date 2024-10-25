@@ -70,6 +70,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   individualCount(DwcTerm.GROUP_OCCURRENCE),
   organismQuantity(DwcTerm.GROUP_OCCURRENCE),
   organismQuantityType(DwcTerm.GROUP_OCCURRENCE),
+  @Vocabulary
   sex(DwcTerm.GROUP_OCCURRENCE),
   @Vocabulary lifeStage(DwcTerm.GROUP_OCCURRENCE),
   reproductiveCondition(DwcTerm.GROUP_OCCURRENCE),
@@ -192,6 +193,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   identificationID(DwcTerm.GROUP_IDENTIFICATION),
   verbatimIdentification(DwcTerm.GROUP_IDENTIFICATION),
   identificationQualifier(DwcTerm.GROUP_IDENTIFICATION),
+  @Vocabulary
   typeStatus(DwcTerm.GROUP_IDENTIFICATION),
   identifiedBy(DwcTerm.GROUP_IDENTIFICATION),
   identifiedByID(DwcTerm.GROUP_IDENTIFICATION, "gbif:identifiedByID", "http://rs.gbif.org/terms/1.0/identifiedByID"),
