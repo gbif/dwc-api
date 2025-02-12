@@ -354,7 +354,6 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
 
   /** GBIF region based on publishing country code */
   publishedByGbifRegion(DwcTerm.GROUP_LOCATION),
-
   geologicalTime(DwcTerm.GROUP_OCCURRENCE),
   lithostratigraphy(DwcTerm.GROUP_OCCURRENCE),
   biostratigraphy(DwcTerm.GROUP_OCCURRENCE);
