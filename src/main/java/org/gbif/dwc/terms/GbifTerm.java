@@ -356,7 +356,8 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   publishedByGbifRegion(DwcTerm.GROUP_LOCATION),
   geologicalTime(DwcTerm.GROUP_OCCURRENCE),
   lithostratigraphy(DwcTerm.GROUP_OCCURRENCE),
-  biostratigraphy(DwcTerm.GROUP_OCCURRENCE);
+  biostratigraphy(DwcTerm.GROUP_OCCURRENCE),
+  dnaSequenceID(GbifTerm.GROUP_DNA_DERIVED_DATA);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
@@ -368,6 +369,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   public static final String GROUP_SPECIES_DISTRIBUTION_EXTENSION = "SpeciesDistribution";
   public static final String GROUP_SPECIES_PROFILE_EXTENSION = "SpeciesProfile";
   public static final String GROUP_VERNACULAR_NAME_EXTENSION = "VernacularName";
+  public static final String GROUP_DNA_DERIVED_DATA = "DnaDerivedData";
 
   /**
    * Lists all GBIF term groups.
