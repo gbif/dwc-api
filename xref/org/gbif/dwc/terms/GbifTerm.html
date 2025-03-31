@@ -354,126 +354,128 @@
 <a class="jxr_linenumber" name="L346" href="#L346">346</a>   publishedByGbifRegion(DwcTerm.GROUP_LOCATION),
 <a class="jxr_linenumber" name="L347" href="#L347">347</a>   geologicalTime(DwcTerm.GROUP_OCCURRENCE),
 <a class="jxr_linenumber" name="L348" href="#L348">348</a>   lithostratigraphy(DwcTerm.GROUP_OCCURRENCE),
-<a class="jxr_linenumber" name="L349" href="#L349">349</a>   biostratigraphy(DwcTerm.GROUP_OCCURRENCE);
-<a class="jxr_linenumber" name="L350" href="#L350">350</a> 
-<a class="jxr_linenumber" name="L351" href="#L351">351</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PREFIX = <span class="jxr_string">"gbif"</span>;
-<a class="jxr_linenumber" name="L352" href="#L352">352</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NS = <span class="jxr_string">"http://rs.gbif.org/terms/1.0/"</span>;
-<a class="jxr_linenumber" name="L353" href="#L353">353</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> URI NS_URI = URI.create(NS);
-<a class="jxr_linenumber" name="L354" href="#L354">354</a> 
-<a class="jxr_linenumber" name="L355" href="#L355">355</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_CRAWLING = <span class="jxr_string">"Crawling"</span>;
-<a class="jxr_linenumber" name="L356" href="#L356">356</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_DATASET = <span class="jxr_string">"Dataset"</span>;
-<a class="jxr_linenumber" name="L357" href="#L357">357</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_ROW_TYPE = <span class="jxr_string">"RowType"</span>;
-<a class="jxr_linenumber" name="L358" href="#L358">358</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_SPECIES_DISTRIBUTION_EXTENSION = <span class="jxr_string">"SpeciesDistribution"</span>;
-<a class="jxr_linenumber" name="L359" href="#L359">359</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_SPECIES_PROFILE_EXTENSION = <span class="jxr_string">"SpeciesProfile"</span>;
-<a class="jxr_linenumber" name="L360" href="#L360">360</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_VERNACULAR_NAME_EXTENSION = <span class="jxr_string">"VernacularName"</span>;
-<a class="jxr_linenumber" name="L361" href="#L361">361</a> 
-<a class="jxr_linenumber" name="L362" href="#L362">362</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L363" href="#L363">363</a> <em class="jxr_javadoccomment">   * Lists all GBIF term groups.</em>
-<a class="jxr_linenumber" name="L364" href="#L364">364</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L365" href="#L365">365</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] GROUPS = {GROUP_CRAWLING, GROUP_DATASET, DwcTerm.GROUP_OCCURRENCE, GROUP_ROW_TYPE,
-<a class="jxr_linenumber" name="L366" href="#L366">366</a>     GROUP_SPECIES_DISTRIBUTION_EXTENSION, GROUP_SPECIES_PROFILE_EXTENSION, DwcTerm.GROUP_TAXON,
-<a class="jxr_linenumber" name="L367" href="#L367">367</a>     GROUP_VERNACULAR_NAME_EXTENSION, DwcTerm.GROUP_LOCATION};
-<a class="jxr_linenumber" name="L368" href="#L368">368</a> 
-<a class="jxr_linenumber" name="L369" href="#L369">369</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">   * Lists all GBIF terms in taxon group.</em>
-<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L372" href="#L372">372</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a>[] TAXONOMIC_TERMS =
-<a class="jxr_linenumber" name="L373" href="#L373">373</a>   {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
-<a class="jxr_linenumber" name="L374" href="#L374">374</a>    GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
-<a class="jxr_linenumber" name="L375" href="#L375">375</a>    GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>    GbifTerm.verbatimScientificName};
-<a class="jxr_linenumber" name="L377" href="#L377">377</a> 
-<a class="jxr_linenumber" name="L378" href="#L378">378</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String groupName;
-<a class="jxr_linenumber" name="L379" href="#L379">379</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> isDeprecated;
-<a class="jxr_linenumber" name="L380" href="#L380">380</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> String[] normAlts;
-<a class="jxr_linenumber" name="L381" href="#L381">381</a> 
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>   <a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a>(String groupName, String... alternatives) {
-<a class="jxr_linenumber" name="L383" href="#L383">383</a>     <strong class="jxr_keyword">this</strong>.groupName = groupName;
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>     <strong class="jxr_keyword">this</strong>.normAlts = alternatives;
-<a class="jxr_linenumber" name="L385" href="#L385">385</a>     <strong class="jxr_keyword">boolean</strong> deprecatedAnnotationPresent = false;
-<a class="jxr_linenumber" name="L386" href="#L386">386</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L387" href="#L387">387</a>       deprecatedAnnotationPresent = GbifTerm.<strong class="jxr_keyword">class</strong>.getField(<strong class="jxr_keyword">this</strong>.name()).isAnnotationPresent(Deprecated.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>     } <strong class="jxr_keyword">catch</strong> (NoSuchFieldException ignore) { }
-<a class="jxr_linenumber" name="L389" href="#L389">389</a>     <strong class="jxr_keyword">this</strong>.isDeprecated = deprecatedAnnotationPresent;
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>   }
-<a class="jxr_linenumber" name="L391" href="#L391">391</a> 
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L393" href="#L393">393</a> <em class="jxr_javadoccomment">   * The simple term name without a namespace.</em>
-<a class="jxr_linenumber" name="L394" href="#L394">394</a> <em class="jxr_javadoccomment">   * For example taxonKey.</em>
-<a class="jxr_linenumber" name="L395" href="#L395">395</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L396" href="#L396">396</a> <em class="jxr_javadoccomment">   * @return simple term name</em>
-<a class="jxr_linenumber" name="L397" href="#L397">397</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L398" href="#L398">398</a>   @Override
-<a class="jxr_linenumber" name="L399" href="#L399">399</a>   <strong class="jxr_keyword">public</strong> String simpleName() {
-<a class="jxr_linenumber" name="L400" href="#L400">400</a>     <strong class="jxr_keyword">return</strong> name();
-<a class="jxr_linenumber" name="L401" href="#L401">401</a>   }
-<a class="jxr_linenumber" name="L402" href="#L402">402</a> 
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L404" href="#L404">404</a> <em class="jxr_javadoccomment">   * Array of alternative simple names in use for the term.</em>
-<a class="jxr_linenumber" name="L405" href="#L405">405</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">   * @return simple term name</em>
-<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L408" href="#L408">408</a>   @Override
-<a class="jxr_linenumber" name="L409" href="#L409">409</a>   <strong class="jxr_keyword">public</strong> String[] alternativeNames() {
-<a class="jxr_linenumber" name="L410" href="#L410">410</a>     <strong class="jxr_keyword">return</strong> normAlts;
-<a class="jxr_linenumber" name="L411" href="#L411">411</a>   }
-<a class="jxr_linenumber" name="L412" href="#L412">412</a> 
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L414" href="#L414">414</a> <em class="jxr_javadoccomment">   * The optional group the term is grouped in.</em>
-<a class="jxr_linenumber" name="L415" href="#L415">415</a> <em class="jxr_javadoccomment">   * For example Occurrence, Taxon, etc.</em>
-<a class="jxr_linenumber" name="L416" href="#L416">416</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L417" href="#L417">417</a>   <strong class="jxr_keyword">public</strong> String getGroup() {
-<a class="jxr_linenumber" name="L418" href="#L418">418</a>     <strong class="jxr_keyword">return</strong> groupName;
-<a class="jxr_linenumber" name="L419" href="#L419">419</a>   }
-<a class="jxr_linenumber" name="L420" href="#L420">420</a> 
-<a class="jxr_linenumber" name="L421" href="#L421">421</a> 
-<a class="jxr_linenumber" name="L422" href="#L422">422</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">   * List all terms that belong to a given group.</em>
-<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">   * @param group the group to list terms for</em>
-<a class="jxr_linenumber" name="L426" href="#L426">426</a> <em class="jxr_javadoccomment">   * @return the list of GBIF terms in the given group</em>
-<a class="jxr_linenumber" name="L427" href="#L427">427</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L428" href="#L428">428</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;GbifTerm&gt; listByGroup(String group) {
-<a class="jxr_linenumber" name="L429" href="#L429">429</a>     List&lt;GbifTerm&gt; terms = <strong class="jxr_keyword">new</strong> ArrayList&lt;GbifTerm&gt;();
-<a class="jxr_linenumber" name="L430" href="#L430">430</a>     <strong class="jxr_keyword">for</strong> (<a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a> t : GbifTerm.values()) {
-<a class="jxr_linenumber" name="L431" href="#L431">431</a>       <strong class="jxr_keyword">if</strong> (t.getGroup().equalsIgnoreCase(group)) {
-<a class="jxr_linenumber" name="L432" href="#L432">432</a>         terms.add(t);
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>       }
-<a class="jxr_linenumber" name="L434" href="#L434">434</a>     }
-<a class="jxr_linenumber" name="L435" href="#L435">435</a>     <strong class="jxr_keyword">return</strong> terms;
-<a class="jxr_linenumber" name="L436" href="#L436">436</a>   }
-<a class="jxr_linenumber" name="L437" href="#L437">437</a> 
-<a class="jxr_linenumber" name="L438" href="#L438">438</a>   @Override
-<a class="jxr_linenumber" name="L439" href="#L439">439</a>   <strong class="jxr_keyword">public</strong> String toString() {
-<a class="jxr_linenumber" name="L440" href="#L440">440</a>     <strong class="jxr_keyword">return</strong> prefixedName();
-<a class="jxr_linenumber" name="L441" href="#L441">441</a>   }
-<a class="jxr_linenumber" name="L442" href="#L442">442</a> 
-<a class="jxr_linenumber" name="L443" href="#L443">443</a>   @Override
-<a class="jxr_linenumber" name="L444" href="#L444">444</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isClass() {
-<a class="jxr_linenumber" name="L445" href="#L445">445</a>     <strong class="jxr_keyword">return</strong> Character.isUpperCase(simpleName().charAt(0));
-<a class="jxr_linenumber" name="L446" href="#L446">446</a>   }
-<a class="jxr_linenumber" name="L447" href="#L447">447</a> 
-<a class="jxr_linenumber" name="L448" href="#L448">448</a>   @Override
-<a class="jxr_linenumber" name="L449" href="#L449">449</a>   <strong class="jxr_keyword">public</strong> String prefix() {
-<a class="jxr_linenumber" name="L450" href="#L450">450</a>     <strong class="jxr_keyword">return</strong> PREFIX;
-<a class="jxr_linenumber" name="L451" href="#L451">451</a>   }
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> 
-<a class="jxr_linenumber" name="L453" href="#L453">453</a>   @Override
-<a class="jxr_linenumber" name="L454" href="#L454">454</a>   <strong class="jxr_keyword">public</strong> URI namespace() {
-<a class="jxr_linenumber" name="L455" href="#L455">455</a>     <strong class="jxr_keyword">return</strong> NS_URI;
-<a class="jxr_linenumber" name="L456" href="#L456">456</a>   }
-<a class="jxr_linenumber" name="L457" href="#L457">457</a> 
-<a class="jxr_linenumber" name="L458" href="#L458">458</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">   * @return true if the Term is annotated with @Deprecated.</em>
-<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L462" href="#L462">462</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isDeprecated(){
-<a class="jxr_linenumber" name="L463" href="#L463">463</a>     <strong class="jxr_keyword">return</strong> isDeprecated;
-<a class="jxr_linenumber" name="L464" href="#L464">464</a>   }
-<a class="jxr_linenumber" name="L465" href="#L465">465</a> 
-<a class="jxr_linenumber" name="L466" href="#L466">466</a> }
+<a class="jxr_linenumber" name="L349" href="#L349">349</a>   biostratigraphy(DwcTerm.GROUP_OCCURRENCE),
+<a class="jxr_linenumber" name="L350" href="#L350">350</a>   dnaSequenceID(GbifTerm.GROUP_DNA_DERIVED_DATA);
+<a class="jxr_linenumber" name="L351" href="#L351">351</a> 
+<a class="jxr_linenumber" name="L352" href="#L352">352</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PREFIX = <span class="jxr_string">"gbif"</span>;
+<a class="jxr_linenumber" name="L353" href="#L353">353</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NS = <span class="jxr_string">"http://rs.gbif.org/terms/1.0/"</span>;
+<a class="jxr_linenumber" name="L354" href="#L354">354</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> URI NS_URI = URI.create(NS);
+<a class="jxr_linenumber" name="L355" href="#L355">355</a> 
+<a class="jxr_linenumber" name="L356" href="#L356">356</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_CRAWLING = <span class="jxr_string">"Crawling"</span>;
+<a class="jxr_linenumber" name="L357" href="#L357">357</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_DATASET = <span class="jxr_string">"Dataset"</span>;
+<a class="jxr_linenumber" name="L358" href="#L358">358</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_ROW_TYPE = <span class="jxr_string">"RowType"</span>;
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_SPECIES_DISTRIBUTION_EXTENSION = <span class="jxr_string">"SpeciesDistribution"</span>;
+<a class="jxr_linenumber" name="L360" href="#L360">360</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_SPECIES_PROFILE_EXTENSION = <span class="jxr_string">"SpeciesProfile"</span>;
+<a class="jxr_linenumber" name="L361" href="#L361">361</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_VERNACULAR_NAME_EXTENSION = <span class="jxr_string">"VernacularName"</span>;
+<a class="jxr_linenumber" name="L362" href="#L362">362</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GROUP_DNA_DERIVED_DATA = <span class="jxr_string">"DnaDerivedData"</span>;
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> 
+<a class="jxr_linenumber" name="L364" href="#L364">364</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L365" href="#L365">365</a> <em class="jxr_javadoccomment">   * Lists all GBIF term groups.</em>
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L367" href="#L367">367</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String[] GROUPS = {GROUP_CRAWLING, GROUP_DATASET, DwcTerm.GROUP_OCCURRENCE, GROUP_ROW_TYPE,
+<a class="jxr_linenumber" name="L368" href="#L368">368</a>     GROUP_SPECIES_DISTRIBUTION_EXTENSION, GROUP_SPECIES_PROFILE_EXTENSION, DwcTerm.GROUP_TAXON,
+<a class="jxr_linenumber" name="L369" href="#L369">369</a>     GROUP_VERNACULAR_NAME_EXTENSION, DwcTerm.GROUP_LOCATION};
+<a class="jxr_linenumber" name="L370" href="#L370">370</a> 
+<a class="jxr_linenumber" name="L371" href="#L371">371</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">   * Lists all GBIF terms in taxon group.</em>
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a>[] TAXONOMIC_TERMS =
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>   {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>    GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
+<a class="jxr_linenumber" name="L377" href="#L377">377</a>    GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>    GbifTerm.verbatimScientificName};
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> 
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String groupName;
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> isDeprecated;
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> String[] normAlts;
+<a class="jxr_linenumber" name="L383" href="#L383">383</a> 
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>   <a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a>(String groupName, String... alternatives) {
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>     <strong class="jxr_keyword">this</strong>.groupName = groupName;
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>     <strong class="jxr_keyword">this</strong>.normAlts = alternatives;
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>     <strong class="jxr_keyword">boolean</strong> deprecatedAnnotationPresent = false;
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>     <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>       deprecatedAnnotationPresent = GbifTerm.<strong class="jxr_keyword">class</strong>.getField(<strong class="jxr_keyword">this</strong>.name()).isAnnotationPresent(Deprecated.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>     } <strong class="jxr_keyword">catch</strong> (NoSuchFieldException ignore) { }
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>     <strong class="jxr_keyword">this</strong>.isDeprecated = deprecatedAnnotationPresent;
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>   }
+<a class="jxr_linenumber" name="L393" href="#L393">393</a> 
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L395" href="#L395">395</a> <em class="jxr_javadoccomment">   * The simple term name without a namespace.</em>
+<a class="jxr_linenumber" name="L396" href="#L396">396</a> <em class="jxr_javadoccomment">   * For example taxonKey.</em>
+<a class="jxr_linenumber" name="L397" href="#L397">397</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">   * @return simple term name</em>
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>   @Override
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>   <strong class="jxr_keyword">public</strong> String simpleName() {
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>     <strong class="jxr_keyword">return</strong> name();
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>   }
+<a class="jxr_linenumber" name="L404" href="#L404">404</a> 
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">   * Array of alternative simple names in use for the term.</em>
+<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">   * @return simple term name</em>
+<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>   @Override
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>   <strong class="jxr_keyword">public</strong> String[] alternativeNames() {
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>     <strong class="jxr_keyword">return</strong> normAlts;
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>   }
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> 
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L416" href="#L416">416</a> <em class="jxr_javadoccomment">   * The optional group the term is grouped in.</em>
+<a class="jxr_linenumber" name="L417" href="#L417">417</a> <em class="jxr_javadoccomment">   * For example Occurrence, Taxon, etc.</em>
+<a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L419" href="#L419">419</a>   <strong class="jxr_keyword">public</strong> String getGroup() {
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>     <strong class="jxr_keyword">return</strong> groupName;
+<a class="jxr_linenumber" name="L421" href="#L421">421</a>   }
+<a class="jxr_linenumber" name="L422" href="#L422">422</a> 
+<a class="jxr_linenumber" name="L423" href="#L423">423</a> 
+<a class="jxr_linenumber" name="L424" href="#L424">424</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">   * List all terms that belong to a given group.</em>
+<a class="jxr_linenumber" name="L426" href="#L426">426</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L427" href="#L427">427</a> <em class="jxr_javadoccomment">   * @param group the group to list terms for</em>
+<a class="jxr_linenumber" name="L428" href="#L428">428</a> <em class="jxr_javadoccomment">   * @return the list of GBIF terms in the given group</em>
+<a class="jxr_linenumber" name="L429" href="#L429">429</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;GbifTerm&gt; listByGroup(String group) {
+<a class="jxr_linenumber" name="L431" href="#L431">431</a>     List&lt;GbifTerm&gt; terms = <strong class="jxr_keyword">new</strong> ArrayList&lt;GbifTerm&gt;();
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>     <strong class="jxr_keyword">for</strong> (<a name="GbifTerm" href="../../../../org/gbif/dwc/terms/GbifTerm.html#GbifTerm">GbifTerm</a> t : GbifTerm.values()) {
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>       <strong class="jxr_keyword">if</strong> (t.getGroup().equalsIgnoreCase(group)) {
+<a class="jxr_linenumber" name="L434" href="#L434">434</a>         terms.add(t);
+<a class="jxr_linenumber" name="L435" href="#L435">435</a>       }
+<a class="jxr_linenumber" name="L436" href="#L436">436</a>     }
+<a class="jxr_linenumber" name="L437" href="#L437">437</a>     <strong class="jxr_keyword">return</strong> terms;
+<a class="jxr_linenumber" name="L438" href="#L438">438</a>   }
+<a class="jxr_linenumber" name="L439" href="#L439">439</a> 
+<a class="jxr_linenumber" name="L440" href="#L440">440</a>   @Override
+<a class="jxr_linenumber" name="L441" href="#L441">441</a>   <strong class="jxr_keyword">public</strong> String toString() {
+<a class="jxr_linenumber" name="L442" href="#L442">442</a>     <strong class="jxr_keyword">return</strong> prefixedName();
+<a class="jxr_linenumber" name="L443" href="#L443">443</a>   }
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> 
+<a class="jxr_linenumber" name="L445" href="#L445">445</a>   @Override
+<a class="jxr_linenumber" name="L446" href="#L446">446</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isClass() {
+<a class="jxr_linenumber" name="L447" href="#L447">447</a>     <strong class="jxr_keyword">return</strong> Character.isUpperCase(simpleName().charAt(0));
+<a class="jxr_linenumber" name="L448" href="#L448">448</a>   }
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> 
+<a class="jxr_linenumber" name="L450" href="#L450">450</a>   @Override
+<a class="jxr_linenumber" name="L451" href="#L451">451</a>   <strong class="jxr_keyword">public</strong> String prefix() {
+<a class="jxr_linenumber" name="L452" href="#L452">452</a>     <strong class="jxr_keyword">return</strong> PREFIX;
+<a class="jxr_linenumber" name="L453" href="#L453">453</a>   }
+<a class="jxr_linenumber" name="L454" href="#L454">454</a> 
+<a class="jxr_linenumber" name="L455" href="#L455">455</a>   @Override
+<a class="jxr_linenumber" name="L456" href="#L456">456</a>   <strong class="jxr_keyword">public</strong> URI namespace() {
+<a class="jxr_linenumber" name="L457" href="#L457">457</a>     <strong class="jxr_keyword">return</strong> NS_URI;
+<a class="jxr_linenumber" name="L458" href="#L458">458</a>   }
+<a class="jxr_linenumber" name="L459" href="#L459">459</a> 
+<a class="jxr_linenumber" name="L460" href="#L460">460</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L462" href="#L462">462</a> <em class="jxr_javadoccomment">   * @return true if the Term is annotated with @Deprecated.</em>
+<a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L464" href="#L464">464</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isDeprecated(){
+<a class="jxr_linenumber" name="L465" href="#L465">465</a>     <strong class="jxr_keyword">return</strong> isDeprecated;
+<a class="jxr_linenumber" name="L466" href="#L466">466</a>   }
+<a class="jxr_linenumber" name="L467" href="#L467">467</a> 
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2024 <a href="https://www.gbif.org">Global Biodiversity Information Facility (GBIF)</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2025 <a href="https://www.gbif.org">Global Biodiversity Information Facility (GBIF)</a>. All rights reserved.</div>
 </body>
 </html>
