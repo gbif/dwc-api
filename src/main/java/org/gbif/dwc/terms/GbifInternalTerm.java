@@ -45,8 +45,10 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   eventDateLte,
 
   //Experimental Terms for Events indexing
-  parentEventGbifId;
+  parentEventGbifId,
 
+  // multi taxonomy classifications
+  classifications;
 
   private static final String PREFIX = "gbint";
   private static final String NS = "http://rs.gbif.org/terms/internal/";

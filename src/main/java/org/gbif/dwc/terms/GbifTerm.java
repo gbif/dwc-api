@@ -203,6 +203,16 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    */
   hasGeospatialIssues(DwcTerm.GROUP_OCCURRENCE),
 
+
+  /**
+   * The checklist key.
+   * <p>
+   * The taxonomic checklist to use when search using a taxonKey, a higher taxonKey e.g. phylumKey
+   * or when searching with a scientific name
+   * </p>
+   */
+  checklistKey(DwcTerm.GROUP_TAXON),
+
   /**
    * The GBIF backbone key.
    * <p>
@@ -372,7 +382,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * Lists all GBIF terms in taxon group.
    */
   public static final GbifTerm[] TAXONOMIC_TERMS =
-  {GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
+  {GbifTerm.checklistKey, GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
    GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
    GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,
    GbifTerm.verbatimScientificName};
