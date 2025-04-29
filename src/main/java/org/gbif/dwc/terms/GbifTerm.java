@@ -180,6 +180,12 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   issue(DwcTerm.GROUP_OCCURRENCE),
 
   /**
+   * Issue found during processing and interpretation or the record related to a specific checklist.
+   * See <a href="https://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/OccurrenceIssue.html">OccurrenceIssue enumeration</a> for possible values.
+   */
+  taxonomicIssue(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
    * The media type given as Dublin Core type values, in particular StillImage, MovingImage or Sound.
    */
   mediaType(DwcTerm.GROUP_OCCURRENCE),
