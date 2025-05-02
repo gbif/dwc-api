@@ -186,6 +186,11 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   taxonomicIssue(DwcTerm.GROUP_OCCURRENCE),
 
   /**
+   * Issue found during processing and interpretation or the record that are non-taxonomic.
+   */
+  nonTaxonomicIssue(DwcTerm.GROUP_OCCURRENCE),
+
+  /**
    * The media type given as Dublin Core type values, in particular StillImage, MovingImage or Sound.
    */
   mediaType(DwcTerm.GROUP_OCCURRENCE),
