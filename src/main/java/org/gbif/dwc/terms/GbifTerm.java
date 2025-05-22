@@ -294,9 +294,9 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   hasLength(DwcTerm.GROUP_OCCURRENCE),
 
   /**
-   * Boolean indicating that the record contains a mass/weight measurement.
+   * Boolean indicating that the record contains a mass measurement.
    */
-  hasWeight(DwcTerm.GROUP_OCCURRENCE);
+  hasMass(DwcTerm.GROUP_OCCURRENCE);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
