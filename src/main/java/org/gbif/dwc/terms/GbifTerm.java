@@ -36,6 +36,12 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   Distribution(GbifTerm.GROUP_ROW_TYPE),
 
   /**
+   * The <a href="http://rs.gbif.org/terms/1.0/DNADerivedData">DNA Derived Data</a>
+   * extension row type.
+   */
+  DNADerivedData(GbifTerm.GROUP_ROW_TYPE),
+
+  /**
    * The <a href="http://rs.gbif.org/terms/1.0/Identifier">GBIF Alternative Identifiers</a>
    * extension row type.
    */
@@ -347,15 +353,24 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   geologicalTime(DwcTerm.GROUP_OCCURRENCE),
   lithostratigraphy(DwcTerm.GROUP_OCCURRENCE),
   biostratigraphy(DwcTerm.GROUP_OCCURRENCE),
+
+  /** DNA Derived Data **/
+  pcr_primer_forward(GbifTerm.GROUP_DNA_DERIVED_DATA),
+  pcr_primer_reverse(GbifTerm.GROUP_DNA_DERIVED_DATA),
+  pcr_primer_name_forward(GbifTerm.GROUP_DNA_DERIVED_DATA),
+  pcr_primer_name_reverse(GbifTerm.GROUP_DNA_DERIVED_DATA),
+  pcr_primer_reference(GbifTerm.GROUP_DNA_DERIVED_DATA),
+  dna_sequence(GbifTerm.GROUP_DNA_DERIVED_DATA),
+  // not from the DNA extension:
   dnaSequenceID(GbifTerm.GROUP_DNA_DERIVED_DATA);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
   private static final URI NS_URI = URI.create(NS);
 
+  public static final String GROUP_ROW_TYPE = "RowType";
   public static final String GROUP_CRAWLING = "Crawling";
   public static final String GROUP_DATASET = "Dataset";
-  public static final String GROUP_ROW_TYPE = "RowType";
   public static final String GROUP_SPECIES_DISTRIBUTION_EXTENSION = "SpeciesDistribution";
   public static final String GROUP_SPECIES_PROFILE_EXTENSION = "SpeciesProfile";
   public static final String GROUP_VERNACULAR_NAME_EXTENSION = "VernacularName";
