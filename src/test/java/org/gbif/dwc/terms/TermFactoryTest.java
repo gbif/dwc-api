@@ -67,7 +67,6 @@ public class TermFactoryTest {
 
     // Terms for extensions supported in GBIF downloads.
     addTerms(names, ChronoTerm.values());
-    addTerms(names, GbifDnaTerm.values());
     addTerms(names, GbifMiqeTerm.values());
     addTerms(names, GermplasmTerm.values());
     addTerms(names, termsBut(GgbnTerm.values(), GgbnTerm.MaterialSample));

@@ -83,7 +83,6 @@ public class TermFactory {
 
     // DWCA extensions
     registerTermEnum(ChronoTerm.class);
-    registerTermEnum(GbifDnaTerm.class);
     registerTermEnum(GbifMiqeTerm.class);
     registerTermEnum(GermplasmTerm.class);
     registerTermEnum(GgbnTerm.class);

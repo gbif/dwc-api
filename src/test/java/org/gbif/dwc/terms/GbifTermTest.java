@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GbifTermTest extends TermBaseTest<GbifTerm> {
 
   public GbifTermTest() {
-    super(GbifTerm.class);
+    super(GbifTerm.class, new String[]{"-"}, false);
   }
 
   @Test
@@ -43,7 +43,19 @@ public class GbifTermTest extends TermBaseTest<GbifTerm> {
   public void testIsClass() {
     assertTrue(GbifTerm.VernacularName.isClass());
     assertTrue(GbifTerm.Distribution.isClass());
+    assertTrue(GbifTerm.DNADerivedData.isClass());
     assertFalse(GbifTerm.datasetKey.isClass());
+    int counter = 0;
+    for (GbifTerm term : GbifTerm.values()) {
+      if (term.isClass()) {
+        counter++;
+        assertEquals(GbifTerm.GROUP_ROW_TYPE, term.getGroup());
+      }
+    }
+    for (GbifTerm term : GbifTerm.listByGroup(GbifTerm.GROUP_ROW_TYPE)) {
+      assertTrue(term.isClass());
+    }
+    assertEquals(10, counter);
   }
 
   @Test
@@ -69,8 +81,8 @@ public class GbifTermTest extends TermBaseTest<GbifTerm> {
     assertEquals(9, new HashSet<>(locationTerms).size());
 
     List<GbifTerm> rowTerms = GbifTerm.listByGroup(GbifTerm.GROUP_ROW_TYPE);
-    assertEquals(9, rowTerms.size());
-    assertEquals(9, new HashSet<>(rowTerms).size());
+    assertEquals(10, rowTerms.size());
+    assertEquals(10, new HashSet<>(rowTerms).size());
 
     List<GbifTerm> distributionTerms = GbifTerm.listByGroup(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION);
     assertEquals(2, distributionTerms.size());
