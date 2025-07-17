@@ -337,7 +337,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   livingPeriod(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "timePeriod"),
   ageInDays(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
   sizeInMillimeters(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "sizeInMillimeter"),
-  massInGram(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "weightInGram"),
+  massInGrams(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "massInGram", "weightInGram"),
   lifeForm(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
 
   // Vernacular Name checklist extension
