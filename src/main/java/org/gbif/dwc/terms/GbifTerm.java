@@ -336,7 +336,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   isExtinct(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
   livingPeriod(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "timePeriod"),
   ageInDays(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
-  sizeInMillimeter(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
+  sizeInMillimeters(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "sizeInMillimeter"),
   massInGram(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "weightInGram"),
   lifeForm(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
 
