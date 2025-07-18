@@ -90,6 +90,7 @@ public class TermFactory {
     registerTermEnum(MixsTerm.class);
     registerTermEnum(ObisTerm.class);
     registerTermEnum(Wgs84GeoPositioningTerm.class);
+    registerTermEnum(EcoTerm.class);
 
     registerQualifiedTermEnum(DwcaTerm.class);
     addTerm(BibTexTerm.CLASS_TERM);
