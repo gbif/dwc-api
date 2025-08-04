@@ -329,15 +329,16 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
 
   // Species Profile checklist extension
   isMarine(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
-  isTerrestrial(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
   isFreshwater(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
+  isTerrestrial(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
+  isInvasive(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
   isHybrid(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
   isExtinct(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
   livingPeriod(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "timePeriod"),
-  lifeForm(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
   ageInDays(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
-  sizeInMillimeter(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
-  massInGram(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "weightInGram"),
+  sizeInMillimeters(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "sizeInMillimeter"),
+  massInGrams(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION, "massInGram", "weightInGram"),
+  lifeForm(GbifTerm.GROUP_SPECIES_PROFILE_EXTENSION),
 
   // Vernacular Name checklist extension
   organismPart(GbifTerm.GROUP_VERNACULAR_NAME_EXTENSION),
