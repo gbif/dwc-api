@@ -57,44 +57,45 @@
 <span class="sourceLineNo">048</span><a id="line.48">  parentEventGbifId,</a>
 <span class="sourceLineNo">049</span><a id="line.49"></a>
 <span class="sourceLineNo">050</span><a id="line.50">  // multi taxonomy classifications</a>
-<span class="sourceLineNo">051</span><a id="line.51">  classifications;</a>
-<span class="sourceLineNo">052</span><a id="line.52"></a>
-<span class="sourceLineNo">053</span><a id="line.53">  private static final String PREFIX = "gbint";</a>
-<span class="sourceLineNo">054</span><a id="line.54">  private static final String NS = "http://rs.gbif.org/terms/internal/";</a>
-<span class="sourceLineNo">055</span><a id="line.55">  private static final URI NS_URI = URI.create(NS);</a>
-<span class="sourceLineNo">056</span><a id="line.56"></a>
-<span class="sourceLineNo">057</span><a id="line.57">  private static final String[] EMPTY = new String[0];</a>
-<span class="sourceLineNo">058</span><a id="line.58"></a>
-<span class="sourceLineNo">059</span><a id="line.59">  @Override</a>
-<span class="sourceLineNo">060</span><a id="line.60">  public String simpleName() {</a>
-<span class="sourceLineNo">061</span><a id="line.61">    return name();</a>
-<span class="sourceLineNo">062</span><a id="line.62">  }</a>
-<span class="sourceLineNo">063</span><a id="line.63"></a>
-<span class="sourceLineNo">064</span><a id="line.64">  @Override</a>
-<span class="sourceLineNo">065</span><a id="line.65">  public String toString() {</a>
-<span class="sourceLineNo">066</span><a id="line.66">    return prefixedName();</a>
-<span class="sourceLineNo">067</span><a id="line.67">  }</a>
-<span class="sourceLineNo">068</span><a id="line.68"></a>
-<span class="sourceLineNo">069</span><a id="line.69">  @Override</a>
-<span class="sourceLineNo">070</span><a id="line.70">  public String[] alternativeNames() {</a>
-<span class="sourceLineNo">071</span><a id="line.71">    return EMPTY;</a>
-<span class="sourceLineNo">072</span><a id="line.72">  }</a>
-<span class="sourceLineNo">073</span><a id="line.73"></a>
-<span class="sourceLineNo">074</span><a id="line.74">  @Override</a>
-<span class="sourceLineNo">075</span><a id="line.75">  public boolean isClass() {</a>
-<span class="sourceLineNo">076</span><a id="line.76">    return false;</a>
-<span class="sourceLineNo">077</span><a id="line.77">  }</a>
-<span class="sourceLineNo">078</span><a id="line.78"></a>
-<span class="sourceLineNo">079</span><a id="line.79">  @Override</a>
-<span class="sourceLineNo">080</span><a id="line.80">  public String prefix() {</a>
-<span class="sourceLineNo">081</span><a id="line.81">    return PREFIX;</a>
-<span class="sourceLineNo">082</span><a id="line.82">  }</a>
-<span class="sourceLineNo">083</span><a id="line.83"></a>
-<span class="sourceLineNo">084</span><a id="line.84">  @Override</a>
-<span class="sourceLineNo">085</span><a id="line.85">  public URI namespace() {</a>
-<span class="sourceLineNo">086</span><a id="line.86">    return NS_URI;</a>
-<span class="sourceLineNo">087</span><a id="line.87">  }</a>
-<span class="sourceLineNo">088</span><a id="line.88">}</a>
+<span class="sourceLineNo">051</span><a id="line.51">  classifications,</a>
+<span class="sourceLineNo">052</span><a id="line.52">  classificationDetails;</a>
+<span class="sourceLineNo">053</span><a id="line.53"></a>
+<span class="sourceLineNo">054</span><a id="line.54">  private static final String PREFIX = "gbint";</a>
+<span class="sourceLineNo">055</span><a id="line.55">  private static final String NS = "http://rs.gbif.org/terms/internal/";</a>
+<span class="sourceLineNo">056</span><a id="line.56">  private static final URI NS_URI = URI.create(NS);</a>
+<span class="sourceLineNo">057</span><a id="line.57"></a>
+<span class="sourceLineNo">058</span><a id="line.58">  private static final String[] EMPTY = new String[0];</a>
+<span class="sourceLineNo">059</span><a id="line.59"></a>
+<span class="sourceLineNo">060</span><a id="line.60">  @Override</a>
+<span class="sourceLineNo">061</span><a id="line.61">  public String simpleName() {</a>
+<span class="sourceLineNo">062</span><a id="line.62">    return name();</a>
+<span class="sourceLineNo">063</span><a id="line.63">  }</a>
+<span class="sourceLineNo">064</span><a id="line.64"></a>
+<span class="sourceLineNo">065</span><a id="line.65">  @Override</a>
+<span class="sourceLineNo">066</span><a id="line.66">  public String toString() {</a>
+<span class="sourceLineNo">067</span><a id="line.67">    return prefixedName();</a>
+<span class="sourceLineNo">068</span><a id="line.68">  }</a>
+<span class="sourceLineNo">069</span><a id="line.69"></a>
+<span class="sourceLineNo">070</span><a id="line.70">  @Override</a>
+<span class="sourceLineNo">071</span><a id="line.71">  public String[] alternativeNames() {</a>
+<span class="sourceLineNo">072</span><a id="line.72">    return EMPTY;</a>
+<span class="sourceLineNo">073</span><a id="line.73">  }</a>
+<span class="sourceLineNo">074</span><a id="line.74"></a>
+<span class="sourceLineNo">075</span><a id="line.75">  @Override</a>
+<span class="sourceLineNo">076</span><a id="line.76">  public boolean isClass() {</a>
+<span class="sourceLineNo">077</span><a id="line.77">    return false;</a>
+<span class="sourceLineNo">078</span><a id="line.78">  }</a>
+<span class="sourceLineNo">079</span><a id="line.79"></a>
+<span class="sourceLineNo">080</span><a id="line.80">  @Override</a>
+<span class="sourceLineNo">081</span><a id="line.81">  public String prefix() {</a>
+<span class="sourceLineNo">082</span><a id="line.82">    return PREFIX;</a>
+<span class="sourceLineNo">083</span><a id="line.83">  }</a>
+<span class="sourceLineNo">084</span><a id="line.84"></a>
+<span class="sourceLineNo">085</span><a id="line.85">  @Override</a>
+<span class="sourceLineNo">086</span><a id="line.86">  public URI namespace() {</a>
+<span class="sourceLineNo">087</span><a id="line.87">    return NS_URI;</a>
+<span class="sourceLineNo">088</span><a id="line.88">  }</a>
+<span class="sourceLineNo">089</span><a id="line.89">}</a>
 
 
 
