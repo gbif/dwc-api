@@ -48,7 +48,8 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   parentEventGbifId,
 
   // multi taxonomy classifications
-  classifications;
+  classifications,
+  classificationDetails;
 
   private static final String PREFIX = "gbint";
   private static final String NS = "http://rs.gbif.org/terms/internal/";
