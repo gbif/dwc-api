@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.net.URI;
 
 public enum EcoTerm implements Term, AlternativeNames, Serializable {
-  // TODO: add vocabulary tags?
-
   siteCount(EcoTerm.GROUP_SITE),
   siteNestingDescription(EcoTerm.GROUP_SITE),
   verbatimSiteDescriptions(EcoTerm.GROUP_SITE),
@@ -30,10 +28,14 @@ public enum EcoTerm implements Term, AlternativeNames, Serializable {
   hasNonTargetTaxa(EcoTerm.GROUP_TAXONOMIC_SCOPE),
   nonTargetTaxa(EcoTerm.GROUP_TAXONOMIC_SCOPE),
   areNonTargetTaxaFullyReported(EcoTerm.GROUP_TAXONOMIC_SCOPE),
+  @Vocabulary
   targetLifeStageScope(EcoTerm.GROUP_ORGANISMAL_SCOPE),
+  @Vocabulary
   excludedLifeStageScope(EcoTerm.GROUP_ORGANISMAL_SCOPE),
   isLifeStageScopeFullyReported(EcoTerm.GROUP_ORGANISMAL_SCOPE),
+  @Vocabulary
   targetDegreeOfEstablishmentScope(EcoTerm.GROUP_ORGANISMAL_SCOPE),
+  @Vocabulary
   excludedDegreeOfEstablishmentScope(EcoTerm.GROUP_ORGANISMAL_SCOPE),
   isDegreeOfEstablishmentScopeFullyReported(EcoTerm.GROUP_ORGANISMAL_SCOPE),
   targetGrowthFormScope(EcoTerm.GROUP_ORGANISMAL_SCOPE),

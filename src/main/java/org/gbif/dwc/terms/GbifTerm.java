@@ -369,7 +369,12 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   geologicalTime(DwcTerm.GROUP_OCCURRENCE),
   lithostratigraphy(DwcTerm.GROUP_OCCURRENCE),
   biostratigraphy(DwcTerm.GROUP_OCCURRENCE),
-  dnaSequenceID(GbifTerm.GROUP_DNA_DERIVED_DATA);
+  dnaSequenceID(GbifTerm.GROUP_DNA_DERIVED_DATA),
+
+  /**
+   * The <a href="http://rs.tdwg.org/eco/terms/Event">Humboldt</a> extension row type.
+   */
+  Humboldt(GbifTerm.GROUP_ROW_TYPE);
 
   private static final String PREFIX = "gbif";
   private static final String NS = "http://rs.gbif.org/terms/1.0/";
@@ -382,6 +387,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   public static final String GROUP_SPECIES_PROFILE_EXTENSION = "SpeciesProfile";
   public static final String GROUP_VERNACULAR_NAME_EXTENSION = "VernacularName";
   public static final String GROUP_DNA_DERIVED_DATA = "DnaDerivedData";
+  public static final String GROUP_HUMBOLDT = "Humboldt";
 
   /**
    * Lists all GBIF term groups.

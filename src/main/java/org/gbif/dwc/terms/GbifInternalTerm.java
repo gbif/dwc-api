@@ -49,7 +49,11 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
 
   // multi taxonomy classifications
   classifications,
-  classificationDetails;
+  classificationDetails,
+
+  // humboldt
+  humboldtItem,
+  humboldtEventDurationValueInMinutes;
 
   private static final String PREFIX = "gbint";
   private static final String NS = "http://rs.gbif.org/terms/internal/";

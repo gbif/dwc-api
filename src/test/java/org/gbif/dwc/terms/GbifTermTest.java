@@ -69,8 +69,8 @@ public class GbifTermTest extends TermBaseTest<GbifTerm> {
     assertEquals(9, new HashSet<>(locationTerms).size());
 
     List<GbifTerm> rowTerms = GbifTerm.listByGroup(GbifTerm.GROUP_ROW_TYPE);
-    assertEquals(9, rowTerms.size());
-    assertEquals(9, new HashSet<>(rowTerms).size());
+    assertEquals(10, rowTerms.size());
+    assertEquals(10, new HashSet<>(rowTerms).size());
 
     List<GbifTerm> distributionTerms = GbifTerm.listByGroup(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION);
     assertEquals(2, distributionTerms.size());
