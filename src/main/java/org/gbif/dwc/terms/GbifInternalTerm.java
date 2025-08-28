@@ -52,7 +52,6 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   classificationDetails,
 
   // humboldt
-  humboldtItem,
   humboldtEventDurationValueInMinutes;
 
   private static final String PREFIX = "gbint";
