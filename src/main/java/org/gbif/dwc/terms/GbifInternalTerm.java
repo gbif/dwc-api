@@ -48,6 +48,7 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   parentEventGbifId,
 
   // multi taxonomy classifications
+  taxonomicStatuses,
   classifications,
   classificationDetails,
 
