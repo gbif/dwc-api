@@ -244,37 +244,52 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   acceptedTaxonKey(DwcTerm.GROUP_TAXON),
 
   /**
-   * The key to the accepted kingdom in the GBIF backbone.
+   * The key to the accepted kingdom in the taxonomy.
    */
   kingdomKey(DwcTerm.GROUP_TAXON),
 
   /**
-   * The key to the accepted phylum in the GBIF backbone.
+   * The key to the accepted phylum in the taxonomy.
    */
   phylumKey(DwcTerm.GROUP_TAXON),
 
   /**
-   * The key to the accepted class in the GBIF backbone.
+   * The key to the accepted class in the taxonomy.
    */
   classKey(DwcTerm.GROUP_TAXON),
 
   /**
-   * The key to the accepted order in the GBIF backbone.
+   * The key to the accepted order in the taxonomy.
    */
   orderKey(DwcTerm.GROUP_TAXON),
 
   /**
-   * The key to the accepted family in the GBIF backbone.
+   * The key to the accepted superfamily in the taxonomy.
+   */
+  superfamilyKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted family in the taxonomy.
    */
   familyKey(DwcTerm.GROUP_TAXON),
 
   /**
-   * The key to the accepted genus in the GBIF backbone.
+   * The key to the accepted subfamily in the taxonomy.
+   */
+  subfamilyKey(DwcTerm.GROUP_TAXON),
+
+  /**
+   * The key to the accepted tribe in the taxonomy.
+   */
+  tribeKey(DwcTerm.GROUP_TAXON),
+
+    /**
+   * The key to the accepted genus in the taxonomy.
    */
   genusKey(DwcTerm.GROUP_TAXON),
 
   /**
-   * The key to the accepted subgenus in the GBIF backbone.
+   * The key to the accepted subgenus in the taxonomy.
    */
   subgenusKey(DwcTerm.GROUP_TAXON),
 
