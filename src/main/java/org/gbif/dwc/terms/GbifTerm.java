@@ -416,7 +416,8 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    */
   public static final GbifTerm[] TAXONOMIC_TERMS =
   {GbifTerm.checklistKey, GbifTerm.taxonKey, GbifTerm.acceptedTaxonKey, GbifTerm.kingdomKey, GbifTerm.phylumKey, GbifTerm.classKey,
-   GbifTerm.orderKey, GbifTerm.familyKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
+   GbifTerm.orderKey, GbifTerm.superfamilyKey, GbifTerm.familyKey, GbifTerm.subfamilyKey, GbifTerm.tribeKey,
+          GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
    GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,
    GbifTerm.verbatimScientificName};
 
