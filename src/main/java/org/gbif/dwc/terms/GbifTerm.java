@@ -283,6 +283,11 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    */
   tribeKey(DwcTerm.GROUP_TAXON),
 
+  /**
+   * The key to the accepted subtribe in the taxonomy.
+   */
+  subtribeKey(DwcTerm.GROUP_TAXON),
+
     /**
    * The key to the accepted genus in the taxonomy.
    */
