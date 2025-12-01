@@ -77,8 +77,8 @@
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      assertEquals(9, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(locationTerms).size());
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      List&lt;GbifTerm&gt; rowTerms = GbifTerm.listByGroup(GbifTerm.GROUP_ROW_TYPE);
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>      assertEquals(9, rowTerms.size());
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>      assertEquals(9, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(rowTerms).size());
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      assertEquals(10, rowTerms.size());
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>      assertEquals(10, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(rowTerms).size());
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>      List&lt;GbifTerm&gt; distributionTerms = GbifTerm.listByGroup(GbifTerm.GROUP_SPECIES_DISTRIBUTION_EXTENSION);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>      assertEquals(2, distributionTerms.size());
@@ -89,8 +89,8 @@
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>      assertEquals(11, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(profileTerms).size());
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>      List&lt;GbifTerm&gt; taxonTerms = GbifTerm.listByGroup(DwcTerm.GROUP_TAXON);
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>      assertEquals(16, taxonTerms.size());
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>      assertEquals(16, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(taxonTerms).size());
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      assertEquals(20, taxonTerms.size());
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>      assertEquals(20, <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(taxonTerms).size());
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>      List&lt;GbifTerm&gt; crawlingTerms = GbifTerm.listByGroup(GbifTerm.GROUP_CRAWLING);
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>      assertEquals(3, crawlingTerms.size());
