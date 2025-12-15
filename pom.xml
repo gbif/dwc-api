@@ -8,7 +8,7 @@
   </parent>
 
   <artifactId>dwc-api</artifactId>
-  <version>2.1.8-SNAPSHOT</version>
+  <version>2.1.8-spark-refactor-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Darwin Core API</name>
