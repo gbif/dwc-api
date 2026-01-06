@@ -18,6 +18,7 @@ package org.gbif.dwc.terms;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -37,9 +38,9 @@ public class TermFactory {
   private static boolean initialized = false;
   private static final Object LOCK = new Object();
 
-  private final Map<String, Term> terms = new HashMap<String, Term>();
-  private final Map<String, Term> classTerms = new HashMap<String, Term>();
-  private final Set<Class<? extends Enum>> registeredEnumClasses = new HashSet<>();
+  private final Map<String, Term> terms = new HashMap<>();
+  private final Map<String, Term> classTerms = new HashMap<>();
+  private final Set<Class<? extends Enum<?>>> registeredEnumClasses = new HashSet<>();
 
   public static TermFactory instance() {
     if (initialized) {
@@ -99,7 +100,7 @@ public class TermFactory {
   /**
    * @return the set of term enum classes that have been registered with this TermFactory
    */
-  public Set<Class<? extends Enum>> listRegisteredTermEnums() {
+  public Set<Class<? extends Enum<?>>> listRegisteredTermEnums() {
     return Collections.unmodifiableSet(registeredEnumClasses);
   }
 
@@ -117,7 +118,7 @@ public class TermFactory {
    *
    * @param altPrefixes alternative prefixes to be used to register simple prefixed term names
    */
-  public synchronized <T extends Enum & Term & AlternativeNames> void registerTermEnum(Class<T> termClass, String ... altPrefixes) {
+  public synchronized <T extends Enum<?> & Term & AlternativeNames> void registerTermEnum(Class<T> termClass, String ... altPrefixes) {
     if (registeredEnumClasses.contains(termClass)) {
       LOG.debug("{} is already registered", termClass);
     } else {
@@ -144,7 +145,7 @@ public class TermFactory {
    * Registers all terms from a new term enumeration, but only adds their qualified and prefixed names.
    * This is to avoid clashes with other usually more important terms that should be known by their simple name.
    */
-  public <T extends Enum & Term> void registerQualifiedTermEnum(Class<T> termClass) {
+  public <T extends Enum<?> & Term> void registerQualifiedTermEnum(Class<T> termClass) {
     if (registeredEnumClasses.contains(termClass)) {
       LOG.debug("{} is already registered", termClass);
     } else {
@@ -166,8 +167,15 @@ public class TermFactory {
     }
   }
 
+  /**
+   * Checks whether a string is null or empty (after trimming).
+   */
+  private static boolean isNullOrEmpty(String s) {
+    return s == null || s.trim().isEmpty();
+  }
+
   private void addTerm(String key, Term term) {
-    if (key == null || key.trim().isEmpty()) {
+    if (isNullOrEmpty(key)) {
       return;
     }
 
@@ -182,9 +190,7 @@ public class TermFactory {
       map.put(key, term);
       // also add a normalised version
       key = normaliseTerm(key);
-      if (!map.containsKey(key)) {
-        map.put(key, term);
-      }
+      map.computeIfAbsent(key, k -> term);
     }
   }
 
@@ -196,13 +202,9 @@ public class TermFactory {
    * @return a purely alphanumerical, lower cased term with all other characters replaced
    */
   public static String normaliseTerm(String term) {
-    String x = NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("");
-    // remove http(s)
-    x = x.replaceFirst("^https?", "");
-    if (x.isEmpty()) {
-      return "";
-    }
-    return x.toLowerCase();
+    return NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("")
+                .replaceFirst("^https?", "")
+                .toLowerCase(Locale.ROOT); // remove http(s)
   }
 
   /**
@@ -233,7 +235,7 @@ public class TermFactory {
     }
     // create new term if needed
     if (t == null) {
-      if (termName.startsWith(BibTexTerm.NS) || termName.startsWith(BibTexTerm.PREFIX+":")) {
+      if (termName.startsWith(BibTexTerm.NS) || termName.startsWith(BibTexTerm.PREFIX + ":")) {
         t = createBibtexTerm(termName, termName.startsWith(BibTexTerm.NS));
       } else {
         t = createUnknownTerm(termName, false);
@@ -263,7 +265,7 @@ public class TermFactory {
    * the results to just property or class terms.
    */
   public Term findTerm(final String termName, boolean isClassTerm) throws IllegalArgumentException {
-    if (termName == null || termName.trim().isEmpty()) {
+    if (isNullOrEmpty(termName)) {
       return null;
     }
 
@@ -279,7 +281,7 @@ public class TermFactory {
    * Does not create Unknown terms
    */
   private Term findTermOnly(final String termName, boolean isClassTerm) throws IllegalArgumentException {
-    if (termName == null || termName.trim().isEmpty()) {
+    if (isNullOrEmpty(termName)) {
       return null;
     }
 
