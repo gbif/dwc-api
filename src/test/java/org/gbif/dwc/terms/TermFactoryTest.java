@@ -65,7 +65,7 @@ public class TermFactoryTest {
     //addTerms(names, DwcaTerm.values());
 
     // Audubon Core
-    addTerms(names, termsBut(AcTerm.values(), AcTerm.Multimedia, AcTerm.relatedResourceID));
+    addTerms(names, termsBut(AcTerm.values(), AcTerm.Multimedia, AcTerm.relatedResourceID, AcTerm.fundingAttribution));
     addTerms(names, ExifTerm.values());
     addTerms(names, IptcTerm.values());
     addTerms(names, PhotoshopTerm.values());
