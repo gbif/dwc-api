@@ -73,8 +73,8 @@ public class DwcTermTest extends TermBaseTest<DwcTerm> {
     assertEquals(2, new HashSet<>(sampleTerms).size());
 
     List<DwcTerm> eventTerms = DwcTerm.listByGroup(DwcTerm.GROUP_EVENT);
-    assertEquals(20, eventTerms.size());
-    assertEquals(20, new HashSet<>(eventTerms).size());
+    assertEquals(24, eventTerms.size());
+    assertEquals(24, new HashSet<>(eventTerms).size());
 
     List<DwcTerm> locationTerms = DwcTerm.listByGroup(DwcTerm.GROUP_LOCATION);
     assertEquals(44, locationTerms.size());
