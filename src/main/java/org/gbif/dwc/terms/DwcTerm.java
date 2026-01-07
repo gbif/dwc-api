@@ -124,6 +124,10 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   samplingEffort(DwcTerm.GROUP_EVENT),
   fieldNotes(DwcTerm.GROUP_EVENT),
   eventRemarks(DwcTerm.GROUP_EVENT),
+  projectTitle(DwcTerm.GROUP_EVENT),
+  projectID(DwcTerm.GROUP_EVENT),
+  fundingAttribution(DwcTerm.GROUP_EVENT),
+  fundingAttributionID(DwcTerm.GROUP_EVENT),
 
   locationID(DwcTerm.GROUP_LOCATION),
   higherGeographyID(DwcTerm.GROUP_LOCATION),
