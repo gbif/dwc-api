@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.gbif.dwc.terms"},{"l":"org.gbif.dwc.terms.jackson"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.gbif.dwc.terms"},{"l":"org.gbif.dwc.terms.jackson"}];updateSearchResults();
