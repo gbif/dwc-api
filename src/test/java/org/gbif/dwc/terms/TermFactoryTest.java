@@ -15,8 +15,16 @@
  */
 package org.gbif.dwc.terms;
 
-import com.google.common.collect.Sets;
-import com.google.common.reflect.ClassPath;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -25,7 +33,6 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -77,10 +84,10 @@ public class TermFactoryTest {
   }
 
   private Term[] termsBut(Term[] terms, Term... exclude) {
-    Set<Term> excl = Sets.newHashSet(exclude);
+    Set<Term> excl = new HashSet<>(Arrays.asList(exclude));
     return Arrays.stream(terms)
-                 .filter(t -> !excl.contains(t))
-                 .collect(Collectors.toList()).toArray(new Term[]{});
+        .filter(t -> !excl.contains(t))
+        .toArray(Term[]::new);
   }
 
   private void addTerms(Set<String> names, Term[] terms) {
@@ -98,8 +105,8 @@ public class TermFactoryTest {
 
   @Test
   public void testCompleteness() throws Exception {
-    for (ClassPath.ClassInfo info : ClassPath.from(getClass().getClassLoader()).getTopLevelClasses(DwcTerm.class.getPackage().getName())) {
-      Class<?> cl = info.load();
+    String packageName = DwcTerm.class.getPackage().getName();
+    for (Class<?> cl : getClassesInPackage(packageName)) {
       if (cl.isEnum() && Term.class.isAssignableFrom(cl)) {
         Class<Term> tcl = (Class<Term>) cl;
         for (Term t : tcl.getEnumConstants()) {
@@ -108,6 +115,45 @@ public class TermFactoryTest {
         }
       }
     }
+  }
+
+  /**
+   * Scans all classes in a given package.
+   */
+  private Set<Class<?>> getClassesInPackage(String packageName) throws IOException, URISyntaxException {
+    ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+    String path = packageName.replace('.', '/');
+    URI resource = classLoader.getResource(path).toURI();
+
+    if (resource.getScheme().equals("jar")) {
+      try (FileSystem fileSystem = FileSystems.newFileSystem(resource, Collections.emptyMap())) {
+        Path packagePath = fileSystem.getPath(path);
+        return findClasses(packagePath, packageName);
+      }
+    } else {
+      Path packagePath = Paths.get(resource);
+      return findClasses(packagePath, packageName);
+    }
+  }
+
+  /**
+   * Finds all classes in a given directory.
+   */
+  private Set<Class<?>> findClasses(Path directory, String packageName) throws IOException {
+    Set<Class<?>> classes = new HashSet<>();
+    try (Stream<Path> paths = Files.walk(directory, 1)) {
+      paths.filter(path -> path.toString().endsWith(".class"))
+          .forEach(path -> {
+            try {
+              String className = packageName + '.' +
+                  path.getFileName().toString().replace(".class", "");
+              classes.add(Class.forName(className));
+            } catch (ClassNotFoundException e) {
+              // Ignore
+            }
+          });
+    }
+    return classes;
   }
 
   @Test
