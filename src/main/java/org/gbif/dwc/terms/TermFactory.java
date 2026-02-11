@@ -190,7 +190,9 @@ public class TermFactory {
       map.put(key, term);
       // also add a normalised version
       key = normaliseTerm(key);
-      map.computeIfAbsent(key, k -> term);
+      if (!map.containsKey(key)) {
+        map.put(key, term);
+      }
     }
   }
 
