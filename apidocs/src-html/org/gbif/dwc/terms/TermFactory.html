@@ -203,131 +203,133 @@
 <span class="source-line-no">190</span><span id="line-190">      map.put(key, term);</span>
 <span class="source-line-no">191</span><span id="line-191">      // also add a normalised version</span>
 <span class="source-line-no">192</span><span id="line-192">      key = normaliseTerm(key);</span>
-<span class="source-line-no">193</span><span id="line-193">      map.computeIfAbsent(key, k -&gt; term);</span>
-<span class="source-line-no">194</span><span id="line-194">    }</span>
-<span class="source-line-no">195</span><span id="line-195">  }</span>
-<span class="source-line-no">196</span><span id="line-196"></span>
-<span class="source-line-no">197</span><span id="line-197">  private Map&lt;String, Term&gt; termMap(boolean isClass) {</span>
-<span class="source-line-no">198</span><span id="line-198">    return isClass ? classTerms : terms;</span>
-<span class="source-line-no">199</span><span id="line-199">  }</span>
-<span class="source-line-no">200</span><span id="line-200"></span>
-<span class="source-line-no">201</span><span id="line-201">  /**</span>
-<span class="source-line-no">202</span><span id="line-202">   * @return a purely alphanumerical, lower cased term with all other characters replaced</span>
-<span class="source-line-no">203</span><span id="line-203">   */</span>
-<span class="source-line-no">204</span><span id="line-204">  public static String normaliseTerm(String term) {</span>
-<span class="source-line-no">205</span><span id="line-205">    return NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("")</span>
-<span class="source-line-no">206</span><span id="line-206">                .replaceFirst("^https?", "")</span>
-<span class="source-line-no">207</span><span id="line-207">                .toLowerCase(Locale.ROOT); // remove http(s)</span>
-<span class="source-line-no">208</span><span id="line-208">  }</span>
-<span class="source-line-no">209</span><span id="line-209"></span>
-<span class="source-line-no">210</span><span id="line-210">  /**</span>
-<span class="source-line-no">211</span><span id="line-211">   * This is the main method to get a term from the factory searching both for property or class terms.</span>
-<span class="source-line-no">212</span><span id="line-212">   * It will lookup matching terms applying some normalization and known synonyms first.</span>
-<span class="source-line-no">213</span><span id="line-213">   * In case of ambiguous terms Class terms will be preferred.</span>
-<span class="source-line-no">214</span><span id="line-214">   *</span>
-<span class="source-line-no">215</span><span id="line-215">   * If nothing matches the factory creates a new UnknownTerm property instance and keeps it for further requests so that</span>
-<span class="source-line-no">216</span><span id="line-216">   * all terms with the same qualified name return a single UnknownTerm instance.</span>
-<span class="source-line-no">217</span><span id="line-217">   *</span>
-<span class="source-line-no">218</span><span id="line-218">   * For clearly bad term names an IllegalArgumentException is thrown.</span>
-<span class="source-line-no">219</span><span id="line-219">   * For example in the case of a simple name containing whitespace like "hello tom".</span>
-<span class="source-line-no">220</span><span id="line-220">   * Ideally the term names to be looked up should be full URIs, but simple names made up of alphanumerics and dashes</span>
-<span class="source-line-no">221</span><span id="line-221">   * will also work fine. Unknown simple names will be put into the namespace http://unknown.org when a new UnknownTerm</span>
-<span class="source-line-no">222</span><span id="line-222">   * instance is created.</span>
-<span class="source-line-no">223</span><span id="line-223">   */</span>
-<span class="source-line-no">224</span><span id="line-224">  public Term findTerm(final String termName) throws IllegalArgumentException {</span>
-<span class="source-line-no">225</span><span id="line-225">    // First try an exact match.</span>
-<span class="source-line-no">226</span><span id="line-226">    if (terms.containsKey(termName)) {</span>
-<span class="source-line-no">227</span><span id="line-227">      return terms.get(termName);</span>
-<span class="source-line-no">228</span><span id="line-228">    }</span>
-<span class="source-line-no">229</span><span id="line-229"></span>
-<span class="source-line-no">230</span><span id="line-230">    // Try class term</span>
-<span class="source-line-no">231</span><span id="line-231">    Term t = findTermOnly(termName, true);</span>
-<span class="source-line-no">232</span><span id="line-232">    if (t == null) {</span>
-<span class="source-line-no">233</span><span id="line-233">      // Try property term</span>
-<span class="source-line-no">234</span><span id="line-234">      t = findTermOnly(termName, false);</span>
-<span class="source-line-no">235</span><span id="line-235">    }</span>
-<span class="source-line-no">236</span><span id="line-236">    // create new term if needed</span>
-<span class="source-line-no">237</span><span id="line-237">    if (t == null) {</span>
-<span class="source-line-no">238</span><span id="line-238">      if (termName.startsWith(BibTexTerm.NS) || termName.startsWith(BibTexTerm.PREFIX + ":")) {</span>
-<span class="source-line-no">239</span><span id="line-239">        t = createBibtexTerm(termName, termName.startsWith(BibTexTerm.NS));</span>
-<span class="source-line-no">240</span><span id="line-240">      } else {</span>
-<span class="source-line-no">241</span><span id="line-241">        t = createUnknownTerm(termName, false);</span>
-<span class="source-line-no">242</span><span id="line-242">      }</span>
-<span class="source-line-no">243</span><span id="line-243">    }</span>
-<span class="source-line-no">244</span><span id="line-244">    return t;</span>
-<span class="source-line-no">245</span><span id="line-245">  }</span>
-<span class="source-line-no">246</span><span id="line-246"></span>
-<span class="source-line-no">247</span><span id="line-247">  /**</span>
-<span class="source-line-no">248</span><span id="line-248">   * This method works just as findTerm(final String termName) but restricts</span>
-<span class="source-line-no">249</span><span id="line-249">   * the results to just property terms.</span>
-<span class="source-line-no">250</span><span id="line-250">   */</span>
-<span class="source-line-no">251</span><span id="line-251">  public Term findPropertyTerm(final String termName) throws IllegalArgumentException {</span>
-<span class="source-line-no">252</span><span id="line-252">    return findTerm(termName, false);</span>
-<span class="source-line-no">253</span><span id="line-253">  }</span>
-<span class="source-line-no">254</span><span id="line-254"></span>
-<span class="source-line-no">255</span><span id="line-255">  /**</span>
-<span class="source-line-no">256</span><span id="line-256">   * This method works just as findTerm(final String termName) but restricts</span>
-<span class="source-line-no">257</span><span id="line-257">   * the results to just class terms.</span>
-<span class="source-line-no">258</span><span id="line-258">   */</span>
-<span class="source-line-no">259</span><span id="line-259">  public Term findClassTerm(final String termName) throws IllegalArgumentException {</span>
-<span class="source-line-no">260</span><span id="line-260">    return findTerm(termName, true);</span>
-<span class="source-line-no">261</span><span id="line-261">  }</span>
-<span class="source-line-no">262</span><span id="line-262"></span>
-<span class="source-line-no">263</span><span id="line-263">  /**</span>
-<span class="source-line-no">264</span><span id="line-264">   * This method works just as findTerm(final String termName) but restricts</span>
-<span class="source-line-no">265</span><span id="line-265">   * the results to just property or class terms.</span>
-<span class="source-line-no">266</span><span id="line-266">   */</span>
-<span class="source-line-no">267</span><span id="line-267">  public Term findTerm(final String termName, boolean isClassTerm) throws IllegalArgumentException {</span>
-<span class="source-line-no">268</span><span id="line-268">    if (isNullOrEmpty(termName)) {</span>
-<span class="source-line-no">269</span><span id="line-269">      return null;</span>
-<span class="source-line-no">270</span><span id="line-270">    }</span>
-<span class="source-line-no">271</span><span id="line-271"></span>
-<span class="source-line-no">272</span><span id="line-272">    Term t = findTermOnly(termName, isClassTerm);</span>
-<span class="source-line-no">273</span><span id="line-273">    // create new term if needed</span>
-<span class="source-line-no">274</span><span id="line-274">    if (t == null) {</span>
-<span class="source-line-no">275</span><span id="line-275">      t = createUnknownTerm(termName, isClassTerm);</span>
-<span class="source-line-no">276</span><span id="line-276">    }</span>
-<span class="source-line-no">277</span><span id="line-277">    return t;</span>
-<span class="source-line-no">278</span><span id="line-278">  }</span>
-<span class="source-line-no">279</span><span id="line-279"></span>
-<span class="source-line-no">280</span><span id="line-280">  /**</span>
-<span class="source-line-no">281</span><span id="line-281">   * Does not create Unknown terms</span>
-<span class="source-line-no">282</span><span id="line-282">   */</span>
-<span class="source-line-no">283</span><span id="line-283">  private Term findTermOnly(final String termName, boolean isClassTerm) throws IllegalArgumentException {</span>
-<span class="source-line-no">284</span><span id="line-284">    if (isNullOrEmpty(termName)) {</span>
-<span class="source-line-no">285</span><span id="line-285">      return null;</span>
-<span class="source-line-no">286</span><span id="line-286">    }</span>
-<span class="source-line-no">287</span><span id="line-287"></span>
-<span class="source-line-no">288</span><span id="line-288">    Map&lt;String, Term&gt; map = termMap(isClassTerm);</span>
-<span class="source-line-no">289</span><span id="line-289">    // first try term just as it is</span>
-<span class="source-line-no">290</span><span id="line-290">    if (map.containsKey(termName)) {</span>
-<span class="source-line-no">291</span><span id="line-291">      return map.get(termName);</span>
-<span class="source-line-no">292</span><span id="line-292">    }</span>
-<span class="source-line-no">293</span><span id="line-293"></span>
-<span class="source-line-no">294</span><span id="line-294">    // try normalised term otherwise</span>
-<span class="source-line-no">295</span><span id="line-295">    if (map.containsKey(normaliseTerm(termName))) {</span>
-<span class="source-line-no">296</span><span id="line-296">      return map.get(normaliseTerm(termName));</span>
-<span class="source-line-no">297</span><span id="line-297">    }</span>
-<span class="source-line-no">298</span><span id="line-298">    return null;</span>
-<span class="source-line-no">299</span><span id="line-299">  }</span>
-<span class="source-line-no">300</span><span id="line-300"></span>
-<span class="source-line-no">301</span><span id="line-301">  private Term createUnknownTerm(String termName, boolean isClassTerm) {</span>
-<span class="source-line-no">302</span><span id="line-302">    // create new term instance</span>
-<span class="source-line-no">303</span><span id="line-303">    Term term = UnknownTerm.build(termName, isClassTerm);</span>
-<span class="source-line-no">304</span><span id="line-304">    addTerm(termName, term);</span>
-<span class="source-line-no">305</span><span id="line-305">    addTerm(term.qualifiedName(), term);</span>
-<span class="source-line-no">306</span><span id="line-306">    return term;</span>
-<span class="source-line-no">307</span><span id="line-307">  }</span>
-<span class="source-line-no">308</span><span id="line-308"></span>
-<span class="source-line-no">309</span><span id="line-309">  private Term createBibtexTerm(String termName, boolean qualified) {</span>
-<span class="source-line-no">310</span><span id="line-310">    // create new term instance</span>
-<span class="source-line-no">311</span><span id="line-311">    Term term = qualified ? BibTexTerm.buildFromURI(termName) : BibTexTerm.buildFromPrefix(termName);</span>
-<span class="source-line-no">312</span><span id="line-312">    addTerm(term.qualifiedName(), term);</span>
-<span class="source-line-no">313</span><span id="line-313">    addTerm(term.prefixedName(), term);</span>
-<span class="source-line-no">314</span><span id="line-314">    return term;</span>
-<span class="source-line-no">315</span><span id="line-315">  }</span>
-<span class="source-line-no">316</span><span id="line-316"></span>
-<span class="source-line-no">317</span><span id="line-317">}</span>
+<span class="source-line-no">193</span><span id="line-193">      if (!map.containsKey(key)) {</span>
+<span class="source-line-no">194</span><span id="line-194">        map.put(key, term);</span>
+<span class="source-line-no">195</span><span id="line-195">      }</span>
+<span class="source-line-no">196</span><span id="line-196">    }</span>
+<span class="source-line-no">197</span><span id="line-197">  }</span>
+<span class="source-line-no">198</span><span id="line-198"></span>
+<span class="source-line-no">199</span><span id="line-199">  private Map&lt;String, Term&gt; termMap(boolean isClass) {</span>
+<span class="source-line-no">200</span><span id="line-200">    return isClass ? classTerms : terms;</span>
+<span class="source-line-no">201</span><span id="line-201">  }</span>
+<span class="source-line-no">202</span><span id="line-202"></span>
+<span class="source-line-no">203</span><span id="line-203">  /**</span>
+<span class="source-line-no">204</span><span id="line-204">   * @return a purely alphanumerical, lower cased term with all other characters replaced</span>
+<span class="source-line-no">205</span><span id="line-205">   */</span>
+<span class="source-line-no">206</span><span id="line-206">  public static String normaliseTerm(String term) {</span>
+<span class="source-line-no">207</span><span id="line-207">    return NON_ALPHA_NUM_PATTERN.matcher(term).replaceAll("")</span>
+<span class="source-line-no">208</span><span id="line-208">                .replaceFirst("^https?", "")</span>
+<span class="source-line-no">209</span><span id="line-209">                .toLowerCase(Locale.ROOT); // remove http(s)</span>
+<span class="source-line-no">210</span><span id="line-210">  }</span>
+<span class="source-line-no">211</span><span id="line-211"></span>
+<span class="source-line-no">212</span><span id="line-212">  /**</span>
+<span class="source-line-no">213</span><span id="line-213">   * This is the main method to get a term from the factory searching both for property or class terms.</span>
+<span class="source-line-no">214</span><span id="line-214">   * It will lookup matching terms applying some normalization and known synonyms first.</span>
+<span class="source-line-no">215</span><span id="line-215">   * In case of ambiguous terms Class terms will be preferred.</span>
+<span class="source-line-no">216</span><span id="line-216">   *</span>
+<span class="source-line-no">217</span><span id="line-217">   * If nothing matches the factory creates a new UnknownTerm property instance and keeps it for further requests so that</span>
+<span class="source-line-no">218</span><span id="line-218">   * all terms with the same qualified name return a single UnknownTerm instance.</span>
+<span class="source-line-no">219</span><span id="line-219">   *</span>
+<span class="source-line-no">220</span><span id="line-220">   * For clearly bad term names an IllegalArgumentException is thrown.</span>
+<span class="source-line-no">221</span><span id="line-221">   * For example in the case of a simple name containing whitespace like "hello tom".</span>
+<span class="source-line-no">222</span><span id="line-222">   * Ideally the term names to be looked up should be full URIs, but simple names made up of alphanumerics and dashes</span>
+<span class="source-line-no">223</span><span id="line-223">   * will also work fine. Unknown simple names will be put into the namespace http://unknown.org when a new UnknownTerm</span>
+<span class="source-line-no">224</span><span id="line-224">   * instance is created.</span>
+<span class="source-line-no">225</span><span id="line-225">   */</span>
+<span class="source-line-no">226</span><span id="line-226">  public Term findTerm(final String termName) throws IllegalArgumentException {</span>
+<span class="source-line-no">227</span><span id="line-227">    // First try an exact match.</span>
+<span class="source-line-no">228</span><span id="line-228">    if (terms.containsKey(termName)) {</span>
+<span class="source-line-no">229</span><span id="line-229">      return terms.get(termName);</span>
+<span class="source-line-no">230</span><span id="line-230">    }</span>
+<span class="source-line-no">231</span><span id="line-231"></span>
+<span class="source-line-no">232</span><span id="line-232">    // Try class term</span>
+<span class="source-line-no">233</span><span id="line-233">    Term t = findTermOnly(termName, true);</span>
+<span class="source-line-no">234</span><span id="line-234">    if (t == null) {</span>
+<span class="source-line-no">235</span><span id="line-235">      // Try property term</span>
+<span class="source-line-no">236</span><span id="line-236">      t = findTermOnly(termName, false);</span>
+<span class="source-line-no">237</span><span id="line-237">    }</span>
+<span class="source-line-no">238</span><span id="line-238">    // create new term if needed</span>
+<span class="source-line-no">239</span><span id="line-239">    if (t == null) {</span>
+<span class="source-line-no">240</span><span id="line-240">      if (termName.startsWith(BibTexTerm.NS) || termName.startsWith(BibTexTerm.PREFIX + ":")) {</span>
+<span class="source-line-no">241</span><span id="line-241">        t = createBibtexTerm(termName, termName.startsWith(BibTexTerm.NS));</span>
+<span class="source-line-no">242</span><span id="line-242">      } else {</span>
+<span class="source-line-no">243</span><span id="line-243">        t = createUnknownTerm(termName, false);</span>
+<span class="source-line-no">244</span><span id="line-244">      }</span>
+<span class="source-line-no">245</span><span id="line-245">    }</span>
+<span class="source-line-no">246</span><span id="line-246">    return t;</span>
+<span class="source-line-no">247</span><span id="line-247">  }</span>
+<span class="source-line-no">248</span><span id="line-248"></span>
+<span class="source-line-no">249</span><span id="line-249">  /**</span>
+<span class="source-line-no">250</span><span id="line-250">   * This method works just as findTerm(final String termName) but restricts</span>
+<span class="source-line-no">251</span><span id="line-251">   * the results to just property terms.</span>
+<span class="source-line-no">252</span><span id="line-252">   */</span>
+<span class="source-line-no">253</span><span id="line-253">  public Term findPropertyTerm(final String termName) throws IllegalArgumentException {</span>
+<span class="source-line-no">254</span><span id="line-254">    return findTerm(termName, false);</span>
+<span class="source-line-no">255</span><span id="line-255">  }</span>
+<span class="source-line-no">256</span><span id="line-256"></span>
+<span class="source-line-no">257</span><span id="line-257">  /**</span>
+<span class="source-line-no">258</span><span id="line-258">   * This method works just as findTerm(final String termName) but restricts</span>
+<span class="source-line-no">259</span><span id="line-259">   * the results to just class terms.</span>
+<span class="source-line-no">260</span><span id="line-260">   */</span>
+<span class="source-line-no">261</span><span id="line-261">  public Term findClassTerm(final String termName) throws IllegalArgumentException {</span>
+<span class="source-line-no">262</span><span id="line-262">    return findTerm(termName, true);</span>
+<span class="source-line-no">263</span><span id="line-263">  }</span>
+<span class="source-line-no">264</span><span id="line-264"></span>
+<span class="source-line-no">265</span><span id="line-265">  /**</span>
+<span class="source-line-no">266</span><span id="line-266">   * This method works just as findTerm(final String termName) but restricts</span>
+<span class="source-line-no">267</span><span id="line-267">   * the results to just property or class terms.</span>
+<span class="source-line-no">268</span><span id="line-268">   */</span>
+<span class="source-line-no">269</span><span id="line-269">  public Term findTerm(final String termName, boolean isClassTerm) throws IllegalArgumentException {</span>
+<span class="source-line-no">270</span><span id="line-270">    if (isNullOrEmpty(termName)) {</span>
+<span class="source-line-no">271</span><span id="line-271">      return null;</span>
+<span class="source-line-no">272</span><span id="line-272">    }</span>
+<span class="source-line-no">273</span><span id="line-273"></span>
+<span class="source-line-no">274</span><span id="line-274">    Term t = findTermOnly(termName, isClassTerm);</span>
+<span class="source-line-no">275</span><span id="line-275">    // create new term if needed</span>
+<span class="source-line-no">276</span><span id="line-276">    if (t == null) {</span>
+<span class="source-line-no">277</span><span id="line-277">      t = createUnknownTerm(termName, isClassTerm);</span>
+<span class="source-line-no">278</span><span id="line-278">    }</span>
+<span class="source-line-no">279</span><span id="line-279">    return t;</span>
+<span class="source-line-no">280</span><span id="line-280">  }</span>
+<span class="source-line-no">281</span><span id="line-281"></span>
+<span class="source-line-no">282</span><span id="line-282">  /**</span>
+<span class="source-line-no">283</span><span id="line-283">   * Does not create Unknown terms</span>
+<span class="source-line-no">284</span><span id="line-284">   */</span>
+<span class="source-line-no">285</span><span id="line-285">  private Term findTermOnly(final String termName, boolean isClassTerm) throws IllegalArgumentException {</span>
+<span class="source-line-no">286</span><span id="line-286">    if (isNullOrEmpty(termName)) {</span>
+<span class="source-line-no">287</span><span id="line-287">      return null;</span>
+<span class="source-line-no">288</span><span id="line-288">    }</span>
+<span class="source-line-no">289</span><span id="line-289"></span>
+<span class="source-line-no">290</span><span id="line-290">    Map&lt;String, Term&gt; map = termMap(isClassTerm);</span>
+<span class="source-line-no">291</span><span id="line-291">    // first try term just as it is</span>
+<span class="source-line-no">292</span><span id="line-292">    if (map.containsKey(termName)) {</span>
+<span class="source-line-no">293</span><span id="line-293">      return map.get(termName);</span>
+<span class="source-line-no">294</span><span id="line-294">    }</span>
+<span class="source-line-no">295</span><span id="line-295"></span>
+<span class="source-line-no">296</span><span id="line-296">    // try normalised term otherwise</span>
+<span class="source-line-no">297</span><span id="line-297">    if (map.containsKey(normaliseTerm(termName))) {</span>
+<span class="source-line-no">298</span><span id="line-298">      return map.get(normaliseTerm(termName));</span>
+<span class="source-line-no">299</span><span id="line-299">    }</span>
+<span class="source-line-no">300</span><span id="line-300">    return null;</span>
+<span class="source-line-no">301</span><span id="line-301">  }</span>
+<span class="source-line-no">302</span><span id="line-302"></span>
+<span class="source-line-no">303</span><span id="line-303">  private Term createUnknownTerm(String termName, boolean isClassTerm) {</span>
+<span class="source-line-no">304</span><span id="line-304">    // create new term instance</span>
+<span class="source-line-no">305</span><span id="line-305">    Term term = UnknownTerm.build(termName, isClassTerm);</span>
+<span class="source-line-no">306</span><span id="line-306">    addTerm(termName, term);</span>
+<span class="source-line-no">307</span><span id="line-307">    addTerm(term.qualifiedName(), term);</span>
+<span class="source-line-no">308</span><span id="line-308">    return term;</span>
+<span class="source-line-no">309</span><span id="line-309">  }</span>
+<span class="source-line-no">310</span><span id="line-310"></span>
+<span class="source-line-no">311</span><span id="line-311">  private Term createBibtexTerm(String termName, boolean qualified) {</span>
+<span class="source-line-no">312</span><span id="line-312">    // create new term instance</span>
+<span class="source-line-no">313</span><span id="line-313">    Term term = qualified ? BibTexTerm.buildFromURI(termName) : BibTexTerm.buildFromPrefix(termName);</span>
+<span class="source-line-no">314</span><span id="line-314">    addTerm(term.qualifiedName(), term);</span>
+<span class="source-line-no">315</span><span id="line-315">    addTerm(term.prefixedName(), term);</span>
+<span class="source-line-no">316</span><span id="line-316">    return term;</span>
+<span class="source-line-no">317</span><span id="line-317">  }</span>
+<span class="source-line-no">318</span><span id="line-318"></span>
+<span class="source-line-no">319</span><span id="line-319">}</span>
 
 
 
