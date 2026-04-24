@@ -81,7 +81,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    * The <a href="http://rs.gbif.org/terms/1.0/DNADerivedData">DNA Derived Data</a>
    * extension row type.
    */
-  DnaDerivedData(GbifTerm.GROUP_ROW_TYPE),
+  DNADerivedData(GbifTerm.GROUP_ROW_TYPE),
 
   /**
    * The UUID key for the dataset registered in GBIF.
