@@ -67,6 +67,7 @@ public enum MixsTerm implements Term, AlternativeNames, Serializable {
   lib_layout("0000041", "http://gensc.org/ns/mixs/lib_const_meth"),
   lib_vector("0000042"),
   lib_screen("0000043"),
+  @Vocabulary
   target_gene("0000044"),
   target_subfragment("0000045"),
   pcr_primers("0000046"),
