@@ -91,7 +91,8 @@ public class Terms {
                      getTerms(IucnTerm.class),
                      getTerms(XmpRightsTerm.class),
                      getTerms(XmpTerm.class),
-                     getTerms(GbifTerm.class))
+                     getTerms(GbifTerm.class),
+                     getTerms(MixsTerm.class))
       .flatMap(Arrays::stream)
       .filter(Terms::isVocabulary)
       .collect(Collectors.toList());
