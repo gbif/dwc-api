@@ -104,31 +104,32 @@
 <span class="source-line-no">091</span><span id="line-91">                     getTerms(IucnTerm.class),</span>
 <span class="source-line-no">092</span><span id="line-92">                     getTerms(XmpRightsTerm.class),</span>
 <span class="source-line-no">093</span><span id="line-93">                     getTerms(XmpTerm.class),</span>
-<span class="source-line-no">094</span><span id="line-94">                     getTerms(GbifTerm.class))</span>
-<span class="source-line-no">095</span><span id="line-95">      .flatMap(Arrays::stream)</span>
-<span class="source-line-no">096</span><span id="line-96">      .filter(Terms::isVocabulary)</span>
-<span class="source-line-no">097</span><span id="line-97">      .collect(Collectors.toList());</span>
-<span class="source-line-no">098</span><span id="line-98">  }</span>
-<span class="source-line-no">099</span><span id="line-99"></span>
-<span class="source-line-no">100</span><span id="line-100">  private static &lt;T extends Term&gt; Term[] getTerms(Class&lt;T&gt; term) {</span>
-<span class="source-line-no">101</span><span id="line-101">    return term.getEnumConstants();</span>
-<span class="source-line-no">102</span><span id="line-102">  }</span>
-<span class="source-line-no">103</span><span id="line-103"></span>
-<span class="source-line-no">104</span><span id="line-104">  /**</span>
-<span class="source-line-no">105</span><span id="line-105">   * @return true if the term is a handled/annotated as Vocabulary.</span>
-<span class="source-line-no">106</span><span id="line-106">   */</span>
-<span class="source-line-no">107</span><span id="line-107">  public static boolean isVocabulary(Term term) {</span>
-<span class="source-line-no">108</span><span id="line-108">    return term instanceof Enum &amp;&amp; hasTermAnnotation(term, Vocabulary.class);</span>
-<span class="source-line-no">109</span><span id="line-109">  }</span>
-<span class="source-line-no">110</span><span id="line-110"></span>
-<span class="source-line-no">111</span><span id="line-111">  private static boolean hasTermAnnotation(Term term, Class&lt;? extends Annotation&gt; annotation) {</span>
-<span class="source-line-no">112</span><span id="line-112">    try {</span>
-<span class="source-line-no">113</span><span id="line-113">      return term.getClass().getField(((Enum&lt;?&gt;) term).name()).isAnnotationPresent(annotation);</span>
-<span class="source-line-no">114</span><span id="line-114">    } catch (NoSuchFieldException ex) {</span>
-<span class="source-line-no">115</span><span id="line-115">      throw new IllegalArgumentException(ex);</span>
-<span class="source-line-no">116</span><span id="line-116">    }</span>
-<span class="source-line-no">117</span><span id="line-117">  }</span>
-<span class="source-line-no">118</span><span id="line-118">}</span>
+<span class="source-line-no">094</span><span id="line-94">                     getTerms(GbifTerm.class),</span>
+<span class="source-line-no">095</span><span id="line-95">                     getTerms(MixsTerm.class))</span>
+<span class="source-line-no">096</span><span id="line-96">      .flatMap(Arrays::stream)</span>
+<span class="source-line-no">097</span><span id="line-97">      .filter(Terms::isVocabulary)</span>
+<span class="source-line-no">098</span><span id="line-98">      .collect(Collectors.toList());</span>
+<span class="source-line-no">099</span><span id="line-99">  }</span>
+<span class="source-line-no">100</span><span id="line-100"></span>
+<span class="source-line-no">101</span><span id="line-101">  private static &lt;T extends Term&gt; Term[] getTerms(Class&lt;T&gt; term) {</span>
+<span class="source-line-no">102</span><span id="line-102">    return term.getEnumConstants();</span>
+<span class="source-line-no">103</span><span id="line-103">  }</span>
+<span class="source-line-no">104</span><span id="line-104"></span>
+<span class="source-line-no">105</span><span id="line-105">  /**</span>
+<span class="source-line-no">106</span><span id="line-106">   * @return true if the term is a handled/annotated as Vocabulary.</span>
+<span class="source-line-no">107</span><span id="line-107">   */</span>
+<span class="source-line-no">108</span><span id="line-108">  public static boolean isVocabulary(Term term) {</span>
+<span class="source-line-no">109</span><span id="line-109">    return term instanceof Enum &amp;&amp; hasTermAnnotation(term, Vocabulary.class);</span>
+<span class="source-line-no">110</span><span id="line-110">  }</span>
+<span class="source-line-no">111</span><span id="line-111"></span>
+<span class="source-line-no">112</span><span id="line-112">  private static boolean hasTermAnnotation(Term term, Class&lt;? extends Annotation&gt; annotation) {</span>
+<span class="source-line-no">113</span><span id="line-113">    try {</span>
+<span class="source-line-no">114</span><span id="line-114">      return term.getClass().getField(((Enum&lt;?&gt;) term).name()).isAnnotationPresent(annotation);</span>
+<span class="source-line-no">115</span><span id="line-115">    } catch (NoSuchFieldException ex) {</span>
+<span class="source-line-no">116</span><span id="line-116">      throw new IllegalArgumentException(ex);</span>
+<span class="source-line-no">117</span><span id="line-117">    }</span>
+<span class="source-line-no">118</span><span id="line-118">  }</span>
+<span class="source-line-no">119</span><span id="line-119">}</span>
 
 
 
