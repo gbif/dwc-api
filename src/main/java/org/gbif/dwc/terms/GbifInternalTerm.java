@@ -39,6 +39,7 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   isInCluster,
   dwcaExtension,
   datasetTitle,
+  datasetCategory,
 
   // Lower and upper endpoints for eventDates
   eventDateGte,
