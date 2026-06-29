@@ -54,7 +54,21 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   classificationDetails,
 
   // humboldt
-  humboldtEventDurationValueInMinutes;
+  humboldtEventDurationValueInMinutes,
+
+  // nucleotide
+  nucleotide_nucleotideSequenceID,
+  nucleotide_sequence,
+  nucleotide_sequenceLength,
+  nucleotide_gcContent,
+  nucleotide_nonIupacFraction,
+  nucleotide_nonACGTNFraction,
+  nucleotide_nFraction,
+  nucleotide_nRunsCapped,
+  nucleotide_naturalLanguageDetected,
+  nucleotide_endsTrimmed,
+  nucleotide_gapsOrWhitespaceRemoved,
+  nucleotide_invalid;
 
   private static final String PREFIX = "gbint";
   private static final String NS = "http://rs.gbif.org/terms/internal/";
