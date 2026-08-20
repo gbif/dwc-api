@@ -125,7 +125,7 @@ public enum DwcTerm implements Term, AlternativeNames, Serializable {
   fieldNotes(DwcTerm.GROUP_EVENT),
   eventRemarks(DwcTerm.GROUP_EVENT),
   projectTitle(DwcTerm.GROUP_EVENT),
-  projectID(DwcTerm.GROUP_EVENT),
+  projectID(DwcTerm.GROUP_EVENT, "gbif:projectId", "http://rs.gbif.org/terms/1.0/projectId"),
   fundingAttribution(DwcTerm.GROUP_EVENT),
   fundingAttributionID(DwcTerm.GROUP_EVENT),
 
