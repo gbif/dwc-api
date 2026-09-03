@@ -259,77 +259,81 @@
 <span class="source-line-no">246</span><span id="line-246">    assertEquals(DwcTerm.genericName, TF.findTerm("genericName"));</span>
 <span class="source-line-no">247</span><span id="line-247">    assertEquals(DwcTerm.recordedByID, TF.findTerm("recordedByID"));</span>
 <span class="source-line-no">248</span><span id="line-248">    assertEquals(DwcTerm.identifiedByID, TF.findTerm("identifiedByID"));</span>
-<span class="source-line-no">249</span><span id="line-249"></span>
-<span class="source-line-no">250</span><span id="line-250">    assertEquals(DwcTerm.genericName, TF.findTerm("http://rs.gbif.org/terms/1.0/genericName"));</span>
-<span class="source-line-no">251</span><span id="line-251">    assertEquals(DwcTerm.recordedByID, TF.findTerm("http://rs.gbif.org/terms/1.0/recordedByID"));</span>
-<span class="source-line-no">252</span><span id="line-252">    assertEquals(DwcTerm.identifiedByID, TF.findTerm("http://rs.gbif.org/terms/1.0/identifiedByID"));</span>
-<span class="source-line-no">253</span><span id="line-253"></span>
-<span class="source-line-no">254</span><span id="line-254">    assertEquals(DwcTerm.genericName, TF.findTerm("gbif:genericName"));</span>
-<span class="source-line-no">255</span><span id="line-255">    assertEquals(DwcTerm.recordedByID, TF.findTerm("gbif:recordedByID"));</span>
-<span class="source-line-no">256</span><span id="line-256">    assertEquals(DwcTerm.identifiedByID, TF.findTerm("gbif:identifiedByID"));</span>
-<span class="source-line-no">257</span><span id="line-257">  }</span>
-<span class="source-line-no">258</span><span id="line-258"></span>
-<span class="source-line-no">259</span><span id="line-259">  @Test</span>
-<span class="source-line-no">260</span><span id="line-260">  public void addSimpleTerm() {</span>
-<span class="source-line-no">261</span><span id="line-261">    TermFactory factory = TermFactory.instance();</span>
+<span class="source-line-no">249</span><span id="line-249">    assertEquals(DwcTerm.projectID, TF.findTerm("projectId"));</span>
+<span class="source-line-no">250</span><span id="line-250">    assertEquals(DwcTerm.projectID, TF.findTerm("projectID"));</span>
+<span class="source-line-no">251</span><span id="line-251"></span>
+<span class="source-line-no">252</span><span id="line-252">    assertEquals(DwcTerm.genericName, TF.findTerm("http://rs.gbif.org/terms/1.0/genericName"));</span>
+<span class="source-line-no">253</span><span id="line-253">    assertEquals(DwcTerm.recordedByID, TF.findTerm("http://rs.gbif.org/terms/1.0/recordedByID"));</span>
+<span class="source-line-no">254</span><span id="line-254">    assertEquals(DwcTerm.identifiedByID, TF.findTerm("http://rs.gbif.org/terms/1.0/identifiedByID"));</span>
+<span class="source-line-no">255</span><span id="line-255">    assertEquals(DwcTerm.projectID, TF.findTerm("http://rs.gbif.org/terms/1.0/projectId"));</span>
+<span class="source-line-no">256</span><span id="line-256"></span>
+<span class="source-line-no">257</span><span id="line-257">    assertEquals(DwcTerm.genericName, TF.findTerm("gbif:genericName"));</span>
+<span class="source-line-no">258</span><span id="line-258">    assertEquals(DwcTerm.recordedByID, TF.findTerm("gbif:recordedByID"));</span>
+<span class="source-line-no">259</span><span id="line-259">    assertEquals(DwcTerm.identifiedByID, TF.findTerm("gbif:identifiedByID"));</span>
+<span class="source-line-no">260</span><span id="line-260">    assertEquals(DwcTerm.projectID, TF.findTerm("gbif:projectId"));</span>
+<span class="source-line-no">261</span><span id="line-261">  }</span>
 <span class="source-line-no">262</span><span id="line-262"></span>
-<span class="source-line-no">263</span><span id="line-263">    Term hallo = factory.findTerm("hallo");</span>
-<span class="source-line-no">264</span><span id="line-264">    assertEquals(UnknownTerm.class, hallo.getClass());</span>
-<span class="source-line-no">265</span><span id="line-265">    assertEquals("http://unknown.org/hallo", hallo.qualifiedName());</span>
-<span class="source-line-no">266</span><span id="line-266">    assertEquals("hallo", hallo.simpleName());</span>
-<span class="source-line-no">267</span><span id="line-267"></span>
-<span class="source-line-no">268</span><span id="line-268"></span>
-<span class="source-line-no">269</span><span id="line-269">    Term tim = factory.findTerm("Tim");</span>
-<span class="source-line-no">270</span><span id="line-270">    assertEquals(UnknownTerm.class, tim.getClass());</span>
-<span class="source-line-no">271</span><span id="line-271">    assertEquals("http://unknown.org/Tim", tim.qualifiedName());</span>
-<span class="source-line-no">272</span><span id="line-272">    assertEquals("http://unknown.org", tim.namespace().toString());</span>
-<span class="source-line-no">273</span><span id="line-273">    assertEquals("Tim", tim.simpleName());</span>
-<span class="source-line-no">274</span><span id="line-274"></span>
-<span class="source-line-no">275</span><span id="line-275">    Term eva = factory.findTerm("tim:Eva");</span>
-<span class="source-line-no">276</span><span id="line-276">    assertEquals(UnknownTerm.class, eva.getClass());</span>
-<span class="source-line-no">277</span><span id="line-277">    assertEquals("http://unknown.org/tim/Eva", eva.qualifiedName());</span>
-<span class="source-line-no">278</span><span id="line-278">    assertEquals("http://unknown.org", tim.namespace().toString());</span>
-<span class="source-line-no">279</span><span id="line-279">    assertEquals("http://unknown.org/tim/Eva", eva.qualifiedName());</span>
-<span class="source-line-no">280</span><span id="line-280">    assertEquals("tim:Eva", eva.prefixedName());</span>
-<span class="source-line-no">281</span><span id="line-281">    assertEquals("Eva", eva.simpleName());</span>
-<span class="source-line-no">282</span><span id="line-282"></span>
-<span class="source-line-no">283</span><span id="line-283">    assertNotEquals(hallo, tim);</span>
-<span class="source-line-no">284</span><span id="line-284">  }</span>
-<span class="source-line-no">285</span><span id="line-285"></span>
-<span class="source-line-no">286</span><span id="line-286">  @Test</span>
-<span class="source-line-no">287</span><span id="line-287">  public void addUnknownSimpleTerm() {</span>
-<span class="source-line-no">288</span><span id="line-288">    TermFactory factory = TermFactory.instance();</span>
+<span class="source-line-no">263</span><span id="line-263">  @Test</span>
+<span class="source-line-no">264</span><span id="line-264">  public void addSimpleTerm() {</span>
+<span class="source-line-no">265</span><span id="line-265">    TermFactory factory = TermFactory.instance();</span>
+<span class="source-line-no">266</span><span id="line-266"></span>
+<span class="source-line-no">267</span><span id="line-267">    Term hallo = factory.findTerm("hallo");</span>
+<span class="source-line-no">268</span><span id="line-268">    assertEquals(UnknownTerm.class, hallo.getClass());</span>
+<span class="source-line-no">269</span><span id="line-269">    assertEquals("http://unknown.org/hallo", hallo.qualifiedName());</span>
+<span class="source-line-no">270</span><span id="line-270">    assertEquals("hallo", hallo.simpleName());</span>
+<span class="source-line-no">271</span><span id="line-271"></span>
+<span class="source-line-no">272</span><span id="line-272"></span>
+<span class="source-line-no">273</span><span id="line-273">    Term tim = factory.findTerm("Tim");</span>
+<span class="source-line-no">274</span><span id="line-274">    assertEquals(UnknownTerm.class, tim.getClass());</span>
+<span class="source-line-no">275</span><span id="line-275">    assertEquals("http://unknown.org/Tim", tim.qualifiedName());</span>
+<span class="source-line-no">276</span><span id="line-276">    assertEquals("http://unknown.org", tim.namespace().toString());</span>
+<span class="source-line-no">277</span><span id="line-277">    assertEquals("Tim", tim.simpleName());</span>
+<span class="source-line-no">278</span><span id="line-278"></span>
+<span class="source-line-no">279</span><span id="line-279">    Term eva = factory.findTerm("tim:Eva");</span>
+<span class="source-line-no">280</span><span id="line-280">    assertEquals(UnknownTerm.class, eva.getClass());</span>
+<span class="source-line-no">281</span><span id="line-281">    assertEquals("http://unknown.org/tim/Eva", eva.qualifiedName());</span>
+<span class="source-line-no">282</span><span id="line-282">    assertEquals("http://unknown.org", tim.namespace().toString());</span>
+<span class="source-line-no">283</span><span id="line-283">    assertEquals("http://unknown.org/tim/Eva", eva.qualifiedName());</span>
+<span class="source-line-no">284</span><span id="line-284">    assertEquals("tim:Eva", eva.prefixedName());</span>
+<span class="source-line-no">285</span><span id="line-285">    assertEquals("Eva", eva.simpleName());</span>
+<span class="source-line-no">286</span><span id="line-286"></span>
+<span class="source-line-no">287</span><span id="line-287">    assertNotEquals(hallo, tim);</span>
+<span class="source-line-no">288</span><span id="line-288">  }</span>
 <span class="source-line-no">289</span><span id="line-289"></span>
-<span class="source-line-no">290</span><span id="line-290">    Term t1 = factory.findTerm("me");</span>
-<span class="source-line-no">291</span><span id="line-291">    Term t2 = factory.findTerm("me");</span>
-<span class="source-line-no">292</span><span id="line-292">    Term t3 = factory.findTerm("Ne");</span>
+<span class="source-line-no">290</span><span id="line-290">  @Test</span>
+<span class="source-line-no">291</span><span id="line-291">  public void addUnknownSimpleTerm() {</span>
+<span class="source-line-no">292</span><span id="line-292">    TermFactory factory = TermFactory.instance();</span>
 <span class="source-line-no">293</span><span id="line-293"></span>
-<span class="source-line-no">294</span><span id="line-294">    assertEquals(t1, t2);</span>
-<span class="source-line-no">295</span><span id="line-295">    assertNotEquals(t1, t3);</span>
-<span class="source-line-no">296</span><span id="line-296">    assertNotEquals(t2, t3);</span>
-<span class="source-line-no">297</span><span id="line-297">  }</span>
-<span class="source-line-no">298</span><span id="line-298"></span>
-<span class="source-line-no">299</span><span id="line-299">  /**</span>
-<span class="source-line-no">300</span><span id="line-300">     * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.</span>
-<span class="source-line-no">301</span><span id="line-301">     */</span>
-<span class="source-line-no">302</span><span id="line-302">  @Test</span>
-<span class="source-line-no">303</span><span id="line-303">  public void testMultithreadStart() throws InterruptedException {</span>
-<span class="source-line-no">304</span><span id="line-304">    int threadCount = 100;</span>
-<span class="source-line-no">305</span><span id="line-305">    ExecutorService tp = Executors.newFixedThreadPool(threadCount);</span>
-<span class="source-line-no">306</span><span id="line-306">    for (int i = 0; i &lt; threadCount; i++) {</span>
-<span class="source-line-no">307</span><span id="line-307">      tp.submit(new TermFactoryLoader());</span>
-<span class="source-line-no">308</span><span id="line-308">    }</span>
-<span class="source-line-no">309</span><span id="line-309">    tp.shutdown();</span>
-<span class="source-line-no">310</span><span id="line-310">    tp.awaitTermination(30, TimeUnit.SECONDS);</span>
-<span class="source-line-no">311</span><span id="line-311">  }</span>
-<span class="source-line-no">312</span><span id="line-312"></span>
-<span class="source-line-no">313</span><span id="line-313">  private static class TermFactoryLoader implements Runnable {</span>
-<span class="source-line-no">314</span><span id="line-314">    @Override</span>
-<span class="source-line-no">315</span><span id="line-315">    public void run() {</span>
-<span class="source-line-no">316</span><span id="line-316">      TermFactory.instance();</span>
-<span class="source-line-no">317</span><span id="line-317">    }</span>
-<span class="source-line-no">318</span><span id="line-318">  }</span>
-<span class="source-line-no">319</span><span id="line-319">}</span>
+<span class="source-line-no">294</span><span id="line-294">    Term t1 = factory.findTerm("me");</span>
+<span class="source-line-no">295</span><span id="line-295">    Term t2 = factory.findTerm("me");</span>
+<span class="source-line-no">296</span><span id="line-296">    Term t3 = factory.findTerm("Ne");</span>
+<span class="source-line-no">297</span><span id="line-297"></span>
+<span class="source-line-no">298</span><span id="line-298">    assertEquals(t1, t2);</span>
+<span class="source-line-no">299</span><span id="line-299">    assertNotEquals(t1, t3);</span>
+<span class="source-line-no">300</span><span id="line-300">    assertNotEquals(t2, t3);</span>
+<span class="source-line-no">301</span><span id="line-301">  }</span>
+<span class="source-line-no">302</span><span id="line-302"></span>
+<span class="source-line-no">303</span><span id="line-303">  /**</span>
+<span class="source-line-no">304</span><span id="line-304">     * Not a real test, just a way of running many concurrent TermFactory.instance() calls to verify thread safety.</span>
+<span class="source-line-no">305</span><span id="line-305">     */</span>
+<span class="source-line-no">306</span><span id="line-306">  @Test</span>
+<span class="source-line-no">307</span><span id="line-307">  public void testMultithreadStart() throws InterruptedException {</span>
+<span class="source-line-no">308</span><span id="line-308">    int threadCount = 100;</span>
+<span class="source-line-no">309</span><span id="line-309">    ExecutorService tp = Executors.newFixedThreadPool(threadCount);</span>
+<span class="source-line-no">310</span><span id="line-310">    for (int i = 0; i &lt; threadCount; i++) {</span>
+<span class="source-line-no">311</span><span id="line-311">      tp.submit(new TermFactoryLoader());</span>
+<span class="source-line-no">312</span><span id="line-312">    }</span>
+<span class="source-line-no">313</span><span id="line-313">    tp.shutdown();</span>
+<span class="source-line-no">314</span><span id="line-314">    tp.awaitTermination(30, TimeUnit.SECONDS);</span>
+<span class="source-line-no">315</span><span id="line-315">  }</span>
+<span class="source-line-no">316</span><span id="line-316"></span>
+<span class="source-line-no">317</span><span id="line-317">  private static class TermFactoryLoader implements Runnable {</span>
+<span class="source-line-no">318</span><span id="line-318">    @Override</span>
+<span class="source-line-no">319</span><span id="line-319">    public void run() {</span>
+<span class="source-line-no">320</span><span id="line-320">      TermFactory.instance();</span>
+<span class="source-line-no">321</span><span id="line-321">    }</span>
+<span class="source-line-no">322</span><span id="line-322">  }</span>
+<span class="source-line-no">323</span><span id="line-323">}</span>
 
 
 
