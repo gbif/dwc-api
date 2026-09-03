@@ -51,6 +51,7 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   // multi taxonomy classifications
   taxonKeys,
   taxonomicStatuses,
+  taxonomicIssues,
   classifications,
   classificationDetails,
 
