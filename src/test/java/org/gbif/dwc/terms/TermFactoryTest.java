@@ -246,14 +246,18 @@ public class TermFactoryTest {
     assertEquals(DwcTerm.genericName, TF.findTerm("genericName"));
     assertEquals(DwcTerm.recordedByID, TF.findTerm("recordedByID"));
     assertEquals(DwcTerm.identifiedByID, TF.findTerm("identifiedByID"));
+    assertEquals(DwcTerm.projectID, TF.findTerm("projectId"));
+    assertEquals(DwcTerm.projectID, TF.findTerm("projectID"));
 
     assertEquals(DwcTerm.genericName, TF.findTerm("http://rs.gbif.org/terms/1.0/genericName"));
     assertEquals(DwcTerm.recordedByID, TF.findTerm("http://rs.gbif.org/terms/1.0/recordedByID"));
     assertEquals(DwcTerm.identifiedByID, TF.findTerm("http://rs.gbif.org/terms/1.0/identifiedByID"));
+    assertEquals(DwcTerm.projectID, TF.findTerm("http://rs.gbif.org/terms/1.0/projectId"));
 
     assertEquals(DwcTerm.genericName, TF.findTerm("gbif:genericName"));
     assertEquals(DwcTerm.recordedByID, TF.findTerm("gbif:recordedByID"));
     assertEquals(DwcTerm.identifiedByID, TF.findTerm("gbif:identifiedByID"));
+    assertEquals(DwcTerm.projectID, TF.findTerm("gbif:projectId"));
   }
 
   @Test

@@ -381,9 +381,6 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   /** Calculated relative organism quantity, based on organism and sample measure types */
   relativeOrganismQuantity(DwcTerm.GROUP_MATERIAL_SAMPLE),
 
-  /** An identifier for a project to which a record belongs. */
-  projectId(DwcTerm.GROUP_OCCURRENCE),
-
   /** Flag occurrence when associatedSequences/extension exists */
   isSequenced(DwcTerm.GROUP_OCCURRENCE),
 
