@@ -197,6 +197,12 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   nonTaxonomicIssue(DwcTerm.GROUP_OCCURRENCE),
 
   /**
+   * The environments the interpreted taxon is known to live in according to the checklist used,
+   * e.g. MARINE, BRACKISH, FRESHWATER or TERRESTRIAL. A property of the taxon, not of the occurrence.
+   */
+  environments(DwcTerm.GROUP_TAXON),
+
+  /**
    * The media type given as Dublin Core type values, in particular StillImage, MovingImage or Sound.
    */
   mediaType(DwcTerm.GROUP_OCCURRENCE),
@@ -427,7 +433,7 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
    GbifTerm.classKey, GbifTerm.orderKey, GbifTerm.superfamilyKey, GbifTerm.familyKey, GbifTerm.subfamilyKey,
    GbifTerm.tribeKey, GbifTerm.subtribeKey, GbifTerm.genusKey, GbifTerm.subgenusKey, GbifTerm.speciesKey,
    GbifTerm.species, GbifTerm.canonicalName, GbifTerm.nameType, GbifTerm.acceptedScientificName,
-   GbifTerm.verbatimScientificName};
+   GbifTerm.verbatimScientificName, GbifTerm.environments};
 
   private final String groupName;
   private final boolean isDeprecated;
