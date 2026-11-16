@@ -54,6 +54,11 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   taxonomicIssues,
   classifications,
   classificationDetails,
+  // DNA-assisted classifications, kept apart from the classifications
+  dnaClassifications,
+  dnaClassificationDetails,
+  dnaTaxonomicStatuses,
+  dnaTaxonomicIssues,
 
   // humboldt
   humboldtEventDurationValueInMinutes,
