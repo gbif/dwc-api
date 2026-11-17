@@ -180,6 +180,13 @@ public enum GbifTerm implements Term, AlternativeNames, Serializable {
   distanceFromCentroidInMeters(DwcTerm.GROUP_LOCATION),
 
   /**
+   * Marine regions in which the occurrence is located, identified using Marine Regions Geographic Identifiers (MRGIDs).
+   * <br/>
+   * See <a href="https://www.marineregions.org/mrgid.php">MRGID</a> for the identifier format.
+   */
+  marineRegion(DwcTerm.GROUP_LOCATION),
+
+  /**
    * Any issue found during processing and interpretation or the record.
    * See <a href="https://gbif.github.io/gbif-api/apidocs/org/gbif/api/vocabulary/OccurrenceIssue.html">OccurrenceIssue enumeration</a> for possible values.
    */
