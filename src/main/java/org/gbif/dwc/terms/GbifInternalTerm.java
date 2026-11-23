@@ -59,7 +59,7 @@ public enum GbifInternalTerm implements Term, AlternativeNames {
   dnaClassificationDetails,
   dnaTaxonomicStatuses,
   dnaTaxonomicIssues,
-  // checklists with a DNA-assisted match, as GbifTerm.checklistKey for the classifications but kept internal
+  // checklists of the DNA-assisted interpretation, as GbifTerm.checklistKey for the classifications but kept internal
   dnaChecklistKey,
 
   // humboldt
